@@ -51,23 +51,23 @@ Check SalveRubbing:
 			say "Your [printed name of random pussy covering clothing] is covering your [vagina]!" instead;
 	otherwise if the noun is ectoplasm:
 		if the second noun is not clothing or the second noun is accessory or the second noun is headgear or the second noun is stockings or the second noun is heels, say "You can't really rub it on properly. It's like the slime refuses to soak into it!" instead;
-		if the second noun is worn, say "You can't really rub it on properly when you're already wearing it." instead;
+		[if the second noun is worn, say "You can't really rub it on properly when you're already wearing it." instead;]
 		if the second noun is not fluid vulnerable, say "That doesn't like it would absorb any of the slime." instead;
 		if the second noun is possession, say "You try, but it doesn't do anything." instead.
 
 Carry out SalveRubbing:
 	let S be the noun;
 	let B be the second noun;
-	if B is body part: 
+	if B is body part:
 		say "You gingerly rub the [printed name of S] [if B is fuckhole]around[otherwise]onto[end if] your [ShortDesc of B] and wait to see what will happen.[line break]";
 	otherwise:
 		say "Your [printed name of B] seems to tremble unnaturally as you rub the slime into the fabric.[line break]";
 	oil B with S;
 	destroy S.
-	
+
 Report SalveRubbing:
-	now seconds is 6;
-	
+	allocate 6 seconds;
+
 Understand "rub [something] on [something]", "rub [something] into [something]", "apply [something] on [something]", "apply [something] to [something]", "apply [something] into [something]" as SalveRubbing it on.
 
 

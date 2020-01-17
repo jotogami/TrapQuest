@@ -23,7 +23,7 @@ A leftover is a kind of thing.
 A leftover is scenery.
 A leftover has a number called leftover-type.
 The leftover-type of a leftover is usually 0.
-There are 25 leftovers. 
+There are 25 leftovers.
 
 [!<BeforeDoingSomethingToALeftover>+
 
@@ -41,7 +41,8 @@ REQUIRES COMMENTING
 Before doing something when a leftover is the second noun:
 	print the you can't see message instead.
 
-The description of a leftover is "[LeftoverDesc the leftover-type of the item described]";
+To say ExamineDesc of (L - a leftover):
+	say "[LeftoverDesc the leftover-type of the L]".
 
 [!<SayLeftoverDesc>+
 
@@ -121,8 +122,8 @@ REQUIRES COMMENTING
 
 +!]
 To say LeftoverDesc (N - 100):
-	say "An unidentifiable body is on the ground here.[line break]";		
-	
+	say "An unidentifiable body is on the ground here.[line break]";
+
 [ FAINTING REASONS:
 0 - Misc (unknown)
 1 - Bed

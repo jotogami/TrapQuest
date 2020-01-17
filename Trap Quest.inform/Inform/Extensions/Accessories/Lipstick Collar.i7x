@@ -1,6 +1,6 @@
 Lipstick Collar by Accessories begins here.
 
-A lipstick collar is a kind of submissive collar. There is 1 lipstick collar in Mansion16. Printed name of lipstick collar is "[TQlink of item described][clothing-title-before][if item described is tethering]thieves collar[otherwise]lipstick collar[end if][clothing-title-after][TQxlink of item described][verb-desc of item described]". The text-shortcut of lipstick collar is "lsc". A lipstick collar can be tethering or not tethering. A lipstick collar is usually not tethering. A lipstick collar is usually leather. Understand "thief", "lip", "stick", "thieves" as lipstick collar.
+A lipstick collar is a kind of submissive collar. There is 1 lipstick collar in Mansion16. Printed name of lipstick collar is "[clothing-title-before][if item described is tethering]thieves collar[otherwise]lipstick collar[end if][clothing-title-after]". The text-shortcut of lipstick collar is "lsc". A lipstick collar can be tethering or not tethering. A lipstick collar is usually not tethering. A lipstick collar is usually leather. Understand "thief", "lip", "stick", "thieves" as lipstick collar.
 
 Figure of lipstick collar is the file "Items/Accessories/Neck/lipstickcollar1.png".
 
@@ -13,9 +13,11 @@ To say ClothingDesc of (C - a lipstick collar):
 To say ShortDesc of (C - a lipstick collar):
 	say "lipstick collar".
 
-Definition: a lipstick collar (called C) is immune to change:
-	if C is in Mansion16, decide yes;
-	decide no.
+Definition: a lipstick collar is immune to change if it is in Mansion16.
+
+Definition: a lipstick collar is oral sex themed: decide yes.
+Definition: a lipstick collar is red themed: decide yes.
+Definition: a lipstick collar is black themed: decide yes.
 
 Report wearing lipstick collar:
 	now a random lipstick collar is cursed;
@@ -48,8 +50,10 @@ To end tethering:
 This is the lipstick collar inhibits gag reflex rule:
 	if there is a worn lipstick collar:
 		let R be the make-up of face * 2;
-		increase R by the lips of face;
-		if a random number between R and -2 > 0, rule succeeds.
+		increase R by the lips of face + 3;
+		let N be a random number between 1 and R;
+		if debuginfo > 0, say "[input-style]Avoid gagging check: make up factor ([the make-up of face * 2]) + lips factor ([lips of face]) + 3 = [R] ---> d[R] = [N] | (1.5) difficulty check[roman type][line break]";
+		if N > 1, rule succeeds.
 The lipstick collar inhibits gag reflex rule is listed in the gag reflex rules.
 
 Report going down when there is a worn tethering lipstick collar:

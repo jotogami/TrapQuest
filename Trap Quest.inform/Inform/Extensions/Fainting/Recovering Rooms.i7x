@@ -22,15 +22,20 @@ To Recover Rooms:
 				change the D exit of R to Solid Rock;
 			now R is not discovered;
 			now R is not seen;
+			now R is unvisited;
 		if the player is not in Dungeon10 and the player is not in Dungeon11 and the player is not in Dungeon12 and the player is not in Dungeon32: [If the player is not in the dungeon, we still hide the map location of these locations.]
 			now Dungeon10 is not discovered;
 			now Dungeon10 is not seen;
+			now Dungeon10 is unvisited;
 			now Dungeon11 is not discovered;
 			now Dungeon11 is not seen;
+			now Dungeon11 is unvisited;
 			now Dungeon12 is not discovered;
 			now Dungeon12 is not seen;
+			now Dungeon12 is unvisited;
 			now Dungeon32 is not discovered;
 			now Dungeon32 is not seen;
+			now Dungeon32 is unvisited;
 	repeat with R running through jungle rooms: [Every room in the woods is reset]
 		now Neighbour Finder is R;
 		now R is not discovered;
@@ -63,23 +68,18 @@ To Recover Rooms:
 	now Terra Incognita is open;
 	if crashdebug is 1:
 		say "Room Checkpoint 1.";
-		wait 100 ms before continuing;
 	Set Up The Dungeon;
 	if crashdebug is 1:
 		say "Room Checkpoint 2.";
-		wait 100 ms before continuing;
-	if the player is not in the dungeon or there is a warp portal in Dungeon42, Set Up The Woods;
+	if the player is not in the dungeon or dungeon portal is in Dungeon10, Set Up The Woods;
 	if crashdebug is 1:
 		say "Room Checkpoint 3.";
-		wait 100 ms before continuing;
-	if the player is in the hotel or there is a warp portal in Dungeon42, Set Up The Hotel;
+	if playerRegion is Hotel or dungeon portal is in Dungeon10, Set Up The Hotel;
 	if crashdebug is 1:
 		say "Room Checkpoint 4.";
-		wait 100 ms before continuing;
-	if the player is in the mansion, Set Up The Mansion;
+	if playerRegion is Mansion, Set Up The Mansion;
 	if crashdebug is 1:
-		say "Room Checkpoint 5.";
-		wait 100 ms before continuing.
+		say "Room Checkpoint 5.".
 
 
 Recovering Rooms ends here.

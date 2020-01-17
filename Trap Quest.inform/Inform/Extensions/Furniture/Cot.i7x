@@ -1,7 +1,13 @@
 Cot by Furniture begins here.
 
 
-A cot is a kind of furniture. A cot is not portable. The description of a cot is "A small, uncomfortable looking bed.". There is 1 cot. The printed name of cot is "[TQlink of item described]cot[TQxlink of item described][verb-desc of item described]". The text-shortcut of a cot is "cot".
+A cot is a kind of furniture. A cot is not portable. There is 1 cot. The printed name of cot is "[TQlink of item described]cot[TQxlink of item described][verb-desc of item described]". The text-shortcut of a cot is "cot".
+
+To say ExamineDesc of (C - a cot):
+	say "A small, uncomfortable looking bed.".
+
+To decide which figure-name is the examine-image of (C - a cot):
+	decide on figure of bunk bed.
 
 To compute furniture resting on (F - a cot):
 	let M be a random alive dominatrix in the location of the player;
@@ -11,7 +17,7 @@ To compute furniture resting on (F - a cot):
 	compute normal rest of F.
 
 To say RestingDesc of (F - a cot):
-	say  "You [one of][or]continue to [stopping]rest on the cot.";
+	say "You [one of][or]continue to [stopping]rest on the cot.";
 
 To compute rest ending of (F - a cot):
 	if the number of modesty shutters in the location of the player > 0:

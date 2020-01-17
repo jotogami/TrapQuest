@@ -38,7 +38,7 @@ To imprint (C - a clothing):
 	now imprint-flav is 0;
 	now imprint-target is C;
 	follow the imprinting rules;
-	say "[ImprintEndFlav]".	
+	say "[ImprintEndFlav]".
 
 [!<ResolveDelayedImprints>+
 
@@ -56,7 +56,7 @@ REQUIRES COMMENTING
 
 +!]
 To imprint (C - a diaper):
-	do nothing.	
+	do nothing.
 
 [!<SayImprintStartFlav>+
 
@@ -64,7 +64,7 @@ REQUIRES COMMENTING
 
 +!]
 To say ImprintStartFlav:
-	if imprint-flav is 0, say "As your [imprint-target] is destroyed, you feel some of its magic ";
+	if imprint-flav is 0, say "As your [ShortDesc of imprint-target] is destroyed, you feel some of its magic ";
 	otherwise say "and ";
 	now imprint-flav is 1.
 
@@ -146,6 +146,20 @@ This is the anal sex addiction imprinting rule:
 		if the raw anal sex addiction of the player < 1, now the raw anal sex addiction of the player is 1.
 The anal sex addiction imprinting rule is listed in the imprinting rules.
 
+[!<TheOralSexAddictionImprintingRule>+
+
+REQUIRES COMMENTING
+
++!]
+This is the oral sex addiction imprinting rule:
+	if the oral-sex-addiction-influence of imprint-target is not 0:
+		say "[ImprintStartFlav]oral sex addiction [if the oral-sex-addiction-influence of imprint-target < 0]suppressing[otherwise]increasing[end if] effect [run paragraph on]";
+		if the oral-sex-addiction-influence of imprint-target > 0, increase the raw oral sex addiction of the player by 1;
+		otherwise decrease the raw oral sex addiction of the player by 1;
+		if the raw oral sex addiction of the player > 10, now the raw oral sex addiction of the player is 10;
+		if the raw oral sex addiction of the player < 1, now the raw oral sex addiction of the player is 1.
+The oral sex addiction imprinting rule is listed in the imprinting rules.
+
 [!<TheTitfuckAddictionImprintingRule>+
 
 REQUIRES COMMENTING
@@ -182,7 +196,7 @@ REQUIRES COMMENTING
 This is the semen addiction imprinting rule:
 	if the semen-addiction-influence of imprint-target is not 0:
 		say "[ImprintStartFlav]creampie[if bukkake fetish is 1] & bukkake[end if] addiction [if the semen-addiction-influence of imprint-target < 0]suppressing[otherwise]increasing[end if] effect [run paragraph on]";
-		if  the semen-addiction-influence of imprint-target > 0, increase the raw semen addiction of the player by 1;
+		if the semen-addiction-influence of imprint-target > 0, increase the raw semen addiction of the player by 1;
 		otherwise decrease the raw semen addiction of the player by 1;
 		if the raw semen addiction of the player > 20, now the raw semen addiction of the player is 20;
 		if the raw semen addiction of the player < 1, now the raw semen addiction of the player is 1.
