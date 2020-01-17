@@ -1,6 +1,36 @@
 "Trap Quest" by Aika
 
 [PUBLIC VERSION]
+Include Player Title by Miscellaneous Frontend.
+
+
+Include Game Settings by Miscellaneous Backend.
+
+
+Include Fetish Settings by Miscellaneous Backend.
+
+
+Include Fetish Settings by Miscellaneous Backend.
+
+
+Include Fetish Settings by Miscellaneous Backend.
+
+
+Include Fetish Settings by Miscellaneous Backend.
+
+
+Include Appearance by Player Description.
+
+
+Include Appearance by Player Description.
+
+
+Include Appearance by Player Description.
+
+
+Include Appearance by Player Description.
+
+
 
 Release along with cover art.
 The story genre is "Erotica".
