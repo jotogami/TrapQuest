@@ -10,7 +10,7 @@ To set up influence of (C - a business dress):
 
 Part 1 - Polka Dot Business Dress
 
-A polka dot business dress is a kind of business dress. There is 1 polka dot business dress. A polka dot business dress is high cut. A polka dot business dress is usually knee-length. The text-shortcut of polka dot business dress is "pol". The printed name of polka dot business dress is usually "[clothing-title-before]polka dot business dress[clothing-title-after]".
+A polka dot business dress is a kind of business dress. There is 1 polka dot business dress. A polka dot business dress is high cut. The text-shortcut of polka dot business dress is "pol". The printed name of polka dot business dress is usually "[clothing-title-before]polka dot business dress[clothing-title-after]".
 
 Figure of polka dot business dress is the file "Items/Clothes/Upper/Business/businessdress2.png".
 
@@ -34,7 +34,6 @@ Definition: a polka dot business dress is black-and-white themed: decide yes.
 To decide which object is the unique-upgrade-target of (C - a polka dot business dress):
 	if vest-dress is off-stage, decide on vest-dress;
 	otherwise decide on a random off-stage pinstripe business dress.
-
 
 Part 2 - Pinstripe Business Dress
 
@@ -117,6 +116,4 @@ To decide which object is the unique-upgrade-target of (C - vest-dress):
 	if there is a worn scrunchie, decide on a random off-stage cheeky schoolgirl outfit;
 	decide on a random off-stage pinstripe business dress.
 
-
 Business Dresses ends here.
-

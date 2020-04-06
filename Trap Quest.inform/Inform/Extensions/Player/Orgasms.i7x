@@ -178,7 +178,7 @@ REQUIRES COMMENTING
 
 +!]
 To breasts orgasm shamefully:
-	say "[bold type]You feel a wave of pleasure and your [if the player is upright]knees buckle. [otherwise if the player is male]muscles tense then relax. [otherwise if the openness of vagina < 6]as your [vagina] dribbles a small amount of girlcum. [otherwise]as your [vagina] squirts out girlcum. [end if][one of]You've just had your first orgasm from getting tit-fucked! [or]Your orgasm triggered by your sensitive breasts leaves you panting. [stopping][roman type][line break]";
+	say "[bold type]You feel a wave of pleasure and your [if the player is upright]knees buckle. [otherwise if the player is male]muscles tense then relax. [otherwise if the openness of vagina < 6]as your [vagina] dribbles a small amount of girlcum. [otherwise]as your [vagina] squirts out girlcum. [end if][one of]You've just had your first orgasm from your breasts! [or]Your orgasm triggered by your sensitive breasts leaves you panting. [stopping][roman type][line break]";
 	orgasm;
 	if the player is male, punish shameful male orgasm;
 	[severeHumiliate;]
@@ -193,7 +193,7 @@ REQUIRES COMMENTING
 To punish shameful male orgasm:
 	if fast tg > 1 and the size of penis <= min penis size:
 		say DefaultSexChangeFlav;
-		say "The fact that this is happening as you shudder through yet another anal orgasm [if the player is not a pervert]merely rubs salt in the wound[otherwise]makes the process feel immensely submissive and pleasurable[end if], as if confirming that you deserve this.";
+		say "The fact that this is happening as you shudder through yet another shameful orgasm [if the player is not a pervert]merely rubs salt in the wound[otherwise]makes the process feel immensely submissive and pleasurable[end if], as if confirming that you deserve this.";
 		sexchange the player;
 	otherwise if the number of worn chastity cages is 0 or a random number between 1 and 5 > 3:
 		if the size of penis > min penis size and the latex-transformation of the player <= 3:
@@ -434,7 +434,6 @@ This is the ejaculation capture rule:
 		rule succeeds.
 The ejaculation capture rule is listed last in the ejaculation rules.
 
-
 [!<TheDefaultEjaculationRule>+
 
 REQUIRES COMMENTING
@@ -596,7 +595,6 @@ This is the girls pee when they orgasm rule:
 		try urinating.
 The girls pee when they orgasm rule is listed last in the orgasm resolution rules.
 
-
 [!<TheHentaiOrgasmResolutionRule>+
 
 REQUIRES COMMENTING
@@ -627,7 +625,6 @@ This is the ass expulsion from orgasm rule:
 		say "As you cum, you can't help but let go of your anal sphincter!";
 		AssSquirt.
 The ass expulsion from orgasm rule is listed last in the orgasm resolution rules.
-
 
 [!<TheChastityCageOrgasmRule>+
 
@@ -709,7 +706,6 @@ REQUIRES COMMENTING
 To decide which number is the anal sensitivity influence of (C - a wearthing):
 	decide on 0.
 
-
 [!<DecideWhichNumberIsTheSensitivityOfAsshole>+
 
 REQUIRES COMMENTING
@@ -757,7 +753,6 @@ Definition: a person is unable to orgasm so soon rather than able to orgasm so s
 	if the player is not able to get horny or the arousal of the player - 500 <= minimum arousal or refactoryperiod > 0, decide yes;
 	decide no.
 
-
 Definition: a body part (called B) is pushed over the edge:
 	decide no.
 
@@ -793,7 +788,6 @@ Definition: penis (called P) is pushed over the edge:
 	if the player is not a bit horny, decide no;
 	if the rawness of penis > the max-rawness of penis, decide yes;
 	decide no.
-
 
 [!<FuckholeIsPushedOverTheEdge>+
 
@@ -849,6 +843,4 @@ To decide which number is the enjoyment of (F - a fuckhole):
 	if A < 0, decide on 0;
 	decide on A.
 
-
 Orgasms ends here.
-

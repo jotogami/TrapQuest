@@ -1,6 +1,5 @@
 Christmas Gift by Consumables begins here.
 
-
 A christmas gift is a kind of thing. There are 25 christmas gifts. Understand "present", "wrapping" as christmas gift. The printed name of christmas gift is "[TQlink of item described]christmas gift[shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of christmas gift is "chg".
 To say ExamineDesc of (B - a christmas gift):
 	say "A beautifully wrapped christmas present. Open it and find what's inside!".
@@ -48,13 +47,10 @@ To compute christmas event of (C - a christmas-gift-cumshot):
 		display cumshot reaction to N;
 		CumFaceUp N.
 
-
-
 A christmas-gift-transformation is a kind of christmas-gift-event. There are 8 christmas-gift-transformation in Christmas Item Pen.
 
 To compute christmas event of (T - a christmas-gift-transformation):
-	let C be a random worn transformation chain transformable clothing;
-	if C is nothing, now C is a random worn transformable clothing;
+	let C be most-transformable-clothing;
 	if C is clothing:
 		say "A silvery liquid shoots out of the gift box with purpose, shooting straight for your [ShortDesc of C]! The [clothing-material of C] absorbs the magic fluid and then begins to shimmer!";
 		potentially transform C;
@@ -157,7 +153,6 @@ To initialise christmas gifts:
 	now T is blessed;
 	if diaper quest is 0 and Icarus is off-stage, now Icarus is in Christmas Item Pen. [And a brand new festive NPC]
 
-
 To compute christmas gifting of (M - a monster):
 	if christmas content is 1 and M is reactive:
 		let CG be a random off-stage christmas gift;
@@ -218,4 +213,3 @@ Carry out unwrapping:
 	decide on 7.]
 
 Christmas Gift ends here.
-

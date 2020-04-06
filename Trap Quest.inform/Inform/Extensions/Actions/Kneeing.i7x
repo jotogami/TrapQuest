@@ -18,9 +18,6 @@ To decide which number is the knee damage of (P - a person):
 			if damage-explained > 1, say "[if N >= 0]+[end if][N] ([ShortDesc of S] bonus) ";
 	increase A by permanent-knee-bonus;
 	if damage-explained > 1 and permanent-knee-bonus is not 0, say "[if permanent-knee-bonus >= 0]+[end if][permanent-knee-bonus] (imprinted knee bonus) ";
-	if the weight of the player < 1:
-		decrease A by 2;
-		if damage-explained > 1, say "-2 (very low weight) ";
 	if demon horns is worn and the total-souls of the player > 9:
 		increase A by 3;
 		if damage-explained > 1, say "+3 (over 9 souls collected) ";
@@ -54,8 +51,9 @@ Check kneeing:
 	if the noun is container, try MimicInvestigating the noun instead;
 	if the noun is lake monster, say "You can't reach it from here." instead;
 	if the noun is not a monster, say "Err, why would you do that?" instead;
+	if the player is in a predicament room, say "This is neither the time nor the place for violence." instead;
 	if the noun is woman-barbara and woman-barbara is not angered:
-		say "Are you sure? You probably won't be able to make her friendly ever again, if you were to do that. ";
+		say "Are you sure? You probably won't be able to make [him of the noun] friendly ever again, if you were to do that. ";
 		unless the player is consenting, say "You change your mind." instead;
 	if the player is not able to knee, do nothing instead;
 	if the noun is too intimidating, compute surrender to the noun instead.
@@ -92,6 +90,4 @@ Carry out kneeing:
 	reset submitted monsters. [Otherwise kneeling makes them delayed]
 Understand "knee [something]", "kn [something]" as kneeing.
 
-
 Kneeing ends here.
-

@@ -6,12 +6,10 @@ To decide which number is the aggro limit of (M - a nasty student): [The number 
 	decide on 12.
 
 To say MediumDesc of (M - a nasty student):
-	say "mean [rank-colour of item described] student [student-name of item described]".
+	say "mean [rank-colour of M] student [student-name of M]".
 
 To decide which number is the unique vindictiveness of (M - a nasty student): [We can use this for various calculations to check which students do what]
 	decide on a random number between 2 and 4.
-
-
 
 To say FarGoneAppearanceAssessment of (M - a nasty student):
 	say "[BigNameDesc of M] screws up [his of M] face when [he of M] sees you.[line break][speech style of M]'[one of]What the fuck, freak?! Get away from me!!!'[or]OMG, you disgusting whore! Fuck off, just being near you is bad for my reputation.'[or]You are literally the most disgusting person I've ever seen.'[in random order][roman type][line break]".
@@ -62,13 +60,12 @@ To say AdviceAnswer of (M - student-lucy):
 Part - Default Conversation
 
 To compute nonstudent perception of (M - a nasty student):
-	say "[speech style of M]'Your days are numbered if you keep walking around here with no armband.'[roman type][line break][Big he of M] walks away!";
+	say "[speech style of M]'Your days are numbered if you keep walking around here with no armband.'[roman type][line break][big he of M] walks away!";
 	now the scared of M is 50.
 
 [The nasty student has the protection function of a normal monster.]
 To compute (M - a nasty student) protecting against (X - a monster):
 	compute default protecting of M.
-
 
 To say FirstTimeBullyDemandFlav of (M - a nasty student):
 	say "[speech style of M]'[one of]It's not your lucky day today. Get on your knees, [bitch].'[or]Guess what? I'll go easy on you if you get on your knees right now.'[or]You look pretty fun to mess with. Get on your knees.'[at random][roman type][line break]".
@@ -107,7 +104,6 @@ To compute friendly drink of (M - a nasty student):
 	say "[speech style of M]'Do I look like I'm in the mood to help you out?!'[roman type][line break]".
 
 To say detention chair tease of (M - a nasty student):
-	say "[speech style of M]'[one of]Bahahah, you really are the worst, aren't you?'[or]You should just give up, you know. Someone like you is never going to make it in a place like this.'[or]Nyer nyer, look at the loser on her punishment chair. Enjoying yourself, [bitch]?'[in random order][roman type][line break]".
+	say "[speech style of M]'[one of]Bahahah, you really are the worst, aren't you?'[or]You should just give up, you know. Someone like you is never going to make it in a place like this.'[or]Nyer nyer, look at the loser on [his of the player] punishment chair. Enjoying yourself, [bitch]?'[in random order][roman type][line break]".
 
 Students Nasty ends here.
-

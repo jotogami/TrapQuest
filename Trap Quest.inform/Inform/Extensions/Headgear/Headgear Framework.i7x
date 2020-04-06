@@ -1,6 +1,5 @@
 Headgear Framework by Headgear begins here.
 
-
 A headgear is a kind of clothing. headgear is unique. headgear can be hair growing. The soak-limit of a headgear is usually 7. A headgear has a number called hair-charge. A headgear has a number called colour-charge. A headgear has a number called outfit-charge. A headgear is usually manly.
 A headgear can be roleplay. A headgear is usually not roleplay. [Can this headgear appear in the wardrobe when picking the random headgear starting option.]
 
@@ -25,7 +24,6 @@ A game universe initialisation rule:
 	repeat with H running through on-stage headgear:
 		set up H. [otherwise they don't get their quests]
 
-
 To compute persistent reward of (Q - a headgear-clothing-quest) on (C - a clothing):
 	if C is cursed:
 		compute generic first time class reward of Q on C;
@@ -44,12 +42,6 @@ To compute generic first time class reward of (Q - a clothing-quest) on (C - a c
 		otherwise:
 			now D is in the location of the player;
 		say "summoning a [MediumDesc of D] [if D is worn]straight onto your finger[otherwise]right in front of you[end if]!";
-	[otherwise if the raw intelligence of the player < the raw dexterity of the player:
-		say "increasing your brainpower!";
-		IntUp 1;
-	otherwise if the raw dexterity of the player < 30:
-		say "improving your agility!";
-		DexUp 1;]
 	otherwise:
 		compute generic second time class reward of Q on C.
 
@@ -62,7 +54,6 @@ To compute generic class reward of (Q - a headgear-clothing-quest) on (C - a clo
 	repeat with F running through fuckholes:
 		heal F times 5;
 	now the fatigue of the player is 0.
-
 
 Report taking off headgear: [Otherwise the player could remove the headgear, remove the nasty class blocked clothing items, then replace the headgear.]
 	compute AutoRemoveFizzling of the noun.
@@ -97,7 +88,6 @@ To release recycled headgear:
 		remove C from the list of headgear recycling;
 		now C is cursed; [Should be already but let's make double sure]
 		compute unique recycling of C.
-
 
 To say ShortDesc of (C - a headgear):
 	say "headwear".
@@ -189,7 +179,7 @@ To decide which number is the hair threshold of (H - a headgear):
 		decide on 60.
 
 To compute hair growth of (H - a headgear):
-	if diaper quest is 0 and H is hair growing:
+	if diaper quest is 0 and H is hair growing and the largeness of hair < the bimbo of the player + 4:
 		increase the hair-charge of H by 1;
 		if the hair-charge of H > the hair threshold of H + (the raw largeness of hair * 3):
 			now the hair-charge of H is 0;
@@ -226,8 +216,4 @@ To compute HeadgearAutoCursing of (H - a headgear):
 		say "As you put it on, it becomes cursed, sealing itself to your [ShortDesc of hair]!";
 		now H is cursed.
 
-
-
-
 Headgear Framework ends here.
-

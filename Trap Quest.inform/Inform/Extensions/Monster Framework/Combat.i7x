@@ -41,7 +41,6 @@ To compute attack of (M - a monster):
 The monster attack rules is a rulebook.
 [In each rule in this rulebook, we write 'if the rule succeeded, rule succeeds.' In this way rule succeeds is used for finishing up completely. Rule fails is used for exiting a rulebook and moving to the next rulebook in the sex rules. Obviously if a rulebook ends with neither, then we also continue as if we had encountered a rule fails.]
 
-
 To MonsterStomp (M - a monster):
 	let stomped be 0;
 	repeat with N running through undefeated awake monsters in the location of M:
@@ -67,18 +66,19 @@ To compute (M - a monster) stomping (N - a monster):[We keep this completely gen
 	otherwise:
 		say "[BigNameDesc of M] is glitching, it doesn't know how to deal with the [N]. Report this bug please!";[This will not happen with default game but with added monsters it allows the ability for them to be dungeon dwelling and have a scene where the minotaur kills them.]
 
-
 Chapter 1 Continue and Finish Sex
 
 This is the continue sex rule:
 	follow the continue sex rules of current-monster;
-	if the rule succeeded, rule succeeds.
+	if the rule succeeded:
+		let vm be a random video-monitor in the location of the player;
+		if vm is video-monitor and the video-caller of vm is not the throne and vm is not recording-disgrace, now vm is recording-disgrace;[if you willingly have sex, your friend disapproves.]
+		rule succeeds.
 The continue sex rule is listed last in the monster attack rules. [Listed 1st]
 
 This is the check normal continue sex stuff rule: [If we want to add extra stuff onto the list of things we check for continue sex for an NPC, we can call this at some point too to make sure we check the default stuff as well. Check out 'The adult baby slave continue sex rules' for a practical example.]
 	follow the default continue sex rules;
 	if the rule succeeded, rule succeeds.
-
 
 This is the default check for spanking rule:
 	if current-monster is spanking the player:
@@ -117,7 +117,6 @@ The default check for sex rule is listed last in the default continue sex rules.
 This is the default finish sex rule:
 	if the rounds of sex left of current-monster <= 0:
 		follow the end-of-sex-rules of current-monster;
-		orgasm current-monster;
 		rule succeeds.
 The default finish sex rule is listed last in the default continue sex rules.
 
@@ -136,23 +135,28 @@ This function runs any code that needs to be executed whenever the player finish
 +!]
 To orgasm (M - a monster):
 	if ritual-beads is worn or runic headband is worn:
-		compute priestessBlessing of M;
-		if the player is in Dungeon28, progress quest of altar-sex-quest;
+		if runic headband is purity or M is penetrating vagina, compute priestessBlessing of M;
 	if ghost-strapon is worn, compute ghostGrowth of M;
 	if the class of the player is princess and M is male and M is intelligent and M is in-play and M is not dying, follow the betrothal rule;
 	compute refactoryReset of M;
 	if M is infernal, progress quest of demon-slut-quest;
+	let vm be a random video-monitor in the location of the player;
+	if vm is video-monitor and the video-caller of vm is not the throne and vm is not recording-disgrace:
+		now vm is recording-disgrace;[since sex is probably over by now, we need to set up the recorded event right away.]
+		let T be the substituted form of "making [NameDesc of M] cum";
+		now the video-event of vm is T;[note that the video-event always needs to be a present participle]
 	if there is a worn notebook, compute studying 0 of M;[
 	if siphoning-elixir-charge is not 0:
-		say "You feel yourself absorbing some of [NameDesc of M]'s excess energy!";
+		say "You feel yourself absorbing some of [NameDesc of M][']s excess energy!";
 		if siphoning-elixir-charge > 0, increase siphoning-elixir-charge by 1;
 		otherwise decrease siphoning-elixir-charge by 1;]
 	if there is a summoning portal in the location of the player:
 		let S be a random summoning portal in the location of the player;
-		say "You feel a tingle near the back of your neck as [ShortDesc of S]'s pressure intensifies.";
+		say "You feel a tingle near the back of your neck as [NameDesc of S][']s pressure intensifies.";
 		ChargeUp giant-statue by 60.
 
 To compute refactoryReset of (M - a monster):
+	if the blue-balls of M > 0, now the blue-balls of M is 0;
 	if M is intelligent:
 		now the refactory-period of M is the refactory-time of M;
 		if royal scepter is worn and the charge of royal scepter > 2, increase the refactory-period of M by (the refactory-time of M + 4);[
@@ -176,13 +180,15 @@ To compute priestessBlessing of (M - a monster):
 To RitualUp (X - a number):
 	let R be ritual-beads;
 	if R is worn:
-		while (X > 0 and the charge of R + X > the notches of R):
-			decrease X by 1;
-		if X > 0:
-			say "The [printed name of R] seems to grow heavier inside you.";
-			increase the charge of R by X;
+		if the notches of R < 10:
+			if the notches of R <= the notch-taken of R:
+				say "Blue light condenses around the end of [NameDesc of R], as another [PlugSize size of R] bead appears next to the hoop.";
+				increase the notches of R by 1;
+				force clothing-focus redraw; [This forces the clothing window to redraw]
+			otherwise:
+				say "[BigNameDesc of R] shifts slightly inside of you, but doesn't seem to get any longer. Maybe because it's not properly inside you?";
 		otherwise:
-			say "The [printed name of R] shifts slightly inside of you, but doesn't seem to get any heavier. Maybe it's full?".
+			say "[BigNameDesc of R] shifts slightly inside of you, but doesn't seem to get any longer. Maybe it's at maximum capacity?".
 
 To compute ghostGrowth of (M - a monster):
 	let G be ghost-strapon;
@@ -194,7 +200,7 @@ To say sleeping tip:
 	if tutorial is 0, say "[one of][newbie style]Newbie tip: The enemy has fallen asleep! However in this game you can't just kill sleeping enemies, you have to attack them like normal. Usually, this results in them waking back up again, so you'll still have a fight on your hands![roman type][line break][or][stopping]".
 
 To compute replacement of (T - a thing) in (O - an orifice):
-	unless O is actually occupied or current-monster is not intelligent:
+	unless O is actually occupied or current-monster is unintelligent:
 		say "[BigNameDesc of current-monster] pushes the [T] back into place in your [variable O].";
 		now T is worn by the player;
 		now T is penetrating O;
@@ -287,8 +293,8 @@ To compute default facial climax for (M - a monster):
 			otherwise: [submitted, deepthroat]
 				compute deepthroat creampie of M;
 	if the rounds of sex left of M <= 0:[if rounds of sex left > 0, it means the monster wants an extra round]
-		if M is interested, satisfy M;[dislodges him automatically]
-		otherwise dislodge M.
+		if M is interested, orgasm satisfy M;[dislodges him automatically]
+		otherwise orgasm dislodge M.
 
 [!<ComputeClimaxOfMonsterInFuckhole>+
 
@@ -305,9 +311,8 @@ To compute climax of (M - a monster) in (F - a fuckhole):
 	compute unique climax of M in F;
 	compute post climax effect of M in F;
 	if the rounds of sex left of M <= 0:
-		if M is interested, satisfy M;
-		otherwise dislodge M.
-
+		if M is interested, orgasm satisfy M;
+		otherwise orgasm dislodge M.
 
 [!<ComputePostClimaxEffectOfMonsterInBodypart>+
 
@@ -338,10 +343,11 @@ To replace any diapers:
 		unless current-monster is withholding D, compute replacement of D.
 
 To replace any clothes:
-	repeat with C running through worn clothing:
-		compute replacement of C; [this only does something if it's displaced or unzipped]
-	repeat with C running through clothing retained by current-monster:
-		unless current-monster is withholding C, compute replacement of C.
+	unless the woman-status of woman-barbara is 96 and woman-barbara is in the location of the player: [patron orgy scene]
+		repeat with C running through worn clothing:
+			compute replacement of C; [this only does something if it's displaced or unzipped]
+		repeat with C running through clothing retained by current-monster:
+			unless current-monster is withholding C, compute replacement of C.
 
 To compute anal climax of (M - a monster):
 	compute climax of M in asshole.
@@ -369,15 +375,14 @@ This is the default cleavage climax rule:
 		progress quest of titfuck-quest.
 The default cleavage climax rule is listed in the default end-of-sex rules.
 
-
 To compute cleavage climax of (M - a monster):
 	TitfuckAddictUp 1;
 	TimesSubmittedUp M by 1;
 	if M is male:
 		say CleavageClimaxFlav of M;
 		CumTitsUp the semen load of M;
-	if M is interested, satisfy M;
-	otherwise dislodge M.
+	if M is interested, orgasm satisfy M;
+	otherwise orgasm dislodge M.
 
 This is the default erection climax rule:
 	if current-monster is penetrating penis:
@@ -401,8 +406,6 @@ The default progress sex rule is listed last in the default continue sex rules.
 
 To decide which number is the rounds of sex left of (M - a monster):
 	decide on the sex-length of M. [Default function allows us to rewrite where this isn't true, e.g. witch and demoness]
-
-
 
 This is the default facial sex rule:
 	if current-monster is penetrating face, compute facial sex of current-monster.
@@ -443,7 +446,7 @@ To compute anal sex of (M - a monster):
 To compute default anal sex of (M - a monster):
 	if the class of the player is living sex doll:
 		compute sexSexDoll of M in asshole;
-	otherwise if M is not intelligent:
+	otherwise if M is unintelligent:
 		compute sexDumb of M in asshole;
 	otherwise if the reaction of the player is 2:[begging]
 		compute sexBegging of M in asshole;
@@ -464,7 +467,7 @@ To compute vaginal sex of (M - a monster):
 To compute default vaginal sex of (M - a monster):
 	if the class of the player is living sex doll:
 		compute sexSexDoll of M in vagina;
-	otherwise if M is not intelligent:
+	otherwise if M is unintelligent:
 		compute sexDumb of M in vagina;
 	otherwise if the reaction of the player is 2:
 		compute sexBegging of M in vagina;
@@ -714,7 +717,7 @@ Definition: a body part (called B) is a reasonable target:
 	[If you want the monster to ignore buttslut and/or be able to take out plugs, you'll need to define the correct functions for your monster.]
 	if B is not a potential target, decide no; [First we check, is it a potential target? (see above)]
 	[if debugmode > 0, say "[Shortdesc of B] is a potential target...[line break]";]
-	if B is breasts and there is top level titfuck protection clothing, decide no; [NPCs won't titfuck the player if they'd have to remove or displace clothing]
+	[if B is breasts and there is top level titfuck protection clothing, decide no;] [NPCs won't titfuck the player if they'd have to remove or displace clothing (no longer true as of Jan 2020)]
 	if B is occupied and B is not usable without penetration: [If it's usable without penetration e.g. the mannequin applying makeup, then we will always decide yes even if the player is gagged!]
 		if B is fake occupied and current-monster is not concealment immune, decide no; [The NPC has been tricked by magic, it cannot perceive this orifice!]
 		if B is actually occupied:
@@ -742,12 +745,12 @@ Definition: a body part (called B) is an actual target:
 	decide yes.
 
 Definition: a belly (called B) is an actual target: [We can always piss on a face unless it's being fucked.]
+	if the blue-balls of current-monster > a random number between 0 and 9, decide no; [This NPC wants to orgasm!]
 	if B is a reasonable target and the number of monsters filling face is 0, decide yes;
 	[if debugmode > 0, say "[ShortDesc of B] is not an actual target...[line break]";]
 	decide no.
 
 Definition: a body part is usable without penetration: decide no. [If a monster can use the body part without penetration e.g. a mannequin applying makeup or a dominatrix spanking, then add a rule for the body part and then write "if current-monster is X, decide yes"]
-
 
 Definition: a monster is concealment immune: decide no. [Can the monster ignore salves of concealment, butt slut, etc.]
 
@@ -766,6 +769,8 @@ Definition: a monster (called M) is able to remove plugs: [Can the monster remov
 
 This is the default monster convinced rule:
 	if presented-orifice is a reasonable target:
+		let C be the charisma of the player;
+		if current-monster is seduction-refused, increase C by the virility of current-monster - the sex-length of current-monster; [The player tried to make our monster happy by reducing their sex length. Let's see how well that worked]
 		if a random number between -1 and the charisma of the player >= 0:
 			now the chosen-orifice of current-monster is presented-orifice;[This is on top so flavour can refer to chosen orifice.]
 			say "[PresentAcceptanceFlav of current-monster]";
@@ -839,7 +844,9 @@ To compute (M - a monster) attacking (C - a clothing): [This should change for a
 		say "[PullAttempt of M at C]";
 		let R be a random number between the difficulty of M and 6 + a random number between the difficulty of M and 6;
 		if debuginfo > 0, say ClothingAttackDebug of M on C with R;
-		if R > the defence of the player:
+		if the chosen-orifice of M is breasts and C is actually top-displacable:
+			compute M topdisplacing C;
+		otherwise if R > the defence of the player:
 			compute M destroying C;
 		otherwise if R > the defence of the player - 2 and C is rippable:
 			compute M ripping C;
@@ -901,6 +908,13 @@ To compute (M - a monster) replacing (C - a clothing):
 	say "[BigNameDesc of M] pulls the [if C is hobble-skirted]skirt of your [ShortDesc of C] back down[otherwise if C is trousers]waistband of your [ShortDesc of C] back up to its proper place[otherwise]crotch section of your [ShortDesc of C] back in place[end if].";
 	replace C.
 
+To compute (M - a monster) topdisplacing (C - a clothing):
+	say "[BigNameDesc of M] [TopDisplacesFlav of C].";
+	topdisplace C.
+
+To say TopDisplacesFlav of (C - a clothing):
+	say "pulls your [ShortDesc of C] away".
+
 To say WeakenFlav of (M - a monster) on (C - a clothing):
 	say "The [clothing-material of C] is weakening.".
 
@@ -918,9 +932,9 @@ To set up sex length of (M - a monster) in (B - a body part):
 To decide which number is the virility of (M - a monster):
 	if M is male:
 		if interracial fetish is 1:
-			if M is dark skinned, decide on (a random number between 3 and 4) + the trophy-mode of bbc-trophy;
-			otherwise decide on a random number between 2 and 3;
-	decide on 3.
+			if M is dark skinned, decide on (a random number between 3 and 5) + the trophy-mode of bbc-trophy;
+			otherwise decide on (a random number between 3 and 4) - the trophy-mode of bbc-trophy;
+	decide on a random number between 3 and 6.
 
 [!<ComputeUniquePenetrationEffectOfMonsterInBodypart>+
 
@@ -978,7 +992,7 @@ To compute (M - a monster) entering anally:
 To compute (M - a monster) entering (F - a fuckhole):[Generic function that shouldn't realistically come up.]
 	if F is not actually occupied:
 		set up sex length of M in F;
-		say "[BigNameDesc of M] forces [him of M]self into your [variable F]";
+		say "[BigNameDesc of M] forces [himself of M] into your [variable F]";
 		now M is penetrating F;
 		compute unique penetration effect of M in F;
 		ruin F;
@@ -1083,6 +1097,10 @@ To compute (M - a monster) entering mouth:
 
 This is the monster breasts insertion rule:
 	if the chosen-orifice of current-monster is breasts:
+		let C be a random top level titfuck protection clothing;
+		if C is clothing:
+			compute current-monster attacking C;
+			rule succeeds;
 		compute current-monster entering breasts;
 		if presented-orifice is not breasts, progress quest of titfuck-desirability-quest.
 The monster breasts insertion rule is listed in the default monster insertion rules.
@@ -1100,7 +1118,6 @@ To compute (M - a monster) entering breasts:
 
 To say BreastsPenetrationFlav of (M - a monster):
 	say "[BigNameDesc of M] forces [his of M] [manly-penis] in between your [ShortDesc of breasts]!". [This needs changing for every monster! It's boring and might not even be accurate if the monster isn't male.]
-
 
 This is the monster penis insertion rule:
 	if the chosen-orifice of current-monster is penis, follow the monster penis insertion rules.
@@ -1190,7 +1207,6 @@ To say UrinationFlav of (M - a monster):
 		otherwise:
 			say "[BigNameDesc of M] points [his of M] genitals towards your face. A golden stream of [urine] shoots out, headed straight for you!".
 
-
 Chapter 6 Damaging and Tripping
 
 This is the monster attack rule:
@@ -1198,7 +1214,6 @@ This is the monster attack rule:
 		follow the attack rules of current-monster.
 		[if the rule succeeded, rule succeeds.] [By commenting this out, this means that the monster gets to go straight to punishment if the player drops.]
 The monster attack rule is listed last in the monster attack rules. [Listed 5th]
-
 
 [
 Tripping rolls:
@@ -1249,7 +1264,6 @@ To decide which number is the accuracy roll of (M - a monster):
 	if the blind-status of M > 0, now D is (the difficulty of M + (a random number between 0 and 6) + (a random number between 0 and 6)) / 2; [If the monster is blinded then we ignore the 50% minimum hit chance and also nerf accuracy massively]
 	if debugmode is 1, say "Player [dexterity of the player] | [D].5 [ShortDesc of M][line break]";
 	decide on D.
-
 
 A monster has a number called last-tripped.
 
@@ -1315,7 +1329,6 @@ To compute striking attack of (M - a monster):
 			decrease the blind-status of M by 1;
 			if the blind-status of M is 0, say "[BigNameDesc of M] is no longer blind!".
 
-
 To compute striking success effect of (M - a monster) on (B - a body part):
 	do nothing.
 
@@ -1362,7 +1375,6 @@ To compute (P - a clothing) protecting (B - breasts):
 		say "The [P] causes the attack to phase through you completely!";
 	otherwise:
 		BodyRuin 2.
-
 
 To compute (M - a monster) striking (B - hips):
 	let O be the body soreness of the player;
@@ -1458,14 +1470,10 @@ To say MonsterAttackError:
 	say "[one of][bold type]ERROR - this monster doesn't know how to attack. Some stupid slut forgot to code this right! Oh dear. I guess it just stands there and does nothing.[roman type][line break][or][stopping]".
 
 To compute (M - a monster) receiving (N - a number) damage from (X - a monster):
-	say "[AllyDamageFlav of X on M]";
+	say AllyDamageFlav of X on M;
 	decrease the health of M by N.
 
 To say AllyDamageFlav of (X - a monster) on (M - a monster):
-	say "The [X] strikes [NameDesc of M]!".
-
-
-
+	say "[BigNameDesc of X] strikes [NameDesc of M]!".
 
 Combat ends here.
-

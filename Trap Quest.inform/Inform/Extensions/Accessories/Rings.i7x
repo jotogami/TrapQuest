@@ -19,7 +19,6 @@ To decide which figure-name is the examine-image of (R - a ring):
 	if R is pure diamond, decide on figure of pure diamond ring;
 	decide on figure of solid gold ring.
 
-
 ring wearability rules is a rulebook. The wearability rules of rings is usually ring wearability rules.
 
 This is the rings limited to eight rule:
@@ -41,11 +40,4 @@ To restock (C - a ring):
 To say ShortDesc of (C - a ring):
 	say "[accessory-colour of C] ring".
 
-[This is the setup starting rings rule:
-	let C be a random ring;
-	repeat with N running from 1 to 3:
-		restock C.
-The setup starting rings rule is listed in the setup starting items rules.]
-
 Rings ends here.
-

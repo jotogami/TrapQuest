@@ -1,6 +1,5 @@
 Severed Tentacle by Headgear begins here.
 
-
 severed-tentacle is a headgear. severed-tentacle is biological. severed-tentacle is blondeness-positive. severed-tentacle is brightness-neutral. severed-tentacle is redness-negative. Understand "severed", "tentacle", "master" as severed-tentacle. severed-tentacle has a number called tentInt. The tentInt of severed-tentacle is usually 0.
 
 Definition: severed-tentacle is TQedible: decide yes.
@@ -39,7 +38,7 @@ Carry out TQeating severed-tentacle:
 
 To compute throbbing of (H - severed-tentacle) into (T - throbbing-tentacle):
 	let M be mind flayer;
-	say "You feel the tentacle slightly release, and you reverently reach up remove [him of M] from your head. Holding the undulating shaft in both hands, you lower [him of M] down to your [if the player is female]vaginal[otherwise]anal[end if] entrance. [if the player is not lewdly exposed]With awesome strength, [italic type]your Master[roman type] rips aside all obstructions, then[otherwise][italic type]Your Master[roman type] gives you an experimental prod, then[end if] slowly yet forcefully enters you. As [he of M] pushes [he of M]self in, you feel compelled to rub [his of M] length in your hands and are rewarded by [him of M] swelling inside you. After an excruciating moment that feels like an eternity, [he of M] bottoms out inside you, pulsing and rubbing until [he of M] fills you completely. [line break][first custom style]'Come, [slut]. Now.'[roman type][line break]You find yourself gleefully obeying!";
+	say "You feel the tentacle slightly release, and you reverently reach up remove [him of M] from your head. Holding the undulating shaft in both hands, you lower [him of M] down to your [if the player is female]vaginal[otherwise]anal[end if] entrance. [if the player is not lewdly exposed]With awesome strength, [italic type]your Master[roman type] rips aside all obstructions, then[otherwise][italic type]Your Master[roman type] gives you an experimental prod, then[end if] slowly yet forcefully enters you. As [he of M] pushes [himself of M] in, you feel compelled to rub [his of M] length in your hands and are rewarded by [him of M] swelling inside you. After an excruciating moment that feels like an eternity, [he of M] bottoms out inside you, pulsing and rubbing until [he of M] fills you completely. [line break][first custom style]'Come, [slut]. Now.'[roman type][line break]You find yourself gleefully obeying!";
 	repeat with C running through worn top level protection clothing:
 		now C is in pink wardrobe;
 	repeat with D running through worn clothing:
@@ -79,7 +78,6 @@ To compute periodic effect of (H - severed-tentacle):
 			otherwise:
 				vaginally orgasm shamefully.
 
-
 Check taking off severed-tentacle:
 	let S be the noun;
 	let T be a random off-stage throbbing-tentacle;
@@ -113,6 +111,4 @@ Check taking off severed-tentacle:
 			OralSexAddictUp 2;
 			try waiting instead.
 
-
 Severed Tentacle ends here.
-

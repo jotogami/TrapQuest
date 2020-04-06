@@ -12,23 +12,29 @@ REQUIRES COMMENTING
 vagina is a fuckhole. vagina is everywhere. Understand "pussy", "fuckhole", "cunt", "fanny", "snatch", "muffin", "cum dump" as vagina. Understand "womb", "vulva", "cherry", "kitty", "slit", "clunge", "honey pot", "baby maker" as vagina when the player is female. The text-shortcut of vagina is "vagina".
 
 To say FullExamineDesc of (B - vagina):
-	say "[if the player is female][TotalDesc of vagina][VaginaModesty][otherwise if the bimbo of the player > 6][description of asshole][otherwise]You don't have a vagina.[end if]".
+	say "[if the player is female][ImageDesc of vagina][TotalDesc of vagina][VaginaModesty][otherwise if the bimbo of the player > 6][description of asshole][otherwise]You don't have a vagina.[end if]".
 
-[!<Vagina>@<semenVolume:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Vagina has a number called semen volume.
 Vagina has a number called womb volume.
+Vagina has a number called small egg count.
+Vagina has a number called medium egg count.
+Vagina has a number called large egg count.
 
 To decide which number is the total volume of (F - vagina):
+	decide on the total semen volume of F + the total egg volume of F.
+
+To decide which number is the total semen volume of (F - vagina):
 	decide on the semen volume of F + the womb volume of F.
 
+To decide which number is the total egg count of (F - vagina):
+	decide on the small egg count of F + the medium egg count of F + the large egg count of F.
+
+To decide which number is the total egg volume of (F - vagina):
+	decide on the small egg count of vagina + (the medium egg count of vagina * 2) + (the large egg count of vagina * 4).
 
 To decide which number is the total felchable volume of (F - vagina): [man I love that word]
 	if the pregnancy of the player > 0, decide on the semen volume of F;
-	otherwise decide on the total volume of F.
+	otherwise decide on the total semen volume of F.
 
 [Can it be accessed right now with nothing blocking it?]
 Definition: vagina is undefended:
@@ -46,10 +52,13 @@ Definition: vagina is at least partially exposed:
 	decide yes.
 
 To decide which object is the concealer of (V - vagina):
+	if water-fountain is penetrating asshole, decide on water-fountain;
 	let C be a random worn potentially vagina covering clothing;
 	decide on C.
 
 To decide which object is the at least partial concealer of (V - vagina):
+	if water-fountain is penetrating asshole, decide on water-fountain;
+	if vagina is listed in the armUses of arms, decide on arms;
 	let C be a random worn potentially at least partially vagina covering clothing;
 	decide on C.
 
@@ -137,7 +146,6 @@ REQUIRES COMMENTING
 		if auto is 0, say "You don't like vaginal sex enough to ask for it while you are already feeling so [if the soreness of vagina < 5]raw[otherwise]sore[end if]!";
 		rule fails.
 The player hates vaginal sex rule is listed in the vagina presentable rules.]
-
 [!<TheMonsterDoesNotdoVaginalRule>+
 
 REQUIRES COMMENTING
@@ -234,7 +242,10 @@ To say TotalDesc of vagina:
 		otherwise:
 			say "feels numb. ";
 		if the semen volume of vagina > 0, say "It [if the semen volume of vagina > 4]is completely full of [semen][otherwise]has some [semen] in it[end if]. ";
-		if the womb volume of vagina > 0:
+		if the pregnancy of the player >= 3:
+			let EN be the total egg count of vagina;
+			say "Your womb is currently the incubator of [if EN > 5]a rather large number of eggs[otherwise if the large egg count of vagina > 1][large egg count of vagina] giant monster eggs[otherwise if the large egg count of vagina is 1]a single giant monster egg[otherwise if EN > 1][EN] eggs[otherwise]a single monster egg[end if].";
+		otherwise if the womb volume of vagina > 0:
 			if the pregnancy of the player > 0, say "[if inhuman pregnancy is 0]A baby[otherwise]Something[end if] [if the womb volume of vagina is 30 or the womb volume of vagina >= 50]has been[otherwise if slow pregnancy is 0]is rapidly[otherwise]is slowly[end if] growing inside your womb[if the womb volume of vagina is 30 or the womb volume of vagina >= 50] and has reached full term[end if]. [if the pregnancy of the player is 2]You can feel that your pregnancy has somehow magically been paused. [end if]";
 			otherwise say "[if the womb volume of vagina > 3]A huge amount of[otherwise]Some[end if] [semen] has made it into your [if pregnancy fetish is 1 and the pregnancy of the player is 0]fertile [end if]womb. ";
 		if there is a lubricant covering vagina, say "It is dripping with slippery [lubricant]. ".
@@ -254,7 +265,7 @@ To say VaginaModesty:
 	otherwise:
 		let P be the at least partial concealer of vagina;
 		let C be the concealer of vagina;
-		say "It [if C is a thing]can't be seen thanks to[otherwise]is partially concealed by[end if] the [if C is a thing][ShortDesc of C][otherwise][ShortDesc of P][end if]. ";
+		say "It [if C is a thing]can't be seen thanks to [NameDesc of C][otherwise]is partially concealed by [NameDesc of P][end if]. ";
 	if vagina is actually occupied:
 		let P be a random thing penetrating vagina;
 		if P is monster:
@@ -338,11 +349,11 @@ This is the continued pussy expulsion rule:
 	if the semen volume of vagina >= 12, PussySquirt 6;
 	otherwise PussySquirt the semen volume of vagina - 6; [so we always leave 6 behind for dripping over time]
 	commence animation of PussyExpelAnimation;
-	if the semen volume of vagina > 6 and vagina is not actually occupied, now continued-pussy-expulsion is true;
+	if the semen volume of vagina > 6 and (vagina is not actually occupied or the player is in a predicament room), now continued-pussy-expulsion is true;
 	otherwise now continued-pussy-expulsion is false.
 
 This is the compulsory pussy expulsion rule:
-	if the semen volume of vagina > 6 and vagina is not actually occupied:
+	if the semen volume of vagina > 6 and (vagina is not actually occupied or the player is in a predicament room):
 		now another-turn is 1;
 		add continued pussy expulsion rule to another-turn-rules.
 The compulsory pussy expulsion rule is listed in the compulsory action rules.
@@ -392,9 +403,8 @@ To PussyFill (X - a number):
 	if M is a thing, progress quest of vaginal-creampie-quest from M;
 	if there is a worn tethering lipstick collar, end tethering.
 
-Definition: vagina is accepting womb semen: [If the womb is full or carrying a child then it can't get more semen in it via the old fashioned way]
-	if the womb volume of vagina < 5 and the pregnancy of the player is 0, decide yes;
-	decide no.
+Definition: vagina is accepting womb semen if the womb volume of vagina < 5 and the pregnancy of the player is 0. [If the womb is full or carrying a child then it can't get more semen in it via the old fashioned way]
+Definition: vagina is accepting womb eggs if the pregnancy of the player is 0 or the pregnancy of the player is 3.
 
 [!<WombFillX>+
 
@@ -433,7 +443,6 @@ To check sudden pregnancy:
 		compute sudden pregnancy;
 	otherwise if the pregnancy of the player > 0:
 		check goddess eligibility.
-
 
 forcedFertility is initially false.
 
@@ -599,6 +608,93 @@ To cancel father material of (F - vagina):
 		if the pregnancy of the player is 0:
 			now the father is the throne.
 
+To wombfill (X - a number) small eggs:
+	while X > 0:
+		decrease X by 1;
+		increase the small egg count of vagina by 1;
+	EggPregCheck.
+To wombfill (X - a number) medium eggs:
+	while X > 0:
+		decrease X by 1;
+		increase the medium egg count of vagina by 1;
+	EggPregCheck.
+To wombfill (X - a number) large eggs:
+	while X > 0:
+		decrease X by 1;
+		increase the large egg count of vagina by 1;
+	EggPregCheck.
+To EggPregCheck:
+	if the pregnancy of the player > 0 and the pregnancy of the player < 3: [If the player is already pregnant then we need to get rid of these eggs instantly.]
+		compute forced womb egg laying;
+	otherwise:
+		now maximum-pregnancy-delay-tracker is 0; [Timer before they are laid resets]
+		now the pregnancy of the player is 3. [Flag that we've got an egg pregnancy underway]
+
+To compute forced womb egg laying:
+	repeat with P running through things penetrating vagina:
+		say "[BigNameDesc of P] is pushed out of the way!";
+		dislodge P;
+	repeat with C running through pussy covering clothing:
+		if C is displacable:
+			say "[BigNameDesc of C] is pushed out of the way!";
+			displace C;
+		otherwise if C is rippable:
+			say "[BigNameDesc of C] is ripped at the crotch!";
+			now C is crotch-ripped;
+		otherwise:
+			say "[BigNameDesc of C] fizzles into thin air!";
+			destroy C;
+	compute womb egg laying;
+
+To compute womb egg laying:
+	if the player is pussy protected or vagina is actually occupied:
+		say "BUG - game tried to make the player lay eggs when the exit wasn't clear. Please report this to Aika!";
+	otherwise:
+		say "All of a sudden, the eggs inside your womb rush out of you, roughly stimulating your [vagina] on the way out!";
+		while the small egg count of vagina > 0:
+			decrease the small egg count of vagina by 1;
+			let E be a random available small egg;
+			if E is egg:
+				now E is in the location of the player;
+				if the pregnancy of the player is 3 or a random number between 1 and 5 is 1, now E is laid;
+				if the pregnancy of the player is 3, now the hatching of E is a random number between 100 and 130;
+				if the remainder after dividing small egg count of vagina by 3 is 0: [1 ruin for 3 eggs]
+					now E is penetrating vagina;
+					ruin vagina;
+					dislodge E;
+		while the medium egg count of vagina > 0:
+			decrease the medium egg count of vagina by 1;
+			let E be a random available medium egg;
+			if E is egg:
+				now E is in the location of the player;
+				if the pregnancy of the player is 3 or a random number between 1 and 5 is 1, now E is laid;
+				if the pregnancy of the player is 3, now the hatching of E is a random number between 100 and 130;
+				if the remainder after dividing medium egg count of vagina by 2 is 0: [1 ruin for 2 eggs]
+					now E is penetrating vagina;
+					ruin vagina;
+					dislodge E;
+		while the large egg count of vagina > 0:
+			decrease the large egg count of vagina by 1;
+			let E be a random available large egg;
+			if E is egg:
+				now E is in the location of the player;
+				if the pregnancy of the player is 3 or a random number between 1 and 5 is 1, now E is laid;
+				if the pregnancy of the player is 3, now the hatching of E is a random number between 100 and 130;
+				now E is penetrating vagina;
+				ruin vagina;
+				dislodge E;
+		if the pregnancy of the player <= 0 or the pregnancy of the player is 3:
+			now the pregnancy of the player is 0;
+			WombSquirt the womb volume of vagina;
+		say "[variable custom style][if the soreness of vagina > 8]My poor pussy...[otherwise if the player is a nympho][one of]I'm a walking, talking incubator. How hot is that![or]It feels so fucking good to lay eggs from my womb![stopping][otherwise if the player is a pervert][one of]This is so fucking weird, but also kind of kinky[or]I can't believe I keep letting this happen to me[stopping]...[otherwise]How did I let this happen?![end if][roman type][line break]";
+		progress quest of egg-laying-quest;
+		progress quest of egg-holding-quest.
+
+Section - Image for graphics window
+
+Figure of PussyObject1 is the file "CharWins/FocusWin/pussy1.jpg".
+
+To decide which figure-name is the examine-image of (T - vagina):
+	decide on Figure of PussyObject1.
 
 Vagina ends here.
-

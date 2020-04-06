@@ -14,7 +14,13 @@ Definition: a clothing is alwaysSure: [Should never be considered to possibly be
 	decide yes.
 
 Definition: a thing is cursable: decide no.
+Definition: a bottle is cursable if it is held.
 Definition: a clothing is cursable: decide yes.
+
+Definition: a thing (called T) is actually cursable:
+	if T is not cursable, decide no;
+	if T is cursed, decide no;
+	decide yes.
 
 [avoids errors if the item is not something that can be cursed]
 Definition: a thing (called T) is maybe-cursed:
@@ -48,9 +54,7 @@ Definition: a clothing (called T) is potentially blessable:
 
 Definition: a bottle is blessable if it is held and it is not blessed.
 
-
 Definition: an alchemy product is blessable if it is carried and it is not blessed.
-
 
 To blandify (C - a clothing):
 	only destroy C;
@@ -95,7 +99,6 @@ To fully bless (B - a thing):
 	if B is cursable:
 		if B is cursed, bless B;
 		if B is blessable, bless B.
-
 
 To say CurseCurseFlav of (B - a thing):
 	do nothing.
@@ -150,6 +153,4 @@ To say raw-magic-modifier-desc:
 	if magic-ID of the item described is identified and raw-magic-modifier of the item described is not 0:
 		say "[if raw-magic-modifier of the item described > 0]+[end if][raw-magic-modifier of the item described] ".
 
-
 Magic State ends here.
-

@@ -141,6 +141,7 @@ Definition: a number (called K) is ingredient appropriate: [Will this ingredient
 	if K is 16 and egg laying fetish is 0 or mythical creature fetish is 0, decide no; [wasp wing]
 	if K is 36 and inflation fetish is 0, decide no;
 	if K is 55 and diaper quest is 0, decide no; [Chocolate eggs]
+	if K is 56 and diaper messing < 4, decide no; [Pocketwipes]
 	if K is 18 and diaper quest is 1, decide no; [Minotaur horn]
 	decide yes.
 
@@ -161,7 +162,6 @@ Definition: a number (called K) is alchemy appropriate: [Should we use this alch
 
 Definition: a thing (called T) is always alchemy appropriate: [Should we OVERRIDE the above function and use this alchemy product as a random outcome?]
 	decide no.
-
 
 [!<Thing>@<IsProduct>+
 
@@ -234,7 +234,6 @@ REQUIRES COMMENTING
 +@!]
 Definition: a thing is recipe specific: decide no.
 
-
 [We are not going to classify these as 'bottles' a) since they don't obey the colour & effect rules and b) so that they never get mixed up with normal drinks that are found in containers etc.]
 
 [!<AlchemyProduct>@
@@ -260,7 +259,6 @@ REQUIRES COMMENTING
 *@!]
 An alchemy product has a magic-curse. Understand the magic-curse property as describing an alchemy product when item described is sure.
 
-
 To display complete alchemy data:
 	[repeat through the Table of Alchemy:
 		say "Product: [Product entry], Recipe: [Recipe entry], Ingredient: [ingredient entry].";]
@@ -272,11 +270,4 @@ To display complete alchemy data:
 		let R1 be a random ingredient-highlighted thing;
 		say "[if Ingredient entry <= highest-cursed or (Ingredient entry >= 20 and Ingredient entry <= 23)][Appearance corresponding to an Magic of current-crafting-key in the Table of Drinks] liquid[otherwise][ShortDesc of R1][end if] ([Ingredient entry]) - [ShortDesc of R2] ([Product entry]) - [if Recipe entry is 1]REAL[otherwise]FAKE[end if].".
 
-
-
-
-
-
-
 Crafting Framework ends here.
-

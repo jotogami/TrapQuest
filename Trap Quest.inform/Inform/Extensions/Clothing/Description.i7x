@@ -1,6 +1,5 @@
 Description by Clothing begins here.
 
-
 To decide which figure-name is the clothing-image of (C - a clothing):
 	decide on figure of no-image-yet.
 
@@ -61,7 +60,6 @@ To say AppearanceDesc of (C - a clothing):
 		otherwise:
 			say "damp ".
 
-
 [Here we will give hints to the player about the clothing.]
 
 Report examining an exclusive clothing:
@@ -107,6 +105,8 @@ To say InfluenceDesc of (C - a wearthing):
 	if C is speed clothing, say "You can sense that this [item of C] is making you much quicker at moving between rooms.";
 	if the intelligence-influence of C < 0, say "You can sense that this [item of C] is making you [if the intelligence-influence of C < -2]much [end if]dumber.";
 	if the intelligence-influence of C > 0, say "You can sense that this [item of C] is making you [if the intelligence-influence of C > 2]much [end if]smarter.";
+	if the charisma-influence of C < 0, say "You can sense that this [item of C] is making you [if the charisma-influence of C < -1]much [end if]less charismatic.";
+	if the charisma-influence of C > 0, say "You can sense that this [item of C] is making you [if the charisma-influence of C > 1]much [end if]more charismatic.";
 	if diaper quest is 1:
 		if the bimbo-influence of C < 0, say "You can sense that this [item of C] is making you [if the bimbo-influence of C < -1]much [end if]more sensible.";
 		if the bimbo-influence of C > 0, say "You can sense that this [item of C] is making you act [if the bimbo-influence of C > 1]much [end if][if diaper quest is 1]girlier and more immature[otherwise]sluttier[end if].";
@@ -134,6 +134,9 @@ To say InfluenceDesc of (C - a wearthing):
 	if the humiliation-influence of C > 0, say "You can sense that this [item of C] is making you [if the humiliation-influence of C > 1]much [end if]better at coping with humiliation.";
 	if the delicateness-influence of C < 0, say "You can sense that this [item of C] is making you [if the delicateness-influence of C < -1]much [end if][one of]better at coping with pain[or]more dominant[cycling].";
 	if the delicateness-influence of C > 0, say "You can sense that this [item of C] is making you [if the delicateness-influence of C > 1]much [end if][one of]less tolerant of pain[or]more submissive[cycling].";
+	if diaper quest is 0:
+		if the soreness-influence of C < 0, say "You can sense that this [item of C] is making you get sore [if the soreness-influence of C < -2]much [end if]more quickly.";
+		if the soreness-influence of C > 0, say "You can sense that this [item of C] is helping you get sore [if the soreness-influence of C > 2]much [end if]more slowly.";
 	if the fatigue-influence of C < 0, say "You can sense that this [item of C] is [if the fatigue-influence of C < -2]greatly [end if]improving your stamina.";
 	if the fatigue-influence of C > 0, say "You can sense that this [item of C] is [if the fatigue-influence of C < -2]greatly [end if]reducing your stamina.";
 	if the diaper-addiction-influence of C < 0 and diaper lover > 0, say "You can sense that this [item of C] is [if the diaper-addiction-influence of C < -1]significantly [end if][if the diaper addiction of the player < 5 and there is a worn diaper]suppressing any thoughts of you enjoying wearing your diaper[otherwise if the diaper addiction of the player < 5]helping you avoid any weird temptations to wear a diaper[otherwise if the diaper addiction of the player < 8]reducing the amount you enjoy wearing and using diapers[otherwise]helping to curb your addiction to wearing and using diapers[end if].";
@@ -192,7 +195,9 @@ Report examining clothing:
 		otherwise if the noun is pussy protection:
 			say "[if the player is female]The item will protect your [vagina] but not[otherwise if the size of penis > 0]The item will protect your [ShortDesc of penis] but not[otherwise]The item will not protect[end if] your [asshole].";
 	if the noun is top-ripped:
-		say "The [if the noun is bra]cups have[otherwise]bust has[end if] been permanently ripped open.".
+		say "The [if the noun is bra]cups have[otherwise]bust has[end if] been permanently ripped open.";
+	if the stolen-strength of the noun > 0:
+		say "[bold type]It has stolen some of your strength, and you won't get it back until you wear it agian.[roman type][line break]";
 
 Report examining wet clothing:
 	unless it is diaper and the player is not diaper aware, say "It is currently [cumdesc of the noun][if the noun is sheer-when-wet]which is making it more see-through than it would otherwise be[otherwise if the noun is actually dense]but it's not the type of item to turn see-through when wet[otherwise]but it's just as see-through as normal[end if].".
@@ -210,7 +215,6 @@ Report examining clothing:
 Report examining protection clothing:
 	if the noun is identified, say "An aura of magic protection surrounds this item, helping protect [if the noun is worn]you[otherwise]the wearer[end if] from harm in combat.".
 
-
 To say CurrentlyConcealedFlav of (C - a clothing):
 	let X be the concealer of C;
 	say "It can't be seen thanks to your [ShortDesc of X].".
@@ -220,11 +224,12 @@ To say CurrentlyPartiallyConcealedFlav of (C - a clothing):
 	say "Your [ShortDesc of X] fails to completely hide the fact that you're wearing it.".
 
 To say CurrentlyVisibleFlav of (C - a clothing):
-	say "It is currently visible to anyone who looks at you[if the top-coverer of C is a thing]. The upper part is covered by [NameDesc of top-coverer of C][end if][if the mid-coverer of C is a thing]. The belly part is covered by [NameDesc of mid-coverer of C][end if][if the bottom-coverer of C is a thing]. The lower part is covered by [NameDesc of bottom-coverer of C][end if].".
+	say "It is currently visible to anyone who looks at you.".
+	[say "It is currently visible to anyone who looks at you[if the top-coverer of C is a thing]. The upper part is covered by [NameDesc of top-coverer of C][end if][if the mid-coverer of C is a thing]. The belly part is covered by [NameDesc of mid-coverer of C][end if][if the bottom-coverer of C is a thing]. The lower part is covered by [NameDesc of bottom-coverer of C][end if].".]
 
 To say CurrentlyVisibleFlav of (K - a knickers):
 	let C be a random worn skirted clothing;
-	say "It is currently visible to anyone who looks at you[if C is a clothing] because your [C] fails to properly cover it[end if].";
+	say "It is currently visible to anyone who looks at you[if C is a clothing] because your [ShortDesc of C] fails to properly cover it[end if].";
 	if debugmode > 0, say "[input-style]DQBulk of [ShortDesc of K]: [DQBulk of K][if C is clothing]; Skirt length of [ShortDesc of C]: [skirtLength of C]; Diaper hiding skirt length of [ShortDesc of C]: [diaperHidingLength of C][end if][roman type][line break]";
 
 To say CurrentlyVisibleFlav of (C - a sex toy):
@@ -232,7 +237,7 @@ To say CurrentlyVisibleFlav of (C - a sex toy):
 
 To say CurrentlyPartiallyConcealedFlav of (C - a diaper):
 	let CC be the at least partial concealer of C;
-	say "The shape of it is clearly visible through your [ShortDesc of CC].".
+	say "[if CC is body part]Most of it can still be clearly seen past[otherwise]The shape of it is clearly visible through[end if] your [ShortDesc of CC].".
 
 To say CurrentlyVisibleFlav of (C - a diaper):
 	say "It is currently visible to anyone who looks at you.".
@@ -251,7 +256,7 @@ To say PlayerThoughts of (C - a clothing):
 		say "[variable custom style]I feel [if C is worn]extremely uncomfortable in this, I can feel it sapping my strength[otherwise]instinctively like I don't want to wear this[end if]... I think it is because of my [if the class of the player is faerie]new role as a faerie[otherwise if diaper lover >= 1]new fetish for diapers[otherwise]new fetish for not wearing underwear[end if]![roman type][line break]";
 	otherwise if C is worn and C is actually dense nipple covering clothing and the player is fighting against topless:
 		say "[variable custom style]I feel extremely uncomfortable in this, I can feel it sapping my strength... I think it is because of my new fetish for being topless![roman type][line break]";
-	otherwise if (the cringe of C is too humiliating) and (the cringe of C >= the outrage of C) and diaper quest is 1:
+	otherwise if diaper quest is 1 and (the cringe of C is too humiliating) and (the cringe of C >= the outrage of C):
 		if C is too cringeworthy:
 			if C is equippable:
 				say "[variable custom style][if C is worn]Oh god I can't believe I'm having to use this to fight with! How dreadful.[otherwise]There's got to be something more dignified that I can find to fight with than this?![end if]";
@@ -264,7 +269,7 @@ To say PlayerThoughts of (C - a clothing):
 			if C is equippable, say "[variable custom style][if C is worn]I would prefer it if I could find something a little less childish to fight with.[otherwise]It would be quite embarrassing, but I'll use this if I really have to.[end if]";
 			otherwise say "[variable custom style][if C is worn]I feel a bit awkward wearing this. [otherwise]I would feel a little awkward wearing this. [end if]It's very childish.";
 		if the cringe of C - fluid cringe of C is not too humiliating, say "It would be okay if it wasn't [one of]covered[or]soaked[or]coated[purely at random] in [if the known-milk-soak of C + the known-urine-soak of C is 0][semen][otherwise if the known-semen-soak of C + the known-milk-soak of C is 0][urine][otherwise if the known-semen-soak of C + the known-urine-soak of C is 0]my milk[otherwise if the bimbo of the player > 8]gross stuff[otherwise]gross bodily fluids[end if]![roman type][line break]";
-		otherwise say "[if the humiliation of the player < HUMILIATION-MODEST + 1500 and C is able to cover crotch]But I guess I'd still prefer it to my [player-crotch] being on display...[otherwise if breasts is lewdly exposed and the humiliation of the player < HUMILIATION-MODEST - 3500 and the cringe of C < the lewdly exposed outrage of breasts and C is nipple covering and C is actually dense]But I guess I'd still prefer it to my breasts being on display...[otherwise if C is able to cover crotch and the cringe of C >= the lewdly exposed outrage of asshole]I think I would literally rather be completely naked than wear such a disgraceful item of clothing![otherwise if breasts is lewdly exposed and the cringe of C >= the lewdly exposed outrage of breasts and C is nipple covering]I think I would literally rather be completely topless than wear such a slutty piece of clothing![otherwise if C is crotch-intact knickers]I guess it's fine as long as it's [one of]concealed by something else[or]covered up[or]not visible while I'm wearing it[in random order]...[end if][roman type][line break]";
+		otherwise say "[if the humiliation of the player < HUMILIATION-MODEST + 1500 and C is able to cover crotch]But I guess I'd still prefer it to my [player-crotch] being on display...[otherwise if breasts is lewdly exposed and the humiliation of the player < HUMILIATION-MODEST - 3500 and the cringe of C < the lewdly exposed outrage of breasts and C is nipple covering and C is actually dense]But I guess I'd still prefer it to my breasts being on display...[otherwise if C is able to cover crotch and the cringe of C >= the lewdly exposed outrage of asshole]I think I would literally rather be completely naked than wear such a disgraceful item of clothing![otherwise if breasts is lewdly exposed and the cringe of C >= the lewdly exposed outrage of breasts and C is nipple covering]I think I would literally rather be completely topless than wear such a slutty piece of clothing![otherwise if C is crotch-intact knickers and C is not currently at least partially visible]I guess it's fine as long as it's [one of]concealed by something else[or]covered up[or]not visible while I'm wearing it[in random order]...[otherwise]I wish it was [one of]concealed[or]covered up[purely at random] by something else...[end if][roman type][line break]";
 	otherwise if the outrage of C is too humiliating:
 		if C is too outrageous:
 			if C is equippable:
@@ -280,7 +285,7 @@ To say PlayerThoughts of (C - a clothing):
 			if C is equippable, say "[variable custom style][if C is worn]I would prefer it if I could find something a little less ridiculous to fight with.[otherwise]It would be quite embarrassing, but I'll use this if I really have to.[end if]";
 			otherwise say "[variable custom style][if C is worn]I feel a bit humiliated wearing this.[otherwise]I would feel a little humiliated wearing this.[end if]";
 		if the outrage of C - fluid outrage of C is not too humiliating, say "It would be okay if it wasn't [one of]covered[or]soaked[or]coated[purely at random] in [if the known-milk-soak of C + the known-urine-soak of C is 0][semen][otherwise if the known-semen-soak of C + the known-milk-soak of C is 0][urine][otherwise if the known-semen-soak of C + the known-urine-soak of C is 0]my milk[otherwise if the bimbo of the player > 8]gross stuff[otherwise]gross bodily fluids[end if]![roman type][line break]";
-		otherwise say "[if the humiliation of the player < HUMILIATION-MODEST + 1500 and C is able to cover crotch]But I guess I'd still prefer it to my [player-crotch] being on display...[otherwise if breasts is lewdly exposed and the humiliation of the player < HUMILIATION-MODEST - 3500 and the outrage of C < the lewdly exposed outrage of breasts and C is nipple covering and C is actually dense]But I guess I'd still prefer it to my breasts being on display...[otherwise if C is able to cover crotch and the outrage of C >= the lewdly exposed outrage of asshole]I think I would literally rather be completely naked than wear such a disgraceful item of clothing![otherwise if breasts is lewdly exposed and the outrage of C >= the lewdly exposed outrage of breasts and C is nipple covering]I think I would literally rather be completely topless than wear such a slutty piece of clothing![otherwise if C is crotch-intact knickers]I guess it's fine as long as it's [one of]concealed by something else[or]covered up[or]not visible while I'm wearing it[in random order]...[end if][roman type][line break]";
+		otherwise say "[if the humiliation of the player < HUMILIATION-MODEST + 1500 and C is able to cover crotch]But I guess I'd still prefer it to my [player-crotch] being on display...[otherwise if breasts is lewdly exposed and the humiliation of the player < HUMILIATION-MODEST - 3500 and the outrage of C < the lewdly exposed outrage of breasts and C is nipple covering and C is actually dense]But I guess I'd still prefer it to my breasts being on display...[otherwise if C is able to cover crotch and the outrage of C >= the lewdly exposed outrage of asshole]I think I would literally rather be completely naked than wear such a disgraceful item of clothing![otherwise if breasts is lewdly exposed and the outrage of C >= the lewdly exposed outrage of breasts and C is nipple covering]I think I would literally rather be completely topless than wear such a slutty piece of clothing![otherwise if C is crotch-intact knickers and C is not currently at least partially visible]I guess it's fine as long as it's [one of]concealed by something else[or]covered up[or]not visible while I'm wearing it[in random order]...[otherwise]I wish it was concealed by something else...[end if][roman type][line break]";
 	otherwise:
 		if diaper quest is 1 and C is almost too cringeworthy or the unworn cringe of C is too humiliating: [The item isn't humiliating; is it almost humiliating (or only not humiliating because it's worn and covered up)?]
 			if C is equippable, say "[variable custom style]It's pretty childish, but I'm okay with that.";
@@ -293,15 +298,18 @@ To say PlayerThoughts of (C - a clothing):
 			otherwise say "[variable custom style][if C is worn][one of]I don't really mind wearing this too much.[or]I could think of worse things to have on.[purely at random][otherwise][one of]I could probably stomach wearing this for a bit.[or]I'll deal with wearing this if I have to.[purely at random][end if][if the unworn outrage of C is too humiliating]But only because it's covered up at the moment![end if][roman type][line break]";
 		otherwise if the player is not broken: [The item isn't humiliating at all! Let's find out if the player finds it too boring.]
 			if C is equippable, say "[variable custom style][if C is too boring]I kind of wish this was a bit more exciting. Maybe if it was pinker, or had cocks drawn on it?[otherwise if the bimbo of the player < 7]I'm happy with this. Which is more than I can say for most of the things in this game.[otherwise]I just love this! It's perfect for me![end if][roman type][line break]";
-			otherwise say "[variable custom style][if C is too boring and C is actually dense and C is breast covering or C is belly covering or C is crotch covering][line break][second custom style][one of]Ugh, this is way too plain for me![or]*sigh* Isn't there any way to make it more revealing?[or]Only a prude would wear something this boring![purely at random][otherwise if C is too boring][second custom style][one of]Ugh, this is way too boring for me![or]*sigh* Isn't there any way to make it more lewd?[or]I would prefer something that lets everyone know just how slutty I am![purely at random][otherwise if the bimbo of the player < 7][one of]I don't have any problems with wearing this.[or]I'm fine with wearing this.[purely at random][otherwise if C is worn][one of]I love wearing this![or]I feel *AMAZING* wearing this![purely at random][otherwise][one of]Ooh, I'd be fine wearing this![or]I'll look [beautiful] in this![purely at random][end if][roman type][line break]".
+			otherwise say "[variable custom style][if C is too boring and C is actually dense and C is breast covering or C is belly covering or C is crotch covering][line break][second custom style][one of]Ugh, this is way too plain for me![or]*sigh* Isn't there any way to make it more revealing?[or]Only a prude would wear something this boring![purely at random][otherwise if C is too boring][second custom style][one of]Ugh, this is way too boring for me![or]*sigh* Isn't there any way to make it more lewd?[or]I would prefer something that lets everyone know just how slutty I am![purely at random][otherwise if the bimbo of the player < 7][one of]I don't have any problems with wearing this.[or]I'm fine with wearing this.[purely at random][otherwise if C is worn][one of]I love wearing this![or]I feel *AMAZING* wearing this![purely at random][otherwise][one of]Ooh, I'd be fine wearing this![or]I'll look [beautiful] in this![purely at random][end if][roman type][line break]";
+	if C is currently-not-in-bag:
+		if diaper quest is 0 or the appearance of the player > the cringe appearance of the player:
+			let A be calculated-appearance-outrage-level - (calculated-appearance-outrage-level / 2);
+			if the outrage of C / 2 >= A, say "[variable custom style]Just holding onto this makes me look more like a slut![roman type][line break]";
+		otherwise:
+			let CL be calculated-cringe-level - (calculated-cringe-level / 2);
+			if the cringe of C / 2 >= CL, say "[variable custom style]Just holding onto this makes me look more like a baby![roman type][line break]".
 
 To say MuchTooHumiliatingFlav of (C - a clothing):
 	say "[if C is worn]This is[otherwise]That would be[end if] really humiliating to wear...".
 To say MuchTooHumiliatingFlav of (C - an equippable):
 	say "[if C is worn]I really hate using this.[otherwise]I would really hate having to use this to fight with.[end if]".
 
-
-
-
 Description ends here.
-

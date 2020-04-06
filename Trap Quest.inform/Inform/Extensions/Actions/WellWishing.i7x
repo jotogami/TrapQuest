@@ -11,7 +11,7 @@ Check WellWishing:
 	unless the location of the player is Woods27, say "You'd probably need a wishing well to do that." instead;
 	if the noun is bottle:
 		unless the noun is open topped, say "It probably makes more sense to try that with something that has an open top." instead;
-		 if the doses of the noun < 1, say "But it's empty?" instead;
+		if the doses of the noun < 1, say "But it's empty?" instead;
 	otherwise if the noun is not a plentiful accessory:
 		unless the noun is infernal gem, say "It probably makes more sense to use something like jewellery." instead;
 	[otherwise:
@@ -142,10 +142,10 @@ REQUIRES COMMENTING
 +!]
 To compute BadWishing:
 	say "[first custom style]Your wish... offends me.[roman type][line break]";
-	let C be a random worn overdress;
+	let C be most-transformable-clothing;
 	if C is clothing:
 		if watersports fetish is 1 and C is able to take more liquid:
-			say "You feel a [if the total-soak of C > 0]spontaneous wetness[otherwise]spontaneous warmth[end if] on your skin, and look down just as the unmistakable smell of [urine] hits your nostrils. The well has soaked your [ShortDesc of C] in piss!";
+			say "You feel a [if the total-soak of C > 0]spontaneous wetness[otherwise]spontaneous warmth[end if] on your skin, and look down just as the unmistakable smell of [urine] hits your nostrils. The well has soaked your [ShortDesc of C] in [urine]!";
 			UrineSoakUp C by the soak-limit of C - the total-soak of C;
 		otherwise if C is transformation chain and C is transformable:
 			say "A wave of energy passes through your [printed name of C], and it begins to shimmer...";
@@ -161,6 +161,4 @@ To compute BadWishing:
 	otherwise:
 		say "Nothing happens. How lame.".
 
-
 WellWishing ends here.
-

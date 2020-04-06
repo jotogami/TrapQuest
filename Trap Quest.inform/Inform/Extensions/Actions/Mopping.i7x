@@ -62,7 +62,11 @@ Carry out mopping face:
 		StomachUp 1;
 		if the player is not broken, humiliate SEVERE-HUMILIATION - (MODERATE-HUMILIATION * (the thirst of the player - 1));
 	otherwise:
-		humiliate (SEVERE-HUMILIATION * 2) - (MODERATE-HUMILIATION * (the thirst of the player + 2)).[This is probably one of the least dignified things you could do, but it's less humiliating the thirstier you are]
+		humiliate (SEVERE-HUMILIATION * 2) - (MODERATE-HUMILIATION * (the thirst of the player + 2));[This is probably one of the least dignified things you could do, but it's less humiliating the thirstier you are]
+	if B > the milk-puddle of the location of the player, MilkTasteAddictUp 1;
+	if A > the urine-puddle of the location of the player:
+		UrineTasteAddictUp 1;
+		progress quest of piss-drinking-quest.
 
 To decide which number is total puddle:
 	let X be 0;
@@ -128,14 +132,10 @@ Report Mopping:
 			MagicPowerUp 1;
 			now the magic-charge of the noun is 0.
 
-
 Understand "clean puddle with [something]", "mop up puddle with [something]", "clean mess with [something]", "clean with [something]", "[something] puddle", "clean room with [something]" as mopping.
 Understand "clean cum with [something]", "clean semen with [something]" as mopping when the semen-puddle of the location of the player > 0.
 Understand "clean piss with [something]", "clean urine with [something]" as mopping when the urine-puddle of the location of the player > 0.
 Understand "clean milk with [something]" as mopping when the milk-puddle of the location of the player > 0.
 Understand "lick puddle", "lick floor", "lick ground", "drink puddle", "slurp puddle", "slurp up puddle", "clean puddle", "clean mess", "mop puddle", "mop", "mop mess", "clean room", "mop room", "spray room", "spray puddle", "spray mess", "mop up puddle" as mopping.
 
-
-
 Mopping ends here.
-

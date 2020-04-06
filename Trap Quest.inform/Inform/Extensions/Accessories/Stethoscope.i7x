@@ -4,7 +4,7 @@ A stethoscope is a kind of neckwear. The printed name of stethoscope is "[clothi
 
 A stethoscope is unique.
 
-Understand "steth","stetho" as a stethoscope. The text-shortcut of stethoscope is "ste".
+Understand "steth", "stetho" as a stethoscope. The text-shortcut of stethoscope is "ste".
 
 To decide which number is the initial outrage of (C - a stethoscope):
 	decide on 0.
@@ -53,7 +53,6 @@ To decide which object is the unique-upgrade-target of (C - a doctor stethoscope
 Report wearing a doctor stethoscope: [When you craft with the wrong recipe, it becomes the lewd form immediately.]
 	if the noun is cursed and the noun is upgradable, potentially transform the noun.
 
-
 Part 2 - Cock Stethoscope
 
 A cock stethoscope is a kind of stethoscope. There is 1 cock stethoscope.
@@ -71,7 +70,4 @@ Definition: a cock stethoscope is penis themed: decide yes.
 To say ClothingDesc of (C - a cock stethoscope):
 	say "A normal doctor's stethoscope but with cocks for your ears and at the sensor end. You can wear this around your neck. If you do, you will be more reliable when searching crates for traps.".
 
-
-
 Stethoscope ends here.
-

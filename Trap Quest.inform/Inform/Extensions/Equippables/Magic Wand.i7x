@@ -27,7 +27,6 @@ To decide which number is the damage improvement of (W - a magic wand):
 To compute attack of (W - a magic wand) at (M - a monster):
 	say "[one of]You slash at [NameDesc of M] with a whip-like gust of air.[or]You buffet [NameDesc of M] with gusts of air.[or][if the player is wrist bound or the largeness of breasts > 15]You flick the wand, slashing at [NameDesc of M] with a gust of wind![otherwise]You swing the wand with a wide flourish, slashing [NameDesc of M] with a gust of wind![end if][or][if the player is wrist bound or the largeness of breasts > 15]You wave the wand as best you can, buffeting [NameDesc of M] with whip-like gusts of wind![otherwise]You flourish the wand, striking [NameDesc of M] with a screaming gust of air![end if][or][if the player is wrist bound or the largeness of breasts > 15]You flick the wand, striking [NameDesc of M] with a gust of air.[otherwise]You swing the wand, blasting [NameDesc of M] with a gust of air![end if][then at random]".
 
-
 To compute climax effect of (E - a magic wand):[copy of the effect from the golden phallus, but better since you don't have to put it in]
 	let B be the body soreness of the player;
 	if E is not cursed, BodyHeal 1;
@@ -56,7 +55,7 @@ To compute takeoff of (W - a magic wand):
 		now M is in the location of the player;
 		set up M;
 		if the location of the player is no-roof:
-			say "As you float off, the wand falls out of your hand! [BigNameDesc of M] appears from thin air and immediately catches it. She waves as you float off into the sky.[line break][second custom style]'[one of]You better hope I don't find you again, I won't go easy on you!'[or]Up up and away!'[or]Don't worry, I'll find YOU!'[in random order][roman type][line break]";
+			say "As you float off, the wand falls out of your hand! [BigNameDesc of M] appears from thin air and immediately catches it. [big he of M] waves as you float off into the sky.[line break][second custom style]'[one of]You better hope I don't find you again, I won't go easy on you!'[or]Up up and away!'[or]Don't worry, I'll find YOU!'[in random order][roman type][line break]";
 		otherwise:
 			say "As you float off, the wand falls out of your hand! [BigNameDesc of M] appears from thin air and immediately catches it.[line break][second custom style]'[one of]Payback time!'[or]I'm really going to enjoy this.'[or]You're about to get the wind knocked into you!'[or]Revenge is a dish best served in a windmill!'[as decreasingly likely outcomes][roman type][line break]";
 		now the favour of M is 0;
@@ -70,4 +69,3 @@ Definition: a magic wand is magic themed: decide yes.
 Definition: a magic wand is yellow themed: decide yes.
 
 Magic Wand ends here.
-

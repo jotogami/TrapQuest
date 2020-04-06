@@ -8,7 +8,6 @@ Definition: an accessory is too boring: decide no.
 Definition: an accessory is magic-enhanceable: decide no.
 Definition: an accessory is cursable if it is not plentiful.
 
-
 To decide which number is the initial outrage of (C - an accessory):
 	let X be 1;
 	if C is pink diamond, increase X by 2;
@@ -24,8 +23,9 @@ To decide which number is the heaviness of (C - an accessory):
 
 Definition: an accessory is discovered varied: decide no.
 
-To uniquely set up (A - an accessory):
-	unless A is immune to change or A is unique, now A is a random accessory-colour.
+[Can't have this because it makes all jewellery get re-randomised upon being summoned]
+[To uniquely set up (A - an accessory):
+	unless A is immune to change or A is unique, now A is a random accessory-colour.]
 
 To say ClothingDesc of (A - an accessory):
 	if A is necklace:
@@ -52,12 +52,10 @@ To say ClothingDesc of (A - an accessory):
 
 Definition: an accessory is stealable if it is plentiful.
 
-
 Definition: an accessory is transformation-protected: decide yes.
 
 To say ShortDesc of (C - an accessory):
 	say "accessory".
-
 
 [!<SetShortcutOfAccessory>+
 
@@ -66,6 +64,17 @@ REQUIRES COMMENTING
 +!]
 To set shortcut of (A - an accessory):
 	now the text-shortcut of A is "[metal-shortcut of A][jewellery-shortcut of A]".
+
+To check shortcut of (A - an accessory):
+	let T be the substituted form of "[text-shortcut of A]";
+	set shortcut of A;
+	let CT be the substituted form of "[text-shortcut of A]";
+	if T is not CT:
+		say "BUG: The [A] you just received did not have its text shortcut set up correctly. Aika has temporarily added this procedure to work out where this is happening. Please report where the jewel came from as a bug.";
+
+A later time based rule:
+	repeat with A running through worn plentiful accessory:
+		check shortcut of A.
 
 [!<DecideWhichIndexedTextIsMetalShortcutOfAccessory>+
 
@@ -90,7 +99,4 @@ To decide which indexed text is jewellery-shortcut of (A - an accessory):
 	if A is bracelet, decide on "b";
 	decide on "r".
 
-
-
 Accessories Framework ends here.
-

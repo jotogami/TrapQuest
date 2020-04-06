@@ -1,6 +1,5 @@
 Links by Miscellaneous Frontend begins here.
 
-
 Part 0 - Backend Hacky Stuff
 
 waitingForChar is initially false.
@@ -96,10 +95,7 @@ First for processing hyperlinks (This is the Aika char-inject with hyperlinks ru
 		rule succeeds;
 	continue the action.
 
-
-
 Part 1 - Basic Links
-
 
 To decide which number is linksCurrentlyEnabled:
 	if (links-disabled is true and inventory hyperlinks is 0) or (excessiveHyperlinks is 0 and inventory-busy is 0 and the focus-window is g-present and the clothing-focus-window is g-present and (the inventory-focus-window is g-present or the inventory-window is g-present) and the map-window is g-present), decide on 0;
@@ -148,7 +144,6 @@ To say TQxlink of (T - a thing):
 	otherwise if inline hyperlinks >= 1 and the text-shortcut of T is not "":
 		say "[as]x [text-shortcut of T][end link]".
 
-
 [*<SayTQdlink>+
 
 End of a hyperlink.
@@ -174,7 +169,6 @@ To say TQtlink of (T - a thing):
 	if inline hyperlinks >= 1 and the text-shortcut of T is not "", say "[as]ta [text-shortcut of T][end link]".
 
 Part 2 - Yes & No
-
 
 Definition: yourself is in agreement: [Some issues with hyperlinks and yes/no]
 	[if inline hyperlinks >= 1:
@@ -263,7 +257,7 @@ Definition: yourself is reverse bimbo consenting:
 
 To render YesNoButtons:
 	let F be YesNoBackground;
-	if F is Figure of no-image-yet, display entire map; [We still want to show the player the map]
+	if F is Figure of no-image-yet, display entire map; [We have flagged that we still want to show the player the map in the background]
 	zero map-link-table;
 	zero map-button-table;
 	let H be the height of the map-window;
@@ -287,7 +281,6 @@ To render YesNoButtons:
 		display the image Figure of NoButton in the map-window at X by Y with dimensions buttonSize by buttonSize;
 		set a graphlink in the map-window identified as hypermapno from X by Y to (X + buttonSize) by (Y + buttonSize) as "no";
 		draw a box lightModeFullRed in the map-window from X by Y to (X + buttonSize) by (Y + buttonSize) with 1 pixel line-weight, inset.
-
 
 Part 3 - Multiple Choice
 
@@ -353,23 +346,29 @@ To compute multiple choice question:
 				say "[link][N]) [R][as][N][end link][line break]";
 		display focus stuff;
 		if the player is virtual, display stuff;
+		let F be YesNoBackground;
+		if F is not Figure of no-image-yet:
+			zero map-link-table;
+			zero map-button-table;
+			let H be the height of the map-window;
+			let W be the width of the map-window;
+			[Calculate background image size]
+			let XRatio be (W * 1.0) / the pixel-width of F;
+			let FY be the pixel-height of F * XRatio;
+			let FYi be FY to the nearest whole number;
+			display the image F in the map-window at 0 by 0 with dimensions W by FYi;
 		now inputNumber is the chosen letter;
 		decrease inputNumber by 48; [convert key ID to integer]
 		say line break;
 		repeat with R running through numerical-response:
 			if the printed name of R is not "" and inputNumber is the numerical-response-value of R, now validAnswer is 1;
 		if validAnswer is 0, say "Input not understood. Please choose a valid number.";
-	now player-numerical-response is inputNumber.
+	now player-numerical-response is inputNumber;
+	conclude consenting. [refreshes the map window]
 
 To reset multiple choice questions:
 	repeat with R running through numerical-response:
 		now the printed name of R is "".
-
-
-
-
-
-
 
 Part 4 - VerbDescs
 
@@ -509,15 +508,16 @@ To say unique-verb-desc of (T - a monster):
 		if T is friendly and T is intelligent:
 			say "[run paragraph on] [link][bracket]greet[close bracket][as]greet [text-shortcut of T][end link][if T is interested] [link][bracket]ask[close bracket][as]ask [text-shortcut of T][end link][end if][if T is interested and the player is thirsty] [link][bracket]request drink[close bracket][as]ask [text-shortcut of T] for drink[end link][end if][if T is interested and the player is hungry and the number of held food is 0] [link][bracket]request food[close bracket][as]ask [text-shortcut of T] for food[end link][end if]";
 		otherwise if the player is upright:
-			let TZaps be "";
-			if the player is able to zap:
-				repeat with BM running through held zappable things:
-					if the damage improvement of BM > 0, now TZaps is "[TZaps] [link][bracket][ShortDesc of BM][close bracket][as]zap [the text-shortcut of T] with [the text-shortcut of BM][end link]";
+			say " [link][bracket]sl[close bracket][as]sl [text-shortcut of T][end link] [link][bracket]kn[close bracket][as]kn [text-shortcut of T][end link] [link][bracket]ki[close bracket][as]ki [text-shortcut of T][end link]";
+			repeat with BM running through held zappable things:
+				if the damage improvement of BM > 0, say " [link][bracket][ShortDesc of BM][close bracket][as]zap [the text-shortcut of T] with [the text-shortcut of BM][end link]";
 			repeat with BM running through carried combat-bomb bombs:
-				now TZaps is "[TZaps] [link][bracket][ShortDesc of BM][close bracket][as]throw [the text-shortcut of BM] at [the text-shortcut of T][end link]";
-			say " [link][bracket]sl[close bracket][as]sl [text-shortcut of T][end link] [link][bracket]kn[close bracket][as]kn [text-shortcut of T][end link] [link][bracket]ki[close bracket][as]ki [text-shortcut of T][end link][TZaps][if diaper quest is 0 and T is wenchy and the health of T < the maxhealth of T / 2 and (the player is not feeling submissive or the player is a nympho)] [link][bracket]fuck[close bracket][as]dominate [text-shortcut of T][end link][end if]";
+				say " [link][bracket][ShortDesc of BM][close bracket][as]throw [the text-shortcut of BM] at [the text-shortcut of T][end link]";
+			say "[if diaper quest is 0 and T is wenchy and the health of T < the maxhealth of T / 2 and (the player is not feeling submissive or the player is a nympho)] [link][bracket]fuck[close bracket][as]dominate [text-shortcut of T][end link][otherwise if diaper quest is 0 and T is sex-enslaved and the player is the donator] [link][bracket]punish[close bracket][as]dominate [text-shortcut of T][end link][end if]";
 		otherwise if T is uninterested:
-			say " [link][bracket]poke[close bracket][as]poke [text-shortcut of T][end link]".
+			say " [link][bracket]poke[close bracket][as]poke [text-shortcut of T][end link]";
+		if T is actually seducable:
+			say " [link][bracket]seduce[close bracket][as]seduce [text-shortcut of T][end link]".
 
 [!<SayUniqueVerbDescOfFairy>+
 
@@ -538,7 +538,7 @@ To say unique-verb-desc of (T - a vine boss):
 REQUIRES COMMENTING
 
 +!]
-To say unique-verb-desc of (T - a slimegirl):
+To say unique-verb-desc of (T - slimegirl):
 	if inline hyperlinks >= 2, say " [link][bracket]greet[close bracket][as]greet [text-shortcut of T][end link] [link][bracket]ask[close bracket][as]ask [text-shortcut of T][end link]".
 
 [!<SayUniqueVerbDescOfDildoTrap>+
@@ -859,9 +859,7 @@ To say unique-verb-desc of (T - WoodsScenery02):
 To say unique-verb-desc of (T - time-bomb):
 	if inline hyperlinks >= 2, say " [link][bracket]use[close bracket][as]use [text-shortcut of T][end link]".
 
-
 Part 3 - Smart Links
-
 
 [!<uniqueOptionsRules:Rulebook>*
 
@@ -1046,7 +1044,6 @@ REQUIRES COMMENTING
 +!]
 Definition: a thing is shortcutless if the text-shortcut of it is "".
 
-
 [!<ThePullLeverUniqueOptionRule>+
 
 REQUIRES COMMENTING
@@ -1084,6 +1081,4 @@ Carry out AltarListing:
 	[say "[line break][if there are worn tattoos]You can also [bold type]place[roman type] a tattoo on the altar.[end if]".]
 Understand "list blessables" as AltarListing.
 
-
 Links ends here.
-

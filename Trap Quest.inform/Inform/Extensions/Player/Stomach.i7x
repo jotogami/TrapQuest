@@ -1,6 +1,5 @@
 Stomach by Player begins here.
 
-
 [!<DecideWhichNumberIsTheStomachLiquidOfThePlayer>+
 
 REQUIRES COMMENTING
@@ -152,9 +151,8 @@ To StomachSemenUp (X - a number):
 		if there is a facefucker thing penetrating face:
 			OralSexAddictUp 1;
 			if the latex-transformation of the player < 5, PukeUp;
+			otherwise progress quest of cum-swallowing-quest;
 	if there is a worn tethering lipstick collar, end tethering.
-
-
 
 [!<PersonIsBecomingMoreAddictedToCum>+
 
@@ -231,7 +229,7 @@ To PukeUp:
 			transform R into D;
 		otherwise if T is actually summonable and a random number between 5 and the oral sex addiction of the player > 7:
 			say "[bold type]A cold metal piercing suddenly appears in your mouth, embedded into your tongue! You've never had something like that in your mouth before, so it's difficult to stop thinking about the [if the bimbo of the player < 10]unwelcome [end if]intrusion. Even worse, you can feel its cursed magic somehow preventing you from speaking properly![roman type][line break]";
-			summon T cursed;
+			summon T cursed with quest;
 		otherwise if there is a worn baby bonnet and P is actually summonable:
 			say "[bold type]Your baby's bonnet flutters wildly and a large pink pacifier appears in your mouth! You can't remove it! [roman type]But it does make you feel stronger...";
 			summon P cursed with quest;
@@ -274,4 +272,3 @@ To PukeUp (X - a number):
 		say "The liquid from your stomach flows out of your mouth and onto the ground.".
 
 Stomach ends here.
-

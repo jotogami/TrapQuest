@@ -1,6 +1,5 @@
 Visibility by Clothing begins here.
 
-
 Clothing can be layer-exposing or layer-concealing. Clothing is usually layer-concealing. [Clothing that is layer-exposing is cut in such a way that a viewer can always see glimpses of the layer underneath. Clothing that is layer-concealing never does this. Clothing that has a special rule should redefine the definition block below. This is about the CUT and SHAPE of the item, and not transparency. Transparency is checked for separately. A see through raincoat would still be layer-concealing.]
 
 Definition: a clothing (called C) is potentially-top-layer-concealing:
@@ -29,16 +28,14 @@ Definition: a clothing (called C) is bottom-layer-concealing:
 
 current-clothing is a thing that varies.
 
-Definition: a thing (called C) is currently perceivable:
-	if C is carried, decide yes;
-	if C is currently at least partially visible, decide yes;
-	decide no.
+[Can NPCs be aware of its existence?]
+Definition: a thing is currently perceivable if it is currently-not-in-bag or it is currently at least partially visible.
 
 Definition: a thing is currently visible: decide no.
 
 Definition: a wearthing (called C) is currently visible: [Is the item worn and currently completely visible to onlookers?]
 	if C is not worn, decide no;
-	if the at least partial concealer of C is clothing, decide no;
+	if the at least partial concealer of C is a thing, decide no;
 	decide yes.
 
 Definition: a wearthing (called C) is currently at least partially visible: [Is the item worn and currently knowable to onlookers?]
@@ -56,10 +53,10 @@ Definition: a wearthing (called C) is currently covered: [Is the item worn and c
 	if the coverer of C is clothing, decide yes;
 	decide no.
 
-Definition: a wearthing (called C) is currently at least partially covered: [Is the item worn and at least part of it covered by another item]
+[Definition: a wearthing (called C) is currently at least partially covered: [Is the item worn and at least part of it covered by another item]
 	if C is not worn, decide no;
 	if the top-coverer of C is clothing or the mid-coverer of C is clothing or the bottom-coverer of C is clothing, decide yes;
-	decide no.
+	decide no.]
 
 Definition: a wearthing (called C) is currently uncovered:
 	if C is not worn, decide no;
@@ -102,6 +99,7 @@ To decide which object is the coverer of (C - a clothing):
 [Layers + visibility]
 [We will prioritise a top layer thing over a bottom layer thing. We prioritise a bottom layer thing over a middle layer thing.]
 To decide which object is the concealer of (C - a clothing):
+	if entry 1 in the armUses of arms is C and entry 2 in the armUses of arms is C, decide on arms;
 	let B be nothing;
 	let M be nothing;
 	if the bottom-layer of C > 0 or C is condom of kings:
@@ -130,16 +128,17 @@ To decide which object is the concealer of (C - a clothing):
 	decide on M; [We point at the middle coverer (if there is no coverer at all because it's an item without a layer, this will resolve to 'nothing').]
 
 To decide which object is the at least partial concealer of (C - a wearthing):
-	if C is clothing: [The main difference between this and the one above, is whether the item is layer concealing]
+	if C is listed in the armUses of arms, decide on arms;
+	if C is clothing and (the top-layer of C > 0 or the mid-layer of C > 0 or the bottom-layer of C > 0): [The main difference between this and the one above, is whether the item is layer concealing]
 		let B be nothing;
 		let M be nothing;
-		if the bottom-layer of C > 0 or C is condom of kings:
+		if the bottom-layer of C > 0:
 			if C is pussy protection:
-				repeat with O running through worn potentially vagina covering clothing:
+				repeat with O running through worn potentially at least partially vagina covering clothing:
 					if O is not C and (the bottom-layer of O > the bottom-layer of C or O is actually dense skirted clothing):
 						now B is O;
 			otherwise:
-				repeat with O running through worn potentially asshole covering clothing:
+				repeat with O running through worn potentially at least partially asshole covering clothing:
 					if O is not C and (the bottom-layer of O > the bottom-layer of C or O is actually dense skirted clothing):
 						now B is O;
 			if B is nothing, decide on nothing; [Bottom is uncovered. We can stop here.]
@@ -158,7 +157,6 @@ To decide which object is the at least partial concealer of (C - a wearthing):
 		if B is a thing, decide on B; [We point at the bottom coverer over the middle coverer, as it's more likely to be important information for how the player is concealing a private part.]
 		decide on M; [We point at the middle coverer (if there is no coverer at all because it's an item without a layer, this will resolve to 'nothing').]
 	decide on the concealer of C. [For non-clothing items there's no difference.]
-
 
 [This is is at what bulk levels the clothing can prevent people from even knowing there's a diaper there]
 To decide which number is the diaperHidingLength of (C - a clothing):
@@ -191,25 +189,30 @@ Definition: a clothing (called C) is diaper covering:
 
 [For diapers, this hides the shape too.]
 To decide which object is the concealer of (K - a knickers):
+	if water-fountain is penetrating asshole, decide on water-fountain;
 	repeat with C running through worn diaper hiding clothing:
 		if C is not K and (C is skirted or the bottom-layer of C > the bottom-layer of K), decide on C;
 	decide on nothing.
 
-[This hides the soiled status of the underwear but not the shape.]
+[This hides the wet status of the underwear but not the shape.]
 To decide which object is the at least partial concealer of (K - a knickers):
+	if water-fountain is penetrating asshole, decide on water-fountain;
 	repeat with C running through worn diaper covering clothing:
 		[if debugmode > 1, say "considering concealment of [ShortDesc of C].";]
 		if C is not K and (the bottom-layer of C > the bottom-layer of K or C is skirted), decide on C;
+	if K is listed in the armUses of arms, decide on arms;
 	decide on nothing.
+
+To decide which object is the at least partial concealer of (S - a sex toy):
+	if S is penetrating vagina:
+		decide on the at least partial concealer of vagina;
+	otherwise:
+		decide on the at least partial concealer of asshole.
 
 To decide which object is the concealer of (S - a sex toy):
-	repeat with O running through worn actually dense clothing:
-		if S is penetrating asshole:
-			if O is potentially asshole covering clothing, decide on O;
-		if S is penetrating vagina:
-			if O is potentially vagina covering clothing, decide on O;
-	decide on nothing.
-
+	if S is penetrating vagina:
+		decide on the concealer of vagina;
+	otherwise:
+		decide on the concealer of asshole.
 
 Visibility ends here.
-

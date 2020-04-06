@@ -100,7 +100,6 @@ To compute fleeing of (M - a monster): [Default Compute Fleeing if not specified
 
 The motion reaction rules is a rulebook.
 
-
 To compute monstermotion reactions of (M - a monster): [If the NPC stumbles across the player this turn, they should react appropriately if they catch the player urinating, etc.]
 	if M is reactive:
 		now current-monster is M; [Just to make sure]
@@ -133,6 +132,7 @@ To compute sleeping of (M - a monster):
 	compute sleep reduction of M;[needs to come after healing and recovery]
 	if M is simulated, compute unique periodic effect of M;
 	compute unique unsimulated periodic effect of M;
+	decrease the teaseTimer of M by 1;
 	if the last-interaction of M > 0, decrease the last-interaction of M by 1.
 
 To compute scared reduction of (M - a monster):
@@ -215,6 +215,4 @@ To compute survival rewards:
 	repeat with C running through worn clothing:
 		compute survival reward of C.
 
-
 Motion ends here.
-

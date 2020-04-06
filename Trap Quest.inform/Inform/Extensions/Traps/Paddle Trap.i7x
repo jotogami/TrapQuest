@@ -1,11 +1,11 @@
 Paddle Trap by Traps begins here.
 
-
 A paddle trap is a kind of trap. There are 10 swing paddle traps. The text-shortcut of paddle trap is "pdl".
 To say ExamineDesc of (C - a paddle trap):
 	say "A small but heavy wooden paddle with a long plank and hinge that attaches it to the roof.".
 
-Figure of paddle is the file "Env/Dungeon/paddle1.png".
+Figure of paddle is the file "Env/Dungeon/paddle1.jpg".
+Figure of paddle cutscene is the file "Env/Dungeon/paddle2.jpg".
 
 To decide which figure-name is the examine-image of (C - a paddle trap):
 	decide on figure of paddle.
@@ -21,6 +21,7 @@ To trigger (Y - a paddle trap):
 	now Y is revealed;
 	now Y is expired;
 	say "As you are busy with the tank, a wooden paddle swings down from the ceiling! ";
+	cutshow figure of paddle cutscene for Y;
 	let A be a random number between 6 and 14;
 	let K be a random worn top level protection clothing;
 	let N be 0;
@@ -83,6 +84,4 @@ To trigger (Y - a paddle trap):
 To say PaddleTrapReactFlav of (M - a monster):
 	say TriggeredTrapReactFlav of M.
 
-
 Paddle Trap ends here.
-

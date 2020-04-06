@@ -3,11 +3,10 @@ Students Tryhard by Monster begins here.
 A tryhard student is a kind of student. Understand "dedicated" as a tryhard student.
 
 To say MediumDesc of (M - a tryhard student):
-	say "dedicated [rank-colour of item described] student [student-name of item described]".
+	say "dedicated [rank-colour of M] student [student-name of M]".
 
 To decide which number is the dedication of (M - a tryhard student): [We can use this for various calculations to check which students do what]
 	decide on a random number between 2 and 5.
-
 
 To compute student perception of (M - a tryhard student):
 	if the current-rank of M > the rank of the player:
@@ -19,7 +18,6 @@ To compute student perception of (M - a tryhard student):
 
 To say LewdAppearanceAssessment of (M - a tryhard student):
 	say "[BigNameDesc of M] [one of]clenches [his of M] fists[or]grinds [his of M] teeth[in random order].[line break][speech style of M]'[one of]You're making the rest of us look bad!'[or]If you look like that, the teachers won't pay all of their attention to me!'[in random order][roman type][line break]".
-
 
 Part - Laci
 
@@ -33,7 +31,7 @@ To decide which figure-name is the monster-image of (M - student-laci):
 	decide on figure of laci.
 
 To say MonsterDesc of (M - student-laci):
-	say "This tall, dirty blonde [man of M] is wearing a skimpy sexy schoolgirl outfit with matching tartan [if the current-rank of M is 1]miniskirt and tie[otherwise]skirt and tie. What was once a miniskirt is now so short it's really nothing more than a belt[end if]. [big his of M] chunky black heels are polished to the nth degree. [big he of M] is constantly 'accidentally' dropping things and then bending over with completely unbent knees to expose as much of [his of M] bottom as possible to whoever might be looking [his of M] way[if the current-rank of M is 3]. Whenever [he of M] bends over [he of M] makes sure to first cross her feet, perhaps to make sure people know [he of M] is bending at the waist on purpose[end if].".
+	say "This tall, dirty blonde [man of M] is wearing a skimpy sexy schoolgirl outfit with matching tartan [if the current-rank of M is 1]miniskirt and tie[otherwise]skirt and tie. What was once a miniskirt is now so short it's really nothing more than a belt[end if]. [big his of M] chunky black heels are polished to the nth degree. [big he of M] is constantly 'accidentally' dropping things and then bending over with completely unbent knees to expose as much of [his of M] bottom as possible to whoever might be looking [his of M] way[if the current-rank of M is 3]. Whenever [he of M] bends over [he of M] makes sure to first cross [his of M] feet, perhaps to make sure people know [he of M] is bending at the waist on purpose[end if].".
 
 The max-rank of student-laci is 3.
 
@@ -71,7 +69,7 @@ To decide which figure-name is the monster-image of (M - student-candy):
 	decide on figure of student-candy.
 
 To say MonsterDesc of (M - student-candy):
-	say "This tall blonde woman is wearing a super skimpy pink kitty themed outfit made out of a tiny tube top and even tinier microskirt. [big he of M] has a tattoo of a tiger on [his of M] leg and a black-and-white braid in [his of M] hair. [if the current-rank of M > 1]A sequins necklace in the style of a paw print hangs above [his of M] chest. [end if][big his of M] make up is rather heavily done[if diaper quest is 1] but still looks very grown-up[end if]. [big his of M] expression exudes focus and confidence.".
+	say "This tall blonde [man of M] is wearing a super skimpy pink kitty themed outfit made out of a tiny tube top and even tinier microskirt. [big he of M] has a tattoo of a tiger on [his of M] leg and a black-and-white braid in [his of M] hair. [if the current-rank of M > 1]A sequins necklace in the style of a paw print hangs above [his of M] chest. [end if][big his of M] make up is rather heavily done[if diaper quest is 1] but still looks very grown-up[end if]. [big his of M] expression exudes focus and confidence.".
 
 The max-rank of student-candy is 3.
 
@@ -117,7 +115,6 @@ To say DamageReaction (N - a number) of (M - student-candy):
 
 Part - Default Conversation
 
-
 To say WhoAnswer of (M - a tryhard student):
 	say "[speech style of M]'My teacher says it is [student-name of M], so it's [student-name of M].'[roman type][line break]".
 
@@ -137,4 +134,3 @@ To say detention chair tease of (M - a tryhard student):
 	say "[speech style of M]'[one of]You really should try to get to class on time, you know.'[or]Is there something wrong with your ears? Did you not hear your armband warn you when class was starting?'[in random order][roman type][line break]".
 
 Students Tryhard ends here.
-

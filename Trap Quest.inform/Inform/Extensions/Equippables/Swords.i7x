@@ -18,7 +18,23 @@ Check pulling a sword:
 Check taking a sword:
 	if there is a worn hand ready equippable, say "You try, but the hilt resists your touch. Maybe you need an open hand?" instead.
 
+To decide which number is the bartering value of (S - a sword) for (M - a gladiator):
+	if S is dildo sword, decide on 0;
+	decide on 10.
 
+To compute offer reward of (M - a gladiator) for (T - a sword):
+	let S be a random off-stage chainmail skirt;
+	if S is a thing and M is ally:
+		only destroy S;
+		if Dungeon13 is placed, now S is in Dungeon13;
+		otherwise now S is in Dungeon18;
+		now the raw-magic-modifier of S is 1;
+		now S is blessed;
+		now S is confidence;
+		now S is dexterity-influencing;
+		say "[speech style of M]'A find such as this deserves a substantial reward. Go to the [location of S], and check the top shelf, hidden right at the back left hand side. There you will find an enchanced skirt that will protect you on your travels.'[roman type][line break]";
+	otherwise:
+		FavourUp M by (1 + the bartering value of T for M) / 2.
 
 Section 0 - Sword In The Stone
 
@@ -58,7 +74,6 @@ Report taking which-sword:
 
 To compute sword destiny of (S - an equippable):
 	try examining S.
-
 
 Section 1 - Sword of purity
 
@@ -198,7 +213,6 @@ To compute periodic effect of (D - dildo sword):
 			decrease the raw-magic-modifier of D by 1;
 	otherwise:
 		now the decay-tracker of D is 0.
-
 
 Report plugging something with dildo sword:
 	if the raw-magic-modifier of the second noun < 5:
@@ -434,7 +448,6 @@ To compute periodic effect of (H - demon broadsword):
 			now H is metal;
 			say "It has calmed down enough that it transforms back into a real sword!".
 
-
 Check taking demon broadsword:
 	if the class of the player is priestess, say "The sword shrinks away from your touch. Somehow." instead.
 
@@ -480,7 +493,6 @@ Definition: rattle is baby themed: decide yes.
 Definition: rattle is yellow themed: decide yes.
 Definition: rattle is blue themed: decide yes.
 Definition: rattle is swimming themed: decide yes.
-
 
 The printed name of rattle is "[TQlink of item described][item style][unless magic-curse of the item described is bland or curse-ID of the item described is unsure][magic-curse] [end if][raw-magic-modifier-desc]giant rattle[clothing-title-after]". The text-shortcut of rattle is "rat". Understand "giant" as rattle.
 
@@ -612,4 +624,3 @@ This is the sissy-swords resolution rule:
 The sissy-swords resolution rule is listed in the orgasm resolution rules.
 
 Swords ends here.
-

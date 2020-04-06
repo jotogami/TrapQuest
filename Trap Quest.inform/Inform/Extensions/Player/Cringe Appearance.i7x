@@ -40,20 +40,25 @@ To decide which number is the adult appearance of the player:
 		if C is currently visible, increase B by the adult-influence of C;
 	decide on B.
 
-
 [!<cringeTarget:Thing>*
 
-REQUIRES COMMENTING
+We save the most embarrassing thing for the player except body parts
 
 *!]
 cringe-target is a thing that varies.
 
 [!<appearanceCringeTarget:Thing>*
 
-REQUIRES COMMENTING
+We save the most embarrassing thing for the player right now
 
 *!]
 appearance-cringe-target is a thing that varies.
+[!<secondAppearanceCringeTarget:Thing>*
+
+We save the second most embarrassing thing for the player right now
+
+*!]
+second-appearance-cringe-target is a thing that varies.
 
 [!<DecideWhichNumberIsAppearanceCringeLevel>+
 
@@ -64,26 +69,27 @@ To decide which number is appearance-cringe-level:
 	let O be 0;
 	now cringe-target is arms;
 	now appearance-cringe-target is arms;
-	repeat with C running through worn currently at least partially visible wearthings:
+	repeat with C running through worn wearthings:
 		let OC be the cringe of C; [to make sure we only spend the CPU cycles to calculate it once]
 		if OC > O:
 			now O is OC;
 			now cringe-target is C;
+			now second-appearance-cringe-target is appearance-cringe-target;
 			now appearance-cringe-target is C;
-	repeat with C running through carried not-in-bag things:
+	repeat with C running through carried currently-not-in-bag things:
 		let OC be the cringe of C / 2; [to make sure we only spend the CPU cycles to calculate it once]
 		if OC > O:
 			now O is OC;
 			now cringe-target is C;
+			now second-appearance-cringe-target is appearance-cringe-target;
 			now appearance-cringe-target is C;
 	repeat with C running through body parts:
 		let OC be the cringe of C; [to make sure we only spend the CPU cycles to calculate it once]
 		if OC > O:
 			now O is OC;
+			now second-appearance-cringe-target is appearance-cringe-target;
 			now appearance-cringe-target is C;
 	decide on O.
-
-
 
 [!<DecideWhichNumberIsCumulativeCringeLevel>+
 
@@ -96,9 +102,9 @@ To decide which number is cumulative-cringe-level:
 	let A3 be A - A2;
 	let N be 0;
 	let maxSimilarItems be 4;
-	repeat with C running through worn currently at least partially visible wearthings:
+	repeat with C running through worn wearthings:
 		if the cringe of C >= A2, increase N by 1;
-	repeat with C running through carried not-in-bag things:
+	repeat with C running through carried currently-not-in-bag things:
 		if the cringe of C / 2 >= A2, increase N by 1;
 	repeat with C running through body parts:
 		if the cringe of C >= A2, increase N by 1;
@@ -112,4 +118,3 @@ calculated-cringe-level is a number that varies.
 calculated-cumulative-cringe-level is a number that varies.
 
 Cringe Appearance ends here.
-

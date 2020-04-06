@@ -16,6 +16,16 @@ doomed is a number that varies.
 
 new-acolyte-counter is initially 0.
 
+To commence doom:
+	if doom counter is 0:
+		if Mansion00 is unplaced:
+			Set Up The Mansion;
+			follow the setting up mansion monsters rules;
+			repeat with M running through alive nonexistant monsters:
+				set up M;
+		say "[bold type]You feel a sudden sense of impending doom...[roman type][line break]";
+		if newbie tips is 1, say "[one of][newbie style]Newbie tip: You've triggered a side quest! Unless you stop the ritual, spooky things will start happening and some enemies will get more powerful and aggressive. To slow the cultists down, kill the mindless ones near the hidden altar, and also don't dirty up the sacred pool. To find out how to re-close the weakening seal on the Elder One, talk to the witch in the woods.[roman type][line break][or][stopping]";
+		now doom counter is 1.
 
 [!<ComputeDoom>+
 
@@ -23,8 +33,11 @@ REQUIRES COMMENTING
 
 +!]
 A later time based rule (this is the compute doom rule):
+	if tough-shit is 1 and doom counter is 0:
+		let R be the room south from Stairwell03;
+		if the player is in Stairwell03 or the player is in R, commence doom;
 	if doom counter > 0:
-		if the location of the player is Mansion23 and doom notes is held and there is a held pocketbook and (reception bell is held or there is a held catbell or cowbell is held) and black candle is held:
+		if doomed < 5 and the location of the player is Mansion23 and doom notes is held and there is a held pocketbook and (reception bell is held or there is a held catbell or cowbell is held) and black candle is held:
 			if there is unfriendly monster in the location of the player or there is an acolyte in the location of the player:
 				let L be the list of undefeated monsters in the location of the player;
 				repeat with M running through friendly undefeated monsters in the location of the player:
@@ -106,8 +119,7 @@ A later time based rule (this is the compute doom rule):
 				otherwise:
 					say "[bold type]A horrible noise like a thousand screams of bliss echoes through the world and a soft pink light fills the area. Above the altar a translucent pink bubble swirls and throbs, the ritual is clearly almost complete![roman type][line break]";
 				now doomed is 4;
-				now the Pink Sphere is in Mansion23;
-				[spawn the pink bubble scenery in mansion23]
+				now the Pink Sphere is in Mansion23; [spawn the pink bubble scenery in mansion23]
 			otherwise if doom counter > 750 and doomed is 4:
 				if the location of the player is not Mansion23:
 					if the player-class is not cultist:
@@ -164,7 +176,6 @@ A time based rule (this is the doom weather rule):
 			say "[bold type]You have just stepped inside, out of the rain.[roman type][line break]";
 			now latestAnnouncedRaining is 0.
 
-
 [!<ResolveDoom>+
 
 REQUIRES COMMENTING
@@ -189,7 +200,7 @@ To compute chosen birth:[now that the mindless acolytes are no longer needed to 
 		if inhuman pregnancy > 0:
 			let T be a random off-stage tentacle monster;
 			set up T;
-			decrease the difficulty of T by 2;
+			decrease the raw difficulty of T by 2;
 			now T is in the location of A;
 	repeat with M running through tentacle monsters:
 		now the evolved of M is 3;
@@ -200,12 +211,8 @@ To compute chosen birth:[now that the mindless acolytes are no longer needed to 
 	otherwise:
 		if N is monster, say "[BigNameDesc of N] gives birth to [if inhuman pregnancy is 1]a [MediumDesc of E], emitting an insane laugh as [he of N] stumbles to [his of N] feet[otherwise]a mass of black and purple motes, which separate and disappear as [he of N] stumbles to [his of N] feet and emits an insane laugh[end if].".
 
-
-
-
 A time based rule (this is the creepiness rule):
 	if playerRegion is Mansion, compute creepiness.
-
 
 [!<creepiness:Integer>*
 
@@ -218,7 +225,7 @@ creepiness is a number that varies. creepiness is usually 0.
 REQUIRES COMMENTING
 
 +!]
-To compute creepiness:[first implementation of "creeping" of ghosts in non-garlic rooms.]
+To compute creepiness: [first implementation of "creeping" of ghosts in non-garlic rooms.]
 	if the location of the player is garlic or playerRegion is not mansion:
 		if creepiness > 0, decrease creepiness by 10;[The player will have to hide for a couple turns to completely shake off the ghosts, but it shouldn't take too long]
 	otherwise if (creepiness > a random number between 10 and 20) and the number of alive ghosts * 30 < creepiness and there is an off-stage ghost:[player has to be in the mansion for a while before multiple ghosts start messing with them]
@@ -231,8 +238,4 @@ To compute creepiness:[first implementation of "creeping" of ghosts in non-garli
 		say "[one of][if creepiness > 9]Tension seems to linger in the air around you, and you can't help but feel something will burst out at you at any moment.[end if][or][or][or][if creepiness > 6]You can't shake the feeling that you are being watched.[end if][or][or][cycling]";
 		increase creepiness by 1.
 
-
-
-
 Doom ends here.
-

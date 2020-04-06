@@ -1,6 +1,5 @@
 Recipes by Crafting begins here.
 
-
 A recipe is a kind of thing. A recipe can be memorised. A recipe is usually not memorised. A recipe is usually not portable. The text-shortcut of recipe is "re".
 
 ['Appropriate' means the player has enabled the right fetishes in order to be allowed to find this recipe.]
@@ -81,14 +80,12 @@ To say ExamineDesc of (B - a recipe for spike bra):
 To decide which number is the recipe key of (C - a recipe for spike bra):
 	decide on 14.
 
-
 Recipe for queen of hearts heels is a kind of recipe. The printed name of recipe for queen of hearts heels is "[TQlink of item described]recipe for queen of heart's heels[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for queen of hearts heels. The text-shortcut of recipe for queen of hearts heels is "rqh".
 To say ExamineDesc of (B - a recipe for queen of hearts heels):
 	say "Queen of Hearts Playing Card".
 
 To decide which number is the recipe key of (C - a recipe for queen of hearts heels):
 	decide on 17.
-
 
 Recipe for living belt of sturdiness is a kind of recipe. The printed name of recipe for living belt of sturdiness is "[TQlink of item described]recipe for living belt of sturdiness[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for living belt of sturdiness. The text-shortcut of recipe for living belt of sturdiness is "rlb".
 
@@ -165,7 +162,6 @@ Recipe for potion of balance is a kind of recipe. The printed name of recipe for
 To decide which number is the recipe key of (C - a recipe for potion of balance):
 	decide on 6.
 
-
 Recipe for potion of the womb is a kind of recipe. The printed name of recipe for potion of the womb is "[TQlink of item described]recipe for potion of the womb[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for potion of the womb. The text-shortcut of recipe for potion of the womb is "rpw".
 Definition: a recipe for potion of the womb (called R) is appropriate:
 	if pregnancy fetish is 0, decide no;
@@ -174,7 +170,6 @@ Definition: a recipe for potion of the womb (called R) is appropriate:
 
 To decide which number is the recipe key of (C - a recipe for potion of the womb):
 	decide on 7.
-
 
 Recipe for electric fan is a kind of recipe. The printed name of recipe for electric fan is "[TQlink of item described]recipe for electric fan[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for electric fan. The text-shortcut of recipe for electric fan is "ref".
 
@@ -197,15 +192,13 @@ To decide which number is the recipe key of (C - a recipe for potion of blessing
 	decide on 8.
 
 Recipe for latex hood is a kind of recipe. The printed name of recipe for latex hood is "[TQlink of item described]recipe for latex hood[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for latex hood. The text-shortcut of recipe for latex hood is "rlh".
-To say ExamineDesc of (B - a recipe for latex hood):
-	say "The recipe just says 'Rubber Headwear'.".
+[To say ExamineDesc of (B - a recipe for latex hood):
+	say "The recipe just says 'Rubber Headwear'.".]
 
 To decide which number is the recipe key of (C - a recipe for latex hood):
 	decide on 20.
 
-Definition: a recipe for latex hood (called R) is appropriate:
-	if diaper quest is 1, decide no;
-	decide yes.
+Definition: a recipe for latex hood is appropriate if diaper quest is 0.
 
 Recipe for notebook is a kind of recipe. The printed name of recipe for notebook is "[TQlink of item described]recipe for notebook[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for notebook. The text-shortcut of recipe for notebook is "rsg".
 To say ExamineDesc of (B - a recipe for notebook):
@@ -215,12 +208,10 @@ Definition: a recipe for notebook is appropriate: decide yes.
 To decide which number is the recipe key of (R - a recipe for notebook):
 	decide on 22.
 
-
 Recipe for codpiece is a kind of recipe. The printed name of recipe for codpiece is "[TQlink of item described]recipe for codpiece[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for codpiece. The text-shortcut of recipe for codpiece is "rfc".
 Definition: a recipe for codpiece is appropriate if Demon codpiece is fetish appropriate.
 To decide which number is the recipe key of (R - a recipe for codpiece):
 	decide on 23.
-
 
 Recipe for powder of identification is a kind of recipe. The printed name of recipe for powder of identification is "[TQlink of item described]recipe for powder of identification[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for powder of identification. The text-shortcut of recipe for powder of identification is "rpi".
 Definition: a recipe for powder of identification is appropriate: decide yes.
@@ -245,6 +236,13 @@ Definition: a recipe for powder of escape is appropriate: decide yes.
 
 To decide which number is the recipe key of (R - a recipe for powder of escape):
 	decide on 27.
+
+Recipe for condom-pack is a kind of recipe. The printed name of recipe for condom-pack is "[TQlink of item described]recipe for condom pack[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for condom-pack. The text-shortcut of recipe for condom-pack is "rcpk". Understand "condom pack", "pack" as recipe for condom-pack.
+To say ExamineDesc of (B - a recipe for condom-pack):
+	say "This recipe says 'Place a piece of rubber into the bowl'.".
+Definition: a recipe for condom-pack is appropriate: decide no. [only appears from priestess quest]
+To decide which number is the recipe key of (R - a recipe for condom-pack):
+	decide on 28.
 
 Recipe for smoke bomb is a kind of recipe. The printed name of recipe for smoke bomb is "[TQlink of item described]recipe for smoke bomb[shortcut-desc][TQxlink of item described][verb-desc of item described]". There is 1 recipe for smoke bomb. The text-shortcut of recipe for smoke bomb is "rskb".
 Definition: a recipe for smoke bomb is appropriate: decide yes.
@@ -278,6 +276,4 @@ Recipe for elixir of siphoning is a kind of recipe. [The printed name of recipe 
 To decide which number is the recipe key of (R - recipe for elixir of siphoning):
 	decide on 34.]
 
-
 Recipes ends here.
-
