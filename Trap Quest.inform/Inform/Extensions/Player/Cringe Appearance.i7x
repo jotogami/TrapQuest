@@ -11,27 +11,12 @@ To decide which number is the saved cringe appearance of the player:
 	if B > 20, decide on 20;
 	decide on B.
 
-[!<DecideWhichNumberIsTheAdultInfluenceOfThing>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is the adult-influence of (C - a thing):
 	decide on 0.
 
-[!<DecideWhichNumberIsTheAdultInfluenceOfMaturityClothing>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is the adult-influence of (C - a maturity clothing):
 	decide on 1.
 
-[!<DecideWhichNumberIsTheAdultAppearanceOfThePlayer>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is the adult appearance of the player:
 	let B be 0;
 	increase B by the make-up of face;
@@ -91,11 +76,6 @@ To decide which number is appearance-cringe-level:
 			now appearance-cringe-target is C;
 	decide on O.
 
-[!<DecideWhichNumberIsCumulativeCringeLevel>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is cumulative-cringe-level:
 	let A be calculated-cringe-level; [Outrage of the lewdest worn thing / exposed body part]
 	let A2 be A / 2;

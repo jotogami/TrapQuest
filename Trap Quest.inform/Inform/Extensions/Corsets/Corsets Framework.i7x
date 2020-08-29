@@ -1,8 +1,10 @@
 Corsets Framework by Corsets begins here.
 
-A corset is a kind of clothing. The printed name of corset is usually "[clothing-title-before][clothing-material of the item described] corset[clothing-title-after]". The printed plural name of corset is usually "[clothing-title-before][clothing-material of the item described] corsets[clothing-title-after]". The text-shortcut of corset is "co". A corset is usually belly covering. The soak-limit of a corset is usually 14.
+A corset is a kind of clothing. The printed name of corset is usually "[clothing-title-before][clothing-material of the item described] corset[clothing-title-after]". The printed plural name of corset is usually "[clothing-title-before][clothing-material of the item described] corsets[clothing-title-after]". The text-shortcut of corset is "co". A corset is usually belly covering.
 
-Definition: a corset is same-type if theme-share-target is corset.
+Definition: a corset is same-type:
+	if theme-share-target is corset, decide yes;
+	decide no.
 
 To compute SelfExamineDesc of (C - a corset):
 	say "A tight corset keeps it [if C is constriction and the latex-transformation of the player < 4]painfully [end if]under control. ".
@@ -12,9 +14,6 @@ To say ShortDesc of (C - a corset):
 
 To decide which number is the initial outrage of (C - a corset):
 	decide on 2.
-
-To decide which number is the original price of (C - a corset):
-	decide on 5.
 
 To set up influence of (C - a corset):
 	set up random-based influence of C.
@@ -30,7 +29,7 @@ To compute corset strain of (C - a corset):
 		increase F by the leniency-addition of X;
 	let B be the largeness fill of belly;
 	if B > F:
-		say "Your [printed name of C] rips and bursts under the pressure from your belly! ";
+		say "[bold type]Your [printed name of C] [bold type]rips and bursts under the pressure from your belly! [roman type]";
 		destroy C.
 
 Report examining corsets:
@@ -57,7 +56,9 @@ The setup starting corsets rule is listed in the setup starting items rules.
 To decide which object is the unique-upgrade-target of (C - a corset):
 	if there is worn ballet related clothing, decide on a random off-stage ballet corset.
 
-Definition: a corset is end of transformation chain if it is latex.
+Definition: a corset is end of transformation chain:
+	if it is latex, decide yes;
+	decide no.
 
 This is the remove inappropriate corsets rule:
 	repeat with B running through corsets:

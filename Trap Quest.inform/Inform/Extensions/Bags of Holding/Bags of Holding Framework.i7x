@@ -1,12 +1,17 @@
 Bags of Holding Framework by Bags of Holding begins here.
 
-A bag of holding is a kind of clothing. A bag of holding is unique. The printed name of bag of holding is usually "[clothing-title-before]bag of holding[clothing-title-after]". The soak-limit of bag of holding is usually 0. A bag of holding is usually leather. A bag of holding has a number called hunger. A bag of holding has a number called hunger-declared. The text-shortcut of bag of holding is "boh".
+A bag of holding is a kind of clothing. A bag of holding is unique. The printed name of bag of holding is usually "[clothing-title-before]bag of holding[clothing-title-after]". A bag of holding is usually leather. A bag of holding has a number called hunger. A bag of holding has a number called hunger-declared. The text-shortcut of bag of holding is "boh".
+To decide which number is the default-soak-limit of (C - a bag of holding): decide on 0.
 
-Definition: a bag of holding is cursable if tough-shit is 1.
+Definition: a bag of holding is cursable:
+	if tough-shit is 1, decide yes;
+	decide no.
 Definition: a bag of holding is discovered varied: decide no.
 Definition: a bag of holding is magic-enhanceable: decide no.
 Definition: a bag of holding is transformation-theme-blockable: decide no. [It will transform away from a theme it shares with other items.]
-Definition: a bag of holding is same-type if theme-share-target is bag of holding.
+Definition: a bag of holding is same-type:
+	if theme-share-target is bag of holding, decide yes;
+	decide no.
 
 Definition: a thing is necessary-in-bag: decide yes. [Things that are not necessary-in-bag don't take up an item slot when the player has no bag.]
 
@@ -24,11 +29,21 @@ Definition: water-bomb is never-in-bag: decide yes.
 Definition: a trophy is never-in-bag: decide yes.
 Definition: ectoplasm is never-in-bag: decide yes.
 
-Definition: a thing is in-bag rather than not-in-bag if it is not never-in-bag and it is carried.
-Definition: a clothing is in-bag rather than not-in-bag if it is not never-in-bag and it is carried and it is not wet and the used condoms of it is 0.
-Definition: a knickers is in-bag rather than not-in-bag if it is not never-in-bag and it is carried and it is not wet and it is not messed and the used condoms of it is 0.
-Definition: a thing is currently-in-bag if it is in-bag and there is a worn bag of holding.
-Definition: a thing is currently-not-in-bag if it is carried and it is not currently-in-bag.
+Definition: a thing is in-bag rather than not-in-bag:
+	if it is not never-in-bag and it is carried, decide yes;
+	decide no.
+Definition: a clothing is in-bag rather than not-in-bag:
+	if it is not never-in-bag and it is carried and it is not wet and the used condoms of it is 0, decide yes;
+	decide no.
+Definition: a knickers is in-bag rather than not-in-bag:
+	if it is not never-in-bag and it is carried and it is not wet and it is not messed and the used condoms of it is 0, decide yes;
+	decide no.
+Definition: a thing is currently-in-bag:
+	if it is in-bag and there is a worn bag of holding, decide yes;
+	decide no.
+Definition: a thing is currently-not-in-bag:
+	if it is carried and it is not currently-in-bag, decide yes;
+	decide no.
 
 To decide which number is not-in-bag:
 	decide on the number of currently-not-in-bag necessary-in-bag things.
@@ -231,14 +246,13 @@ To execute (E - bag-feeding-semen) on (C - a thing):
 		now the stomach-semen of the player is 0;
 		now the stomach-urine of the player is 0;
 		now the stomach-milk of the player is 0;
-		let S be a random squirt dildo;
-		now the fill-colour of S is creamy;
-		now the doses of S is 1;
-		if S is held:
-			say "What's more, your [printed name of S] fills up to the brim with [semen]!";
+		now the fill-colour of squirt dildo is creamy;
+		now the doses of squirt dildo is 1;
+		if squirt dildo is held:
+			say "What's more, your [printed name of squirt dildo] fills up to the brim with [semen]!";
 		otherwise:
-			say "What's more, a [printed name of S] appears on the ground in front of you! Something tells you that you can guess what's inside...";
-			now S is in the location of the player.
+			say "What's more, a [printed name of squirt dildo] appears on the ground in front of you! Something tells you that you can guess what's inside...";
+			now squirt dildo is in the location of the player.
 
 bag-feeding-urine is a bag-feeding-effect.
 To execute (E - bag-feeding-urine) on (C - a thing):
@@ -289,17 +303,17 @@ To execute (E - bag-feeding-sex-themes) on (C - a thing):
 			otherwise:
 				say "You feel a bit more [if the player is a pervert]perverted[otherwise]willing to consider deviant ideas[end if]...";
 				SexAddictUp 1;
-		if B is vagina themed and C is vagina themed and the player is female:
-			say "Your [MediumDesc of B][']s vagina theme synergises with the theme of the [MediumDesc of C]! Your [pussy] twitches with... anticipation?";
+		if B is vagina themed and C is vagina themed and the player is possessing a vagina:
+			say "Your [MediumDesc of B][']s vagina theme synergises with the theme of the [MediumDesc of C]! ";
 			VaginalSexAddictUp 1;
 		if B is anal sex themed and C is anal sex themed:
-			say "Your [MediumDesc of B][']s anal sex theme synergises with the theme of the [MediumDesc of C]! Your [asshole] clenches with... anticipation?";
+			say "Your [MediumDesc of B][']s anal sex theme synergises with the theme of the [MediumDesc of C]! ";
 			AnalSexAddictUp 1;
 		if B is oral sex themed and C is oral sex themed:
-			say "Your [MediumDesc of B][']s oral sex theme synergises with the theme of the [MediumDesc of C]! You automatically lick your lips as desire floods through them.";
+			say "Your [MediumDesc of B][']s oral sex theme synergises with the theme of the [MediumDesc of C]! ";
 			OralSexAddictUp 1;
 		if B is boob themed and C is boob themed and max breast size >= 5:
-			say "Your [MediumDesc of B][']s boob theme synergises with the theme of the [MediumDesc of C]! Your chest aches with sensual desire...";
+			say "Your [MediumDesc of B][']s boob theme synergises with the theme of the [MediumDesc of C]! ";
 			TitfuckAddictUp 1;
 		if B is dog themed and C is dog themed:
 			say "Your [MediumDesc of B][']s [']bitch['] theme synergises with the dog theme of the [MediumDesc of C]!";

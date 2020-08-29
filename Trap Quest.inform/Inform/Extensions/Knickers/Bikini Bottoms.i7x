@@ -7,12 +7,14 @@ To decide which number is the penis-capacity of (C - a bikini bottoms):
 
 Definition: a bikini bottoms is displacable: decide yes.
 Definition: a bikini bottoms is swimming themed: decide yes.
-Definition: a bikini bottoms is same-type if theme-share-target is knickers and (theme-share-target is not undies or theme-share-target is swimming themed). [In general, undies don't become non-undies. An exception can be made for bikini g-strings or other undies 'swimwear' becoming even sluttier swimming themed bottoms.]
+Definition: a bikini bottoms is same-type:
+	if theme-share-target is knickers and (theme-share-target is not undies or theme-share-target is swimming themed), decide yes;
+	decide no. [In general, undies don't become non-undies. An exception can be made for bikini g-strings or other undies 'swimwear' becoming even sluttier swimming themed bottoms]
 
 To say selfexamineuniquetitle of (K - a bikini bottoms):
 	say "pair of bikini bottoms".
 
-A crotchless bikini bottoms is a kind of bikini bottoms. A crotchless bikini bottoms is usually crotch-exposing. The soak-limit of crotchless bikini bottoms is usually 7. The armour of a crotchless bikini bottoms is usually 0.
+A crotchless bikini bottoms is a kind of bikini bottoms. A crotchless bikini bottoms is usually crotch-exposing. The armour of a crotchless bikini bottoms is usually 0.
 
 To decide which object is the unique-upgrade-target of (C - a bikini bottoms):
 	now theme-share-target is C;
@@ -27,7 +29,9 @@ The printed name of cow print bikini bottoms is "[clothing-title-before]pair of 
 Definition: cow print bikini bottoms is cow themed: decide yes.
 Definition: cow print bikini bottoms is black themed: decide yes.
 Definition: cow print bikini bottoms is white themed: decide yes.
-Definition: cow print bikini bottoms is transformation-protected if the class of the player is cowgirl.
+Definition: cow print bikini bottoms is transformation-protected:
+	if the class of the player is cowgirl, decide yes;
+	decide no.
 Definition: cow print bikini bottoms is discovered varied: decide no.
 Definition: cow print bikini bottoms is is crotch-pullup: decide no.
 Definition: cow print bikini bottoms is rippable: decide yes.
@@ -53,7 +57,7 @@ To decide which number is the unique outrage of (C - cow print bikini bottoms):
 pink bikini bottoms is a bikini bottoms. A pink bikini bottoms is transformation-rare. The printed name of pink bikini bottoms is "[clothing-title-before]pair of pink bikini bottoms[clothing-title-after]". The text-shortcut of pink bikini bottoms is "pbb". The armour of pink bikini bottoms is 3.
 
 To compute SelfExamineDesc of (K - pink bikini bottoms):
-	say "A super skimpy pair of pink bikini bottoms completely exposes your [ShortDesc of hips][if the player is female] and rides up into your [vagina][end if]. ";
+	say "A super skimpy pair of pink bikini bottoms completely exposes your [ShortDesc of hips][if the player is possessing a vagina] and rides up into your [vagina][end if]. ";
 
 To say selfexamineuniquetitle of (K - pink bikini bottoms):
 	say "pair of pink bikini microbottoms".
@@ -62,15 +66,18 @@ To decide which figure-name is clothing-image of (C - pink bikini bottoms):
 	decide on figure of bikini bottoms 2.
 
 To say ClothingDesc of (K - pink bikini bottoms):
-	say "These metallic pink bikini bottoms are so ridiculously tiny that they ride up into your [if the player is female][vagina][otherwise]butt cheeks[end if], exposing everything.".
+	say "These metallic pink bikini bottoms are so ridiculously tiny that they ride up into your [if the player is possessing a vagina][vagina][otherwise]butt cheeks[end if], exposing everything.".
 Figure of bikini bottoms 2 is the file "Items/Clothes/Lower/Underwear/Skimpy/Bikini/bikinibottoms2.png".
 
 Definition: pink bikini bottoms is pink themed: decide yes.
 
-Definition: pink bikini bottoms is potentially vagina covering if the player is male and it is potentially pussy covering. [On women, this item doesn't fully conceal the vagina]
+Definition: pink bikini bottoms is potentially vagina covering: decide no. [This item doesn't fully conceal the genitals]
 
 To decide which number is the penis-capacity of (H - pink bikini bottoms):
 	decide on 1.
+
+To decide which object is the potential-upgrade-target of (H - pink bikini bottoms):
+	decide on a random off-stage crotchless bikini bottoms.
 
 [white crotchless bikini bottoms]
 

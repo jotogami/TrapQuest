@@ -19,7 +19,9 @@ How many gulps of liquid are in it right now? A gulp of liquid is about 2 units 
 *@!]
 A bottle has a number called doses.
 
-Definition: a bottle is empty rather than non-empty if the doses of it <= 0.
+Definition: a bottle is empty rather than non-empty:
+	if the doses of it <= 0, decide yes;
+	decide no.
 
 [!<Bottle>@<maxDoses:Integer>*
 
@@ -286,6 +288,7 @@ To destroy (T - a bottle):
 	now the magic-curse of T is bland;
 	now the curse-ID of T is unsure;
 	DoseEmpty T;
+	now T is unowned;
 	dislodge T.
 
 Bottles ends here.

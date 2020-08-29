@@ -81,9 +81,6 @@ This is the sex toy butt slut rule:
 	if there is a sex toy penetrating asshole, decrease the desirability of asshole by 7.
 The sex toy butt slut rule is listed in the butt slut eligibility rules.
 
-To decide which number is the original price of (C - a sex toy):
-	decide on 2.
-
 To assign size (X - a number) to (C - a sex toy):
 	if X > 10, now X is 10;
 	now the size of C is X.
@@ -206,7 +203,7 @@ analGripCount is a number that varies.
 To compute gripping of (I - a thing):
 	let G be the grip of I;
 	let R be a random number between 0 and G * G * 3;
-	if the player is upright and (nun-dress is not worn or nun-dress is not wrist-bound-behind):
+	if the player is upright and (nun-dress is not worn or nun-dress is not wrist-bound-behind) and (current-predicament is not team-girlfriends-predicament or the player is not in a predicament room):
 		if debuginfo > 1 and ((I is penetrating asshole and the player is not ass protected) or (I is penetrating vagina and the player is not pussy protected)), say "[input-style][ShortDesc of I] gripping check: Grip value ([G]) squared * 3 = [G * G * 3]; RNG (0~[G * G * 3]) = [R] | 9.5 Required grip strength[roman type][line break]";
 		if I is penetrating asshole and the player is not ass protected and G < 10 and R <= 0:
 			if G <= 0:
@@ -295,8 +292,8 @@ To compute toy expulsion reaction of (M - a monster):
 	FavourDown M by 1 with consequences.
 
 To decide which number is the bartering value of (T - a sex toy) for (M - a mannequin):
-	unless M is retaining a sex toy, decide on 3;
-	decide on 1 + (the size of T - the size of a random sex toy retained by M).
+	unless M is carrying a sex toy, decide on 3;
+	decide on 1 + (the size of T - the size of a random sex toy carried by M).
 
 Check taking off sex toy:
 	try unplugging the noun instead.
@@ -326,9 +323,6 @@ To say MediumDesc of (C - wood-dong):
 
 To say ClothingDesc of (C - wood-dong):
 	say "This dildo appears to have been carved out of wood. It doesn't look all that comfortable, but it can probably get the job done in a pinch.".
-
-To decide which number is the original price of (C - wood-dong):[if you find this in the normal shop, its basically free.]
-	decide on 1.
 
 To uniquely set up (C - wood-dong):
 	do nothing.[never has an enchantment]
@@ -508,7 +502,9 @@ To say MonsterOfferRejectFlav of (M - a wrestler) to (T - a plug):
 To say MonsterOfferAcceptFlav of (M - a wrestler) to (T - a plug):
 	say "[speech style of M]'Ooh, fine, you've tempted me.'[roman type][line break][BigNameDesc of M] unzips the crotch of [his of M] latex outfit, and with a lewd, shameless face, works the plug into [his of M] asshole, before zipping [his of M] outfit back up.[line break][speech style of M]'Tada!'[roman type][line break]".
 
-Definition: a plug is transformation-protected if it is not plentiful.
+Definition: a plug is transformation-protected:
+	if it is not plentiful, decide yes;
+	decide no.
 
 To decide which object is the unique-upgrade-target of (C - a plug):
 	decide on a random off-stage plentiful anal beads.

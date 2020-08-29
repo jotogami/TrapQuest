@@ -13,7 +13,9 @@ Check taking off piercing:
 To decide which number is the heaviness of (C - a piercing):
 	decide on 0.
 
-Definition: a piercing is eligible if it is off-stage.
+Definition: a piercing is eligible:
+	if it is off-stage, decide yes;
+	decide no.
 
 To say PiercingFlav of (P - a piercing):
 	say "An arm comes down with a searing hot needle! You scream as your flesh is burned and pierced. The needle is quickly moved and a [P] is pushed into place. The connection somehow welds itself shut, meaning that the piercing is permanent!".
@@ -74,7 +76,7 @@ To compute periodic effect of (P - ass-module):
 		if the raw dexterity of the player > 1 and the thickness of hips < max ass size:
 			say "[bold type]Your ass suddenly feels terribly warm, and some of the nanobots in it spring to life. It suddenly swells up in size! You feel some [one of][or]more [stopping]of your athletic power transferred into the nanobots for safekeeping.[roman type][line break]";
 			AssImplantsUp 1;
-			Dexdown 1;
+			DexDown 1;
 			increase the dex-transfer of P by 1.
 
 [!<TheAssModuleButtSlutRule>+
@@ -122,7 +124,7 @@ To compute periodic effect of (P - breast-module):
 		if the player is not top heavy and the raw intelligence of the player > 1:
 			say "[bold type]Your breasts suddenly feel terribly warm, they suddenly swell up in size! You feel some [one of][or]more [stopping]of your muscular power transferred into the nanobots for safekeeping.[roman type][line break]";
 			BustImplantsUp 1;
-			Intdown 1;
+			IntDown 1;
 			increase the str-transfer of P by 1.
 
 clitoris lead is a piercing. The printed name of clitoris lead is "[TQlink of item described][item style][if the bimbo of the player > 10]clit[otherwise]clitoris[end if] lead[clothing-title-after]". The text-shortcut of clitoris lead is "cl". Understand "clit" as clitoris lead. Figure of clitoris lead is the file "Items/Accessories/Piercings/clitlead1.png".
@@ -274,7 +276,7 @@ This is the cursed clitoris piercing stops you wearing crotch covering dresses r
 	if C is nothing, now C is a random worn cursed clitoris piercing;
 	if C is a thing:
 		if wearing-target is crotch covering and wearing-target is not no protection:
-			if summoning is 0:
+			if summoning is 0 and the player is not in Predicament20:
 				if autowear is false, say "The curse of your [C] somehow prevents you from putting this on!";
 				rule fails. [NB this purposefully doesn't prevent them from being summoned.]
 The cursed clitoris piercing stops you wearing crotch covering dresses rule is listed in the overdress wearability rules.
@@ -410,16 +412,36 @@ The overdress cow rings clash rule is listed in the overdress wearability rules.
 				rule fails.
 The bra cow rings clash rule is listed in the bra wearability rules.]
 
-A pair of earrings is a kind of piercing. The printed name of pair of earrings is "[TQlink of item described][item style]pair of [if item described is cursed]ultra slutty[otherwise if item described is blessed]valuable[otherwise]penis shaped[end if] earrings[clothing-title-after]". The text-shortcut of pair of earrings is "ea". Understand "penis shaped" as pair of earrings when item described is bland. Understand "valuable" as pair of earrings when item described is blessed. Understand "ultra", "slutty" as pair of earrings when item described is cursed. There is 1 pair of earrings. A pair of earrings has a number called variation. A pair of earrings is womanly.
+A pair of earrings is a kind of piercing. The printed name of pair of earrings is "[TQlink of item described][item style]pair of [if item described is cursed]ultra slutty[otherwise if item described is blessed]heart shaped[otherwise]penis shaped[end if] earrings[clothing-title-after]". The text-shortcut of pair of earrings is "ea". Understand "penis shaped" as pair of earrings when item described is bland. Understand "heart", "shaped" as pair of earrings when item described is blessed. Understand "ultra", "slutty" as pair of earrings when item described is cursed. There is 1 pair of earrings. A pair of earrings has a number called variation. A pair of earrings is womanly.
 The transform-resistance of a pair of earrings is usually 0.
 
-Definition: a pair of earrings is toilet themed if it is cursed and watersports fetish is 1.
-Definition: a pair of earrings is interracial themed if it is cursed and watersports fetish is 0.
-Definition: a pair of earrings is oral sex themed if it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it < 3.
-Definition: a pair of earrings is anal sex themed if it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it is not 2.
-Definition: a pair of earrings is penis themed if it is bland or (it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it is not 1).
-Definition: a pair of earrings is vagina themed if it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it is 1.
-Definition: a pair of earrings is white themed if it is cursed.
+Definition: a pair of earrings is toilet themed:
+	if it is cursed and watersports fetish is 1, decide yes;
+	decide no.
+Definition: a pair of earrings is interracial themed:
+	if it is cursed and watersports fetish is 0, decide yes;
+	decide no.
+Definition: a pair of earrings is oral sex themed:
+	if it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it < 3, decide yes;
+	decide no.
+Definition: a pair of earrings is anal sex themed:
+	if it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it is not 2, decide yes;
+	decide no.
+Definition: a pair of earrings is penis themed:
+	if it is bland or (it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it is not 1), decide yes;
+	decide no.
+Definition: a pair of earrings is vagina themed:
+	if it is cursed and watersports fetish is 0 and interracial fetish is 0 and the variation of it is 1, decide yes;
+	decide no.
+Definition: a pair of earrings is white themed:
+	if it is cursed, decide yes;
+	decide no.
+Definition: a pair of earrings is heart themed:
+	if it is blessed, decide yes;
+	decide no.
+Definition: a pair of earrings is gem themed:
+	if it is blessed, decide yes;
+	decide no.
 
 To uniquely set up (C - a pair of earrings):
 	now the variation of C is a random number between 1 and 3.
@@ -433,7 +455,7 @@ To say CurseBlandFlav of (C - a pair of earrings):
 	update appearance level.
 
 To say BlessBlessFlav of (C - a pair of earrings):
-	say "Your [printed name of C] transform in shape to large jewelled hoops, and now look much less trashy and more valuable!";
+	say "Your [printed name of C] transform in shape to large jewelled hearts, and now look much less trashy and more valuable!";
 	update appearance level.
 
 To say BlessBlandFlav of (C - a pair of earrings):
@@ -442,7 +464,7 @@ To say BlessBlandFlav of (C - a pair of earrings):
 
 To decide which number is the initial outrage of (C - a pair of earrings):
 	if C is cursed, decide on 10;
-	if C is blessed, decide on 0;
+	if C is blessed, decide on 2;
 	decide on 6.
 
 To decide which object is the concealer of (C - a pair of earrings):
@@ -488,7 +510,7 @@ To say ClothingDesc of (C - a pair of earrings):
 			say "A pair of large circular plastic earrings with the words 'I <3 Cock In My Ass' on each one. ";
 		say "These would only be worn by a drunk girl at a hen party, or maybe an exhibitionist nymphomaniac[if the sex addiction of the player > 12 and the humiliation of the player > 30000][line break][second custom style] like me![roman type][line break][otherwise].[end if]";
 	otherwise if C is blessed:
-		say "Two large hooped earrings with several diamonds embedded in the hoops. They indicate [if the bimbo of the player < 14]wealth, but also sluttiness[otherwise]that your Daddy must be quite wealthy[end if].";
+		say "Two large dangling earrings shaped like hearts, with several diamonds embedded in the hoops. They could be interpreted as wealthy and refined, or slutty, probably depending on what the rest of the wearer looks like.";
 	otherwise if bukkake fetish is 1:
 		say "A pair of metal earrings shaped as penises, pointing towards your face. A jewel at the tip of the [manly-penis] represents a cumshot.";
 	otherwise:

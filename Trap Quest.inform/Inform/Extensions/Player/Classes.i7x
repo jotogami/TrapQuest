@@ -1,32 +1,12 @@
 Classes by Player begins here.
 
-[!<playerClass:String>*
-
-REQUIRES COMMENTING
-
-*!]
 player-class is a text that varies.
 
-[!<DecideWhichTextIsTheClassOfThePlayer>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which text is the class of the player:
 	decide on player-class.
 
-[!<playerClassRules:Rulebook>+
-
-REQUIRES COMMENTING
-
-+!]
 The player class rules is a rulebook.
 
-[!<TheTrickOrTreaterClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the trick-or-treater class rule:
 	if there is worn halloween headgear:
 		now player-class is "trick or treater";
@@ -34,31 +14,29 @@ This is the trick-or-treater class rule:
 The trick-or-treater class rule is listed in the player class rules.
 trick-or-treater is a text that varies. trick-or-treater is "trick or treater".
 
-[!<ThePrincessClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the princess class rule:
-	if there is a worn royalty themed wearthing:
-		if the training-progress of senior robobellboy is -1 and there is a worn tiara:
+	if there is a worn tiara:
+		now player-class is "princess";
+		if there is a worn warrior chestpiece and gown-of-purity is worn and sword-of-purity is worn:
+			now player-class is "virgin warrior princess";
+		otherwise if the training-progress of senior robobellboy is -1:
 			now player-class is "trained fuck princess";
-			rule succeeds;
-		otherwise if there is a worn tiara:
-			now player-class is "princess";
-			rule succeeds.
+		rule succeeds.
 The princess class rule is listed in the player class rules.
-[princess is a text that varies. princess is "princess".]
 
 Definition: a text (called T) is princess:
-	if T is "princess" or T is "trained fuck princess", decide yes;
+	if T matches the text "princess", decide yes;
 	decide no.
 
-[!<TheMaidClassRule>+
+princessExplained is initially false.
+a later time based rule (this is the explaining princess rule):
+	if princessExplained is false and the class of the player is princess:
+		now princessExplained is true;
+		say "[bold type]Now that you have become the 'princess' class, you feel proud and royal! You feel like you won't be able to submit so easily. Also, you feel like your reputation precedes you - lots of people will treat you differently depending on how they feel about your famous deeds.[roman type][line break]";
+	otherwise if princessExplained is true and the class of the player is not princess:
+		now princessExplained is false;
+		say "[bold type]Now that you are no longer the 'princess' class, you no longer feel like royalty.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the maid class rule:
 	if there is a worn maid headdress and (there is a worn maid outfit or there is a worn black fetish hobble dress):
 		if the training-progress of senior robobellboy is -1:
@@ -67,20 +45,20 @@ This is the maid class rule:
 			now player-class is "maid";
 		rule succeeds.
 The maid class rule is listed in the player class rules.
-[!<TextIsMaid>+
 
-Thanks to the magical maid multi-class, we have multiple different texts that need to be able to return true for the class of the player being maid.
-
-+!]
 Definition: a text (called T) is maid:
 	if T is "maid" or T is "fully trained maid" or T is "magical maid" or T is "cafe maid", decide yes;
 	decide no.
 
-[!<TheCowgirlClassRule>+
+maidExplained is initially false.
+a later time based rule (this is the explaining maid rule):
+	if maidExplained is false and the class of the player is maid:
+		now maidExplained is true;
+		say "[bold type]Now that you have become the 'maid' class, you sense that your clothing is likely to help improve your strength and endurance. You also sense that certain people might assume that you're under their employ[if tentacle fetish is 1]. You also feel that tentacle monsters are even more of a threat to you now, but also that you have hidden latent abilities that might help you defeat them[end if].[roman type][line break]";
+	otherwise if maidExplained is true and the class of the player is not maid:
+		now maidExplained is false;
+		say "[bold type]Now that you are no longer the 'maid' class, you no longer feel a drive to satisfy your employers.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the cowgirl class rule:
 	if cow-horns is worn:
 		now player-class is "breeding cow";
@@ -90,11 +68,6 @@ This is the cowgirl class rule:
 		rule succeeds.
 The cowgirl class rule is listed in the player class rules.
 
-[!<TextIsCowgirl>+
-
-Thanks to the cow slave multi-class, we have multiple different texts that need to be able to return true for the class of the player being cowgirl.
-
-+!]
 Definition: a text (called T) is cowgirl:
 	if T is "cowgirl" or T is "cow slave" or T is "breeding cow", decide yes;
 	decide no.
@@ -108,11 +81,15 @@ This is the cow slut rule:
 	if the class of the player is cowgirl, increase the desirability of breasts by 5.
 The cow slut rule is listed in the tit slut eligibility rules.
 
-[!<ThePriestessClassRule>+
+cowgirlExplained is initially false.
+a later time based rule (this is the explaining cowgirl rule):
+	if cowgirlExplained is false and the class of the player is cowgirl:
+		now cowgirlExplained is true;
+		say "[bold type]Now that you have become the 'cowgirl' class, you can sense that the more milk contained in your breasts, the more bonus strength you'll have, but the more sensitive your breasts are (and the more you love giving titfucks), the less intelligence you'll have. Also, [men of shopkeeper] will be more likely to choose to fuck your tits (which can increase their sensitivity)[if diaper quest is 0]. Also, when horny, you will release pheromones that might attract certain mates[end if].[roman type][line break]";
+	otherwise if cowgirlExplained is true and the class of the player is not cowgirl:
+		now cowgirlExplained is false;
+		say "[bold type]Now that you are no longer the 'cowgirl' class, you can sense that the bonus strength you were receiving from having milk in your breasts and the penalty intelligence for having sensitive breasts has gone.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the priestess class rule:
 	if runic headband is worn:
 		if the total condoms of runic headband > 0:
@@ -129,64 +106,101 @@ Definition: a text (called T) is priestess:
 	if T matches the text "priestess", decide yes;
 	decide no.
 
-[!<TheVirginWarriorClassRule>+
+priestessExplained is initially false.
+a later time based rule (this is the explaining priestess rule):
+	if priestessExplained is false and the class of the player is priestess:
+		now priestessExplained is true;
+		say "[bold type]Now that you have become the 'priestess' class, you can sense that you have increased intelligence and lowered strength. Also, you will always be able to confidently tell whether the dungeon altar is safe to use.[roman type][line break]";
+	otherwise if priestessExplained is true and the class of the player is not priestess:
+		now priestessExplained is false;
+		say "[bold type]Now that you are no longer the 'priestess' class, you can sense that the bonus intelligence and reduced strength has gone.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the virgin warrior class rule:
 	if flower hairclip is worn and there is a worn warrior chestpiece:
 		now player-class is "virgin warrior";
 		rule succeeds.
 The virgin warrior class rule is listed in the player class rules.
 Definition: a text (called T) is virgin warrior:
-	if T is "virgin warrior" or T is "virgin symbiote warrior" or T is "virgin warrior priestess" or T is "virgin magical girl", decide yes;
+	if T matches the text "virgin", decide yes;
 	decide no.
 
-[!<TheSchoolgirlClassRule>+
+warriorExplained is initially false.
+a later time based rule (this is the explaining warrior rule):
+	if warriorExplained is false and the class of the player is virgin warrior:
+		now warriorExplained is true;
+		say "[bold type]Now that you have become the 'virgin warrior' class, you sense that the source of your power is closely tied to your vaginal virginity.[roman type][line break]";
+	otherwise if warriorExplained is true and the class of the player is not virgin warrior:
+		now warriorExplained is false;
+		say "[bold type]Now that you are no longer the 'virgin warrior' class, you no longer feel that your power is so closely entwined with your vaginal virginity.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the schoolgirl class rule:
 	if there is a worn scrunchie:
+		let C be a random worn pigtail-scrunchie;
+		if C is clothing and the quest of C is recipe-quest:
+			now player-class is "fraternity's bicycle";
+			rule succeeds;
 		if there is a worn schoolgirl-enabling wearthing or there is a worn tartan themed skirted clothing or (there is a worn tartan themed dress and there is a worn necktie):
 			now player-class is "schoolgirl";
-			if there is a worn pigtail-scrunchie, now player-class is "fraternity's bicycle";
+			let TUC be total used condoms;
+			if there is worn cheerleader outfit or there is worn pom-poms or there is worn pink scrunchie, now player-class is "class bully"; [schoolgirl + cheerleader]
+			if C is clothing or (player-class is "class bully" and TUC > 0): [schoolgirl + cheerleader + cumdumpster]
+				now player-class is "fraternity's bicycle";
+				if daddy issues dress is worn, now player-class is "mathlete team's plastic cumdump"; [+ silicone queen]
+			otherwise if daddy issues dress is worn: [schoolgirl + silicone queen]
+				if player-class is "class bully":
+					now player-class is "plastic bully"; [+ cheerleader]
+				otherwise:
+					now player-class is "plastic schoolgirl";
+					if TUC > 0, now player-class is "walking talking condom"; [+ cumdumpster]
+			otherwise if TUC > 0: [schoolgirl + cumdumpster]
+				now player-class is "classroom fucktoy";
 			rule succeeds.
 The schoolgirl class rule is listed in the player class rules.
+
 [!<TextIsSchoolgirl>+
 
 Thanks to the various schoolgirl multi-classes, we have multiple different texts that need to be able to return true for the class of the player being schoolgirl.
 
 +!]
-Definition: a text is schoolgirl if it is "schoolgirl" or it is "magical schoolgirl" or it is "fraternity's bicycle".
+Definition: a text is schoolgirl:
+	if it matches the text "schoolgirl" or it matches the text "bully" or it is "fraternity's bicycle" or it is "walking talking condom" or it matches the text "mathlete", decide yes;
+	decide no.
 
 Definition: a wearthing is schoolgirl-enabling: decide no.
 
-[!<TheCheerleaderClassRule>+
+schoolgirlExplained is initially false.
+a later time based rule (this is the explaining schoolgirl rule):
+	if schoolgirlExplained is false and the class of the player is schoolgirl:
+		now schoolgirlExplained is true;
+		say "[bold type]Now that you have become the 'schoolgirl' class, you sense that your ability to gain intelligence and to craft better versions of items has improved. You also sense that you might more easily attract the attention of anything with tentacles...[roman type][line break]";
+	otherwise if schoolgirlExplained is true and the class of the player is not schoolgirl:
+		now schoolgirlExplained is false;
+		say "[bold type]Now that you are no longer the 'schoolgirl' class, you no longer feel so competent at learning or crafting.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the cheerleader class rule:
 	if there is a worn pigtail-scrunchie:
 		now player-class is "locker room fucktoy";
+		if there is a worn rubber cheerleader outfit and the silicone volume of breasts > 0, now player-class is "football team's plastic cumdump";
 		rule succeeds;
-	if there is a worn pink scrunchie and there is a worn cheerleader outfit:
-		if the silicone volume of breasts > 0, now player-class is "plastic cheerleader";
-		otherwise now player-class is "cheerleader";
-		rule succeeds.
+	if there is a worn pink scrunchie:
+		if there is a worn cheerleader outfit:
+			if there is a worn rubber cheerleader outfit and the silicone volume of breasts > 0, now player-class is "plastic cheerleader";
+			otherwise now player-class is "cheerleader";
+			rule succeeds.
 The cheerleader class rule is listed in the player class rules.
 Definition: a text (called T) is cheerleader:
-	if T is "cheerleader" or T is "plastic cheerleader" or T is "fraternity's bicycle" or T is "locker room fucktoy" or T is "football team's plastic cumdump", decide yes;
+	if T is "cheerleader" or T is "plastic cheerleader" or it matches the text "bully" or T is "fraternity's bicycle" or T is "locker room fucktoy" or T matches the text "plastic cumdump", decide yes;
 	decide no.
 
-[!<TheFertilityGoddessClassRule>+
+cheerleaderExplained is initially false.
+a later time based rule (this is the explaining cheerleader rule):
+	if cheerleaderExplained is false and the class of the player is cheerleader:
+		now cheerleaderExplained is true;
+		say "[bold type]Now that you have become the 'cheerleader' class, you can sense that the more blonde (or pink) your hair is, the more bonus dexterity you'll have. Also, you're less likely to [if pregnancy fetish is 1]get pregnant and less likely to [end if]upset others and sex addiction will increase much slower from you having lots of orgasms, so you can relax and live a little![roman type][line break]";
+	otherwise if cheerleaderExplained is true and the class of the player is not cheerleader:
+		now cheerleaderExplained is false;
+		say "[bold type]Now that you are no longer the 'cheerleader' class, you can sense that the bonus dexterity you were receiving from having blonde or pink hair is gone.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the fertility goddess class rule:
 	if laurel wreath is worn and there is a worn fertility outfit:
 		now player-class is "fertility goddess";
@@ -211,11 +225,15 @@ This is the fertility goddess pussy slut rule:
 	if the class of the player is fertility goddess, increase the desirability of vagina by 5.
 The fertility goddess pussy slut rule is listed in the pussy slut eligibility rules.
 
-[!<TheRoyalSlaveClassRule>+
+fertilityExplained is initially false.
+a later time based rule (this is the explaining fertility rule):
+	if fertilityExplained is false and the class of the player is fertility goddess:
+		now fertilityExplained is true;
+		say "[bold type]Now that you have become the 'fertility goddess' class, you sense that you will find it a lot less cumbersome and challenging to be pregnant.[roman type][line break]";
+	otherwise if fertilityExplained is true and the class of the player is not fertility goddess:
+		now fertilityExplained is false;
+		say "[bold type]Now that you are no longer the 'fertility goddess' class, your body's ability to handle being pregnant has returned to normal.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the royal slave class rule:
 	if royal circlet is worn and (there is a worn milking basque or there is a worn milking harness):
 		now player-class is "royal slave";
@@ -242,31 +260,34 @@ This is the royal slaves can't masturbate rule:
 		rule fails.
 The royal slaves can't masturbate rule is listed last in the global masturbation restriction rules.
 
-[!<TheSiliconeQueenClassRule>+
+slaveExplained is initially false.
+a later time based rule (this is the explaining slave rule):
+	if slaveExplained is false and the class of the player is royal slave:
+		now slaveExplained is true;
+		say "[bold type]Now that you have become the 'royal slave' class, you sense that you are being magically restricted from orgasming.[roman type][line break]";
+	otherwise if slaveExplained is true and the class of the player is not royal slave:
+		now slaveExplained is false;
+		say "[bold type]Now that you are no longer the 'royal slave' class, your body's ability to orgasm has returned to normal.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the silicone queen class rule:
-	if rubber top hat is worn and there is a worn pink rubber dress:
+	if rubber top hat is worn and there is a worn silicone dress:
 		now player-class is "silicone queen";
 		rule succeeds.
 The silicone queen class rule is listed in the player class rules.
 
-[!<TextIsSiliconeQueen>+
-
-Thanks to the walking condom multi-class, we have multiple different texts that need to be able to return true for the class of the player being silicone queen.
-
-+!]
 Definition: a text (called T) is silicone queen:
-	if T is "silicone queen" or T is "plastic cheerleader" or T is "walking condom" or T is "football team's plastic cumdump", decide yes;
+	if T matches the text "silicone" or T matches the text "plasti" or T matches the text "walking", decide yes;
 	decide no.
 
-[!<TheLatexFetishModelClassRule>+
+siliconeExplained is initially false.
+a later time based rule (this is the explaining silicone rule):
+	if siliconeExplained is false and the class of the player is silicone queen:
+		now siliconeExplained is true;
+		say "[bold type]Now that you have become the 'silicone queen' class, you sense that your dexterity is being improved based on how much silicone is in your breasts.[roman type][line break]";
+	otherwise if siliconeExplained is true and the class of the player is not silicone queen:
+		now siliconeExplained is false;
+		say "[bold type]Now that you are no longer the 'silicone queen' class, you sense that the bonus dexterity from having large plastic breasts has left you.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the latex fetish model class rule:
 	if black hood is worn:
 		now player-class is "latex fetish model";
@@ -274,11 +295,6 @@ This is the latex fetish model class rule:
 The latex fetish model class rule is listed in the player class rules.
 latex fetish model is a text that varies. latex fetish model is "latex fetish model".
 
-[!<TheHumanToiletClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the human toilet class rule:
 	if WC hood is worn and there is a worn WC catsuit:
 		now player-class is "toilet";
@@ -286,11 +302,6 @@ This is the human toilet class rule:
 The human toilet class rule is listed in the player class rules.
 human toilet is a text that varies. human toilet is "toilet".
 
-[!<TheCatgirlClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the catgirl class rule:
 	if cat-ears is worn and there is a worn kitty claws:
 		now player-class is "catgirl";
@@ -303,27 +314,39 @@ Thanks to the magical neko multi-class, we have multiple different texts that ne
 
 +!]
 Definition: a text (called T) is catgirl:
-	if T is "catgirl" or T is "magical neko", decide yes;
+	if T matches the text "catgirl" or T matches the text "neko", decide yes;
 	decide no.
 
-[!<ThePuppygirlClassRule>+
+catgirlExplained is initially false.
+a later time based rule (this is the explaining catgirl rule):
+	if catgirlExplained is false and the class of the player is catgirl:
+		now catgirlExplained is true;
+		say "[bold type]Now that you have become the 'catgirl' class, you can sense that the less clothing you are wearing, the better you'll be at slipping past enemies while on your knees[if diaper quest is 0]. Also, when horny, you will release pheromones that might attract certain mates[end if].[roman type][line break]";
+	otherwise if catgirlExplained is true and the class of the player is not catgirl:
+		now catgirlExplained is false;
+		say "[bold type]Now that you are no longer the 'catgirl' class, you can sense that your ability to slip past NPCs while on your knees has returned to normal.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the puppygirl class rule:
 	if there is a worn puppy ears and there is a worn puppy mittens:
 		now player-class is "puppygirl";
 		rule succeeds.
 The puppygirl class rule is listed in the player class rules.
-puppygirl is a text that varies. puppygirl is "puppygirl".
-puppy is a text that varies. puppy is "puppygirl".
+Definition: a text (called T) is puppy:
+	if T matches the text "puppy", decide yes;
+	decide no.
+Definition: a text (called T) is puppygirl:
+	if T is puppy, decide yes;
+	decide no.
 
-[!<TheSymbioteClassRule>+
+puppygirlExplained is initially false.
+a later time based rule (this is the explaining puppygirl rule):
+	if puppygirlExplained is false and the class of the player is puppygirl:
+		now puppygirlExplained is true;
+		say "[bold type]Now that you have become the 'puppygirl' class, you can sense that the less clothing you are wearing, the better you'll be at slipping past enemies while on your knees[if diaper quest is 0]. Also, when horny, you will release pheromones that might attract certain mates[end if].[roman type][line break]";
+	otherwise if puppygirlExplained is true and the class of the player is not puppygirl:
+		now puppygirlExplained is false;
+		say "[bold type]Now that you are no longer the 'puppygirl' class, you can sense that your ability to slip past NPCs while on your knees has returned to normal.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the symbiote class rule:
 	if spiked-tiara is worn:
 		if the vaginalvirgin of the player is 1 and the quest of spiked-tiara is virginity-retention-quest, now player-class is "virgin symbiote warrior";
@@ -337,14 +360,9 @@ Thanks to the virgin symbiote warrior multi-class, we have multiple different te
 
 +!]
 Definition: a text (called T) is symbiote:
-	if T is "symbiote" or T is "virgin symbiote warrior", decide yes;
+	if T matches the text "symbiote", decide yes;
 	decide no.
 
-[!<TheSantaClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the santa class rule:
 	if there is a worn christmas headgear and christmas content is 1:
 		if there is a worn christmas dress and naughty-or-nice outfit is not worn, now player-class is "christmas tree";
@@ -357,22 +375,12 @@ Definition: a text (called T) is santa's little helper:
 	if T is "santa's little helper" or T is "candy cane" or T matches the text "christmas", decide yes;
 	decide no.
 
-[!<TheWenchedClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the wenched class rule:
 	if property-tattoo is worn:
 		now the player-class is "wench".
 The wenched class rule is listed last in the player class rules.
 wenched is a text that varies. wenched is "wench".
 
-[!<TheThrallClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the thrall class rule:
 	if severed-tentacle is worn or there is a worn throbbing-tentacle:
 		now the player-class is "thrall".
@@ -380,11 +388,6 @@ The thrall class rule is listed last in the player class rules.
 thrall is a text that varies. thrall is "thrall".
 
 [To avoid conflict with the demoness monster type, we'll refer to the actual class as 'succubus' plus it's about 37% hotter in strict engineering terms]
-[!<TheSuccubusClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the succubus class rule:
 	if demon horns is worn and there is a worn soulstone:
 		now the player-class is "succubus";
@@ -393,20 +396,10 @@ This is the succubus class rule:
 		rule succeeds.
 The succubus class rule is listed in the player class rules.
 
-[!<TextIsSuccubus>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: a text (called T) is succubus:
-	if T is "succubus" or T is "demon concubine" or T is "abyssal succubus", decide yes;
+	if T matches the text "succubus", decide yes;
 	decide no.
 
-[!<TheBroodmotherClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the broodmother class rule:
 	if wasp-antennae is worn and (there is a worn striped top or there is a worn black-and-yellow striped stockings):
 		now the player-class is "broodmother";
@@ -414,24 +407,13 @@ This is the broodmother class rule:
 The broodmother class rule is listed in the player class rules.
 broodmother is a text that varies. broodmother is "broodmother".
 
-[!<oldWasps:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 old-wasps is a number that varies. old-wasps is 0.
 
-[!<ComputeBrood>+
-
-REQUIRES COMMENTING
-
-+!]
 A time based rule (this is the compute brood rule):
 	if the class of the player is broodmother:
 		let E be a random medium egg in the location of the player;
 		let old-wasps be total-wasps;
 		if E is laid medium egg:
-			MagicPowerUp 2;
 			if the number of alive giant wasps < 1 and there is an off-stage giant wasp:
 				say "You watch in amazement as a white egg changes colour to light brown, doubles in size, and then just as quickly, starts to crack. Within seconds, a familiarly looking larva has emerged from the egg. The giant maggot, right in front of your eyes, goes through the entire metamorphosis which a normal wasp goes through in its youth, in a few seconds.";
 				let M be a random off-stage giant wasp;
@@ -458,6 +440,7 @@ A time based rule (this is the compute brood rule):
 				now the swarm of W is 3;
 				now total-wasps is 3;
 				destroy E;
+			MagicPowerUp 2;
 		if total-wasps > 49 and old-wasps < 50:
 			say "[bold type]You feel terribly strange, and sudden pain bores through your head. You suddenly find you can feel the antennae coming out of your head as though they were a part of your body, and they begin to twitch on their own! [if there is a worn striped top]You see the fuzzy top on your chest meld with your skin, which has become black and shiny in the area around it![end if] [if there is a worn black-and-yellow striped stockings]You see the fuzzy stockings on your legs meld with your skin, which has become black and shiny in the area around them![end if][roman type][line break]";
 		otherwise if total-wasps > 99 and old-wasps < 100 and there is a worn striped top:
@@ -467,11 +450,6 @@ A time based rule (this is the compute brood rule):
 			say "A small swarm of wasps that was resting on your fur seems to be ready for more action!";
 			increase the swarm of W by 1. [The idea is that your weapon's equilibrium strength will slowly increase once you get past the 50 wasps birthed cut-off, though swarm will tend to be very hard to raise above 20 because it always wants to decay to that point. Also these wasps are technically ones you 'lost' earlier so they don't increase your total]
 
-[!<TheVampireSpawnClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the vampire spawn class rule:
 	if vampiric fangs is worn:
 		now the player-class is "vampire spawn";
@@ -479,11 +457,6 @@ This is the vampire spawn class rule:
 The vampire spawn class rule is listed in the player class rules.
 vampire spawn is a text that varies. vampire spawn is "vampire spawn".
 
-[!<TheCultistClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the cultist class rule:
 	if cultist veil is worn and there is a worn cultist robe:
 		now the player-class is "cultist";
@@ -492,49 +465,28 @@ This is the cultist class rule:
 The cultist class rule is listed in the player class rules.
 
 Definition: a text (called T) is cultist:
-	if T is "cultist" or T is "cultist seer" or T is "dark priestess", decide yes;
+	if T matches the text "cultist" or T is "dark priestess", decide yes;
 	decide no.
 
-[!<whispered:Integer>*
+cultistExplained is initially false.
+a later time based rule (this is the explaining cultist rule):
+	if cultistExplained is false and the class of the player is cultist:
+		now cultistExplained is true;
+		say "[bold type]Now that you have become the 'cultist' class, cursed clothing can be removed at will, and blessed clothing is bad for you.[roman type][line break]";
+	otherwise if cultistExplained is true and the class of the player is not cultist:
+		now cultistExplained is false;
+		say "[bold type]Now that you are no longer the 'cultist' class, you can sense that your ability to remove cursed clothing has returned to normal.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-*!]
 whispered is a number that varies. whispered is 0.
 
-[!<whisperType:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 whisper-type is a number that varies. whisper-type is 0.
 
-[!<whisperSemenTracker:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 whisper-semen-tracker is a number that varies. whisper-semen-tracker is 0.
 
-[!<whisperSemenOld:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 whisper-semen-old is a number that varies. whisper-semen-old is 0.
 
-[!<whisperTracking:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 whisper-tracking is a number that varies. whisper-tracking is 0.
 
-[!<ComputeWhispers>+
-
-REQUIRES COMMENTING
-
-+!]
 A time based rule (this is the compute whispers rule):
 	if the class of the player is cultist:
 		decrease whispered by 1;
@@ -555,52 +507,47 @@ A time based rule (this is the compute whispers rule):
 		if whispered is less than -50 and a random number between 1 and 45000 is less than the humiliation of the player:
 			let W be a random number between 1 and 4;
 			if W is 1:
-				say "You hear a strange voice whispered in your ear! [line break][first custom style]'serve your gods. present yourself at our altar and be blessed.'[roman type][line break]That was peculiar. Should you do it?";
+				say "You hear a strange voice whispered in your ear![line break][first custom style]'serve your gods. present yourself at our altar and be blessed.'[roman type][line break]That was peculiar. Should you do it?";
 				now whisper-type is 1;
 				now whispered is 200;
 				now whisper-tracking is 0;
 			if W is 2:
-				say "You hear a strange voice whispered in your ear! [line break][first custom style]'serve your gods. feed us with curses.'[roman type][line break]That was odd. Should you do it?";
+				say "You hear a strange voice whispered in your ear![line break][first custom style]'serve your gods. feed us with curses.'[roman type][line break]That was odd. Should you do it?";
 				now whisper-type is 2;
 				now whispered is 200;
 				now whisper-tracking is 0;
 			if W is 3:
-				say "You hear a strange voice whispered in your ear! [line break][first custom style]'serve your gods. gorge yourself upon [semen].'[roman type][line break]That was strange. Should you do it?";
+				say "You hear a strange voice whispered in your ear![line break][first custom style]'serve your gods. gorge yourself upon [semen].'[roman type][line break]That was strange. Should you do it?";
 				now whisper-type is 3;
 				now whispered is 200;
 				now whisper-semen-old is the stomach-semen of the player;
 				now whisper-semen-tracker is 0;
 				now whisper-tracking is 0;
 			if W is 4:
-				say "You hear a strange voice whispered in your ear! [line break][first custom style]'serve your gods. let your ass be a vessel for their [semen].'[roman type][line break]That was creepy. Should you do it?";
+				say "You hear a strange voice whispered in your ear![line break][first custom style]'serve your gods. let your ass be a vessel for their [semen].'[roman type][line break]That was creepy. Should you do it?";
 				now whisper-type is 4;
 				now whispered is 200;
 				now whisper-semen-old is the semen volume of belly;
 				now whisper-semen-tracker is 0;
 				now whisper-tracking is 0;
 		if whispered < 0 and whisper-type is not 0 and whisper-tracking is 0:
-			say "You hear a strange voice echoing through you! [line break][first custom style]'YOU HAVE FAILED US'[roman type][line break]You feel an ominous sensation, but you can't quite place it.";
+			say "You hear a strange voice echoing through you![line break][first custom style]'YOU HAVE FAILED US'[roman type][line break]You feel an ominous sensation, but you can't quite place it.";
 			SexAddictUp 2;
 			SemenAddictUp 2;
 			now whisper-type is 0;
 		if whispered > -1 and whisper-tracking is 1 and whisper-type is not 0:
-			say "You hear a strange voice whispered in your ear! [line break][first custom style]'you have [please]d us. be rewarded.'[roman type][line break]";
+			say "You hear a strange voice whispered in your ear![line break][first custom style]'you have [please]d us. be rewarded.'[roman type][line break]";
 			MagicPowerUp 1;
 			if whisper-type is 1:
 				now the body soreness of the player is 0;
 			otherwise if whisper-type is 2:
-				Intup 1;
+				IntUp 1;
 			otherwise if whisper-type is 3:
-				Strengthup 1;
+				StrengthUp 1;
 			otherwise if whisper-type is 4:
-				Dexup 1;
+				DexUp 1;
 			now whisper-type is 0.
 
-[!<TheVixenClassRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the vixen class rule:
 	if fox ears is worn:
 		now the player-class is "vixen";
@@ -608,11 +555,15 @@ This is the vixen class rule:
 The vixen class rule is listed in the player class rules.
 vixen is a text that varies. vixen is "vixen".
 
-[!<TheFaerieClassrule>+
+vixenExplained is initially false.
+a later time based rule (this is the explaining vixen rule):
+	if vixenExplained is false and the class of the player is vixen:
+		now vixenExplained is true;
+		say "[bold type]Now that you have become the 'vixen' class, you can sense that your 'presence' has been lowered, and sometimes you might be able to sneak by unnoticed.[roman type][line break]";
+	otherwise if vixenExplained is true and the class of the player is not vixen:
+		now vixenExplained is false;
+		say "[bold type]Now that you are no longer the 'vixen' class, you can sense that your 'presence' has returned to normal.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the faerie class rule:
 	if glittering rose is worn:
 		if the vaginalvirgin of the player is 1:
@@ -622,16 +573,23 @@ This is the faerie class rule:
 			now the player-class is "faerie";
 			rule succeeds.
 The faerie class rule is listed in the player class rules.
-Definition: a text is faerie if it is "faerie" or it is "fairy godmother".
+Definition: a text is faerie:
+	if it is "faerie" or it is "fairy godmother", decide yes;
+	decide no.
 
-[!<TheBunnyClassrule>+
+faerieExplained is initially false.
+a later time based rule (this is the explaining faerie rule):
+	if faerieExplained is false and the class of the player is faerie:
+		now faerieExplained is true;
+		say "[bold type]Now that you have become the 'faerie' class, you can sense that you can gain magic power by receiving vaginal creampies. Also, you can't bear the thought of wearing underwear.[roman type][line break]";
+	otherwise if faerieExplained is true and the class of the player is not faerie:
+		now faerieExplained is false;
+		say "[bold type]Now that you are no longer the 'faerie' class, you can sense that your ability to gain magic power via vaginal creampies has gone.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the bunny class rule:
 	if there is a worn bunny ears and there is a worn bunny outfit:
 		now the player-class is "bunny";
+		if bunny waitress ears is worn, now the player-class is "bunny waitress";
 		rule succeeds.
 The bunny class rule is listed in the player class rules.
 
@@ -641,20 +599,26 @@ Thanks to the fertile bunny multi-class, we have multiple different texts that n
 
 +!]
 Definition: a text (called T) is bunny:
-	if T is "bunny" or T is "fertile bunny", decide yes;
+	if T matches the text "bunny", decide yes;
 	decide no.
 
 bunny-reminder is a number that varies.
 An all time based rule (this is the bunny reminder rule):
 	if the class of the player is bunny:
-		if bunny-reminder is 0 and playerRegion is Woods:
+		if bunny-reminder is 0:
+			say "[bold type]Now that you have become the 'bunny' class, become the 'bunny' class, you can sense that your dexterity will be significantly improved while you are outside in nature[if diaper quest is 0]. Also, when horny, you will release pheromones that might attract certain mates[end if].[roman type][line break]";
+			if playerRegion is Woods, now bunny-reminder is 2;
+			otherwise now bunny-reminder is 1;
+		otherwise if bunny-reminder is 1 and playerRegion is Woods:
 			say "[bold type]You feel your bunny reflexes improve while you are in the woods![roman type][line break]";
-			now bunny-reminder is 1;
-		otherwise if bunny-reminder is 1 and playerRegion is not Woods:
+			now bunny-reminder is 2;
+		otherwise if bunny-reminder is 2 and playerRegion is not Woods:
 			say "[bold type]You feel your bunny reflexes disappear as you are no longer in the woods.[roman type][line break]";
-			now bunny-reminder is 0;
-	otherwise:
-		now bunny-reminder is 0.
+			now bunny-reminder is 1;
+	otherwise if bunny-reminder > 0:
+		now bunny-reminder is 0;
+		say "[bold type]Now that you are no longer the 'bunny' class, you can sense that you no longer get bonus dexterity from being outside.[roman type][line break]".
+
 
 [!<TheCumdumpsterClassRule>+
 
@@ -673,8 +637,17 @@ Thanks to the walking condom multi-class, we have multiple different texts that 
 
 +!]
 Definition: a text (called T) is cumdumpster:
-	if T matches the text "cumdumpster" or T is "walking condom" or T is "locker room fucktoy" or T is "football team's plastic cumdump" or T is "fraternity's bicycle", decide yes;
+	if T matches the text "cumdump" or T matches the text "condom" or T matches the text "fucktoy" or T is "fraternity's bicycle", decide yes;
 	decide no.
+
+cumdumpsterExplained is initially false.
+a later time based rule (this is the explaining cumdumpster rule):
+	if cumdumpsterExplained is false and the class of the player is cumdumpster:
+		now cumdumpsterExplained is true;
+		say "[bold type]Now that you have become the 'cumdumpster' class, you can sense that the more condoms you have pinned to your clothing (both full of semen and ones you've already swallowed the contents of), the more bonus intelligence you'll have. Also, you'll be able to take lots of big [manly-penis]s without getting as sore.[roman type][line break]";
+	otherwise if cumdumpsterExplained is true and the class of the player is not cumdumpster:
+		now cumdumpsterExplained is false;
+		say "[bold type]Now that you are no longer the 'cumdumpster' class, you can sense that the bonus intelligence you were receiving from having condoms pinned to your clothes has gone.[roman type][line break]".
 
 [!<TheMagicalGirlClassRule>+
 
@@ -683,7 +656,7 @@ The magical girl class (revolving around destroying tentacle breeders) only requ
 +!]
 This is the magical girl class rule:
 	if heart hairpin is worn:
-		now the player-class is "magical girl";
+		now the player-class is "magical [boy of the player]";
 		rule succeeds.
 The magical girl class rule is listed in the player class rules.
 
@@ -692,9 +665,18 @@ The magical girl class rule is listed in the player class rules.
 Thanks to the various magical girl multi-classes, we have multiple different texts that need to be able to return true for the class of the player being magical girl.
 
 +!]
-Definition: a text (called T) is magical girl:
-	if T is "magical girl" or T is "magical neko" or T is "virgin magical girl" or T is "magical maid" or T is "magical schoolgirl", decide yes;
+Definition: a text is magical girl:
+	if it matches the text "magical" or it matches the text "plastigirl", decide yes;
 	decide no.
+
+magicalGirlExplained is initially false.
+a later time based rule (this is the explaining magicalGirl rule):
+	if magicalGirlExplained is false and the class of the player is magical girl:
+		now magicalGirlExplained is true;
+		say "[bold type]Now that you have become the 'magical girl' class, you can sense that you can summon a powerful wand to help you, but while wielding it, tentacle monsters will be much more capable of defeating you. However, if they make you orgasm, you might still be able to turn the tide. Also, tentacle monsters will drain magic from you when they ejaculate inside you.[roman type][line break]";
+	otherwise if magicalGirlExplained is true and the class of the player is not magical girl:
+		now magicalGirlExplained is false;
+		say "[bold type]Now that you are no longer the 'magical girl' class, you can sense that tentacle monsters will not drain magic from you when they ejaculate inside you.[roman type][line break]";
 
 [!<TheLatexClownClassRule>+
 
@@ -734,12 +716,14 @@ The walking condom is a combination class of the silicone queen and cumdumpster.
 
 +!]
 This is the walking condom class rule:
-	if rubber top hat is worn or there is a worn cumdumpster hat or there is a worn pigtail-scrunchie:
+	let P be a random worn pigtail-scrunchie;
+	if rubber top hat is worn or there is a worn cumdumpster hat or P is pigtail-scrunchie:
 		let C be a random worn rubber cheerleader outfit;
-		if C is nothing, let C be a random pink rubber dress;
-		if C is worn and the total condoms of C > 0:
-			if there is a worn pigtail-scrunchie or C is rubber cheerleader outfit, now the player-class is "football team's plastic cumdump";
+		if C is nothing, let C be a random worn silicone dress;
+		if C is a thing and the total condoms of C > 0:
+			if P is pigtail-scrunchie or C is rubber cheerleader outfit, now the player-class is "football team's plastic cumdump";
 			otherwise now the player-class is "walking condom";
+			if P is pigtail-scrunchie and the quest of P is recipe-quest, now the player-class is "mathlete team's plastic cumdump";
 			rule succeeds.
 The walking condom class rule is listed first in the player class rules.
 
@@ -834,6 +818,14 @@ This is the magical schoolgirl class rule:
 		rule succeeds.
 The magical schoolgirl class rule is listed first in the player class rules.
 
+magicalSchoolgirlExplained is initially false.
+a later time based rule (this is the explaining magicalSchoolgirl rule):
+	if magicalSchoolgirlExplained is false and the class of the player is "magical schoolgirl":
+		now magicalSchoolgirlExplained is true;
+		say "[bold type]Now that you have become the 'magical girl' AND 'schoolgirl' classes, when a tentacle monster drains you of magic, your intelligence will permanently increase.[roman type][line break]";
+	otherwise if magicalSchoolgirlExplained is true and the class of the player is not "magical schoolgirl":
+		now magicalSchoolgirlExplained is false.
+
 [!<TheVirginMagicalGirlClassRule>+
 
 The virgin magical girl is a combination class of the virgin warrior and magical girl. It needs the flower hairclip and virgin magical girl outfit.
@@ -845,11 +837,16 @@ This is the virgin magical girl class rule:
 		rule succeeds.
 The virgin magical girl class rule is listed first in the player class rules.
 
+This is the plastic magical girl class rule:
+	if anime superheroine top is worn and (heart hairpin is worn or rubber top hat is worn):
+		now the player-class is "plastigirl";
+		rule succeeds.
+The plastic magical girl class rule is listed first in the player class rules.
+
 This is the barbarian class rule:
-	if rugged-headband is worn:
-		if heavy-club is worn:
-			now the player-class is "barbarian";
-			rule succeeds.
+	if rugged-headband is worn and heavy-club is worn:
+		now the player-class is "barbarian";
+		rule succeeds.
 The barbarian class rule is listed first in the player class rules.
 barbarian is a text that varies. barbarian is "barbarian".
 
@@ -867,11 +864,15 @@ Definition: a text (called T) is worshipper:
 	if T is "demon slave" or T is "demon worshipper" or T is "demon concubine", decide yes;
 	decide no.
 
-[!<TheLivingSexDollClassRule>+
+worshipperExplained is initially false.
+a later time based rule (this is the explaining worshipper rule):
+	if worshipperExplained is false and the class of the player is worshipper:
+		now worshipperExplained is true;
+		say "[bold type]Now that you have become the 'demon worshipper' class, you feel like you won't be able to bring yourself to attack any demons.[roman type][line break]";
+	otherwise if worshipperExplained is true and the class of the player is not worshipper:
+		now worshipperExplained is false;
+		say "[bold type]Now that you are no longer the 'demon worshipper' class, you feel like you'll be able to attack demons again.[roman type][line break]".
 
-REQUIRES COMMENTING
-
-+!]
 This is the living sex doll class rule:
 	if the latex-transformation of the player is 8:
 		if the player is a trained hooker, now player-class is "rentable doll";
@@ -889,9 +890,18 @@ This is the adult baby class rule:
 	if the player is actually an adult baby, now the player-class is "adult baby".
 The adult baby class rule is listed first in the player class rules.
 
+babyExplained is initially false.
+a later time based rule (this is the explaining baby rule):
+	if babyExplained is false and the player is actually an adult baby:
+		now babyExplained is true;
+		say "[bold type]Now that you have become the 'adult baby' class, you feel much less grossed out by, well, gross things. Also, you sense that wearing mittens might enable you to move really fast while on your knees.[roman type][line break]";
+	otherwise if babyExplained is true and the player is not actually an adult baby:
+		now babyExplained is false;
+		say "[bold type]Now that you are no longer the 'adult baby' class, you feel your attitude to gross things returning to normal.[roman type][line break]".
+
 [!<TheHookerInTrainingClassRule>+
 
-Hooker in training is not a class, so if another title is suitable, it will be overriden
+Hooker in training is not a class, so if another title is suitable, it will be overridden
 
 +!]
 This is the hooker in training class rule:

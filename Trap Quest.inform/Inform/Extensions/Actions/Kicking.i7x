@@ -1,10 +1,5 @@
 Kicking by Actions begins here.
 
-[!<DecideWhichNumberIsTheKickDamageOfThePlayer>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is the kick damage of the player:
 	if backgroundCombatCalculation is false and damage-explained <= 1, decide on saved-kick-damage;
 	if damage-explained > 1, say "[input-style]Base kick damage calculation: [bracket]3 (base damage) ";
@@ -44,28 +39,18 @@ An all time based rule (this is the kick fatigue recovery rule):
 
 Kicking is an action applying to one thing.
 
-[!<CheckKicking>+
-
-REQUIRES COMMENTING
-
-+!]
 Check kicking:
 	if the noun is container, try MimicInvestigating the noun instead;
 	if the noun is lake monster, say "You can't reach it from here." instead;
 	if the noun is not a monster, say "Err, why would you do that?" instead;
 	if the player is in a predicament room, say "This is neither the time nor the place for violence." instead;
 	if the player is flying, say "You're not even on the ground!" instead;
-	if the noun is woman-barbara and woman-barbara is not angered:
+	if the noun is woman-player and woman-player is not angered:
 		say "Are you sure? You probably won't be able to make [him of the noun] friendly ever again, if you were to do that. ";
 		unless the player is consenting, say "You change your mind." instead;
 	if the player is not able to kick, do nothing instead;
 	if the noun is too intimidating, compute surrender to the noun instead.
 
-[!<CarryOutKicking>+
-
-REQUIRES COMMENTING
-
-+!]
 Carry out kicking:
 	allocate 6 seconds;
 	now attack-type is 3;

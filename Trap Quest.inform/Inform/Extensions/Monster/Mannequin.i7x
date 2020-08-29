@@ -78,8 +78,12 @@ To decide which figure-name is the monster-image of (M - goth mannequin):
 	decide on figure of goth mannequin.
 To say MediumDesc of (M - goth mannequin):
 	say "goth mannequin".
-Definition: goth mannequin is woods dwelling if doomed >= 5.
-Definition: goth mannequin is mansions dwelling if doomed > 2.
+Definition: goth mannequin is woods dwelling:
+	if doomed >= 5, decide yes;
+	decide no.
+Definition: goth mannequin is mansions dwelling:
+	if doomed > 2, decide yes;
+	decide no.
 
 To say mannequin-model of (M - mannequin):
 	if lady fetish is 2, say "male";
@@ -118,34 +122,30 @@ To say MonsterComment of (M - a mannequin):[TODO: fix this]
 To set up (M - a mannequin):
 	reset M;
 	now the monstersetup of M is 1;
+	let T be a random off-stage make up kit;
+	if T is a thing:
+		add T to the banishItems of M, if absent;
 	now the raw difficulty of M is the starting difficulty of M;
 	now the health of M is the maxhealth of M.
 
 To decide which number is the starting difficulty of (M - mannequin):
-	decide on 5.
-
-[This is the spawn initial mannequin rule:
-	if the number of alive mannequins is 0:
-		let M be a random mannequin;
-		summon M in the woods.
-The spawn initial mannequin rule is listed in the setting up woods monsters rules.]
+	decide on 6.
 
 To DifficultyUp (M - a mannequin) by (X - a number):
 	while X > 0:
 		increase the raw difficulty of M by 1;
 		decrease X by 1;
-	if diaper quest is 0 and the difficulty of M > 10 and the number of sex toys retained by M is 0:
+	if diaper quest is 0 and the difficulty of M > 10 and the number of sex toys carried by M is 0:
 		let P be a random off-stage dong;[If she doesn't have a dildo and her difficulty is high enough, she gets a dildo from off-stage]
-		if a random number between 5 and the difficulty of M > the size of P * 2, now M is retaining P.
+		if a random number between 5 and the difficulty of M > the size of P * 2, now M is carrying P.
 
 [It would be annoying to manage which dildo she's using, so we have her discard any extra dildos when we make this check]
 To decide which number is the girth of (M - a mannequin):
-	let C be the number of sex toys retained by M;
-	if C > 0 :
-		let P be a random sex toy retained by M;
-		repeat with T running through sex toys retained by M:
-			unless T is P:
-				now M is not retaining T;
+	let C be the number of sex toys carried by M;
+	if C > 0:
+		let P be a random sex toy carried by M;
+		repeat with T running through sex toys carried by M:
+			unless T is P, only destroy T;
 		decide on the size of P;[If the mannequin has a plug or a dildo, she can use it on you]
 	decide on 2.
 
@@ -224,12 +224,11 @@ To compute unique climax of (M - a mannequin) in (F - asshole):
 		anally orgasm shamefully;
 		cutshow figure of mannequin cutscene 4 for M;
 		bore M;
-		let P be a random sex toy retained by M;
+		let P be a random sex toy carried by M;
 		if P is sex toy:
 			if a random number between the difficulty of M and 15 > the size of P * 2:
 				say "[BigNameDesc of M] [if P is anal beads]pushes all [the notches of P] beads into your asshole before removing [his of M] hands and apparently losing interest[otherwise]removes [his of M] hands from the [printed name of P], and seems to lose interest[end if].";
-				now M is not retaining P;
-				summon P;
+				only summon P;
 				if P is anal beads, now the notch-taken of P is the notches of P;
 			otherwise:[if she doesn't leave it inside you, she saves it for next time.]
 				say "[BigNameDesc of M] pulls the [printed name of P] out of your asshole and seems to lose interest.";
@@ -238,22 +237,22 @@ To compute unique climax of (M - a mannequin) in (F - asshole):
 
 To compute anal sex of (M - a mannequin):
 	[What she's doing to your ass]
-	if there is a sex toy retained by M:
-		let P be a random sex toy retained by M;
+	if there is a sex toy carried by M:
+		let P be a random sex toy carried by M;
 		if P is anal beads:
 			say "[BigNameDesc of M] [one of]pushes the beads in and out of your [asshole] one at a time, stretching you over and over[or]pushes each bead into your [asshole] and slowly pulls them out one by one, forcing you to experience the stretching of your sphincter over and over[or]holds one bead just inside your [asshole], keeping you as stretched and full as possible[at random][run paragraph on]";
 		otherwise:
 			say "[one of][BigNameDesc of M] keeps fucking you with the [printed name of P][or][BigNameDesc of M] continues pumping the [printed name of P] in and out of your [asshole][or][BigNameDesc of M] fucks you with the [printed name of P][or][BigNameDesc of M] keeps pushing the [printed name of P] in and out of your hole[at random][if the player is sexed male], [one of]angling it against your prostate[or]keeping the tip firmly in contact with your prostate[or]repeatedly prodding your 'G-spot'[or]relentlessly pounding your prostate[at random][end if][run paragraph on]";
 	otherwise:
-		say "[if the player is male][BigNameDesc of M] [one of]keeps expertly stroking your prostate[or]keeps skilfully prodding your prostate[or]firmly rubs your prostate[or]relentlessly prodding your prostate with expert movements of [his of M] fingers[at random][otherwise][BigNameDesc of M] keeps [one of]expertly pressing on your G-spot through your [asshole][or]pressing that same spot inside your hole, always with that perfectly maddening amount of force[or]rubbing your G-spot through your [asshole], endlessly repeating [his of M] perfect movements[at random][end if][run paragraph on]";
+		say "[if the player is sexed male][BigNameDesc of M] [one of]keeps expertly stroking your prostate[or]keeps skilfully prodding your prostate[or]firmly rubs your prostate[or]relentlessly prodding your prostate with expert movements of [his of M] fingers[at random][otherwise][BigNameDesc of M] keeps [one of]expertly pressing on your G-spot through your [asshole][or]pressing that same spot inside your hole, always with that perfectly maddening amount of force[or]rubbing your G-spot through your [asshole], endlessly repeating [his of M] perfect movements[at random][end if][run paragraph on]";
 	[How she's interacting with your crotch.]
-	if there is a worn chastity cage:
+	if chastity-belt is worn or (there is a worn chastity cage and the player is not possessing a vagina):
 		say ", as if milking an orgasm out of you!";
-	otherwise if the player is female:
-		say " as [he of M] [if there is pussy covering clothing]rubs your clit[otherwise][one of]strokes[or]teases[at random] your clit[end if], as if milking an orgasm out of you!";
 	otherwise if the player is possessing a penis:
 		say " as [he of M] [unless there is pussy covering clothing and the size of penis > 2][one of]pumps[or]strokes[or]jerks off[at random] your [ShortDesc of penis][otherwise]massages your [ShortDesc of penis][end if], [if the size of penis < 3]as if it was a clitoris![otherwise]as if milking you![end if]";
-	otherwise:
+	otherwise if the player is possessing a vagina:
+		say " as [he of M] [if there is pussy covering clothing]rubs your clit[otherwise][one of]strokes[or]teases[at random] your clit[end if], as if milking an orgasm out of you!";
+	otherwise: [failsafe]
 		say ", as if milking an orgasm out of you!";
 	increase the sex-length of M by 1.
 
@@ -290,11 +289,10 @@ To compute (M - a goth mannequin) entering mouth:
 
 To compute (M - a mannequin) entering mouth:
 	let S be a random off-stage pink scrunchie;
-	if (the class of the player is silicone queen or the number of worn headgear is 0) and condom pigtails is off-stage and total pinned condoms > 0 and condom pigtails is actually summonable:
+	if (the class of the player is silicone queen or the number of worn headgear is 0) and condom pigtails is off-stage and total pinned condoms > 0:
 		let H be a random worn headgear;
-		if H is headgear:
-			now H is in Holding Pen;
-			now M is retaining H;
+		repeat with C running through worn headgear:
+			only destroy C;
 		say "[BigNameDesc of M] [if H is headgear]removes your [ShortDesc of H] and [end if]fixes your hair into pigtails! It's only after [he of M][']s finished that you realise your new pigtail ties are actually used condoms...";
 		summon condom pigtails cursed;
 		satisfy M;
@@ -335,15 +333,17 @@ To set up sex length of (M - a mannequin) in (F - asshole):
 	set up sex length 0 of M in F.
 
 To compute (M - a mannequin) entering anally:
-	let P be a random sex toy retained by M;
+	let P be a random sex toy carried by M;
 	if P is sex toy:
 		say "[BigNameDesc of M] pushes a [printed name of P] into your [asshole], [if the player is not possessing a penis]angling it toward [himself of M] as [he of M] begins pumping it in and out of your hole[otherwise]angling it against your prostate with pinpoint accuracy as [he of M] begins pumping it in and out of your hole[end if].";
 	otherwise:
 		say "[BigNameDesc of M] inserts two fingers into your [asshole], and starts stroking in a come hither motion.";
-	if the player is female:
-		say "[unless there is a worn chastity cage or the player is pussy protected]With [his of M] other hand [he of M] starts expertly pinching and rubbing your clitoris. [end if][big he of M]'s trying to force an orgasm out of you!";
+	if there is a worn chastity-belt:
+		say "[big he of M] holds you still with [his of M] other hand. It's like [he of M]'s trying to force an anal orgasm out of you!";
 	otherwise if the player is possessing a penis:
 		say "[big he of M] [if there is a worn chastity cage]grasps your testicles with [his of M] other hand, delicately massaging them as [his of M] faux-knuckles bump against your cage. [otherwise if the size of penis > 3]grabs your [ShortDesc of penis] with [his of M] other hand and skilfully begins stroking away. [otherwise]delicately teasing your [ShortDesc of penis] with [his of M] fingertips. [end if][big he of M]'s trying to force an orgasm out of you!";
+	otherwise if the player is possessing a vagina:
+		say "[unless the player is pussy protected]With [his of M] other hand [he of M] starts expertly pinching and rubbing your clitoris. [end if][big he of M]'s trying to force an orgasm out of you!";
 	otherwise:
 		say "[big he of M] holds you still with [his of M] other hand. It's like [he of M]'s trying to force an anal orgasm out of you!";
 	cutshow figure of mannequin cutscene 3 for M;
@@ -356,7 +356,7 @@ This is the mannequin forces orgasm through diaper rule:
 		let D be a random worn diaper;
 		while the coverer of D is clothing:
 			now D is the coverer of D;
-		say "[BigNameDesc of M] seems to detect that you are very aroused. Staring directly into your eyes with [his of M] blank expression, [he of M] presses a hand to the front of your [D] and pushes firmly. [big his of M] hand begins to vibrate, and within seconds has reached an intensely strong force[if there is a worn chastity cage]! The pulses flow straight through your [random worn chastity cage] and into your [genitals][end if]! [line break][variable custom style]Unfff... it's too strong! I'm gonna...[roman type][line break]Your eyes roll into the back of your head and you start shaking.";
+		say "[BigNameDesc of M] seems to detect that you are very aroused. Staring directly into your eyes with [his of M] blank expression, [he of M] presses a hand to the front of your [D] and pushes firmly. [big his of M] hand begins to vibrate, and within seconds has reached an intensely strong force[if there is a worn chastity bond]! The pulses flow straight through your [random worn chastity bond] and into your [genitals][end if]![line break][variable custom style]Unfff... it's too strong! I'm gonna...[roman type][line break]Your eyes roll into the back of your head and you start shaking.";
 		orgasm;
 		SexAddictUp 1;
 		say "[BigNameDesc of M] cocks [his of M] creepy head to one side, silently pulls [his of M] hand away and then leaves you alone to recover[if the player is male and the bimbo of the player < 6]I can't believe I just came into my diaper...[end if].[roman type][line break]";
@@ -417,14 +417,5 @@ To say DamageReactWeak of (M - a mannequin):
 
 To say BanishFleeFlav of (M - a mannequin):
 	say "[BigNameDesc of M] falls and breaks into pieces.".
-
-To loot (M - a mannequin):
-	let J be a random off-stage make up kit;
-	if a random number between 1 and 5 > 2 and J is make up kit:
-		say "You notice that [his of M] [ShortDesc of J] appears to have remained intact.";
-		now J is in the location of the player;
-		compute autotaking J;
-	otherwise:
-		standard loot M.
 
 Mannequin ends here.

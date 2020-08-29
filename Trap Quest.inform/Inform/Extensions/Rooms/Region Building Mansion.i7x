@@ -4,11 +4,6 @@ Figure of mansion loading 1 is the file "Special/Loading/loading10.png".
 Figure of mansion loading 2 is the file "Special/Loading/loading11.png".
 Figure of mansion loading 3 is the file "Special/Loading/loading12.png".
 
-[!<SetUpTheMansion>+
-
-REQUIRES COMMENTING
-
-+!]
 To Set Up The Mansion:
 	if loading scenes is 1:
 		clear the screen;
@@ -47,7 +42,7 @@ To Set Up The Mansion:
 		if the location of M is not placed, now M is in a random placed haunted room;
 	[let N1 be the regionalMonsterCount of the Mansion;]
 	repeat with N2 running from 1 to startingRegionalMonsterCount:
-		let M be a random off-stage mansion dwelling regionally missing monster;
+		let M be a random mansion prioritised monster;
 		if M is not monster, now M is a random off-stage mansion dwelling monster;
 		if M is monster:
 			set up M;
@@ -71,11 +66,6 @@ To Set Up The Mansion:
 	if debugmode is 0 and loading scenes is 1, clear the screen;
 	progress quest of new-region-quest.
 
-[!<ScrambleMansion>+
-
-REQUIRES COMMENTING
-
-+!]
 To Scramble Mansion:
 	let E be the easting part of the grid position of Stairwell03;
 	let N be the northing part of the grid position of Stairwell03;

@@ -25,7 +25,9 @@ To compute SelfExamineDesc of (H - puppy ears):
 
 Chapter - Class Outfit
 
-Definition: puppy ears is removal-blocking if wearing-target is puppy mittens.
+Definition: puppy ears is removal-blocking:
+	if wearing-target is puppy mittens, decide yes;
+	decide no.
 
 puppy-summoned is a number that varies.
 To compute unique recycling of (C - puppy ears):
@@ -37,10 +39,9 @@ To compute class outfit of (H - puppy ears):
 	let G be a random off-stage puppy bone gag;
 	if K is actually summonable or (K is puppy mittens and puppy-summoned is 0):
 		if puppy-summoned is 0:
-			repeat with O running through worn equippables:
-				if O is hand ready:
-					say "Your [O] [wardrobeVanishes of O]!";
-					now O is in pink wardrobe;
+			repeat with O running through worn hand ready equippables:
+				say "Your [O] [wardrobeVanishes of O]!";
+				now O is in pink wardrobe;
 		say "[bold type]Your puppy ears barely noticeably quiver, and then your hands become encased in tight leather mittens! On closer inspection, these are puppy paws![roman type][line break]";
 		summon K;
 		now the raw-magic-modifier of K is the stance of the player;

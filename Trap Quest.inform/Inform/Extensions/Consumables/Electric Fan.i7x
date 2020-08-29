@@ -74,7 +74,7 @@ Carry out fanning:
 			let M be entry 1 of here-monsters;
 			say "[BigNameDesc of M] stands in front of you, completely unaffected by the wind, looking menacing. It seems like you may have made a huge mistake by trying that here.";
 			if diaper quest is 0:
-				say "Several tentacles made of pure pressurized air materialise in front of you, and then the tornado around you lifts you into the air, leaving your orifices completely defenceless as the air tentacles move to penetrate you in every fuckhole, quickly making you 'airtight'. They widen and widen as more and more barely visible tentacles force their way into your body!";
+				say "Several tentacles made of pure pressurized air materialise in front of you, and then the tornado around you lifts you off the ground, leaving your orifices completely defenceless as the air tentacles move to penetrate you in every fuckhole, quickly making you 'airtight'. They widen and widen as more and more barely visible tentacles force their way into your body!";
 				repeat with O running through orifices:
 					if O is not actually occupied:
 						now the noun is penetrating O;
@@ -137,5 +137,10 @@ Check drinking an electric fan:
 	try fanning the noun instead.
 
 Definition: an electric fan is inflation themed: decide yes.
+
+Definition: an electric fan is shop-eligible: decide yes.
+
+To decide which number is the original price of (C - an electric fan):
+	decide on 3.
 
 Electric Fan ends here.

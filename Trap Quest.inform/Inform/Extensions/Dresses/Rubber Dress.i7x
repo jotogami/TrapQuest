@@ -34,59 +34,36 @@ Definition: a white rubber giant bow dress is white themed: decide yes.
 Definition: a white rubber giant bow dress is bow themed: decide yes.
 Definition: a white rubber giant bow dress is potentially erection concealing: decide yes. [non-tight skirts conceal erections]
 
-Part 2 - Metallic Purple Rubber Dress
-
-A metallic purple rubber dress is a kind of rubber dress. There is 1 metallic purple rubber dress. A metallic purple rubber dress is neck covering. The text-shortcut of metallic purple rubber dress is "mpld". The printed name of metallic purple rubber dress is usually "[clothing-title-before]metallic purple latex dress[clothing-title-after]".
-
-Figure of metallic purple rubber dress is the file "Items/Clothes/Upper/Latex/rubberdress3.png".
-
-To decide which figure-name is clothing-image of (C - a metallic purple rubber dress):
-	decide on figure of metallic purple rubber dress.
-
-To say ClothingDesc of (C - a metallic purple rubber dress):
-	say "This metallic purple dress is made completely of latex. Its high collar means that there's no revealing neckline but there are gaps at the sides, allowing any sideways-on viewers to get an eyeful of side-boob.".
-
-To say ShortDesc of (C - a metallic purple rubber dress):
-	say "purple latex dress".
-To say MediumDesc of (C - a metallic purple rubber dress):
-	say "metallic purple latex dress".
-
-To decide which number is the initial outrage of (C - a metallic purple rubber dress):
-	decide on 3.
-
-Definition: a metallic purple rubber dress is purple themed: decide yes.
 
 Part 3 - Superheroine Fetish Dress
 
-A superheroine fetish dress is a kind of rubber dress. A superheroine fetish dress is rare. A superheroine fetish dress is very low cut. The text-shortcut of superheroine fetish dress is "ggd".
+superheroine fetish dress is a rubber dress. superheroine fetish dress is rare. superheroine fetish dress is very low cut. The text-shortcut of superheroine fetish dress is "ggd".
 
-There is 1 superheroine fetish dress.
-
-The printed name of superheroine fetish dress is usually "[clothing-title-before]green and gold latex dress[clothing-title-after]". Understand "green", "and gold", "gold" as superheroine fetish dress.
+The printed name of superheroine fetish dress is "[clothing-title-before]green and gold latex dress[clothing-title-after]". Understand "green", "and gold", "gold" as superheroine fetish dress.
 
 Figure of superheroine fetish dress is the file "Items/Clothes/Upper/Latex/rubberdress4.png".
 
-To decide which figure-name is clothing-image of (C - a superheroine fetish dress):
+To decide which figure-name is clothing-image of (C - superheroine fetish dress):
 	decide on figure of superheroine fetish dress.
 
-To say ClothingDesc of (O - a superheroine fetish dress):
+To say ClothingDesc of (O - superheroine fetish dress):
 	say "A green and gold and extremely tight fitting latex dress. A relatively deep neckline allows a lot of cleavage to be shown.".
 
-To say ShortDesc of (C - a superheroine fetish dress):
+To say ShortDesc of (C - superheroine fetish dress):
 	say "superheroine dress".
-To say MediumDesc of (C - a superheroine fetish dress):
+To say MediumDesc of (C - superheroine fetish dress):
 	say "green and gold superheroine latex dress".
 
-To decide which number is the strength-influence of (O - a superheroine fetish dress):
+To decide which number is the strength-influence of (O - superheroine fetish dress):
 	let S be the magic-modifier of O;
 	if the largeness of breasts > 2, increase S by 1;
 	decide on S.
 
-To decide which number is the initial outrage of (C - a superheroine fetish dress):
+To decide which number is the initial outrage of (C - superheroine fetish dress):
 	decide on 4.
 
-Definition: a superheroine fetish dress is green themed: decide yes.
-Definition: a superheroine fetish dress is yellow themed: decide yes.
-Definition: a superheroine fetish dress is boob themed: decide yes.
+Definition: superheroine fetish dress is green themed: decide yes.
+Definition: superheroine fetish dress is yellow themed: decide yes.
+Definition: superheroine fetish dress is boob themed: decide yes.
 
 Rubber Dress ends here.

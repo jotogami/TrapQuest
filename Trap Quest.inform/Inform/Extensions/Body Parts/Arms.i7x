@@ -2,48 +2,21 @@ Arms by Body Parts begins here.
 
 Part 1 - Definitions
 
-[!<Arms>@
-
-REQUIRES COMMENTING
-
-@inherits <Limb>
-
-@!]
 arms is a limb. arms is everywhere.
 
 To say FullExamineDesc of (B - arms):
 	say "[if weight gain fetish is 1][TotalDesc of arms][otherwise if realisticArms is 0 or (entry 1 of the armUses of arms is arms and entry 2 of the armUses of arms is arms)]There's nothing interesting to note about your arms. [end if][if entry 2 of the armUses of arms is not arms]Your left hand is covering [NameDesc of entry 2 of the armUses of arms]. [end if][if entry 1 of the armUses of arms is not arms]Your right hand is covering [NameDesc of entry 1 of the armUses of arms]. [end if][if realisticArms is 1 and the player is not shameless]You can decide what you cover with your arms using the command [bold type][']adjust arms['][roman type]. [end if][if debuginfo > 0 and the number of entries in the armUses of arms > 2]BUG - too many entries in arm positions: [armUses of arms].[otherwise if debugmode > 0](Arm positions list: [armUses of arms])[line break][end if]".
 
-[!<Arms>@<fatBurning:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 arms has a number called fat-burning.
 
-[!<Arms>@<fleshVolume:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 arms has a number called flesh volume. the flesh volume of arms is 0.
 Understand "finger", "fingers", "hand", "hands", "arm" as arms.
 
-[!<DecideWhichNumberIsTheWeightOfArms>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is the weight of (XXX - arms):
 	let S be the flesh volume of arms;
 	if the latex-transformation of the player > 1 and S > 0, now S is 0;
 	decide on S.
 
-[!<ReportSlapping>+
-
-REQUIRES COMMENTING
-
-+!]
 Report slapping:
 	compute arm fat burning.
 
@@ -59,6 +32,12 @@ To compute arm fat burning:
 			if debuginfo > 0, say "[flesh volume of arms][roman type][line break]";
 			now the fat-burning of arms is 0.
 
+To decide which object is the at least partial concealer of (A - arms):
+	decide on a random worn arm covering not-see-through clothing.
+To decide which object is the concealer of (A - arms):
+	decide on a random worn arm covering actually dense clothing.
+
+
 Part 2 - Description
 
 To say NameDesc of (C - arms):
@@ -69,11 +48,6 @@ To say BigNameDesc of (C - arms):
 To say ShortDesc of arms:
 	say "arm[if entry 1 in the armUses of arms is entry 2 in the armUses of arms]s[end if]".
 
-[!<SayTotalDescOfArms>+
-
-REQUIRES COMMENTING
-
-+!]
 To say TotalDesc of arms:
 	if weight gain fetish is 1 and the latex-transformation of the player < 4:
 		say "You have ";
@@ -92,22 +66,12 @@ To say TotalDesc of arms:
 
 Part 3 - Modify Arms Stats
 
-[!<FatArmsUpX>+
-
-REQUIRES COMMENTING
-
-+!]
 To FatArmsUp (X - a number):
 	while X > 0 and weight gain fetish is 1:
 		if the flesh volume of arms < 10, increase the flesh volume of arms by 1;
 		decrease X by 1;
 		if newbie tips is 1 and the flesh volume of arms > 2, say "[one of][newbie style]Newbie tip: Your arms are getting a bit chubby! That's making you heavier and therefore you'll tire out faster. However, it is fully reversible! Every time you slap an NPC, you'll exercise your arm muscles a bit, and help you lose that fat.[roman type][line break][or][stopping]".
 
-[!<FatArmsDownX>+
-
-REQUIRES COMMENTING
-
-+!]
 To FatArmsDown (X - a number):
 	if heavyweight tattoo is worn and a random number between 0 and X > 0, decrease X by 1;
 	while X > 0:
@@ -163,6 +127,8 @@ An all later time based rule (this is the update arms rule):
 			add arms to the armUses of arms. [It MUST actually have 2 entries or bad things can happen]
 
 To update arms:
+	let gSnogged be 0;
+	if girlfriend-partner is snogged, now gSnogged is 1;
 	let A1 be entry 1 in the armUses of arms;
 	let A2 be entry 2 in the armUses of arms;
 	truncate the armUses of arms to 0 entries; [Rebuild the arm uses list starting here]
@@ -177,7 +143,7 @@ To update arms:
 	let UC be 0;
 	let A1R be A1;
 	let A2R be A2;
-	if the player is male: [Redirect vagina to penis]
+	if the player is not possessing a vagina: [Redirect vagina to penis]
 		if A1R is vagina, now A1R is penis;
 		if A2R is vagina, now A2R is penis;
 	if A1 is A2:
@@ -201,6 +167,11 @@ To update arms:
 		if A2 is carried or entry 2 of the armUses of arms is carried, now UI is 1;
 	if UC is 1, force clothing-focus redraw;
 	if UI is 1, force inventory-focus redraw;
+	if current-predicament is team-girlfriends-predicament and the player is in a predicament room:
+		if gSnogged is 0 and girlfriend-partner is snogged:
+			say "You push your body up against [NameDesc of team-predicament-partner][']s, pushing your ring gags together and connecting tongues. You move your free hand to the vibrator between [his of team-predicament-partner] legs, and [he of team-predicament-partner] does the same to you. Your crotch vibrators turn off, and your nipple vibrators turn on. It now looks to any on-lookers like two women engaged in a deep kiss with some light fingering.";
+		otherwise if gSnogged is 1 and girlfriend-partner is not snogged:
+			say "You pull away from [NameDesc of team-predicament-partner]. Your crotch vibrators turn off, and your nipple vibrators turn on. [bold type]Anyone who looks will now be able to clearly see what's under your skirts.[roman type][line break]";
 	if UAL is 1:
 		update appearance level;
 		repeat with P running through reactive people:
@@ -260,6 +231,7 @@ This is the update optional arm uses rule:
 								add vagina to the armUses of arms;
 					otherwise if XX is 1 and defaultLeftTarget of arms is not hips:
 						add the defaultLeftTarget of arms to the armUses of arms, if absent;
+						if the number of entries in the armUses of arms < 2 and the defaultLeftTarget of arms is girlfriend-partner, add girlfriend-partner to the armUses of arms; [we want to add this even if not absent because the player is choosing to have both hands on their partner]
 					otherwise if XX is 2 and defaultRightTarget of arms is not hips:
 						add the defaultRightTarget of arms to the armUses of arms;
 					while the number of entries in the armUses of arms < 2:
@@ -269,55 +241,78 @@ This is the update optional arm uses rule:
 
 To change default arm positions:
 	reset multiple choice questions; [ALWAYS REMEMBER THIS WHEN MAKING A MULTIPLE CHOICE QUESTION]
-	say "Where would you like the default position of your off-hand to be? (This is the one that is most likely to be free) [line break]";
-	set numerical response 1 to "covering your most embarrassing body part or worn item [bold type](recommended)[roman type]";
-	set numerical response 2 to "covering your crotch";
-	set numerical response 3 to "covering your chest";
-	set numerical response 4 to "covering your face";
-	if enema-backpack is worn, set numerical response 5 to "behind your head";
-	if painted-vibrator-hands is worn, set numerical response 5 to "over the missing hand print to the left of your clit";
-	set numerical response 0 to "by your side";
-	compute multiple choice question;
-	if player-numerical-response is 0:
-		now the defaultLeftTarget of arms is hips;
-	otherwise if player-numerical-response is 1:
-		now the defaultLeftTarget of arms is the player;
-	otherwise if player-numerical-response is 2:
-		now the defaultLeftTarget of arms is vagina;
-	otherwise if player-numerical-response is 3:
-		now the defaultLeftTarget of arms is breasts;
-	otherwise if player-numerical-response is 5:
-		if painted-vibrator-hands is worn, now the defaultLeftTarget of arms is painted-vibrator-hands;
-		otherwise now the defaultLeftTarget of arms is hair;
+	if girlfriend-partner is in the location of the player:
+		say "How would you like to pose?[line break]";
+		set numerical response 1 to "With your free hand covering your most embarrassing body part or worn item";
+		set numerical response 2 to "Pressed into [student-name of team-predicament-partner], with your free hand touching [his of team-predicament-partner] crotch";
+		set numerical response 0 to "by your side";
+		compute multiple choice question;
+		if player-numerical-response is 0:
+			now the defaultLeftTarget of arms is hips;
+		otherwise if player-numerical-response is 1:
+			now the defaultLeftTarget of arms is the player;
+		otherwise:
+			now the defaultLeftTarget of arms is girlfriend-partner;
 	otherwise:
-		now the defaultLeftTarget of arms is face;
-	reset multiple choice questions; [ALWAYS REMEMBER THIS WHEN MAKING A MULTIPLE CHOICE QUESTION]
-	say "Where would you like the default position of your predominant hand to be? (This is the one that is more likely to be used to perform tasks and so less likely to be free) [line break]";
-	set numerical response 1 to "covering your most embarrassing body part or worn item (after your left hand is in place) [bold type](recommended)[roman type]";
-	if player-numerical-response is not 2, set numerical response 2 to "covering your crotch";
-	if player-numerical-response is not 3, set numerical response 3 to "covering your chest";
-	if player-numerical-response is not 4, set numerical response 4 to "covering your face";
-	if enema-backpack is worn, set numerical response 5 to "behind your head";
-	if painted-vibrator-hands is worn, set numerical response 5 to "over the missing hand print to the right of your clit";
-	set numerical response 0 to "by your side";
-	compute multiple choice question;
-	if player-numerical-response is 0:
-		now the defaultRightTarget of arms is hips;
-	otherwise if player-numerical-response is 1:
-		now the defaultRightTarget of arms is the player;
-	otherwise if player-numerical-response is 2:
-		now the defaultRightTarget of arms is vagina;
-	otherwise if player-numerical-response is 3:
-		now the defaultRightTarget of arms is breasts;
-	otherwise if player-numerical-response is 5:
-		if painted-vibrator-hands is worn, now the defaultrightTarget of arms is painted-vibrator-hands;
-		otherwise now the defaultRightTarget of arms is hair;
-	otherwise:
-		now the defaultRightTarget of arms is face.
+		say "Where would you like the default position of your off-hand to be? (This is the one that is most likely to be free)[line break]";
+		set numerical response 1 to "covering your most embarrassing body part or worn item [bold type](recommended)[roman type]";
+		set numerical response 2 to "covering your crotch";
+		set numerical response 3 to "covering your chest";
+		set numerical response 4 to "covering your face";
+		if enema-backpack is worn, set numerical response 5 to "behind your head";
+		if painted-vibrator-hands is worn, set numerical response 5 to "over the missing hand print to the left of your clit";
+		if current-predicament is vibe-photo-predicament and the player is in Predicament01, set numerical response 5 to "making a peace sign to the side, blocking any green from the camera";
+		set numerical response 0 to "by your side";
+		compute multiple choice question;
+		if player-numerical-response is 0:
+			now the defaultLeftTarget of arms is hips;
+		otherwise if player-numerical-response is 1:
+			now the defaultLeftTarget of arms is the player;
+		otherwise if player-numerical-response is 2:
+			now the defaultLeftTarget of arms is vagina;
+		otherwise if player-numerical-response is 3:
+			now the defaultLeftTarget of arms is breasts;
+		otherwise if player-numerical-response is 5:
+			if painted-vibrator-hands is worn:
+				now the defaultLeftTarget of arms is painted-vibrator-hands;
+			otherwise if current-predicament is vibe-photo-predicament:
+				now the defaultLeftTarget of arms is vibe-photo-predicament;
+			otherwise:
+				now the defaultLeftTarget of arms is hair;
+		otherwise:
+			now the defaultLeftTarget of arms is face;
+		reset multiple choice questions; [ALWAYS REMEMBER THIS WHEN MAKING A MULTIPLE CHOICE QUESTION]
+		say "Where would you like the default position of your predominant hand to be? (This is the one that is more likely to be used to perform tasks and so less likely to be free)[line break]";
+		set numerical response 1 to "covering your most embarrassing body part or worn item (after your left hand is in place) [bold type](recommended)[roman type]";
+		if player-numerical-response is not 2, set numerical response 2 to "covering your crotch";
+		if player-numerical-response is not 3, set numerical response 3 to "covering your chest";
+		if player-numerical-response is not 4, set numerical response 4 to "covering your face";
+		if enema-backpack is worn, set numerical response 5 to "behind your head";
+		if painted-vibrator-hands is worn, set numerical response 5 to "over the missing hand print to the right of your clit";
+		if current-predicament is vibe-photo-predicament and the player is in Predicament01, set numerical response 5 to "making a peace sign to the side, blocking any green from the camera";
+		set numerical response 0 to "by your side";
+		compute multiple choice question;
+		if player-numerical-response is 0:
+			now the defaultRightTarget of arms is hips;
+		otherwise if player-numerical-response is 1:
+			now the defaultRightTarget of arms is the player;
+		otherwise if player-numerical-response is 2:
+			now the defaultRightTarget of arms is vagina;
+		otherwise if player-numerical-response is 3:
+			now the defaultRightTarget of arms is breasts;
+		otherwise if player-numerical-response is 5:
+			if painted-vibrator-hands is worn:
+				now the defaultrightTarget of arms is painted-vibrator-hands;
+			otherwise if current-predicament is vibe-photo-predicament:
+				now the defaultLeftTarget of arms is vibe-photo-predicament;
+			otherwise:
+				now the defaultRightTarget of arms is hair;
+		otherwise:
+			now the defaultRightTarget of arms is face.
 
 ArmDeciding is an action applying to one thing.
 Check ArmDeciding:
-	if the player is shameless, say "You are too much of an exhibitionist to cover up your body parts with your arms!" instead.
+	if the player is shameless and (current-predicament is not vibe-photo-predicament or the player is not in Predicament01), say "You are too much of an exhibitionist to cover up your body parts with your arms!" instead.
 Carry Out ArmDeciding:
 	change default arm positions;
 	say "Your arms will adjust (if possible) when time moves forward.".

@@ -151,7 +151,7 @@ To compute (M - a robochef) cooking (I - candy corn):
 	if D is food:
 		now the quality of D is a random number between 1 and -1;
 		now the fat of D is 1;
-		now D is retained by M.
+		now D is carried by M.
 
 digestive biscuit is a candy. The text-shortcut of digestive biscuit is "dbc".
 
@@ -187,7 +187,7 @@ To compute (M - a robochef) cooking (I - digestive biscuit):
 	if D is food:
 		now the quality of D is a random number between 1 and -2;
 		now the fat of D is 2;
-		now D is retained by M.
+		now D is carried by M.
 
 To decide which number is the bartering value of (T - digestive biscuit) for (M - prison guard):
 	if the times-met of ex-princess > 0, decide on 10;
@@ -197,10 +197,7 @@ To say OfferThanksFlav of (M - prison guard) for (T - digestive biscuit):
 	say "[speech style of M]'How did you know? These are my favourite! I wish I could give you something in return[if skeleton key is off-stage]. Hmm...'[otherwise].'[end if][roman type][line break]".
 
 To compute offer reward of (M - prison guard) for (T - digestive biscuit):
-	if skeleton key is off-stage:
-		now skeleton key is in the location of the player;
-		say "[BigNameDesc of M] seems to purposefully let [his of M] [skeleton key] drop to the floor.[line break][speech style of M]'Whoops, clumsy me.'[roman type][line break]";
-		compute autotaking skeleton key;
+	if skeleton key is off-stage, compute M rewarding skeleton key;
 	FavourUp M by 2.
 
 A liquorice is a candy. The text-shortcut of liquorice is "lq".
@@ -250,7 +247,7 @@ To compute (M - a robochef) cooking (I - liquorice):
 	if D is food:
 		now the quality of D is a random number between 0 and -2;
 		now the fat of D is 1;
-		now D is retained by M.
+		now D is carried by M.
 
 Book - High Tier Candy
 
@@ -281,6 +278,7 @@ Carry out TQeating bubblegum:
 	otherwise:
 		say "Magic power surges through your tongue to the rest of your body!";
 		MagicPowerUp 1;
+		MagicPowerRefresh 3;
 	say "You happily swallow what's left of the edible treat.".
 
 To compute (M - a robochef) cooking (I - bubblegum):
@@ -289,7 +287,7 @@ To compute (M - a robochef) cooking (I - bubblegum):
 		now the quality of D is a random number between 2 and 1;
 		if a random number between 1 and 3 is 1, now the quality of D is -2;
 		now the fat of D is a random number between 2 and 3;
-		now D is retained by M.
+		now D is carried by M.
 
 chocolate bar is a candy. The text-shortcut of chocolate bar is "cb".
 
@@ -336,7 +334,7 @@ To compute (M - a robochef) cooking (I - chocolate bar):
 		now the quality of D is a random number between 2 and 1;
 		if a random number between 1 and 3 is 1, now the quality of D is -2;
 		now the fat of D is a random number between 2 and 3;
-		now D is retained by M.
+		now D is carried by M.
 
 A creme egg is a kind of candy. The text-shortcut of creme egg is "ce". There is 1 creme egg.
 To say ExamineDesc of (C - creme egg):
@@ -376,8 +374,11 @@ Carry out TQeating creme egg:
 	say "[DevourFlav of the noun] As your tongue hits the centre, you ";
 	if (diaper quest is 0 or diaper messing < 3) and the player is getting unlucky:
 		if diaper quest is 1 or (diaper lover > 0 and a random number between 1 and 2 is 1):
-			if diaper messing >= 4 and a random number between 1 and 3 > 1:
-				say "taste something extremely sour. [line break][variable custom style]Castor oil[one of][or] again[stopping]?![roman type][line break]Almost immediately you feel a growing pressure in your bowels...";
+			if the incontinence of the player < the max-incontinence of the player and a random number between 1 and 2 is 1:
+				say "taste something bubbling with cursed magic.[line break][variable custom style]What was that?! And why can I suddenly I feel my bladder?![roman type][line break]A cursed effect seems to be making you temporarily incontinent!";
+				increase temporary-incontinence by 3;
+			otherwise if diaper messing >= 4 and a random number between 1 and 2 is 1:
+				say "taste something extremely sour.[line break][variable custom style]Castor oil[one of][or] again[stopping]?![roman type][line break]Almost immediately you feel a growing pressure in your bowels...";
 				increase suppository by 1;
 			otherwise:
 				say "taste something bitter. Moments later, you feel a slight twinge in your bladder as your control over it weakens.";
@@ -409,7 +410,7 @@ To compute (M - a robochef) cooking (I - a creme egg):
 		if D is golden-creme-egg, increase the quality of D by a random number between 1 and 2;
 		now the fat of D is 2;
 		if D is golden-creme-egg, increase the fat of D by 1;
-		now D is retained by M.
+		now D is carried by M.
 
 fudge is a candy. The text-shortcut of fudge is "fud".
 
@@ -449,7 +450,7 @@ To compute (M - a robochef) cooking (I - fudge):
 	if D is food:
 		now the quality of D is a random number between 2 and -2;
 		now the fat of D is 2;
-		now D is retained by M.
+		now D is carried by M.
 
 lollipop is a candy. The text-shortcut of lollipop is "llp".
 
@@ -492,7 +493,7 @@ To compute (M - a robochef) cooking (I - lollipop):
 	if D is food:
 		now the quality of D is a random number between 2 and -2;
 		now the fat of D is 2;
-		now D is retained by M.
+		now D is carried by M.
 
 pink nougat is a candy. The text-shortcut of pink nougat is "png".
 
@@ -545,7 +546,7 @@ To compute (M - a robochef) cooking (I - pink nougat):
 	if D is food:
 		now the quality of D is a random number between 2 and 0;
 		now the fat of D is 3;
-		now D is retained by M.
+		now D is carried by M.
 
 strawberry lace is a candy. The text-shortcut of strawberry lace is "sl".
 
@@ -575,7 +576,7 @@ Carry out TQeating strawberry lace:
 		PainUp 1;
 		BodyRuin 3;
 	otherwise:
-		say "find your mind sparkling with brilliance. You feel yourself getting [if strawberry-lace-timer > 0]even [end if]smarter!";
+		say "find your mind sparkling with brilliance. You feel yourself getting [if strawberry-lace-timer > 0]even [end if][smarter]!";
 		increase strawberry-lace-timer by default-candy-duration.
 
 an all time based rule (this is the strawberry lace decay rule):
@@ -594,7 +595,7 @@ To compute (M - a robochef) cooking (I - strawberry lace):
 	if D is food:
 		now the quality of D is a random number between 2 and -2;
 		now the fat of D is 2;
-		now D is retained by M.
+		now D is carried by M.
 
 toffee is a candy. The text-shortcut of toffee is "to".
 
@@ -634,6 +635,6 @@ To compute (M - a robochef) cooking (I - toffee):
 	if D is food:
 		now the quality of D is a random number between 2 and 0;
 		now the fat of D is 3;
-		now D is retained by M.
+		now D is carried by M.
 
 Candy ends here.

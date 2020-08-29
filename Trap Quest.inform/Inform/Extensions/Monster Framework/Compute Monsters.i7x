@@ -1,7 +1,9 @@
 Compute Monsters by Monster Framework begins here.
 
 [We only compute monsters in the region of the player, to reduce the lag in between turns.]
-Definition: a monster is simulated if it is interested or it is in the location of the player or it is regional.
+Definition: a monster is simulated:
+	if it is interested or it is in the location of the player or it is regional, decide yes;
+	decide no.
 
 timedebug is a number that varies. timedebug is 0.
 
@@ -107,11 +109,13 @@ To compute action (N - a number) of (M - a monster):
 		otherwise check motion of M;
 	compute unique final action of M.
 
-Definition: a monster is motionless-when-defeated if it is fucked-silly.[Most NPCs can continue moving around when enslaved, but not when fucked silly.]
+Definition: a monster is motionless-when-defeated:
+	if it is fucked-silly, decide yes;
+	decide no. [Most NPCs can continue moving around when enslaved, but not when fucked silly]
 
 To check chase boredom of (M - a monster):
 	let D be 15;
-	if there is a worn catbell, increase D by 30;
+	if catbell is worn, increase D by 30;
 	if the player is pheromonal and M is musky, increase D by 15;[beast monsters follow you longer]
 	if M is not in the location of the player and (M is guarding or M is caged or a random number from 1 to D is 1):
 		deinterest M; [Every turn the monster (after seeking) is not in the location of the player, there's a 1 in 15 chance of them getting bored.]

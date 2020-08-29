@@ -34,7 +34,9 @@ To say FuckerDesc of (M - a supporter):
 To say BigFuckerDesc of (M - a supporter):
 	say "[supporter-name of M]".
 
-Definition: a supporter is not-the-same if the leftover-type of it is not previous supporter ID.
+Definition: a supporter is not-the-same:
+	if the leftover-type of it is not previous supporter ID, decide yes;
+	decide no.
 
 Definition: a supporter is fetish appropriate: decide yes.
 
@@ -122,8 +124,8 @@ To decide which number is the bartering value of (T - a unicorn-horn) for (M - a
 To decide which number is the bartering value of (T - a christmas gift) for (M - a supporter):
 	decide on 0.
 
-To FavourUp (M - a supporter):
-	do nothing.
+[To FavourUp (M - a supporter):
+	do nothing.]
 
 To compute perception of (M - a supporter):
 	now M is interested;
@@ -150,12 +152,13 @@ To compute appearance assessment of (M - a supporter):
 		otherwise:
 			say FriendlySluttyPerception of M;
 	otherwise if the player is top-wardrobe-malfunctioning:
-		compute default nip slip reaction of M;
+		compute tq nip slip reaction of M;
 	otherwise:
 		say BoringPerception of M;
 	if M is friendly:
-		say "[BigNameDesc of M] promptly loses interest in you.";
-		bore M for 150 seconds.
+		say "[BigNameDesc of M] [one of]seems to intend to follow you around for a while[or]begins to follow you around again[stopping].".
+		[say "[BigNameDesc of M] promptly loses interest in you.";
+		bore M for 150 seconds.]
 
 To compute damage reaction of (M - a supporter):
 	if the sleep of M is 0:
@@ -185,7 +188,7 @@ To UnidentifiablePosterReaction of (M - a supporter):
 	say "You turn bright red but don't say a word.";
 	humiliate the lewdness of a random poster in the location of the player.
 
-Definition: a supporter is eager to get angry: decide no.
+Definition: a supporter is eager to get angry: decide no. [Does the NPC punish resistance?]
 
 To say SuddenTransformTrapReactFlav of (M - a supporter):
 	say "[BigNameDesc of M] smiles widely.[line break][speech style of M]'Ooh, you look much more [beautiful] now!'[roman type][line break]".
@@ -439,7 +442,7 @@ To say FriendlySexReleaseRefusalSpeech of (M - a supporter): [The player has cha
 
 To compute kneeling reaction of (M - a supporter): [The player has got on their knees voluntarily while the NPC is aggressive.]
 	say "[BigNameDesc of M] grins.[line break][speech style of M]'[one of]Good slut.'[or]What a good girl.'[or]What a good little fucktoy.'[in random order][roman type][line break]";
-	humiliate 75.
+	say strongHumiliateReflect.
 
 To say SubmissionFlav of (M - a supporter): [The player has done something submissive like remove an item of clothing while the NPC is aggressive.]
 	say "[BigNameDesc of M] touches [himself of M] as [he of M] watches.[line break][speech style of M]'That's it, keep going.'[roman type][line break]".
@@ -530,7 +533,7 @@ To say MonsterOfferRejectFlav of (M - a supporter) to (T - a thing):
 	say "[BigNameDesc of M] refuses.[line break][speech style of M]'I don't do trades.'[roman type][line break]".
 
 To compute sudden objectification of (M - a supporter): [The player's appearance just jumped to completely unacceptable standards right in front of your NPC, and your NPC has noticed, and now wants to bang.]
-	say "Something seems to change in the way [NameDesc of M] is looking at you. [line break][speech style of M]'[if M is penetrating a body part]Yes, that's right, I'm the boss, and you're my little [whore]...'[otherwise if the player is monster fucked]That does look like a lot of fun! Maybe it's time I joined in...'[otherwise]You know what? I think you've swirled far enough down the drain of slutdom that it's finally worth giving you a once-over.'[end if][roman type][line break]".
+	say "Something seems to change in the way [NameDesc of M] is looking at you.[line break][speech style of M]'[if M is penetrating a body part]Yes, that's right, I'm the boss, and you're my little [whore]...'[otherwise if the player is monster fucked]That does look like a lot of fun! Maybe it's time I joined in...'[otherwise]You know what? I think you've swirled far enough down the drain of slutdom that it's finally worth giving you a once-over.'[end if][roman type][line break]".
 
 To compute MasturbationReaction of (M - a supporter):
 	if M is awake:
@@ -538,7 +541,7 @@ To compute MasturbationReaction of (M - a supporter):
 			if M is friendly-fucking:
 				say "[BigNameDesc of M] grins, and starts thrusting even faster.";
 			otherwise:
-				say "[BigNameDesc of M] [if M is penetrating a fuckhole]spanks[otherwise]slaps[end if] you angrily. [line break][first custom style]'Did I give you permission to do that? This is supposed to be a punishment!'[roman type][line break]";
+				say "[BigNameDesc of M] [if M is penetrating a fuckhole]spanks[otherwise]slaps[end if] you angrily.[line break][first custom style]'Did I give you permission to do that? This is supposed to be a punishment!'[roman type][line break]";
 				PainUp 1;
 				say "[bold type]Your masturbation session has been interrupted![roman type][line break]";
 				follow the masturbation ended rule;
@@ -662,7 +665,7 @@ To say LandingTaunt of (M - a supporter):
 To compute labour to (M - a supporter): [This can't happen until father material is switched to yes]
 	if M is regional and M is alive:
 		compute pregnancy clothing displacement;
-		say "[PregFlav][if the father is in the location of the player][BigNameDesc of M][otherwise][BigNameDesc of M] appears almost as if on cue! [big he of M][end if] kneels down on one knee and delivers the human baby. [big he of M] takes it into [his of M] arms and begins to cradle it. [line break][speech style of M]'A baby [one of]boy[or]girl[purely at random]! [if the father is mating]Another healthy member of our family, and hopefully not the last.[otherwise]Is it really true? I'm a parent in this universe now? This is the greatest moment of my life! Let's have another one soon[end if].'[roman type][line break]Without giving you a chance to react, never mind reply, [he of M] leaves you to recover from your ordeal.";
+		say "[PregFlav][if the father is in the location of the player][BigNameDesc of M][otherwise][BigNameDesc of M] appears almost as if on cue! [big he of M][end if] kneels down on one knee and delivers the human baby. [big he of M] takes it into [his of M] arms and begins to cradle it.[line break][speech style of M]'A baby [one of]boy[or]girl[purely at random]! [if the father is mating]Another healthy member of our family, and hopefully not the last.[otherwise]Is it really true? I'm a parent in this universe now? This is the greatest moment of my life! Let's have another one soon[end if].'[roman type][line break]Without giving you a chance to react, never mind reply, [he of M] leaves you to recover from your ordeal.";
 		if the father is in the location of the player:
 			say "For some reason, you are filled with a sense of deep fulfilment. You feel great!";
 			StrengthUp 1;
@@ -709,5 +712,9 @@ To say DiaperReaction of (M - a supporter):
 
 To say RockingReactionSpeech of (M - a supporter): [When your NPC sees them rocking on the rocking horse trap in the woods]
 	say "[one of][line break][speech style of M]'Hahahahaha! If you could only see this from my perspective! You look SO pathetic right now!'[roman type][line break][or][stopping]".
+
+
+To say WhoAnswer of (M - a supporter):
+	say "[speech style of M]'My name is [supporter-name of M].'[roman type][line break]".
 
 Supporter Framework ends here.

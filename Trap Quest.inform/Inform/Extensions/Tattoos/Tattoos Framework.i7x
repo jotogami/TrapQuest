@@ -41,7 +41,8 @@ When play begins: [This will help with debugging as we will be able to tell the 
 		TattooNameAssign T.
 
 To say ExamineDesc of (T - a tattoo):
-	say tattoo-desc of T.
+	say tattoo-desc of T;
+	if the anal sensitivity influence of T > 0, say "You can sense that it is [if the anal sensitivity influence of T > 1]significantly [end if]magically enhancing the pleasure you receive from your [asshole].".
 
 To say tattoo-desc of (T - a tattoo):
 	say "This is a [ShortDesc of T]".
@@ -96,7 +97,7 @@ To decide which number is the unworn outrage of (T - a tattoo):
 	let O be the initial outrage of T;
 	if the initial cringe of T > 2:
 		if diaper quest is 1, decide on 0; [No outrage in diaper quest if it's a childish tattoo]
-		if the initial cringe of T > O, now O is the initial cringe of T; [convert cringe to outrage where appropriate in TQ]
+		if the initial cringe of T > O, now O is the initial cringe of T / (3 - diaper lover); [convert cringe to outrage where appropriate in TQ; cringe is less humiliating if diapers are disabled]
 	if O > 20, now O is 20;
 	decide on O.
 

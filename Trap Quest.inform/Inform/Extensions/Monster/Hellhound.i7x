@@ -8,11 +8,15 @@ To decide which figure-name is the monster-image of (M - hellhound):
 
 Understand "hell", "hound", "dog", "puppy", "slave" as hellhound. The text-shortcut of hellhound is "hh".
 
-Definition: hellhound is mansion dwelling if mythical creature fetish is 1 or diaper quest is 1.
+Definition: hellhound is mansion dwelling:
+	if mythical creature fetish is 1 or diaper quest is 1, decide yes;
+	decide no.
 
 Definition: hellhound is musky: decide yes.
 
-Definition: hellhound is infernal: decide yes.
+Definition: hellhound is infernal:
+	if mythical creature fetish is 1, decide yes;
+	decide no.
 
 To say ShortDesc of (M - hellhound):
 	say "[if mythical creature fetish is 1]hellhound[otherwise]puppy slave[end if]".
@@ -24,7 +28,62 @@ To say MonsterDesc of (M - hellhound):
 	if mythical creature fetish is 1:
 		say "This huge black canine is as tall as you even when [he of M]'s on all fours. [big his of M] spiked tail, sharp fangs and elongated claws are dead give-aways that [he of M] is from another plane[if a random pet collar is off-stage][big he of M] holds a collar and leash in [his of M] mouth, as if [he of M]'s looking for someone to take [him of M] on a walk, or more likely, a pet of [his of M] own to lead around! [end if][big he of M] stares at you with glowing red eyes, letting you know that a keen intelligence lies hidden behind the bestial mask.";
 	otherwise:
-		say "This [man of M] has black bondage items keeping [his of M] arms and legs fully bent, forcing [him of M] to crawl along on [his of M] elbows and knees. [big he of M] seems pretty happy though, and you can make out a joyous and playful expression behind [his of M] fetish hood. [if diaper quest is 1]A thick black diaper covers [his of M] rear[otherwise]Naked just like a real animal, [he of M][']s completely naked and [his of M] faintly red skin and average sized [DickDesc of M] are completely visible. A black cock ring is situated near the base of [his of M] shaft.[end if].".
+		say "This [man of M] has black bondage items keeping [his of M] arms and legs fully bent, forcing [him of M] to crawl along on [his of M] elbows and knees. [big he of M] seems pretty happy though, and you can make out a joyous and playful expression behind [his of M] fetish hood. [if diaper quest is 1]A thick black diaper covers [his of M] rear[otherwise]Naked just like a real animal, [he of M][']s completely naked and [his of M] and average sized [DickDesc of M] are completely visible. A black cock ring is situated near the base of [his of M] shaft.[end if].".
+
+To say MonsterComment of (M - hellhound):
+	if diaper quest is 1:
+		say "[variable custom style][big he of M] seems friendly![roman type]";
+	otherwise if mythical creature fetish is 1:
+		if the class of the player is worshipper:
+			if the bimbo of the player < 7:
+				say "[first custom style]This is... really an appearance it chose? This is has to be to fuck with me, right?";
+			otherwise if the bimbo of the player < 12:
+				say "[variable custom style]Well, if its the appearance one of my masters chose, then its good enough for me.";
+			otherwise:
+				say "[second custom style]I'll do whatever it wants, no matter what form it decides to take. That's just the kind of sex slave I am!";
+		otherwise if the class of the player is priestess:
+			if M is penetrating a body part:
+				say "An solemn voice sounds in your head. [first custom style]'Defiled Sister, [one of]you must not accept this indignity. Escape!'[or]this is a powerful being, and it will stop at nothing to defile this world. You must escape! Quickly!'[or][if M is knotted]you now know for yourself the truth of this creature's powers. You must not let this happen to anyone else!'[otherwise]you must now allow this creature to use its evil powers. Escape! Hurry!'[end if][in random order]";
+			otherwise:
+				say "A concerned voice sounds in your head.[first custom style]'Kind Sister, [one of]this is a cruel, wicked existence. You must drive it away![or]this terrible being will stop at nothing to defile this world. It cannot be allowed to roam here!'[or]you must be wary of this being's dark power, which tethers it to the victims of its torment.'[in random order]";
+		otherwise if the player is pheromonal:
+			if M is penetrating a body part:
+				if the bimbo of the player < 7:
+					say "[first custom style]Why is my body fighting me?!";
+				otherwise if the bimbo of the player < 12:
+					say "[variable custom style][big his of M] scent is driving me insane!";
+				otherwise:
+					say "[second custom style]Who knew being a breeding bitch would be so FUN!";
+			otherwise:
+				if the bimbo of the player < 7:
+					say "[first custom style][big he of M] smells like smoke, but [he of M] smells like something else too. Why can't I stop thinking about it?";
+				otherwise if the bimbo of the player < 12:
+					say "[variable custom style][big he of M] smells like smoke, but [he of M] smells like something else too. I kind of want to get closer. J-just enough to figure it out...";
+				otherwise:
+					say "[second custom style][big he of M] smells like smoke, but [he of M] smells like something else too. It kind of makes me want to let [him of M] mount me for a little while.";
+		otherwise:
+			if the bimbo of the player < 7:
+				if M is penetrating a body part:
+					if the player is gendered male, say "[first custom style]What the fuck kind of dog is this?!";
+					otherwise say "[first custom style]This is WAY beyond leg humping!";
+				otherwise:
+					if the player is gendered male, say "[first custom style][one of][if the times-submitted of M > 0]Is THAT what chick dogs have to deal with?[otherwise]Its huge... Maybe its a mount?[end if][or]Seems like it'd be a bitch to train. Heh.[in random order]";
+					otherwise say "[first custom style][one of][if the times-submitted of M > 0]It's taunting me, isn't it...[otherwise]How am I supposed to fight anything this huge?![end if][or]It has the appearance of a dog, but it isn't one.'[or]Ugh, I hate dogs.[in random order]";
+			otherwise if the bimbo of the player < 12:
+				if M is penetrating a body part, say "[variable custom style]So rough!";
+				otherwise say "[variable custom style][one of][if the times-submitted of M > 0]On one hand, it was probably rough on purpose. On the other hand, I kind of liked it anyway.[otherwise]I feels like it might be attracted to me.[end if][or]It's more than a mere beast.[in random order]";
+			otherwise:
+				if M is penetrating a body part, say "[variable custom style]Yeah, get rough with me, baby!";
+				otherwise say "[variable custom style][one of][if the times-submitted of M > 0]Nice and rough, just how I like it![otherwise]I wonder if it wants to 'hump my leg.'[end if][or]What a beatiful beast! Wait, I wonder if that's disrespectful.[in random order]";
+	otherwise:
+		if the bimbo of the player < 7:
+			if the player is gendered male, say "[first custom style][one of][if M is knotted or the times-submitted of M > 0]That isn't a cockring! What the fuck![otherwise]That cockring doesn't even seem like it does anything.[end if][or]Is it really that fun?[or]I better watch out for whoever did that to [him of M].[in random order]";
+			otherwise say "[first custom style][one of][if M is knotted or the times-submitted of M > 0]Is that really a cockring?! How is it so painful?[otherwise]Ugh. Penis rings are disgusting.[end if][or]How could anyone enjoy such a thing?[or]A slave... who would own a slave like that?[in random order]";
+		otherwise if the bimbo of the player < 12:
+			say "[variable custom style][one of][if M is knotted or the times-submitted of M > 0]I guess I can see where the idea for the cockring came from![otherwise]That cockring isn't just a cockring, right? Its special.[end if][or][big he of M]'s really enjoying [his of M] pet play a lot...[or]Will I also end up as a slave? Wait, I shouldn't answer that.[in random order]";
+		otherwise:
+			say "[variable custom style][one of][if M is knotted or the times-submitted of M > 0]Knotted for my pleasure![otherwise]Its not just a fashion statement. I bet that cockring does something interesting...[end if][or][big he of M]'s really enjoying that. I'm jealous.[or][if the class of the player is royal slave]We're slave buddies![otherwise]Its only a matter of time until I become a slave too![end if][in random order]";
+	say "[roman type][line break]".
 
 To set up (M - hellhound):
 	reset M;
@@ -88,11 +147,17 @@ To decide which text is him of (M - hellhound):
 To decide which text is himself of (M - hellhound):
 	decide on "[if mythical creature fetish is 1]itself[otherwise if lady fetish is 1]herself[otherwise]himself[end if]".
 
+To say LongDickDesc of (M - hellhound):
+	if mythical creatures fetish is 1, say "shiny red [DickDesc of M]";
+	otherwise say "hard [DickDesc of M]".
+
 To say SummoningFlav of (M - hellhound):
 	if M is in the location of the player, say "The glow surrounding the mummy intensifies as a flaming rift tears open above it, and a dark shape charges through. The [printed name of M] emits a chilling howl, seizing the leash end of the collar with [his of M] teeth as the portal closes, and the mummy slowly returns to its feet.";
 	say "You hear a chilling howl in the distance.".
 
-Definition: a hellhound is father material if the player is the donator and mythical creature fetish is 1.
+Definition: a hellhound is father material:
+	if mythical creature fetish is 1, decide yes;
+	decide no.
 
 To say PregGrowth of (M - hellhound):
 	if mythical creature fetish is 1, say "the hellhound's brood";
@@ -108,7 +173,6 @@ To compute labour to (M - hellhound):
 			Delay Labour;
 	otherwise:
 		compute infernal birth.
-
 
 To compute fatherhood to (M - hellhound):
 	distract M.
@@ -159,12 +223,11 @@ To compute perception of (M - hellhound):
 		now M is interested;
 	if M is interested, now the sex-length of M is the difficulty of M.
 
-To compute kneeling reaction of (M - hellhound): [Default boring reaction if none is defined.]
+To compute kneeling reaction of (M - hellhound):
 	if mythical creature fetish is 1, say "[BigNameDesc of M] walks in a half circle to get behind you[one of], as if to make sure you know exactly how big [his of M] [DickDesc of M] really is.[or], [DickDesc of M] bobbing as it slides out of its sheath.[or]. You can almost feel [his of M] cruel eyes boring into you, as if daring you to run away.[or], pausing right next to you, as if to make sure you get a full look at the bestial [DickDesc of M] hanging between its legs.[at random]";
 	otherwise say "[BigNameDesc of M] emits a sexual growl.";
-	if the humiliation of the player < 30000, say " You shiver with shame.";
-	say "[line break]";
-	humiliate 75.
+	if the player is shameless, say "You shiver with shame.";
+	strongHumiliate.
 
 Part 3 - Combat
 
@@ -250,6 +313,8 @@ To decide if (M - hellhound) is willing to creampie (F - vagina):
 	if the thickness of hips + the pregnancy rate of the player > 4, decide yes;
 	decide no.
 
+
+
 To say ClimaxAnnounce of (M - hellhound) in (F - asshole):
 	say "[BigNameDesc of M] howls as [he of M] climaxes, filling you with [his of M] [if mythical creature fetish is 1]unusually [end if]hot jism. [run paragraph on]".
 
@@ -263,6 +328,7 @@ To say CreampieFlav of (M - hellhound) of (F - a fuckhole):
 To say MessyPullOutFlav of (M - hellhound) in (F - asshole):
 	say "[one of]You think that's the end of it, but then[or]You know it's not over yet, and sure enough[stopping] you realise you can feel [if mythical creature fetish is 0][his of M] cock ring[otherwise]the base of [his of M] [DickDesc of M][end if] inflating. Pinned down by [his of M] full weight, [if the anal sex addiction of the player < 3]your heart sinks[otherwise if the anal sex addiction of the player < 7]you groan[otherwise]you mewl happily[end if] as you realise you are anally [']knotted['] by your canine [if the player is feeling dominant]nemesis[otherwise]mate[end if].".
 
+[See climax announce above, we already displayed flavour for the creampie.]
 To say MessyPullOutFlav of (M - hellhound) in (F - vagina):
 	say "[BigNameDesc of M] pulls out, seeming to snicker as [he of M] walks around in front of you. [big his of M] red eyes fix you with a cruel stare as [he of M] lifts [his of M] leg and begins to pee in your face, as if marking you as [his of M] territory!".
 
@@ -306,7 +372,7 @@ To compute knotting of (M - hellhound) in (F - a fuckhole):
 		let H be a random off-stage puppy ears;
 		if H is actually summonable:
 			summon H cursed;
-			say "[bold type]Suddenly, a [H][bold type] appear on your head![if the bimbo of the player < 9] [line break][variable custom style]I am NOT a dog![end if][roman type][line break]";
+			say "[bold type]Suddenly, a [H][bold type] appear on your head![if the bimbo of the player < 9][line break][variable custom style]I am NOT a dog![end if][roman type][line break]";
 	otherwise if M is willing to creampie F:
 		if M is in Mansion08:
 			say "[BigNameDesc of M] completely ignores you, continuing to drink its fill.";
@@ -437,16 +503,22 @@ To compute punishment of (P - hellhound-facesit):
 			if C is clothing:
 				compute current-monster attacking C;
 				unless there is worn top level protection clothing:
-					say "[big he of M] immediately dives in, [if the player is male]taking your [player-penis] into [his of M] mouth and whining happy as [he of M] begins to suck[otherwise]tongue at the ready, and begins to happily and messily lick at your [vagina][end if]!";
+					say "[big he of M] immediately dives in, [if the player is possessing a penis]taking your [player-penis] into [his of M] mouth and whining happy as [he of M] begins to suck[otherwise]tongue at the ready, and begins to happily and messily lick at your [vagina][end if]!";
 					ruin vagina;
 			otherwise:
-				if the player is male, say "";
+				if the player is possessing a penis, say "";
 				otherwise say "[BigNameDesc of M] [one of]licks away at your [vagina] but never stops grinding on your face![or]messily tongues your inner folds whilst pleasuring [himself of M] on the tip of your nose![or]gently nibbles on your clit as [he of M] drives [his of M] diapered crotch across your face.[in random order]";
+				ruin vagina;
 			decrease the sex-length of M by 1;
+			cutshow figure of puppy cutscene 4 for M;
 		otherwise if the sex-length of M is 1:
 			say "[BigNameDesc of M] [if there is worn top level protection clothing]suddenly sits up, and with a particularly dominant growl begins to use [his of M] diaper[otherwise]speeds up [his of M] oral pleasuring as [he of M] also pushes [his of M] diapered butt hard onto your face and begins to go to the toilet[end if]. ";
-			if diaper messing >= 3, say "You can feel the pitter-patter of [his of M] [urine] and the squishiness of [his of M] bulk on your face through the material as [he of M] empties a full bladder and bowels into [his of M] nappy. ";
-			otherwise say "You can feel the pitter-patter of [his of M] [urine] on your face through the material as [he of M] empties a full bladder into [his of M] nappy. ";
+			if diaper messing >= 7:
+				say "You can feel the pitter-patter of [his of M] [urine] and the squishiness of [his of M] bulk on your face through the material as [he of M] empties a full bladder and bowels into [his of M] nappy. ";
+				cutshow figure of puppy cutscene 6 for M;
+			otherwise:
+				say "You can feel the pitter-patter of [his of M] [urine] on your face through the material as [he of M] empties a full bladder into [his of M] nappy. ";
+				cutshow figure of puppy cutscene 5 for M;
 			say "[big he of M] makes sure to give your [genitals] the time of its life as [he of M] does, making strong rhythmic motions with [his of M] tongue that you didn't even realise were possible!";
 			DiaperAddictUp 1;
 			unless there is worn top level protection clothing, ruin vagina times 3;
@@ -457,28 +529,24 @@ To compute punishment of (P - hellhound-facesit):
 	otherwise:
 		say "[BigNameDesc of M] rolls you onto your back before turning 180 degrees and promptly sitting on your face. Your eyes, mouth and nose are all completely blocked under [his of M] thick padding. That is, until [he of M] begins to grind back and forth, giving you very brief chances to breathe in between each thrust of [his of M] hips!";
 		now M is penetrating face;
+		now the sex-length of M is 5;
+		cutshow figure of puppy cutscene 4 for M;
 		unless there is worn top level protection clothing:
-			say "[big he of M] also moves [his of M] face down to your crotch and [if the player is male]takes your [player-penis] into [his of M] mouth[otherwise]begins to explore your [vagina] with [his of M] tongue[end if]!";
-			if there is a worn perceived messed diaper:
-				cutshow figure of puppy cutscene 6 for M;
-			otherwise if there is a worn perceived wet diaper:
-				cutshow figure of puppy cutscene 5 for M;
-			otherwise:
-				cutshow figure of puppy cutscene 4 for M;
+			say "[big he of M] also moves [his of M] face down to your crotch and [if the player is possessing a penis]takes your [player-penis] into [his of M] mouth[otherwise]begins to explore your [vagina] with [his of M] tongue[end if]!";
 			ruin vagina.
 
 The hellhound continue sex rules is a rulebook. The continue sex rules of a hellhound is usually the hellhound continue sex rules.
 
 This is the hellhound extra continue sex check rule:
-	follow the check normal continue sex stuff rule;
-	if the rule succeeded, rule succeeds;
 	if diaper quest is 1:
 		if current-monster is penetrating face:
 			compute punishment of hellhound-facesit;
 			rule succeeds;
 		if current-monster is penetrating vagina:
 			compute punishment of hellhound-hump;
-			rule succeeds.
+			rule succeeds;
+	follow the default continue sex rules;
+	if the rule succeeded, rule succeeds.
 The hellhound extra continue sex check rule is listed in the hellhound continue sex rules.
 
 Section 3 - Damage

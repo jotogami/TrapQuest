@@ -7,6 +7,7 @@ Definition: gargoyle is mansion dwelling: decide yes.
 Definition: gargoyle is willing to charm snakes: decide yes.
 
 Definition: gargoyle is willing to masturbate: decide yes.
+Definition: gargoyle is penis-virginity taking: decide no.
 
 The text-shortcut of gargoyle is "gy". Understand "stone", "statue", "sentry" as gargoyle.
 
@@ -48,21 +49,18 @@ To say MonsterDesc of (M - gargoyle):
 	if mythical creature fetish is 1:
 		say "An eerie stone statue of a [man of M] with long, curved horns and giant bat-like wings. Every inch of [his of M] body is exposed, and although rendered in stone, [big he of M] [if M is vigilant]appraises you silently from atop [his of M] pedestal, never moving, not even to blink.[otherwise]gives you the feeling of a beast lying in wait, ready to pounce.[end if]";
 	otherwise:
-		say "An eerie stone statue of an angel wearing a[if lady fetish < 2]n ill-fitting robe, draped open by [his of M] elbows, leaving [his of M] chest completely exposed[otherwise]a thin robe that exposes [his of M] rippling chest muscles[end if]. [big he of M] is resting on one knee and [his of M] head is bowed, as if offering deference to [his of M] master. [if M is vigilant][big he of M] appraises you silently from atop [his of M] pedestal, never moving, not even to blink.[otherwise]There's something way too realistic about [him of M]. You get the feeling [he of M] might wake up and attack you at any time.[end if]".
+		say "An eerie stone statue of an angel wearing [if lady fetish < 2]an ill-fitting robe, draped open by [his of M] elbows, leaving [his of M] chest completely exposed[otherwise]a thin robe that exposes [his of M] rippling chest muscles[end if]. [big he of M] is resting on one knee and [his of M] head is bowed, as if offering deference to [his of M] master. [if M is vigilant][big he of M] appraises you silently from atop [his of M] pedestal, never moving, not even to blink.[otherwise]There's something way too realistic about [him of M]. You get the feeling [he of M] might wake up and attack you at any time.[end if]".
 
 To set up (M - gargoyle):
 	reset M;
 	now the monstersetup of M is 1;
-	now the raw difficulty of M is the starting difficulty of M;[12]
+	now the raw difficulty of M is the starting difficulty of M;
 	now the blue-balls of M is 30;
 	let R be a random no-roof haunted room;
 	unless R is room, now R is Mansion25;
 	now M is in R;
 	now the health of M is the maxhealth of M;
 	now M is guarding.
-
-To decide which number is the starting difficulty of (M - gargoyle):
-	decide on 11.
 
 This is the spawn initial gargoyle rule:
 	if gargoyle is off-stage:
@@ -81,11 +79,11 @@ To say SummoningFlav of (M - gargoyle):
 Definition: gargoyle (called M) is vigilant:
 	if M is uninterested, decide no;
 	if the health of M < the maxhealth of M, decide yes;
-	if the player is soulless or there is a worn wood-dong, decide no;
+	if the player is soulless or there is a worn wood-dong, decide no;[she can't see you if you don't have a soul.]
 	if doomed > 2, decide yes;
 	if the size of penis >= 5, decide yes;
 	if the number of glazed body parts > 2, decide yes;
-	if there is held stolen clothing, decide yes;
+	if there is stolen currently perceivable thing, decide yes;
 	if there is worn magic themed clothing, decide yes;
 	decide no.
 
@@ -116,7 +114,7 @@ To compute perception of (M - gargoyle):
 Essentially, the goal here is to tell the player why the gargoyle woke up, and/or why she is becoming aggressive.
 ]
 To compute appearance assessment of (M - gargoyle):
-	let H be a random worn stolen clothing;
+	let H be a random stolen currently perceivable thing;
 	say "[big his of M] [if mythical creature fetish is 1]slitted [end if]pupils focus [run paragraph on]";
 	if the size of penis > the satiated of M:
 		say "on your crotch as [he of M] hungrily licks [his of M] lips.";
@@ -130,7 +128,7 @@ To compute appearance assessment of (M - gargoyle):
 	otherwise if the number of glazed body parts > 2:
 		let B be a random glazed body part;
 		say "on your [ShortDesc of B].";
-	otherwise if H is clothing:
+	otherwise if H is a thing:
 		say "on your [ShortDesc of H].";
 	otherwise:[If she woke up because the player was horny, due to magic item, or the doom counter, she just stares at you]
 		say "on you, and [big he of M] stares at you in silence for several seconds.";
@@ -281,7 +279,7 @@ To say ErectionDemand of (M - a monster):
 	say "[BigNameDesc of M][']s wings flap excitedly as [his of M] eyes eagerly focus on your crotch, and you get the sense that [he of M]'s waiting for you to get hard.".
 
 To say ErectionPenetrationFlav of (M - gargoyle):
-	if lady fetish is 2, say "[BigNameDesc of M][']s features light up with delight as [if penis is not penis-erect]your [ShortDesc of penis] stirs to life, and [end if][he of M] [if mythical creature fetish is 1]wraps [his of M] tail around your waist,[otherwise]pins you down face up,[end if] holding you down as [he of M] [if the size of penis > 8]wraps [his of M] hands around your [ShortDesc of penis] and hungrily pulls the tip into [his of M] mouth[otherwise]wraps [his of M] surprisingly soft lips around your [ShortDesc of penis][end if].[line break]";
+	if lady fetish is 2, say "[BigFuckerDesc of M][']s features light up with delight as [if penis is not penis-erect]your [ShortDesc of penis] stirs to life, and [end if][he of M] [if mythical creature fetish is 1]wraps [his of M] tail around your waist,[otherwise]pins you down face up,[end if] holding you down as [he of M] [if the size of penis > 8]wraps [his of M] hands around your [ShortDesc of penis] and hungrily pulls the tip into [his of M] mouth[otherwise]wraps [his of M] surprisingly soft lips around your [ShortDesc of penis][end if].[line break]";
 	otherwise say "[BigNameDesc of M][']s features light up with delight as [if penis is not penis-erect]your [ShortDesc of penis] stirs to life, and [end if][he of M] [if mythical creature fetish is 1]wraps [his of M] tail around your waist,[otherwise]pins you down face up,[end if] holding you down as [he of M] [if the size of penis > 8]wraps [his of M] surprisingly soft breasts around your [ShortDesc of penis] and hungrily pulls the tip into [his of M] mouth[otherwise]wraps [his of M] surprisingly soft lips around your [ShortDesc of penis][end if].[line break]";
 	cutshow Figure of gargoyle BJ 1 for M.
 
@@ -317,10 +315,10 @@ To say ErectionUseFlav of (M - gargoyle):
 		say "[one of][BigNameDesc of M] pumps your [ShortDesc of penis] with [his of M] breasts, grunting ravenously as [his of M] tongue strokes your throbbing length.[or][BigNameDesc of M] drools as [his of M] tongue swirls around your tip, mixing with a bit of your own 'drool' to lubricate the [ShortDesc of penis] sandwiched between [his of M] jiggling breasts.[or][BigNameDesc of M] makes noisy slurping noises as [he of M] works your [ShortDesc of penis], lubricating [his of M] breasts with tiny bits of drool as they skilfully massage your shaft.[or][BigNameDesc of M][']s breasts bump your sack as [he of M] works your [manly-penis], torturing the tip with practised movements of [his of M] tongue and lips.[at random]";
 		cutshow Figure of gargoyle BJ 3 for M;
 	otherwise if the size of penis > 2:
-		say "[one of][BigNameDesc of M] slurps away at your [Shortdesc of penis], teasing your most sensitive parts with [his of M] tongue.[or][BigNameDesc of M] mercilessly pleasures you with [his of M] tongue, wings flapping excitedly as [his of M] lips fervently stroke the base of your [manly-penis].[or][BigNameDesc of M] sucks relentlessly, drool leaking out the side of [his of M] mouth as [he of M] lavishes you with expert stimulation from balls to tip.[or][BigNameDesc of M] hums as [he of M] suckles your [ShortDesc of penis], [if mythical creature fetish is 1]sounding very much like a starved animal in the middle of a meal[otherwise]as if your shaft were the most delicious thing in the entire world[end if].[or][BigNameDesc of M] swirls [his of M] tongue around your tip as [he of M] mercilessly pumps you with [his of M] lips.[at random]";
+		say "[one of][BigNameDesc of M] slurps away at your [ShortDesc of penis], teasing your most sensitive parts with [his of M] tongue.[or][BigNameDesc of M] mercilessly pleasures you with [his of M] tongue, wings flapping excitedly as [his of M] lips fervently stroke the base of your [manly-penis].[or][BigNameDesc of M] sucks relentlessly, drool leaking out the side of [his of M] mouth as [he of M] lavishes you with expert stimulation from balls to tip.[or][BigNameDesc of M] hums as [he of M] suckles your [ShortDesc of penis], [if mythical creature fetish is 1]sounding very much like a starved animal in the middle of a meal[otherwise]as if your shaft were the most delicious thing in the entire world[end if].[or][BigNameDesc of M] swirls [his of M] tongue around your tip as [he of M] mercilessly pumps you with [his of M] lips.[at random]";
 		if lady fetish < 2, cutshow Figure of gargoyle BJ 4 for M;
 	otherwise:[doubt this will come up so it's mostly copypasta]
-		say "[one of][BigNameDesc of M] relentlessly teases your [Shortdesc of penis] with [his of M] tongue.[or][BigNameDesc of M] teases your [Shortdesc of penis] with the very tip of [his of M] tongue, as if stimulating a clitoris[or][BigNameDesc of M] pleasures you mercilessly with [his of M] tongue.[in random order]".
+		say "[one of][BigNameDesc of M] relentlessly teases your [ShortDesc of penis] with [his of M] tongue.[or][BigNameDesc of M] teases your [ShortDesc of penis] with the very tip of [his of M] tongue, as if stimulating a clitoris[or][BigNameDesc of M] pleasures you mercilessly with [his of M] tongue.[in random order]".
 
 [
 TODO: maybe she stores it for the vampiress to harvest or stores it for herself to use on you when your penis gets too tiny.

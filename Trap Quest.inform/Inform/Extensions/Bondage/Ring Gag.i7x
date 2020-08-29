@@ -12,7 +12,7 @@ Figure of dental gag is the file "Items/Accessories/Head/dentalgag1.png".
 Definition: an opengag is ringagged: decide yes.
 
 To decide which number is the initial outrage of (C - an opengag):
-	decide on 9.
+	decide on 8.
 
 This is the ring exclusivity rule:
 	if there is a worn ringagged clothing and wearing-target is opengag:
@@ -65,7 +65,13 @@ To decide which number is the intelligence-influence of (C - dental gag):
 To decide which number is the perceived-bimbo-influence of (C - lip gag):
 	decide on 1.
 
-Definition: a ring gag is fetish appropriate: decide no. [Never appears randomly]
+Definition: an opengag is fetish appropriate: decide no. [Never appears randomly]
+To decide which object is the at least partial concealer of (C - ring gag):
+	if current-predicament is team-girlfriends-predicament and the player is in a predicament room, decide on hair;
+	decide on the concealer of C.
+To decide which object is the concealer of (C - ring gag):
+	if girlfriend-partner is snogged, decide on girlfriend-partner;
+	decide on nothing.
 
 Part - Smoothie Predicament Stuff
 
@@ -78,11 +84,19 @@ Figure of smoothie-apron is the file "Items/Clothes/Upper/Exposing/apron1.png".
 To decide which figure-name is clothing-image of (C - smoothie-apron):
 	decide on figure of smoothie-apron.
 To say ClothingDesc of (C - smoothie-apron):
-	say "A green apron with a small white shirt underneath. It only covers your front, so it only conceals whether you are standing in a giant thick super-messy nappy when you are standing with your back to a wall, e.g. in the smoothie van.".
-Definition: smoothie-apron is layer-concealing if the player is in Predicament03. [While the player is in the smoothie van only]
-Definition: smoothie-apron is skirt-covering-crotch if the player is in Predicament03. [While the player is in the smoothie van only]
-Definition: smoothie-apron is potentially penis covering if the player is in Predicament03 or the number of worn crotch-in-place undies > 0. [While the player is in the smoothie van only]
-Definition: smoothie-apron is potentially at least partially penis concealing if the player is in Predicament03 or the number of worn crotch-in-place undies > 0. [While the player is in the smoothie van only]
+	say "A green apron with a small white shirt underneath. It only covers your front, so it only conceals your giant thick super-messy nappy when you're standing with your back to a wall, e.g. in the smoothie van.".
+Definition: smoothie-apron is layer-concealing:
+	if the player is in Predicament03, decide yes;
+	decide no. [While the player is in the smoothie van only]
+Definition: smoothie-apron is skirt-covering-crotch:
+	if the player is in Predicament03, decide yes;
+	decide no. [While the player is in the smoothie van only]
+Definition: smoothie-apron is potentially penis covering:
+	if the player is in Predicament03 or the number of worn crotch-in-place undies > 0, decide yes;
+	decide no. [While the player is in the smoothie van only]
+Definition: smoothie-apron is potentially at least partially penis concealing:
+	if the player is in Predicament03 or the number of worn crotch-in-place undies > 0, decide yes;
+	decide no. [While the player is in the smoothie van only]
 Definition: smoothie-apron is potentially erection concealing: decide yes. [non-tight skirts conceal erections]
 To say ShortDesc of (C - smoothie-apron):
 	say "green apron".
@@ -92,7 +106,7 @@ Figure of tube gag is the file "Items/Accessories/Head/tubegag1.jpg".
 To decide which figure-name is clothing-image of (C - smoothie gag):
 	decide on figure of tube gag.
 To say ClothingDesc of (C - smoothie gag):
-	say "This small ring shaped gag stops you from speaking clearly and keeps your mouth open but without stretching your jaw too badly in the process. It is attached to a tube, which is attached to a funnel which people could poor things down to forcefeed you.".
+	say "This small ring shaped gag stops you from speaking clearly and keeps your mouth open but without stretching your jaw too badly in the process. It is attached to a tube, which is in turn attached to a funnel which people could pour things down to force-feed you.".
 To decide which number is the initial outrage of (C - smoothie gag):
 	decide on 1.
 To decide which number is the initial cringe of (C - smoothie gag):

@@ -1,6 +1,6 @@
 Slimegirl by Objects begins here.
 
-slimegirl is a person. The printed name of slimegirl is "[TQlink of item described]slimegirl[shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of slimegirl is "slgl". Understand "slime", "girl" as slimegirl. slimegirl is wearable.
+slimegirl is a person. slimegirl is female. The printed name of slimegirl is "[TQlink of item described]slimegirl[shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of slimegirl is "slgl". Understand "slime", "girl" as slimegirl. slimegirl is wearable.
 
 Figure of slimegirl is the file "NPCs/Forest/slimegirl1.png".
 Figure of Slimegirl Cutscene 1 is the file "Special/Cutscene/cutscene-slimegirl1.png".
@@ -50,7 +50,7 @@ An all time based rule (this is the compute slimegirl rule):
 				increase the hunger of M by 1;
 			otherwise if the hunger of M < 5:
 				increase the hunger of M by 1;
-				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you. [line break][second custom style]'[one of]I'm getting hungry in here... can you feed me with some [tasty] cum soon [please]?'[or]I'm hungry, give me some more cum!'[or]I need semen to live in here, you know? [big please] feed me soon!'[or]Hey baby, have you forgotten about me? I need feeding, you know...'[in random order][roman type][line break]";
+				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you.[line break][second custom style]'[one of]I'm getting hungry in here... can you feed me with some [tasty] cum soon [please]?'[or]I'm hungry, give me some more cum!'[or]I need semen to live in here, you know? [big please] feed me soon!'[or]Hey baby, have you forgotten about me? I need feeding, you know...'[in random order][roman type][line break]";
 				let R be a random number between 1 and 3;
 				if R is 1:
 					say "You feel [NameDesc of M] slightly influencing your love of [semen] and sex.";
@@ -67,7 +67,7 @@ An all time based rule (this is the compute slimegirl rule):
 						HipUp 1;
 			otherwise if the hunger of M < 7:
 				if a random number between 1 and 2 is 1, increase the hunger of M by 1;
-				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you. [line break][second custom style]'[one of]I'm getting sooo hungry in here... I really need some manly seed soon!'[or]I'm fed up of waiting, feed me now or else!!'[or]I'm going to keep fucking with you if you don't feed me, you slut!'[or]Are you enjoying what I'm doing to you or something? Just find a manly stud, and get him to assfuck you! It's not hard!'[in random order][roman type][line break]";
+				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you.[line break][second custom style]'[one of]I'm getting sooo hungry in here... I really need some manly seed soon!'[or]I'm fed up of waiting, feed me now or else!!'[or]I'm going to keep fucking with you if you don't feed me, you slut!'[or]Are you enjoying what I'm doing to you or something? Just find a manly stud, and get him to assfuck you! It's not hard!'[in random order][roman type][line break]";
 				let R be a random number between 1 and 3;
 				if R is 1:
 					say "You feel [NameDesc of M] massively influencing your love of [semen] and sex.";
@@ -92,11 +92,11 @@ An all time based rule (this is the compute slimegirl rule):
 					increase the lactation rate of the player by 1;
 			otherwise if the hunger of M is 7:
 				increase the hunger of M by 1;
-				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you. [line break][second custom style]'[one of]Okay I give up, I guess you're really not going to feed me. Will you at least take me back to my pool? I'll die if you leave me in here...'[or]Okay okay I give up again! [big please] take me back to my pool?'[stopping][roman type][line break]";
+				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you.[line break][second custom style]'[one of]Okay I give up, I guess you're really not going to feed me. Will you at least take me back to my pool? I'll die if you leave me in here...'[or]Okay okay I give up again! [big please] take me back to my pool?'[stopping][roman type][line break]";
 				now the intensity of M is 0;
 			otherwise if the hunger of M < 10:
 				increase the hunger of M by 1;
-				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you. [line break][second custom style]'[one of]Either feed me or let me out!!! I'm going to starve!'[or]I won't let you starve me to death!'[or]You bitch, let me out!'[or]Let me out of here, you fucking whore!'[in random order][roman type][line break]";
+				say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you.[line break][second custom style]'[one of]Either feed me or let me out!!! I'm going to starve!'[or]I won't let you starve me to death!'[or]You bitch, let me out!'[or]Let me out of here, you fucking whore!'[in random order][roman type][line break]";
 				now the intensity of M is 2;
 				if lactation fetish is 1:
 					say "You feel some kind of toxin flowing through your body, which makes you feel all giddy, and almost euphoric. [if the lactation rate of the player > 0]You can feel your lactation rate increasing[otherwise]You can feel your breasts start to produce [milk][end if].";
@@ -212,8 +212,8 @@ To compute swimming in (WB - WoodsScenery01):
 			let R be a random number between S * 2 and S / 2 ;
 			if R < DC:
 				say "[line break]While you're underwater, you manage to resist the strong current pushing you back.";
-			otherwise if R < DC + 15:[Its very hard not to get pushed at least a little]
-				say "[line break]While you're underwater, the current pushes you further down the river.";
+			otherwise if R < DC + 15:[It's very hard not to get pushed at least a little]
+				say "[line break]While you're underwater, the current drags you further down the river.";
 				increase swim-location by 1;
 			otherwise:
 				say "[line break]While you're underwater, the current pushes you much further down the river.";
@@ -224,7 +224,7 @@ To compute swimming in (WB - WoodsScenery01):
 			FatigueDown 5;
 		otherwise if the printed name of CNR is "slow the current":
 			if M is worn by the player:
-				say "The slimegirl sticks a translucent appendage out of your butt and reaches into the waterfall. You hear a *click*, and a metal grate extends out above you, robbing the current of more than half of its force.";
+				say "The slimegirl sticks a translucent appendage out of your butt and reaches into the waterfall. You hear a *click*, and a metal grate extends out above you, robbing the current of more than half its force.";
 			otherwise:
 				say "The slimegirl sticks a translucent arm through the waterfall, and you hear a *click*. A metal grate extends out above you, robbing the current of more than half of its force.";
 			now the waterfall-timer of WB is 50;
@@ -262,10 +262,9 @@ To compute slimegirl noticing in (WB - WoodsScenery01):
 			now the timetaken of M is 0;
 			say "[second custom style]'Well, thanks for returning me to my pool, I guess...'[roman type][line break]";
 		otherwise:
-			say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you. [line break][second custom style]'[one of]So, you're barging into my old home like you own the place? ....Just kidding! I was a squatter!'[or]Hey, its my old digs! Feel free to hang out!'[or]I live inside you now, so if you want to move in, feel free!'[or]Ooh, yeah, I used to live here once. Don't worry, you're better.'[in random order][roman type][line break]";
+			say "[bold type][BigNameDesc of M] [bold type]telepathically communicates with you.[line break][second custom style]'[one of]So, you're barging into my old home like you own the place? ....Just kidding! I was a squatter!'[or]Hey, it's my old digs! Feel free to hang out!'[or]I live inside you now, so if you want to move in, feel free!'[or]Ooh, yeah, I used to live here once. Don't worry, you're better.'[in random order][roman type][line break]";
 	otherwise:
 		compute slimegirl meeting in WB;
-		
 
 [You reach the waterfall, and the slimegirl says hey can I clean you]
 To compute slimegirl meeting in (WB - WoodsScenery01):
@@ -307,7 +306,7 @@ To compute slimegirl meeting in (WB - WoodsScenery01):
 				otherwise:
 					compute slimegirl frustration in WB;
 			otherwise:
-				reset multiple choice questions; 
+				reset multiple choice questions;
 				set numerical response 0 to "let [him of witch] engulf you";
 				set numerical response 1 to "don't feed.";
 				compute multiple choice question;
@@ -316,7 +315,7 @@ To compute slimegirl meeting in (WB - WoodsScenery01):
 
 [When you feed the slimegirl with food. For now, lets say there's no risk of her hitching a ride here]
 To compute slimegirl feeding on (F - a food) in (WB - WoodsScenery01):
-	say "[line break][second custom style]'[one of]Dinner time!'[or]Breakfast time!'[or]Lunch lunch luuuuunch~'[or]Dinner~'[or]Supper time!'[in random order][roman type][line break][BigNameDesc of slimegirl] snatches the [printed name of F] from your hand and stuffs it in her mouth.";
+	say "[line break][second custom style]'[one of]Dinner time!'[or]Breakfast time!'[or]Lunch lunch luuuuunch~'[or]Dinner~'[or]Supper time!'[in random order][roman type][line break][BigNameDesc of slimegirl] snatches the [printed name of F] from your hand and stuffs it in [his of slimegirl] mouth.";
 	destroy F;
 	increase the slime-favour of slimegirl by 3;
 	now the waterfall-timer of WB is -1.
@@ -328,7 +327,7 @@ To compute slimegirl engulfing in (WB - WoodsScenery01):
 		if the semen-soak of C > 0, increase S by the semen-soak of C;
 		clean C;
 		Drench C;
-	say "[line break][second custom style]'[one of]Dinner time!'[or]Breakfast time!'[or]Lunch lunch luuuuunch~'[or]Dinner~'[or]Supper time!'[in random order][roman type][line break][BigNameDesc of M] pounces on you and quickly begins lapping up all the [semen] on your body[if S > 0] and clothes[end if]";
+	say "[line break][second custom style]'[one of]Dinner time!'[or]Breakfast time!'[or]Lunch lunch luuuuunch~'[or]Dinner~'[or]Supper time!'[in random order][roman type][line break][BigNameDesc of M] pounces on you and quickly begins lapping up all the [semen] on your body[if S > 0] and clothes[end if]. ";
 	cutshow figure of slimegirl cutscene 1 for M;
 	if the total felchable volume of vagina > 0 and vagina is not actually occupied and the player is not pussy protected:
 		say "[BigNameDesc of M] moves down to your [vagina], and laps away with great enthusiasm. ";
@@ -361,11 +360,11 @@ slimegirl has a number called slime-quest.
 
 [We care about two outcomes here:
 1 - Did the player try to escape?
-2 - ok, then did the player make a deal with the slime?]
+2 - OK, then did the player make a deal with the slime?]
 To compute slimegirl hitching a ride from (WB - WoodsScenery01):
 	let R be 0;
 	let M be slimegirl;
-	say "[BigNameDesc of M] smacks [his of M] lips. [line break][second custom style]'That was [one of]the best feast I've had in a long time[or]just as great as last time[stopping]! I think I'm going to have to travel with you for a while...'[roman type][line break][one of]You are still trying to work out what that means when[or]Once again[stopping] [his of M] humanoid form dissolves as [he of M] engulfs your lower body, and suddenly you feel [him of M] poking forcefully at your [asshole]. [big he of M]'s... [he of M]'s trying to force [himself of M] in!";
+	say "[BigNameDesc of M] smacks [his of M] lips.[line break][second custom style]'That was [one of]the best feast I've had in a long time[or]just as great as last time[stopping]! I think I'm going to have to travel with you for a while...'[roman type][line break][one of]You are still trying to work out what that means when[or]Once again[stopping] [his of M] humanoid form dissolves as [he of M] engulfs your lower body, and suddenly you feel [him of M] poking forcefully at your [asshole]. [big he of M]'s... [he of M]'s trying to force [himself of M] in!";
 	say "[bold type]Do you want to try and escape?[roman type] ";
 	if the player is consenting:
 		let S be the swimming challenge of the player;
@@ -393,7 +392,7 @@ To compute slimegirl hitching a ride from (WB - WoodsScenery01):
 		say "You leap into the water before [he of M] can go any further, and use the strong current to quickly carry yourself out of [his of M] reach.[line break][second custom style]'No, wait, come back! Awww...'[roman type][line break]";
 
 [
-jewel (uncommmon)
+jewel (uncommon)
 nothing (common)
 any token (common)
 wasp wing (uncommon)
@@ -407,50 +406,49 @@ To compute treasure diving in (WB - WoodsScenery01) at (L - a number):
 		if L is 3 and N > 0, increase N by 2;[higher chance of something good]
 		if N > 20:[jewels]
 			let J be a random off-stage plentiful accessory;
-			if J is accessory and L > 1:[You won't find jewels until you go further out]
+			if J is accessory and L > 1 and J is actually summonable:[You won't find jewels until you go further out]
 				if N > 29:[Ruby]
-					 now J is ruby;
+					now J is ruby;
 				otherwise if N >= 27:[emerald]
 					now J is emerald;
 				otherwise:[sapphire]
 					now J is sapphire;
-				say "You find a [ClothingDesc of J]! You take it with you as you swim back to the surface.";
-				now J is carried by the player;
+				set shortcut of J;
+				say "[bold type]You find a [ClothingDesc of J]! It's too heavy to carry, but as you head back to the surface, it magically teleports onto your body.";
+				summon J;
 			otherwise:
-				say "You find a rusted out piece of jewelery. You leave it behind as you swim back to the surface.";
+				say "You find a rusted out piece of jewellery. You leave it behind as you swim back to the surface.";
 		otherwise if N > 18:
-			let G be a random off-stage infernal gem;
-			if G is infernal gem:
-				say "You find an infernal gem among the rocks and carry it with you back to the surface.";
-				now G is carried by the player;
+			if infernal gem is off-stage:
+				say "[bold type]You find an infernal gem among the rocks![roman type] You carry it with you back to the surface.";
+				now infernal gem is carried by the player;
 			otherwise:
 				say "You find a pretty gem, but it crumbles as soon as you touch it. You return to the surface empty handed.";
 		otherwise if N > 15:[magic token]
 			let T be a random off-stage magic token;
 			if T is magic token:
-				say "You find a magic token among the rocks. You take it with you as you swim back to the surface.";
+				say "[bold type]You find a magic token among the rocks.[roman type] You take it with you as you swim back to the surface.";
 				now T is carried by the player;
 			otherwise:
 				say "You find a rusted coin. You leave it behind as you swim back to the surface.";
 		otherwise if N > 12:[sanity token]
 			let T be a random off-stage sanity token;
 			if T is sanity token:
-				say "You find a sanity token among the rocks. You take it with you as you swim back to the surface.";
+				say "[bold type]You find a sanity token among the rocks.[roman type] You take it with you as you swim back to the surface.";
 				now T is carried by the player;
 			otherwise:
-				say "You find a rusted coin. You leave it behind as you swim back to the surface.";	
+				say "You find a rusted coin. You leave it behind as you swim back to the surface.";
 		otherwise if N > 9:[defiance token]
 			let T be a random off-stage defiance token;
 			if T is defiance token:
-				say "You find a defiance token among the rocks. You take it with you as you swim back to the surface.";
+				say "[bold type]You find a defiance token among the rocks.[roman type] You take it with you as you swim back to the surface.";
 				now T is carried by the player;
 			otherwise:
 				say "You find a rusted coin. You leave it behind as you swim back to the surface.";
 		otherwise if N > 5:[wasp wing, if possible]
-			let W be a random off-stage wasp wing;
-			if W is wasp wing and mythical creatures fetish is 1 and egg laying fetish is 1:
-				say "You find a wasp wing among the rocks and carry it with you on your journey back to the surface.";
-				now W is carried by the player;
+			if wasp wing is off-stage and mythical creatures fetish is 1 and egg laying fetish is 1:
+				say "[bold type]You find a wasp wing among the rocks.[roman type] You carry it with you on your journey back to the surface.";
+				now wasp wing is carried by the player;
 			otherwise:
 				say "You find a shard of glass among the rocks, and leave it where you found it as you head back to the surface.";
 		otherwise:

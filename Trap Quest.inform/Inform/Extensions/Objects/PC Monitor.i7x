@@ -134,7 +134,7 @@ To compute ongoingCall of (C - a video-monitor):
 	if the number of dangerous monsters in the location of the player > 0:
 		if C is recording-disgrace and the video-event of C is "doing nothing special", compute disgraceful event of C;
 		compute M protecting against a random dangerous monster in the location of the player;
-	otherwise:[if there are no dangerous monsters around, its time to end the call]
+	otherwise:[if there are no dangerous monsters around, it's time to end the call]
 		if C is not recording-disgrace:[if no disgraceful event happened, we need to make sure there's no recording.]
 			now the video-event of C is "doing nothing special";
 		otherwise if the video-event of C is "doing nothing special":[if something did happen, but we don't have a recording yet, we need to make one]
@@ -287,6 +287,8 @@ A later time based rule:
 				now the severity entry is 100;
 				now the popularity entry is 0;
 				now the viewsfuzz entry is 0;
+				now the lastwitnessed entry is 0;
+				now the deletedtime entry is 0;
 				now the timestamp entry is 0;
 			otherwise:
 				say "[first custom style]'I don't really understand what's going on here but I also know I don't like it. You'd better have a pretty good fucking explanation the next time I see you, [OriginalNameBimbo].'[roman type][line break][FriendName] hangs up the call, and then the PC Monitor goes blank.";
@@ -295,7 +297,7 @@ A later time based rule:
 To beginCall of (C - pc-monitor):
 	let M be the video-caller of C;
 	now the currentlyOn of C is 1;
-	say "[bold type]Suddenly, you hear the sound of your computer making a video call. [roman type]You look up with a start and see that yes indeed, your PC monitor is now wide awake, and with that green calling symbol over a blue background. Moments later, the video call is answered, and [if M is slutty sister]the face of one of the slutty sisters who put you in this game, along with the faces of several unfamiliar people in suits. [otherwise][FriendStatus of M][end if][NewAppearanceReaction of M][NewCircumstanceReaction of M][FriendRespond to M]".
+	say "[bold type]Suddenly, you hear the sound of your computer making a video call. [roman type]You look up with a start and see that yes indeed, your PC monitor is now wide awake, and with that green calling symbol over a blue background. Moments later, the video call is answered, and [if M is slutty sister]the face of one of the slutty sisters who put you in this game, along with several unfamiliar people in suits appear. [otherwise][FriendStatus of M][end if][NewAppearanceReaction of M][NewCircumstanceReaction of M][FriendRespond to M]".
 
 [There is a pc-monitor in Mansion02. ]
 
@@ -332,7 +334,7 @@ Escaping the cell is possible by expending a key or using a teleport
 
 To beginCall of (C - crystal-monitor):
 	let M be the video-caller of C;
-	say "[bold type]Suddenly, you hear the sound of a video call coming from the magical computer. [roman type]You look over at the monitor, and see the flickering image on the screen has changed to a green calling symbol over a blue background. Moments later, the video call is answered, and [if M is slutty sister]the face of one of the slutty sisters who put you in this game, along with the faces of several unfamiliar people in suits. [otherwise][FriendStatus of M][end if][NewAppearanceReaction of M][NewCircumstanceReaction of M][FriendRespond to M]".
+	say "[bold type]Suddenly, you hear the sound of a video call coming from the magical computer. [roman type]You look over at the monitor, and see the flickering image on the screen has changed to a green calling symbol over a blue background. Moments later, the video call is answered, and [if M is slutty sister]the face of one of the slutty sisters who put you in this game, along with several unfamiliar people in suits appear. [otherwise][FriendStatus of M][end if][NewAppearanceReaction of M][NewCircumstanceReaction of M][FriendRespond to M]".
 
 Section - Security screens
 
@@ -357,9 +359,19 @@ A later time based rule:
 	if the player is in Hotel30:
 		let N be the number of filled rows in the Table of Published Disgraces;
 		if N > 0:
-			decrease the currentSlide of security screens by 1;
-			if the currentSlide of security screens <= 0:
-				now the currentSlide of security screens is the number of filled rows in the Table of Published Disgraces;
-			say "[bold type]Your eyes are drawn to a TV screen![roman type] It shows that [HumiliatingSlideDesc (the currentSlide of security screens)]";
+			let notThisOne be 100;
+			while notThisOne > 0:
+				decrease notThisOne by 1;
+				decrease the currentSlide of security screens by 1;
+				if the currentSlide of security screens <= 0:
+					now the currentSlide of security screens is the number of filled rows in the Table of Published Disgraces;
+				choose row (the currentSlide of security screens) in Table of Published Disgraces;
+				if the deletedtime entry <= 0: [Only media that hasn't been deleted is shown]
+					now notThisOne is 0;
+					say "[bold type]Your eyes are drawn to a TV screen![roman type] It shows that [HumiliatingSlideDesc (the currentSlide of security screens)]";
+					if the deletedtime entry is -1:
+						say "The console is not logged in as the user who uploaded the video, so there is no delete button.";
+					otherwise if the deletedtime entry is 0:
+						say "There is a big red delete button available to press underneath the video, but a banner underneath the screens says 'PLEASE AUTHENTICATE TO ENABLE TOUCHSCREEN FUNCTIONALITY.'";
 
 PC Monitor ends here.

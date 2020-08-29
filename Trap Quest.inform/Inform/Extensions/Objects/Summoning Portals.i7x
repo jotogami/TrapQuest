@@ -13,14 +13,54 @@ To decide which number is startingRegionalMonsterCount:
 
 [Number of non-mandatory NPCs that the summoning portals will increase each region to over time.]
 To decide which number is baseRegionalMonsterCount:
-	decide on 3 + game difficulty.
+	decide on 4 + (game difficulty / 2).
 
 To decide which number is the regionalMonsterCount of (R - a region):
 	decide on baseRegionalMonsterCount.
 
-Definition: a monster is summoningRelevant if it is undefeated. [Does it count towards the number of monsters in the region?]
+Definition: a monster is summoningRelevant:
+	if it is undefeated, decide yes;
+	decide no. [Does it count towards the number of monsters in the region?]
 
-Definition: a monster is regionalRelevant if it is summoningRelevant and it is regional. [Does it count towards the number of monsters in the region, and is it currently alive and undefeated in that region?]
+Definition: a monster is regionalRelevant:
+	if it is summoningRelevant and it is regional, decide yes;
+	decide no. [Does it count towards the number of monsters in the region, and is it currently alive and undefeated in that region?]
+
+[This is how we find a monster that has no similar copies alive and kicking in the dungeon]
+Definition: a monster (called M) is dungeon prioritised:
+	if M is alive or M is not summon appropriate or M is not dungeon dwelling, decide no;
+	let T1 be the substituted form of "[ShortDesc of M]";
+	repeat with N running through alive dungeon dwelling summoningRelevant monsters:
+		let T2 be the substituted form of "[ShortDesc of N]";
+		if T1 matches the text T2, decide no;
+	decide yes.
+
+[This is how we find a monster that has no similar copies alive and kicking in the woods]
+Definition: a monster (called M) is woods prioritised:
+	if M is alive or M is not summon appropriate or M is not woods dwelling, decide no;
+	let T1 be the substituted form of "[ShortDesc of M]";
+	repeat with N running through alive woods dwelling summoningRelevant monsters:
+		let T2 be the substituted form of "[ShortDesc of N]";
+		if T1 matches the text T2, decide no;
+	decide yes.
+
+[This is how we find a monster that has no similar copies alive and kicking in the hotel]
+Definition: a monster (called M) is hotel prioritised:
+	if M is alive or M is not summon appropriate or M is not hotel dwelling, decide no;
+	let T1 be the substituted form of "[ShortDesc of M]";
+	repeat with N running through alive hotel dwelling summoningRelevant monsters:
+		let T2 be the substituted form of "[ShortDesc of N]";
+		if T1 matches the text T2, decide no;
+	decide yes.
+
+[This is how we find a monster that has no similar copies alive and kicking in the mansion]
+Definition: a monster (called M) is mansion prioritised:
+	if M is alive or M is not summon appropriate or M is not mansion dwelling, decide no;
+	let T1 be the substituted form of "[ShortDesc of M]";
+	repeat with N running through alive mansion dwelling summoningRelevant monsters:
+		let T2 be the substituted form of "[ShortDesc of N]";
+		if T1 matches the text T2, decide no;
+	decide yes.
 
 A game universe initialisation rule:
 	repeat with S running through summoning portals:
@@ -159,7 +199,7 @@ Calls the regionally summoning function for summoning portal "S", which calls a 
 +!]
 To compute (S - a summoning portal) summoning (M - a monster):
 	compute S regionally summoning M;
-	if M is nonexistent and M is on-stage, set up M;
+	if M is nonexistent and M is alive, set up M;
 	now M is in the location of S;
 	if S is regional, say SummoningFlav of M;[should describe portal closing up if the player is in the room]
 	if M is not interested, now the boredom of M is 1.[should fix issues where the player is in the room and the monster's perception function runs twice in a row]
@@ -186,7 +226,7 @@ Sets the summoning portal "S"'s active flag to false and increases its counter f
 +!]
 To compute portal reset of (S - a summoning portal):
 	let R be the currentRegion of S;
-	if doomed < 5 and the regionalMonsterCount of R <= the number of regionalRelevant monsters, now S is not active;
+	if doomed < 5 and (playerRegion is not R or the regionalMonsterCount of R <= the number of regionalRelevant monsters), now S is not active;
 	increase the spawn-count of S by 1;
 	now the reset-count of S is 0.
 
@@ -223,7 +263,9 @@ To say PortalHint of (S - summoning-circle):
 
 To decide which object is the summonChoice of (S - summoning-circle):
 	let M be a random off-stage dungeon dwelling summon appropriate royal guard; [if no alive guards, prioritise a new guard]
-	if M is nothing or the number of alive royal guards > 0, now M is a random off-stage dungeon dwelling summon appropriate monster;
+	if M is nothing or the number of alive royal guards > 0:
+		now M is a random dungeon prioritised monster;
+		if M is nothing or a random number between 1 and 4 is 1, now M is a random off-stage dungeon dwelling summon appropriate monster;
 	if debugmode > 0, say "Next summon choice of [S] selected to be [M].";
 	decide on M.
 
@@ -236,7 +278,7 @@ To say ActiveWarning of (S - summoning-circle):
 Check entering summoning-circle:
 	if the player is immobile, say "Aren't you a bit tied up at the moment?" instead;
 	if the player is in danger, say "You would, but you are currently in a fight." instead;
-	if the noun is not active, say "You step into the circle. Nothing happens." instead;[Past this point, the player is successful! The “instead” statement terminates functions, as usual.]
+	if the noun is not active, say "You step into the circle. Nothing happens." instead;[Past this point, the player is successful! The "instead" statement terminates functions, as usual.]
 	allocate 2 seconds;[doesn't take all that long]
 	say "You step into the circle, disturbing the growing concentration of magic. It expels energy like a cloud of smoke, which saturates everything in the immediate vicinity, including you!";
 	repeat with C running through clothing in the location of the player:
@@ -263,12 +305,17 @@ Check entering summoning-circle:
 		say "A strange feeling ripples down your spine, and you look over your shoulder to catch your [AssDesc] having a sudden growth spurt!";
 		AssSwell a random number between 1 and 2;
 	if R is 5:[force the player to masturbate, which gets the portal closer to spawning]
-		say "The magic surrounding you seems to rapidly intensify rather than fade away, and your arousal flares as you realise its impossible to resist...";
+		say "The magic surrounding you seems to rapidly intensify rather than fade away, and your arousal flares as you realise it's impossible to resist...";
 		now auto is 1;
 		if the player is very horny, try masturbating;
 		now auto is 0;
 	if R < 5, ChargeUp summoning-circle by a random number between 200 and 300;
 	do nothing instead.
+
+Definition: a thing is summoning-circle-related:
+	if it is plentiful accessory or it is pure totem, decide yes; [common]
+	if it is demonic or it is sure blessed clothing or it is magic themed or it is purity clothing, decide yes; [specific]
+	decide no.
 
 Carry out appeasing something with summoning-circle:
 	now the noun is in the location of the player;
@@ -276,14 +323,6 @@ Carry out appeasing something with summoning-circle:
 		say "[BigNameDesc of the noun] lights up as you throw it into the circle, disintegrating as it absorbs some of the building energy.";
 		let P be the price of the noun;
 		ChargeUp summoning-circle by (P * 75);
-		only destroy the noun;
-	otherwise if the noun is pure totem:
-		say "[BigNameDesc of the noun] lights up as you throw it into the circle, disintegrating as it absorbs the building energy. A wave of relief passes through your surroundings as the last remnants of [NameDesc of the noun] disappear completely.";
-		ChargeUp the second noun by 300;
-		only destroy the noun;
-	otherwise if the noun is demonic:
-		say "[BigNameDesc of the noun] lights up as you throw it into the circle, which turns bright red as it cannibalises its energy. You can feel the magic intensify rapidly as [NameDesc of the noun] bursts into flames.";
-		ChargeDown the second noun by 1000;
 		only destroy the noun;
 	otherwise if the noun is blessed clothing:
 		say "[BigNameDesc of the noun] lights up as you throw it into the circle, [if the noun is not cursable]disintegrating as it absorbs some of the building energy[otherwise]trembling visibly as holy energy stored inside [NameDesc of the noun] absorbs some of the building energy. [bold type]It is no longer blessed[roman type][end if].";
@@ -293,13 +332,21 @@ Carry out appeasing something with summoning-circle:
 		otherwise:
 			only destroy the noun;
 		ChargeUp the second noun by 300;
+	otherwise if the noun is demonic:
+		say "[BigNameDesc of the noun] lights up as you throw it into the circle, which turns bright red as it cannibalises its energy. You can feel the magic intensify rapidly as [NameDesc of the noun] bursts into flames.";
+		ChargeDown the second noun by 1000;
+		only destroy the noun;
+	otherwise if the noun is summoning-circle-related:
+		say "[BigNameDesc of the noun] lights up as you throw it into the circle, disintegrating as it absorbs the building energy. A wave of relief passes through your surroundings as the last remnants of [NameDesc of the noun] disappear completely.";
+		ChargeUp the second noun by 400;
+		only destroy the noun;
 	otherwise:
 		let N be 0;
 		if the noun is clothing, now N is the urine-soak of the noun + the semen-soak of the noun + the milk-soak of the noun;
 		if N <= 0:
 			say "You throw [NameDesc of the noun] into the circle. Nothing happens.";
 		otherwise:
-			say "The bodily fluids in [NameDesc of the noun] start to glow a fluorescent shade of blue as you throw it into the circle, and as the liquid fizzles and evaporates, the energy rapdily builds.";
+			say "The bodily fluids in [NameDesc of the noun] start to glow a fluorescent shade of blue as you throw it into the circle, and as the liquid fizzles and evaporates, the energy rapidly builds.";
 			ChargeDown the second noun by N * 50;
 			clean the noun.
 
@@ -341,7 +388,8 @@ To say PortalHint of (S - giant-statue):
 		say "You can make out an outline of something [if M is human]vaguely human[otherwise]inhuman[end if].".
 
 To decide which object is the summonChoice of (G - giant-statue):
-	let M be a random off-stage summon appropriate woods dwelling monster;
+	let M be a random woods prioritised monster;
+	if M is nothing or a random number between 1 and 4 is 1, let M be a random off-stage summon appropriate woods dwelling monster;
 	if debugmode > 0, say "Next summon choice of [G] selected to be [M].";
 	decide on M.
 
@@ -358,7 +406,7 @@ To say ActiveWarning of (G - giant-statue):
 Check entering giant-statue:
 	if the player is immobile, say "Aren't you a bit tied up at the moment?" instead;
 	if the player is in danger, say "You would, but you are currently in a fight." instead;
-	if the noun is not active, say "You step onto the slab. Nothing happens." instead;[Past this point, the player is successful! The “instead” statement terminates functions, as usual.]
+	if the noun is not active, say "You step onto the slab. Nothing happens." instead;[Past this point, the player is successful! The "instead" statement terminates functions, as usual.]
 	say "You step onto the slab, and the ground around you rumbles as the statue's head turns toward you.";
 	allocate 2 seconds;
 	let V be 0;
@@ -401,6 +449,11 @@ Check entering giant-statue:
 	if R < 5, ChargeUp giant-statue by a random number between 200 and 300;
 	do nothing instead.
 
+Definition: a thing is giant-statue-related:
+	if it is plentiful accessory or it is pure totem, decide yes; [common]
+	if it is pregnancy themed or it is biological clothing or it is sex toy, decide yes; [specific]
+	decide no.
+
 Carry out appeasing something with giant-statue:
 	now the noun is in the location of the player;
 	if the noun is plentiful accessory:
@@ -412,22 +465,22 @@ Carry out appeasing something with giant-statue:
 		say "Glowing vines reach out of the ground, grasping [NameDesc of the noun] as it lights up. Waves of relief passes through your surroundings as they slowly but surely drag it underneath the soil.";
 		ChargeUp the second noun by 900;
 		only destroy the noun;
-	otherwise if the noun is biological clothing:
-		say "Glowing vines reach out of the ground, pulling [NameDesc of the noun] underneath the soil. The surrounding energy somehow grows even more intense.";
-		ChargeDown the second noun by 100;
-		only destroy the noun;
 	otherwise if the noun is sex toy:
 		say "Glowing vines reach out of the ground, twisting around [NameDesc of the noun] as it lights up. Large, pulsating veins bulge out along its surface, grows thicker and harder until finally it explodes, [semen] cascading liberally over your surroundings as [NameDesc of the noun] disappears fully beneath the soil.";
 		only destroy the noun;
 		SemenPuddleUp the size of the noun;[this is where the real power is]
 		ChargeUp the second noun by 300;
+	otherwise if the noun is giant-statue-related:
+		say "Glowing vines reach out of the ground, pulling [NameDesc of the noun] underneath the soil. The surrounding energy fades a bit.";
+		ChargeUp the second noun by 300;
+		only destroy the noun;
 	otherwise:
 		let N be 0;
 		if the noun is clothing, now N is the urine-soak of the noun + the semen-soak of the noun + the milk-soak of the noun;
 		if N <= 0:
 			say "You throw [NameDesc of the noun] into the circle. Nothing happens.";
 		otherwise:
-			say "The bodily fluids in [NameDesc of the noun] start to glow a fluorescent shade of blue as you throw it into the circle, and as the liquid fizzles and evaporates, the energy rapdily builds.";
+			say "The bodily fluids in [NameDesc of the noun] start to glow a fluorescent shade of blue as you throw it into the circle, and as the liquid fizzles and evaporates, the energy rapidly builds.";
 			ChargeDown the second noun by N * 50;
 			clean the noun.
 
@@ -459,7 +512,8 @@ To say PortalHint of (S - teleportation-pad):
 		say "red".
 
 To decide which object is the summonChoice of (G - teleportation-pad):
-	let M be a random off-stage hotel dwelling summon appropriate monster;
+	let M be a random hotel prioritised monster;
+	if M is nothing or a random number between 1 and 4 is 1, let M be a random off-stage hotel dwelling summon appropriate monster;
 	if debugmode > 0, say "Next summon choice of [G] selected to be [M].";
 	decide on M.
 
@@ -473,7 +527,7 @@ To say ActiveWarning of (G - teleportation-pad):
 Check entering teleportation-pad:
 	if the player is immobile, say "Aren't you a bit tied up at the moment?" instead;
 	if the player is in danger, say "You would, but you are currently in a fight." instead;
-	if the noun is not active, say "You step into the circle. Nothing happens." instead;[Past this point, the player is successful! The “instead” statement terminates functions, as usual.]
+	if the noun is not active, say "You step into the circle. Nothing happens." instead;[Past this point, the player is successful! The "instead" statement terminates functions, as usual.]
 	say "You step onto the teleportation pad, and it emits a strong hum as the whole room lights up!";
 	allocate 2 seconds;[doesn't take all that long]
 	let R be a random number between 1 and 5;
@@ -517,6 +571,11 @@ Check entering teleportation-pad:
 	if R < 6, ChargeUp teleportation-pad by a random number between 200 and 300;
 	do nothing instead.
 
+Definition: a thing is teleportation-pad-related:
+	if it is plentiful accessory or it is pure totem, decide yes; [common]
+	if it is metal clothing or it is mechanical joint or it is electric fan or it is unlock-key or it is metal-disc or it is biological clothing or it is food, decide yes; [unique]
+	decide no.
+
 Carry out appeasing something with teleportation-pad:
 	now the noun is in the location of the player;
 	allocate 2 seconds;
@@ -529,10 +588,6 @@ Carry out appeasing something with teleportation-pad:
 		say "[BigNameDesc of the noun] lights up as you throw it onto the pad, disintegrating as it absorbs the building energy. A wave of relief passes through your surroundings as the last remnants of [NameDesc of the noun] disappear completely.";
 		ChargeUp the second noun by 700;
 		only destroy the noun;
-	otherwise if the noun is metal clothing or the noun is mechanical joint or the noun is electric fan or the noun is unlock-key or the noun is metal disc:
-		say "[BigNameDesc of the noun] lights up as you throw it onto the pad, emitting bright sparks. You can feel that lots of [NameDesc of the second noun][']s energy is absorbed as [NameDesc of the noun] bursts in a hail of yellow embers.";
-		ChargeUp the second noun by 150;
-		only destroy the noun;
 	otherwise if the noun is biological clothing or the noun is food:
 		say "You throw [NameDesc of the noun] onto the pad, which powers up and teleports [him of the noun] away, using up some of its energy.";
 		ChargeUp the second noun by 100;
@@ -540,6 +595,10 @@ Carry out appeasing something with teleportation-pad:
 		while the noun is in the location of the player:
 			now the noun is in a random placed room;
 		if the noun is candy, destroy the noun; [Otherwise a dumb player could misplace all their candy]
+	otherwise if the noun is teleportation-pad-related:
+		say "[BigNameDesc of the noun] lights up as you throw it onto the pad, emitting bright sparks. You can feel that lots of [NameDesc of the second noun][']s energy is absorbed as [NameDesc of the noun] bursts in a hail of yellow embers.";
+		ChargeUp the second noun by 150;
+		only destroy the noun;
 	otherwise:
 		say "You throw [NameDesc of the noun] into onto the pad. Nothing happens.".
 
@@ -579,7 +638,8 @@ To say MummyType of (S - mysterious-mummy):
 Understand "winged", "crawling", "unsettling", "glowing", "decorated", "busty", "horned", "sly" as mysterious-mummy when the item described is active.
 
 To decide which object is the summonChoice of (S - mysterious-mummy):
-	let M be a random off-stage summon appropriate mansion dwelling monster;
+	let M be a random mansion prioritised monster;
+	if M is nothing or a random number between 1 and 4 is 1, let M be a random off-stage summon appropriate mansion dwelling monster;
 	if debugmode > 0, say "Next summon choice of [S] selected to be [M].";
 	decide on M.
 
@@ -610,7 +670,7 @@ To say PortalHint of (S - mysterious-mummy):
 			say "A squirming [man of a random acolyte] wrapped from head to toe in white linen, with a purple aura highlighting [his of a random acolyte] features. [big his of a random acolyte] arms are crossed in front of [his of a random acolyte] chest, but it looks like [his of a random acolyte] wrists are being held together by an invisible rope. There's nothing lewd about the way [he of a random acolyte]'s standing, but whenever you look at [him of a random acolyte], you can't help but feel like you're watching someone having sex.";
 		otherwise if M is gladiator: [gladiator]
 			say "A tall [man of a random gladiator] wrapped from head to toe in white linen, with a golden aura highlighting [his of a random gladiator] busty features. [if futanari fetish is 1 or lady fetish is 2]The cloth is distorted by a banana-like shape near [his of a random gladiator] crotch, which twitches slightly[otherwise]There is a dark spot near [his of a random gladiator] crotch, which grows slowly[end if] as [his of a random gladiator] visibly muscular arms struggle against their wrappings.";
-		otherwise if M is gargoyle or M is vampiress: [vampiress(8); 3 used to be gargoyle, but she no longer re-spawns.]
+		otherwise if M is gargoyle or M is vampiress:
 			say "A feminine figure wrapped in white linen, [his of vampiress] features highlighted by a faint pink aura. There is a bat resting on one of [his of vampiress] shoulders.";
 		otherwise if M is mannequin: [mannequin]
 			say "A feminine figure wrapped from head to toe in white linen, with a black aura surrounding [his of a random mannequin] features. Dusky makeup is peppered over [his of a random mannequin] face, and [his of a random mannequin] arms are splayed at disturbing angles to [his of a random mannequin] sides. It seems to change poses whenever you look away for more than a second, and you can't help but notice a strange clicking noise whenever you get too close.";
@@ -619,7 +679,7 @@ To say PortalHint of (S - mysterious-mummy):
 		otherwise if M is kitsune: [kitsune; shouldn't happen]
 			say "A feminine figure wrapped in white linen from head to toe, which a silvery aura highlighting [his of kitsune] features. [big he of kitsune] has just about your build and height, and [his of kitsune] arms are crossed in front of [his of kitsune] chest. The wrappings don't actually look that secure, and [his of kitsune] head always seems to face away from you no matter where you try to stand. It's almost like it's trying to trick you.";
 		otherwise if M is hellhound: [hellhound]
-			say "A feminine figure wrapped in linen from head to toe, with a red aura highlight [his of hellhound] features. [big he of hellhound]'s on all fours, and there is a leather collar and leash gripped in one of [his of hellhound] hands. [one of]For some reason [he of hellhound]'s holding it from the wrong end[or][big he of hellhound]'s holding it from the collar end instead of the leash[at random].";
+			say "A feminine figure wrapped in linen from head to toe, with a red aura highlight [his of hellhound] features. [big he of hellhound][']s on all fours, and there is a leather collar and leash gripped in one of [his of hellhound] hands. [one of]For some reason [he of hellhound]'s holding it from the wrong end[or][big he of hellhound]'s holding it from the collar end instead of the leash[at random].";
 		otherwise: [ghost?]
 			say "A [man of a random ghost]ly figure wrapped in white linen, with a green aura highlighting [his of a random ghost] features in the relative darkness. The fabric is pulled taut near all of [his of a random ghost] sensitive parts, and the air around you is positively dripping with [italic type]intent[roman type]. You're feel a little violated just standing in the same room too long.";
 	otherwise:
@@ -638,7 +698,7 @@ To say ActiveWarning of (S - mysterious-mummy):
 	otherwise if M is mannequin: [mannequin]
 		say "A particularly voluptuous mannequin shuffles out of the crowd, holding a live bat in its outstretched hands. A pink glow surrounds the mummy as the bat flaps over and lands on her shoulder.";
 	otherwise if M is demoness: [demoness]
-		say "You hear some scuffling outside as a hidden doorway near the back of the room opens, and two cultists come through on their hands and knees. A demoness comes into view behind them, her heels *click* *clacking* on the wood floor as she confidently struts past them. [line break][first custom style]'[one of]The moment of my rebirth is at hand. Go.'[or]Leave me. You are not worthy to witness my transformation.'[or]Get out of my sight or my rebirth is going to wait until I finish ruining you two again.'[at random][roman type][line break]The demoness shoos the cultists away and holds her hand out toward the mummy, which seems to hesitate before taking it. The mummy takes on an angry red glow as it covers its passenger in frayed linen.";
+		say "You hear some scuffling outside as a hidden doorway near the back of the room opens, and two cultists come through on their hands and knees. A demoness comes into view behind them, her heels *click* *clacking* on the wood floor as she confidently struts past them.[line break][first custom style]'[one of]The moment of my rebirth is at hand. Go.'[or]Leave me. You are not worthy to witness my transformation.'[or]Get out of my sight or my rebirth is going to wait until I finish ruining you two again.'[at random][roman type][line break]The demoness shoos the cultists away and holds her hand out toward the mummy, which seems to hesitate before taking it. The mummy takes on an angry red glow as it covers its passenger in frayed linen.";
 	otherwise if M is mannequin: [mannequin]
 		say "One of the many mannequins shuffles its way out of the crowd, holding a small make-up kit. It clicks awkwardly as it lurches up to the mummy and delicately applies blush, lipstick and then mascara to the wrappings on its face. A black glow slowly begins to gather around it as the mannequin trudges back into the crowd.";
 	otherwise if M is hellhound: [hellhound]
@@ -648,6 +708,11 @@ To say ActiveWarning of (S - mysterious-mummy):
 	if S is in the location of the player, say " Distinctly unclean energy seems to slowly gather around it.[line break][variable custom style]Something is happening.[roman type][line break]";
 	otherwise say "[variable custom style]I wonder what's going on?[roman type][line break]";
 	if newbie tips is 1, say "[one of][newbie style]Newbie tip: Uh-oh, looks like the mansion summoning altar (the mummy) just activated! It will slowly count down until it releases a brand new monster into the mansion. Try increasing its timer by entering it or offering items to it, or perform some sexual acts nearby to decrease it![roman type][line break][or][stopping]".
+
+Definition: a thing is mysterious-mummy-related:
+	if it is plentiful accessory or it is pure totem, decide yes; [common]
+	if it is sure blessed clothing or it is ectoplasm or it is possession clothing or it is infernal gem, decide yes; [unique]
+	decide no.
 
 Carry out appeasing something with mysterious-mummy:
 	now the noun is in the location of the player;
@@ -661,10 +726,6 @@ Carry out appeasing something with mysterious-mummy:
 			say "[BigNameDesc of noun] lights up as you place it up at the mummy's feet, disintegrating as it absorbs the building energy. A wave of relief passes through your surroundings as the last remnants of [NameDesc of the noun] disappear completely.";
 			ChargeUp the second noun by 1000;
 			only destroy the noun;
-		otherwise if the noun is ectoplasm or the noun is possession clothing or the noun is infernal gem:
-			say "[BigNameDesc of noun] lights up as you place it at the mummy's feet, and its aura brightens visibly. You can feel the magic intensifying as [NameDesc of noun] bursts into flames.";
-			ChargeDown the second noun by 400;
-			only destroy the noun;
 		otherwise if the noun is blessed clothing:
 			say "[BigNameDesc of the noun] lights up as you throw it into the circle, [if the noun is not cursable]disintegrating as it absorbs some of the building energy[otherwise]trembling visibly as holy energy stored inside [NameDesc of the noun] absorbs some of the building energy. [bold type]It is no longer blessed[roman type][end if].";
 			if the noun is cursable:
@@ -673,6 +734,10 @@ Carry out appeasing something with mysterious-mummy:
 			otherwise:
 				only destroy the noun;
 			ChargeUp the second noun by 300;
+		otherwise if the noun is mysterious-mummy-related:
+			say "[BigNameDesc of noun] lights up as you place it at the mummy's feet, and its aura brightens visibly before dying away. You can feel the magic weakening as [NameDesc of noun] bursts into flames.";
+			ChargeUp the second noun by 400;
+			only destroy the noun;
 		otherwise:
 			say "You place [NameDesc of the noun] in front of [NameDesc of the second noun], but nothing happens.".
 

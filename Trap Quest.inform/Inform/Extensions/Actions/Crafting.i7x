@@ -46,6 +46,7 @@ Carry out crafting:
 			if the recipe of current-alchemy-key is memorised, progress quest of recipe-quest;
 			compute recipe specific cursing of T;
 			if T is clothing or T is alchemy product, now T is unsure;
+			now T is unowned;
 			now T is carried by the player;
 			if the noun is bottle:
 				say "The liquid swirls around, and then in a puff of smoke, it turns into a [T]! Magic! ";
@@ -66,8 +67,7 @@ Carry out crafting:
 			let H be a random worn blue scrunchie;
 			if H is clothing:
 				compute class outfit of H;
-				say "Magic surges from [NameDesc of H] to the rest of your body!";
-				MagicPowerUp 1;
+				if playerRegion is not school, MagicPowerUp 1;
 		otherwise:
 			if there is a product-highlighted thing:
 				say "Nothing happens.";

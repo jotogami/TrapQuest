@@ -14,6 +14,12 @@ Figure of Gladiator is the file "NPCs/MultiFloor/Gladiator/gladiator1a.jpg".
 Figure of ghost 5 is the file "NPCs/Mansion/Ghost/ghost5.png".
 Figure of ghost 6 is the file "NPCs/Mansion/Ghost/ghost6.png".
 Figure of ghost 7 is the file "NPCs/Mansion/Ghost/ghost7.png".
+To decide which figure-name is the monster-image of (M - ghostly tentacle):
+	decide on figure of ghost 5.
+To decide which figure-name is the monster-image of (M - a ghost):
+	decide on figure of ghost 6.
+To decide which figure-name is the monster-image of (M - jismbodied ghost):
+	decide on figure of ghost 7.
 
 Figure of Iron Maiden is the file "Env/Mansion/ironmaiden1.jpg".
 Figure of IronMaidenBackground is the file "Map/maiden2.png".
@@ -41,6 +47,15 @@ Figure of Mirror Cutscene 1 is the file "Special/Cutscene/cutscene-mirror1.jpg".
 Figure of Mirror Cutscene 2 is the file "Special/Cutscene/cutscene-mirror2.jpg".
 Figure of Mirror Cutscene 3 is the file "Special/Cutscene/cutscene-mirror3.jpg".
 
+Figure of pink smoke 0 is the file "Env/MultiFloor/smoke0.jpg".
+Figure of pink smoke 1 is the file "Env/MultiFloor/smoke1.jpg".
+Figure of pink smoke 2 is the file "Env/MultiFloor/smoke2.jpg".
+
+To decide which figure-name is the examine-image of (T - pink smoke):
+	if the player is upright, decide on figure of pink smoke 0;
+	if the player is female, decide on figure of pink smoke 2;
+	decide on figure of pink smoke 1.
+
 Figure of babhound is the file "NPCs/Mansion/Hound/hound3.png".
 Figure of Puppy Cutscene 1 is the file "Special/Cutscene/cutscene-puppy1.png".
 Figure of Puppy Cutscene 2 is the file "Special/Cutscene/cutscene-puppy2.png".
@@ -54,12 +69,32 @@ Figure of Podium Cutscene 2 is the file "Special/Cutscene/cutscene-podium2.png".
 
 Figure of quiz predicament is the file "Special/Cutscene/cutscene-quiz2.jpg".
 
+Figure of rank 2 candy is the file "NPCs/School/Student/student5c.png".
+Figure of rank 3 candy dry is the file "NPCs/School/Student/student5e.png".
+Figure of rank 3 candy messy is the file "NPCs/School/Student/student5eM.png".
+Figure of rank 3 candy double diaper is the file "NPCs/School/Student/student5eD.png".
+To decide which figure-name is figure of rank 3 candy:
+	if student-candy is messy, decide on figure of rank 3 candy messy;
+	if the student-diaper-state of student-candy is 1, decide on figure of rank 3 candy double diaper;
+	decide on figure of rank 3 candy dry.
+[Figure of rank 4 candy is the file "NPCs/School/Student/student5eD.png".]
+
+Figure of rank 1 rosie is the file "NPCs/School/Student/student1a.png".
+Figure of rank 2 rosie is the file "NPCs/School/Student/student1c.png".
+
 Figure of Teacher Hannah is the file "NPCs/School/Teacher/teacher5a.png".
 
 Figure of throne is the file "Env/Dungeon/throne1b.jpg".
 Figure of transformed throne is the file "Env/Dungeon/throne2b.jpg".
 
 Figure of urinal is the file "Env/MultiFloor/urinal2.png".
+Figure of Berri Wrestler Urinal is the file "Env/MultiFloor/urinal3a.jpg".
+Figure of Berri Urinal is the file "Env/MultiFloor/urinal3b.jpg".
+To decide which figure-name is the examine-image of (T - urinal):
+	if the hotel-urinal-scene of woman-player > 0 and the woman-status of woman-player is 93 and the player is in Hotel31:
+		if there is a wrestler in Holding Pen, decide on Figure of Berri Wrestler Urinal;
+		decide on Figure of Berri Urinal;
+	decide on figure of urinal.
 
 Figure of Vibe Pose Predicament 1 is the file "Special/Cutscene/cutscene-vibe-pose3.jpg".
 Figure of Vibe Pose Predicament 2 is the file "Special/Cutscene/cutscene-vibe-pose4.jpg".

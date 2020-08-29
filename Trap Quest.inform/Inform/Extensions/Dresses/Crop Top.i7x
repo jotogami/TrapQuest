@@ -1,6 +1,6 @@
 Crop Top by Dresses begins here.
 
-A crop top is a kind of overdress. A crop top is usually unskirted. A crop top is usually belly exposing. The soak-limit of a crop top is usually 16. A crop top is usually sheer-when-wet. A crop top is usually erect-nipple-exposing. Understand "crop", "top" as crop top.
+A crop top is a kind of overdress. A crop top is usually unskirted. A crop top is usually belly exposing. A crop top is usually sheer-when-wet. A crop top is usually erect-nipple-exposing. Understand "crop", "top" as crop top.
 
 The printed name of crop top is usually "[clothing-title-before]crop top[clothing-title-after]".
 
@@ -12,9 +12,6 @@ To say ShortDesc of (C - a crop top):
 
 To decide which number is the initial outrage of (C - a crop top):
 	decide on 1.
-
-To decide which number is the original price of (C - a crop top):
-	decide on 5.
 
 To set up influence of (C - a crop top):
 	set up stat-based influence of C.
@@ -78,7 +75,9 @@ Definition: size does matter crop top is penis themed: decide yes.
 Definition: size does matter crop top is boob themed: decide yes.
 Definition: size does matter crop top is white themed: decide yes.
 
-Definition: size does matter crop top is fetish appropriate if diaper quest is 0.
+Definition: size does matter crop top is fetish appropriate:
+	if diaper quest is 0, decide yes;
+	decide no.
 
 To decide which number is the initial outrage of (C - size does matter crop top):
 	decide on 8.
@@ -162,7 +161,9 @@ deepthroat princess crop top is a crop top. The printed name of deepthroat princ
 
 deepthroat princess crop top is high cut. deepthroat princess crop top is transformation-rare.
 
-Definition: deepthroat princess crop top is fetish appropriate if diaper quest is 0.
+Definition: deepthroat princess crop top is fetish appropriate:
+	if diaper quest is 0, decide yes;
+	decide no.
 
 To decide which number is the initial outrage of (C - deepthroat princess crop top):
 	decide on 10.
@@ -184,7 +185,9 @@ To say ShortDesc of (C - deepthroat princess crop top):
 Definition: deepthroat princess crop top is royalty themed: decide yes.
 Definition: deepthroat princess crop top is oral sex themed: decide yes.
 Definition: deepthroat princess crop top is white themed: decide yes.
-Definition: deepthroat princess crop top is transformation-protected if the class of the player is princess.
+Definition: deepthroat princess crop top is transformation-protected:
+	if the class of the player is princess, decide yes;
+	decide no.
 
 Part 6 - Spoiled Crop Top
 
@@ -310,7 +313,9 @@ To decide which figure-name is clothing-image of (C - rugged-crop-top):
 	decide on figure of rugged crop top.
 
 Definition: rugged-crop-top is leopard themed: decide yes.
-Definition: rugged-crop-top is class-transformation-protected if the class of the player is barbarian.
+Definition: rugged-crop-top is class-transformation-protected:
+	if the class of the player is barbarian, decide yes;
+	decide no.
 
 To say ClothingDesc of (C - rugged-crop-top):
 	say "A leopard print crop top that doesn't cover your belly. The cut of the fabric leaves one of your shoulders exposed.".
@@ -320,6 +325,8 @@ To say ShortDesc of (C - rugged-crop-top):
 
 To decide which object is the unique-upgrade-target of (C - rugged-crop-top):
 	if leopard print tube top is off-stage and diaper quest is 0, decide on leopard print tube top.
+
+Part 11 - Nipple Holes Crop Top
 
 nipples-crop-top is a crop top. nipples-crop-top is transformation-rare. nipples-crop-top is dense. nipples-crop-top is normally-nipple-exposing. The printed name of nipples-crop-top is "[clothing-title-before]nipple holes crop top[clothing-title-after]". The text-shortcut of nipples-crop-top is "nct". Figure of nipples-crop-top is the file "Items/Clothes/Upper/CropTops/croptop12.jpg". Understand "nipple", "holes" as nipples-crop-top.
 To decide which figure-name is clothing-image of (H - nipples-crop-top):
@@ -340,6 +347,15 @@ To decide which number is the initial outrage of (C - nipples-crop-top):
 A gropability rule:
 	if nipples-crop-top is worn and breasts is lewdly exposed, now the gropability of breasts is 9999.
 
+To construct unique buttons for (T - nipples-crop-top):
+	if ButtonTableFull is 0 and the player is in a predicament room:
+		choose a blank row in the Table of Buttons;
+		now the ButtonImage entry is Figure of ArmBlockIcon;
+		now the ButtonCommand entry is "adjust arms";
+		now the ButtonColour entry is lightModeFullGreen.
+
+Part 12 - Football Crop Top
+
 football-crop-top is a crop top. football-crop-top is unique. football-crop-top is dense. football-crop-top is fully exposing. football-crop-top is only arm covering. The printed name of football-crop-top is "[clothing-title-before]football crop top[clothing-title-after]". The text-shortcut of football-crop-top is "fct". Figure of football-crop-top is the file "Items/Clothes/Upper/CropTops/croptop13.png". Understand "football" as football-crop-top.
 To decide which figure-name is clothing-image of (H - football-crop-top):
 	decide on figure of football-crop-top.
@@ -357,5 +373,31 @@ Definition: football-crop-top is white themed: decide yes.
 
 To decide which number is the initial outrage of (C - football-crop-top):
 	decide on 4.
+
+Part 13 - Underboob Sweater
+
+underboob sweater is a crop top. underboob sweater is very low cut. underboob sweater is only arm covering. underboob sweater is wool. underboob sweater is dense. underboob sweater is normally-nipple-covering. The printed name of underboob sweater is "[clothing-title-before]underboob sweater[clothing-title-after]". The text-shortcut of underboob sweater is "ubs".
+
+Figure of underboob sweater is the file "Items/Clothes/Upper/CropTops/croptop14.png".
+
+To decide which figure-name is clothing-image of (C - underboob sweater):
+	decide on figure of underboob sweater.
+
+To say ClothingDesc of (C - underboob sweater):
+	say "This longsleeved white sweater would be very modest if it wasn't for the fact that it stops just below your nipples.".
+
+To say ShortDesc of (C - underboob sweater):
+	say "underboob sweater".
+To say MediumDesc of (C - underboob sweater):
+	say "provocative underboob sweater".
+
+To decide which number is the initial outrage of (C - underboob sweater):
+	decide on 4.
+
+To decide which number is the adult-influence of (C - underboob sweater):
+	decide on 1.
+
+Definition: underboob sweater is white themed: decide yes.
+
 
 Crop Top ends here.

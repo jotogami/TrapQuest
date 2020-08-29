@@ -1,34 +1,14 @@
 Monster Functions by Monster Framework begins here.
 
-[!<DeinterestMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To deinterest (M - a monster):
 	bore M for 0 seconds.
 
-[!<DistractMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To distract (M - a monster):
 	bore M for 50 seconds.
 
-[!<BoreMonster>+
-
-REQUIRES COMMENTING
-
-!]
 To bore (M - a monster):
 	bore M for 500 seconds.
 
-[!<BoreMonsterForNSeconds>+
-
-REQUIRES COMMENTING
-
-+!]
 To bore (M - a monster) for (N - a number) seconds:
 	dislodge M;
 	compute common boredom of M for N seconds;
@@ -42,6 +22,7 @@ To compute common boredom of (M - a monster) for (N - a number) seconds:
 	now the objectification of M is 0;
 	now the babification of M is 0;
 	now the friendly boredom of M is 0;
+	now the last-tripped of M is 0;
 	if debugmode > 1, say "Deinteresting [ShortDesc of M]. Latest appearance seen is [latest-appearance of M]. Refreshing...";
 	now the latest-appearance of M is the appearance of the player;
 	if debugmode > 1, say "Latest appearance seen is now [latest-appearance of M].";
@@ -53,19 +34,9 @@ To compute common boredom of (M - a monster) for (N - a number) seconds:
 		decrease the charge of the dungeon altar by a random number between 1 and 50;
 		if the charge of hotel altar > 0, decrease the charge of hotel altar by a random number between 1 and 50;
 
-[!<SatisfyMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To satisfy (M - a monster):
 	satisfy M for 500 seconds.
 
-[!<SatisfyMonsterForNSeconds>+
-
-REQUIRES COMMENTING
-
-+!]
 To satisfy (M - a monster) for (N - a number) seconds:
 	if M is interested:
 		bore M for N seconds;
@@ -76,11 +47,6 @@ To satisfy (M - a monster) for (N - a number) seconds:
 	otherwise:
 		bore M for N seconds. [We still want to dislodge etc. even if they weren't interested for some reason.]
 
-[!<SaySatisfiedFlavOfMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To say SatisfiedFlav of (M - a monster):
 	if M is in the location of the player and M is not dying:
 		let U be 0;
@@ -89,21 +55,11 @@ To say SatisfiedFlav of (M - a monster):
 
 Part - Destroying
 
-[!<DestroyMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To destroy (M - a monster):
 	if the player is in the location of M, decrease the charge of the dungeon altar by the difficulty of M * 10;
 	if the player is in the location of M and the charge of hotel altar > 0, decrease the charge of hotel altar by the difficulty of M * 10;
 	now M is dying.
 
-[!<FinallyDestroyMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To finally destroy (M - a monster):
 	uniquely destroy M;
 	now the times-met of M is 0;
@@ -115,11 +71,6 @@ To finally destroy (M - a monster):
 	remove M from play;
 	reset M.
 
-[!<ResetMonster>+
-
-REQUIRES COMMENTING
-
-+!]
 To reset (M - a monster): [We do this when the player faints to all monsters, even if they are remaining in play.]
 	now M is not dying;
 	deinterest M; [this includes dislodging]
@@ -153,7 +104,18 @@ To reset (M - a monster): [We do this when the player faints to all monsters, ev
 				finally destroy M.
 
 To loot (M - a monster):
-	standard loot M.
+	let X be nothing;
+	sort the taxableItems of M in random order;
+	sort the taxableItems of M in reverse desirability order;
+	repeat with T running through the taxableItems of M:
+		if T is off-stage, now X is T;
+	if X is a thing:
+		now X is in the location of the player;
+		compute loot dropping of X by M;
+		increase the loot dropped of M by 1;
+		compute autotaking X;
+	otherwise:
+		standard loot M.
 
 To standard loot (M - a monster):
 	let X be a random off-stage plentiful accessory;
@@ -161,11 +123,11 @@ To standard loot (M - a monster):
 	unless X is nothing:
 		now X is in the location of the player;
 		if X is plentiful accessory, compute appraisal of X from M;
-		say LootFlav of X by M;
+		compute loot dropping of X by M;
 		increase the loot dropped of M by 1;
 		compute autotaking X.
 
-To say LootFlav of (X - a thing) by (M - a monster):
+To compute loot dropping of (X - a thing) by (M - a monster):
 	say "[BigNameDesc of M] [if the loot dropped of M > 0]also [end if][if M is dying or M is not in the location of the player]dropped[otherwise]drops[end if] a [printed name of X]!".
 
 To compute appraisal of (X - an accessory) from (M - a monster):

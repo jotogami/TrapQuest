@@ -1,11 +1,15 @@
 Diaper Covers by Knickers begins here.
 
-diaper cover is a kind of clothing. The armour of diaper cover is 10. A diaper cover is usually manly. A diaper cover is usually crotch-intact. A diaper cover is usually polyester. A diaper cover is usually rare. The soak-limit of a diaper cover is usually 24. A diaper cover is usually diaper-addiction-influencing.
+diaper cover is a kind of clothing. The armour of diaper cover is 10. A diaper cover is usually manly. A diaper cover is usually crotch-intact. A diaper cover is usually polyester. A diaper cover is usually rare. A diaper cover is usually diaper-addiction-influencing.
 
 Definition: a diaper cover is baby themed: decide yes.
 Definition: a diaper cover is pink themed: decide yes.
-Definition: a diaper cover is fetish appropriate if diaper quest is 1.
-Definition: a diaper cover is product if it is fetish appropriate.
+Definition: a diaper cover is fetish appropriate:
+	if diaper quest is 1, decide yes;
+	decide no.
+Definition: a diaper cover is product:
+	if it is fetish appropriate, decide yes;
+	decide no.
 Definition: a diaper cover is recipe specific: decide yes.
 
 To decide which number is the alchemy key of (C - a diaper cover):
@@ -66,6 +70,8 @@ The printed name of frilly white diaper cover is usually "[clothing-title-before
 Figure of frilly white diaper cover is the file "Items/Clothes/Lower/Underwear/Diapers/Covers/diapercover1.png".
 
 To decide which figure-name is clothing-image of (C - a frilly white diaper cover):
+	decide on figure of frilly white diaper cover.
+To decide which figure-name is the recipe-image of (C - a diaper cover):
 	decide on figure of frilly white diaper cover.
 
 To say ClothingDesc of (C - a frilly white diaper cover):

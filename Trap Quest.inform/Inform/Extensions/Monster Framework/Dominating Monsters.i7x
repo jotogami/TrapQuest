@@ -1,20 +1,33 @@
 Dominating Monsters by Monster Framework begins here.
 
-Definition: a monster is permanently banishable if it is intelligent. [Can't be summoned again once banished]
+Definition: a monster is permanently banishable:
+	if it is intelligent, decide yes;
+	decide no. [Can't be summoned again once banished]
 To compute banishment of (M - a monster):
 	compute unique banishment of M;
-	if there are things retained by M:
-		say "Your [list of things retained by M] [if the number of things retained by M > 1]are[otherwise]is[end if] also left behind.";
-		repeat with K running through things retained by M:
+	if there are things carried by M:
+		say "Your [list of things carried by M] [if the number of things carried by M > 1]are[otherwise]is[end if] also left behind.";
+		repeat with K running through things carried by M:
 			now K is in the location of the player;
-			now M is not retaining K;
-			now M is not withholding K;
 			compute autotaking K;
 	if there is a worn notebook, compute studying 1 of M;
 	destroy M;
 	if M is permanently banishable, now M is permanently banished.
 To compute unique banishment of (M - a monster):
 	do nothing.
+To compute auto banished loot of (M - a monster):
+	compute banished loot of M;
+	if the loot dropped of M is 0, loot M.
+To compute banished loot of (M - a monster):
+	repeat with C running through the banishItems of M:
+		compute banish drop of C from M.
+To compute banish drop of (C - a thing) from (M - a monster):
+	if C is off-stage:
+		now C is in the location of the player;
+		if C is plentiful accessory, compute appraisal of C from M;
+		say "[BigNameDesc of M] left [NameDesc of C] behind.";
+		increase the loot dropped of M by 1;
+		compute autotaking C.
 
 To compute (M - a monster) slinking away:
 	say SlinkAwayFlav of M;
@@ -23,13 +36,17 @@ To compute (M - a monster) slinking away:
 To say SlinkAwayFlav of (M - a monster):
 	say "[BigNameDesc of M] slinks away as soon as [he of M] has the strength.".
 
-Definition: a monster is automatically banishable if it is not intelligent. [Will this NPC automatically resolve their disappearance rather than giving the player options on what to do?]
-Definition: a monster is auto-banish-loot-dropping if it is not intelligent. [Will it automatically drop jewellery when it is banished in this manner?]
+Definition: a monster is automatically banishable:
+	if it is not intelligent, decide yes;
+	decide no. [Will this NPC automatically resolve their disappearance rather than giving the player options on what to do?]
+Definition: a monster is auto-banish-loot-dropping:
+	if it is not intelligent, decide yes;
+	decide no. [Will it automatically drop jewellery when it is banished in this manner?]
 To compute automatic banishment of (M - a monster):
 	compute unique automatic banishment of M;
 	if M is in the location of the player and M is not dying: [This way we can override the rest of this function by destroying the NPC in the 'unique banishment' function.]
 		say BanishFleeFlav of M;
-		if M is auto-banish-loot-dropping, loot M;
+		if M is auto-banish-loot-dropping, compute auto banished loot of M;
 		compute banishment of M.
 To say BanishFleeFlav of (M - a monster):
 	say "[BigNameDesc of M] turns tail and flees! You get the feeling you won't be seeing [him of M] again any time soon!".
@@ -42,6 +59,7 @@ To say BanishDesc of (M - a monster):
 To compute forced banishment of (M - a monster):
 	if M is intelligent and the player is able to speak, say BanishDemandFlav of M;
 	say BanishForceFlav of M;
+	compute banished loot of M;
 	compute banishment of M.
 To say BanishDemandFlav of (M - a monster):
 	say "[variable custom style]'[if the player is feeling dominant][one of]I will spare you this once. Next time you may not remain in one piece.'[or]Only pain at my hand remains for you here. Begone.'[or]I'd better never see you again. Understand?'[at random][otherwise][one of]Leave now, and never come back.'[or]This will keep happening unless you leave this place.'[or]While I'm here, you should leave this place alone.'[at random][end if][roman type][line break]".
@@ -51,7 +69,9 @@ To say BanishForceFlav of (M - a monster):
 	if E is a thing, now T is "[NameDesc of E]";
 	say "You [if the delicateness of the player < a random number between 8 and 14][one of]smack [NameDesc of M] with [T][or]start to spank [NameDesc of M][or]take aim and try to smack [NameDesc of M] in the crotch[purely at random][one of] until [he of M] is sent running[or] and force [him of M] to flee[or], making [him of M] flee in fear[in random order]![otherwise][one of]puff up your chest to try and look as intimidating as possible[or]squint your eyes, hoping that you don't look too pathetic[or]bare your teeth[then at random]. [BigNameDesc of M] looks like [he of M] got the message - [he of M] [one of]turns and leaves, not stopping to look back[or]quickly takes [his of M] leave[purely at random].[end if]".
 
-Definition: a monster is taxable if it is intelligent. [Can this NPC have items demanded of them upon defeat?]
+Definition: a monster is taxable:
+	if it is intelligent, decide yes;
+	decide no. [Can this NPC have items demanded of them upon defeat?]
 To say TaxDesc of (M - a monster):
 	say "Demand an item in return for mercy.".
 To compute taxing of (M - a monster):
@@ -89,11 +109,13 @@ To say PityOfferResponse of (M - a monster):
 	if M is friendly, say "[speech style of M]'[one of]You've proven your point. Let's not do this again.'[or]Haha, you got me. How humiliating.'[or][if the appearance of the player >= the outrage tolerance of M]Maybe if you stop dressing like a whore[otherwise]Fair is fair[end if].'[in random order][roman type][line break]";
 	otherwise say "[speech style of M]'[one of]Fuck you. Next time won't go like this again.'[or]What a waste of your final victory over me.'[or]Listen closely. We are not friends.'[in random order][roman type][line break]".
 
-Definition: a monster is penis-fuckable if it is wenchy. [Can this NPC be fucked with a penis when defeated?]
+Definition: a monster is penis-fuckable:
+	if it is wenchy, decide yes;
+	decide no. [Can this NPC be fucked with a penis when defeated?]
 Definition: yourself is penis-fuckable: [Can the player use their penis to dominant-fuck?]
 	if diaper quest is 1, decide no;
 	if there is a worn condom of kings, decide no;
-	if there is a worn chastity cage, decide no;
+	if there is a worn chastity bond, decide no;[All chastity items prevent penis access, currently]
 	if there is a worn restricting research airhancer, decide no;
 	if sexual-penis-length > 0:
 		if there is a worn strapon-panties, decide yes;[most strapons ARE undisplacable pussy covering clothing.]
@@ -107,28 +129,34 @@ To say PenisFucker:
 To say PenisFuckDesc of (M - a monster):
 	say "Attempt to dominate [him of M] with your [PenisFucker].".
 
-Definition: a monster is vagina-rideable if it is wenchy. [Can this NPC have the player use their pussy to dominate them?]
+Definition: a monster is vagina-rideable:
+	if it is wenchy, decide yes;
+	decide no. [Can this NPC have the player use their pussy to dominate them?]
 Definition: yourself is vagina-rideable: [Can the player use their pussy to dominate them?]
 	if diaper quest is 1, decide no;
 	if the player is not possessing a vagina, decide no;
 	if there is undisplacable pussy covering clothing, decide no;
-	if there is a worn chastity cage, decide no;
+	if chastity-belt is worn, decide no;
 	if vagina is actually occupied, decide no;
 	decide yes.
 To say VaginaRideDesc of (M - a monster):
 	say "Attempt to dominate [him of M] with your [vagina].".
 
-Definition: a monster is ass-rideable if it is wenchy. [Can this NPC have the player use their asshole to dominate them?]
+Definition: a monster is ass-rideable:
+	if it is wenchy, decide yes;
+	decide no. [Can this NPC have the player use their asshole to dominate them?]
 Definition: yourself is ass-rideable: [Can the player use their asshole to dominate them?]
 	if diaper quest is 1, decide no;
-	if the player is female, decide no;[right now, all the anal domination scenes assume the player definitely doesn't have a vagina, so this needs to be disabled for now]
+	if the player is possessing a vagina, decide no;[right now, all the anal domination scenes assume the player definitely doesn't have a vagina, so this needs to be disabled for now]
 	if there is a worn undisplacable ass covering clothing, decide no;
 	if asshole is actually occupied, decide no;
 	decide yes.
 To say AssRideDesc of (M - a monster):
 	say "Attempt to dominate [him of M] with your [asshole].".
 
-Definition: a monster is piss-fuckable if it is wenchy. [Can this NPC be pissed on when defeated?]
+Definition: a monster is piss-fuckable:
+	if it is wenchy, decide yes;
+	decide no. [Can this NPC be pissed on when defeated?]
 Definition: yourself is piss-fuckable: [Can the player currently piss on someone?]
 	if watersports fetish is 0, decide no;
 	if there is worn undisplacable pee covering clothing, decide no;
@@ -137,7 +165,9 @@ Definition: yourself is piss-fuckable: [Can the player currently piss on someone
 To say PissFuckDesc of (M - a monster):
 	say "Attempt to dominate [him of M] by pissing on [him of M].".
 
-Definition: a monster is diaper-rideable if it is wenchy. [Can this NPC be diaper-sat on when defeated?]
+Definition: a monster is diaper-rideable:
+	if it is wenchy, decide yes;
+	decide no. [Can this NPC be diaper-sat on when defeated?]
 Definition: yourself is diaper-rideable: [Can the player currently diaper-sit on someone?]
 	if the number of worn diapers is 0, decide no;
 	if there is a worn messed diaper and diaper lover < 7, decide no;
@@ -188,12 +218,16 @@ To compute defeat of (M - a monster):
 			let T be entry 1 in LT;
 			if the number of entries in LT is 1 and T is not BT and T is not TT and T is not PT, add PT to LT; [If we're giving the player only one option, to fuck the NPC, there should also be an option to leave it alone...]
 			if the number of entries in LT > 1:
-				say DefeatBrink of M;
-				reset multiple choice questions; [ALWAYS REMEMBER THIS WHEN MAKING A MULTIPLE CHOICE QUESTION]
-				repeat with X running through LT:
-					set next numerical response to X;
-				compute multiple choice question;
-				now T is the printed name of chosen numerical response;
+				if let it die tattoo is worn and the player is getting unlucky:
+					say "You feel your 'let it die' tattoo stiffening your resolve.";
+					now T is BT;
+				otherwise:
+					say DefeatBrink of M;
+					reset multiple choice questions; [ALWAYS REMEMBER THIS WHEN MAKING A MULTIPLE CHOICE QUESTION]
+					repeat with X running through LT:
+						set next numerical response to X;
+					compute multiple choice question;
+					now T is the printed name of chosen numerical response;
 			if T is BT:
 				compute forced banishment of M;
 				let J be a random worn demon codpiece;
@@ -234,26 +268,6 @@ To compute defeat of (M - a monster):
 			otherwise:
 				say "BUG: Unable to understand defeat choice.".
 
-[!<YourselfIsDomLicious>+
-
-Determines whether or not the player can successfully fuck a monster or not.
-
-@deprecated This function determined whether or not the player would actually be presented with the chance to fuck a defeated female npc. Since it's now determined through rng, this function is unneeded.
-@return This function returns true if the player is able to fuck the monster. Otherwise, it returns false.
-
-+!]
-[Definition: a person is domlicious:
-	if there is a cursed ass covering clothing, decide no;
-	if there is a cursed pussy covering clothing, decide no;
-	if the player is barbie and asshole is actually occupied, decide no;
-	if the player is possessing a vagina and vagina is actually occupied, decide no;
-	if the player is feeling submissive, decide no;
-	if let it die tattoo is worn and a random number between 1 and 2 is 1, decide no;
-	if the latex-transformation of the player >= 6, decide no;
-	if there is a dangerous monster in the location of the player, decide no;
-	if the player is possessing a penis and penis is not sex available, decide no;
-	decide yes.]
-
 [!<Player>@<dominatedCount:Integer>*
 
 The number of times the player has had dominant sex.
@@ -285,47 +299,22 @@ To DiaperGet:
 To BlowGet:
 	increase the blow-get of the player by 1.
 
- [!<BodyPartIsAvailable>+
+ Definition: a body part is available: decide no.
 
-REQUIRES COMMENTING
-
-+!]
-Definition: a body part is available: decide no.
-
-[!<OrificeIsAvailable>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: an orifice (called O) is available:
 	if O is actually occupied, decide no;
 	decide yes.
 
-[!<AssholeIsAvailable>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: asshole (called F) is available:
 	if F is actually occupied, decide no;
 	if the player is ass protected, decide no;
 	decide yes.
 
-[!<VaginaIsAvailable>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: vagina (called F) is available:
 	if F is actually occupied, decide no;
 	if the player is pussy protected, decide no;
 	decide yes.
 
-[!<BreastsIsAvailable>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: breasts (called B) is available:
 	repeat with C running through worn breast covering clothing:
 		if C is not fully exposing and C is not optional-top-displacable, decide no;
@@ -397,9 +386,9 @@ Check dominating:
 	now player-fuckchoice is FUCK-NONE;
 	now player-fucking is DOMINANT-NONE;
 	if the noun is not monster, say "What would be the point of that?" instead;
-	let vm be a random video-monitor in the location of the player;[too annoying to deal with, so its not allowed.]
+	let vm be a random video-monitor in the location of the player;[too annoying to deal with, so it's not allowed.]
 	if vm is a video-monitor and the video-caller of vm is not the throne, say "You decide against it. You don't want to give your audience the wrong idea." instead;
-	if the noun is woman-barbara and the woman-status of woman-barbara is 80, compute PlayerBarbaraStoolFuck instead;
+	if the noun is woman-player and the woman-status of woman-player is 80, compute PlayerWomanStoolFuck instead;
 	if the latex-transformation of the player >= 6, say "You wouldn't feel anything from it, so you don't see the point." instead;
 	if the player is prone, say "That would be a little hard to do from your knees." instead;
 	if the noun is sex-enslaved and the player is the donator, compute enslaved domination of the noun instead;
@@ -419,7 +408,7 @@ Check dominating:
 	if sexual-penis-length > 0:
 		suggestFucker penis for the noun;
 	if player-fucker is face:
-		if the player is female, suggestFucker vagina for the noun;
+		if the player is possessing a vagina, suggestFucker vagina for the noun;
 		otherwise suggestFucker asshole for the noun;
 		[if player-fucker is a fuckhole and S is demon codpiece, say "The [printed name of S] seems to be preventing you from doing that!" instead;]
 	if player-fucker is face:
@@ -430,20 +419,20 @@ Check dominating:
 	if player-fucker is penis:[Now that the part we want to use is selected, validate]
 		if there is a worn condom of kings, say "You wouldn't feel anything from it, so you don't see the point." instead;
 		if S is clothing:[dildo-usage determines whether the player's dick is sticking out of the strapon]
-			if there is a worn chastity cage or there is a worn restricting research airhancer:
-				say "Your [if there is a worn chastity cage][printed name of a random worn chastity cage] pulses[otherwise][printed name of a random research airhancer] flashes several times[end if], and your [SexDesc of penis] immediately loses all rigidity. Looks like you need to try something else...";
+			if there is a worn chastity bond or there is a worn restricting research airhancer:
+				say "Your [if there is a worn chastity bond][printed name of a random worn chastity bond] pulses[otherwise][printed name of a random research airhancer] flashes several times[end if], and your [SexDesc of penis] immediately loses all rigidity. Looks like you need to try something else...";
 				if S is demon codpiece, say CodLoosenFlav of S instead;
 				otherwise do nothing instead;
 		otherwise:
 			if there is a undisplacable pussy covering clothing, say "You'll have to find a way to remove your [printed name of a random undisplacable pussy covering clothing] first." instead;
-			if there is a worn chastity cage, say "You'll have to find a way to get out of your chastity cage first!" instead;
+			if there is a worn chastity bond, say "You'll have to find a way to get out of your chastity cage first!" instead;
 			if there is a worn restricting research airhancer, say "Your [ShortDesc of penis] can't get hard enough to dominate [i]anyone[/i]. You'll need to deactivate your [printed name of a random research airhancer] first." instead;
 	otherwise if player-fucker is vagina:
 		if there is undisplacable pussy covering clothing, say "You'll have to remove your [printed name of a random undisplacable pussy covering clothing] first." instead;
-		if there is a worn chastity cage, say "You'll have to find a way to get out of your chastity first!" instead;
+		if chastity-belt is worn, say "You'll have to find a way to get out of your chastity first!" instead;
 		if vagina is actually occupied, say "You need to remove your [printed name of a random thing penetrating vagina] first!" instead;
 	otherwise if player-fucker is asshole:
-		if there is a worn undisplacable ass covering clothing, say "You[']ll have to find a way to get your [printed name of a random worn undisplacable ass covering clothing] out of the way first." instead;
+		if there is a worn undisplacable ass covering clothing, say "You'll have to find a way to get your [printed name of a random worn undisplacable ass covering clothing] out of the way first." instead;
 		if asshole is actually occupied, say "You need to remove your [printed name of a random thing penetrating asshole] first!" instead;
 	if the player is feeling submissive and the player is not a nympho, say "Wouldn't it be easier to ask [him of the noun] to dominate me? It would probably be more fun that way, too!" instead;[players with very high delicateness will be too afraid to dominate unless they have high sex obsession too]
 	repeat with M running through monsters in the location of the player:
@@ -522,7 +511,6 @@ To compute dominating (M - a monster):
 	if player-fucker is penis and demon codpiece is worn, say CodTightenFlav of demon codpiece;
 	now player-fucking is DOMINANT-NONE;[we set this to 1 after we're finished determining success]
 	let R be (the number of worn dominance clothing * 2) + (the maxhealth of M / 2);
-	if let it die tattoo is worn, decrease R by 10;
 	if the delicateness of the player is 20:
 		now player-fucking is DOMINANT-FAILURE;
 		if debugmode > 0, say "[input style]Player is too submissive.[line break]";
@@ -530,7 +518,7 @@ To compute dominating (M - a monster):
 	otherwise:
 		now player-fucking is the submissiveness of M;[submissiveness of M will set player-fucking based on the monster]
 	let J be a random worn demon codpiece;
-	if player-fucking > DOMINANT-NONE:[Value of 1 or more? The player is successful!]
+	if player-fucking is not DOMINANT-NONE and player-fucking is not DOMINANT-FAILURE:
 		now the refractory-period of M is -4;[Allows us to track whether the monster came during the scene]
 		say DominanceSuccess of M;
 		compute successful dominance of M;
@@ -778,11 +766,11 @@ To say PowerBottomComment of (M - a monster):
 		if the player is male:
 			say "[first custom style]'[one of]I don't care how it looks, I've fucking earned this. Your dick is MINE.'[or][if the size of penis < the girth of M]You think you're so fucking great because you're bigger than me? Better not be a quick-shot.'[otherwise]Good thing I'm so much bigger than you, otherwise I might be worried this would hurt!'[end if][or]Now, *I* get to stick your dick in me.'[at random][roman type]";
 		otherwise:
-			say "[first custom style]'[one of]Oh we're going to fuck, but you're not going to be doing the fucking.'[or]This time, you're MY fucktoy.'[or]That didn[']t go the way you'd hoped, now did it?'[at random][roman type]";
+			say "[first custom style]'[one of]Oh we're going to fuck, but you're not going to be doing the fucking.'[or]This time, you're MY fucktoy.'[or]That didn't go the way you'd hoped, now did it?'[at random][roman type]";
 	otherwise if the bimbo of the player < 12:
-		say "[variable custom style]'[one of]I[']m going to be on top this time.'[or]I hope you're not a quick-shot, sweetie.'[or]So, are you excited? You get to be fucktoy now!'[at random][roman type]";
+		say "[variable custom style]'[one of]I'm going to be on top this time.'[or]I hope you're not a quick-shot, sweetie.'[or]So, are you excited? You get to be fucktoy now!'[at random][roman type]";
 	otherwise:
-		say "[second custom style]'[one of]Are you ready, sugar?'[or]So, stud, why don[']t we get down to business?'[or]Don[']t worry baby, I[']ll do everything.'[or]Don[']t worry about a thing, honey, you[']re in [NameBimbo][']s hands.'[at random][roman type]".
+		say "[second custom style]'[one of]Are you ready, sugar?'[or]So, stud, why don't we get down to business?'[or]Don't worry baby, I'll do everything.'[or]Don't worry about a thing, honey, you're in [NameBimbo][']s hands.'[at random][roman type]".
 
 [!<ComputePowerBottomRewardOfMonster>+
 
@@ -927,7 +915,7 @@ To diapersit dominate (M - a monster):
 	set numerical response 2 to "try to use [his of M] face to get off";
 	if the player is not incontinent:
 		if the latex-transformation of the player <= 4, set numerical response 3 to "try to piss in your diaper while sitting there";
-		if diaper lover >= 7 and asshole is not actually occupied, set numerical response 4 to "try to mess your diaper while sitting there";
+		if diaper messing >= 7 and asshole is not actually occupied, set numerical response 4 to "try to mess your diaper while sitting there";
 	compute multiple choice question;
 	if player-numerical-response is 2:
 		say "You grind your [genitals] against [NameDesc of M][']s face through your [if D is messed]soiled[otherwise if D is wet]wet[otherwise]soft[end if] padding.";
@@ -939,7 +927,7 @@ To diapersit dominate (M - a monster):
 	if player-numerical-response is 3:
 		let N be the bladder of the player;
 		if (a random number between 0 and N) + (the humiliation of the player / 4000) < 7:
-			say "You try to go, but you aren't desperate enough, and the humiliation of doing it in front of [NameDesc of M] gets the better of you. You get stage fright, and nothing comes out![line break][variable custom style]I don't know what's more embarrassing, using a diaper in front of [him of M], or [him of M] knowing that was I was too scared to make myself go...[roman type][line break]";
+			say "You try to go, but you aren't desperate enough, and the humiliation of doing it in front of [NameDesc of M] gets the better of you. You get stage fright, and nothing comes out![line break][variable custom style]I don't know what's more embarrassing, using a diaper in front of [him of M], or [him of M] knowing I was too scared to make myself go...[roman type][line break]";
 			decrease player-fucking by 1;
 		otherwise if N > 0:
 			say "You are able to release a [if N < 4]small amount[otherwise if N < 10]decent amount[otherwise]torrent[end if] of [urine] into the seat of [NameDesc of D], right on top of [NameDesc of M][']s nose and mouth.";
@@ -952,7 +940,7 @@ To diapersit dominate (M - a monster):
 	if player-numerical-response is 4:
 		let N be rectum;
 		if (a random number between 1 and N) + (the humiliation of the player / 4000) < 10:
-			say "You try to push, but you aren't desperate enough, and the humiliation of doing it in front of [NameDesc of M] gets the better of you. You get stage fright, and nothing comes out![line break][variable custom style]I don't know what's more embarrassing, messing my diaper in front of [him of M], or [him of M] knowing that was I was too scared to make myself go...[roman type][line break]";
+			say "You try to push, but you aren't desperate enough, and the humiliation of doing it in front of [NameDesc of M] gets the better of you. You get stage fright, and nothing comes out![line break][variable custom style]I don't know what's more embarrassing, messing my diaper in front of [him of M], or [him of M] knowing I was too scared to make myself go...[roman type][line break]";
 			decrease player-fucking by 1;
 		otherwise if N > 1:
 			say "You are able to release a [if N < 3]small amount[otherwise if N < 6]decent amount[otherwise]huge avalanche[end if] of stinky mess into the seat of [NameDesc of D], right on top of [NameDesc of M][']s nose and mouth.";
@@ -969,17 +957,27 @@ To diapersit dominate (M - a monster):
 			say "Nothing comes out!";
 	if D is messed:
 		increase player-fucking by 2;
-		say "[BigNameDesc of M] whimpers and flails as [he of M] is forced to breathe in the disgusting scent of your soiled [ShortDesc of D].";
+		say DiaperMessDominated of M;
 		FavourDown M by 2;
-	otherwise if the total-soak of D >= the soak-limit of D / 2:
+	otherwise if the total-soak of D >= the soak-limit of D / 3:
 		increase player-fucking by 1;
-		say "[BigNameDesc of M] continues to weakly struggle as [he of M] is forced to breathe in and out through your soggy padding.";
+		say DiaperSoggyDominated of M;
 		FavourDown M;
 	otherwise:
-		say "You feel [NameDesc of M][']s heavy breathing going in and out through your padding.";
+		say DiaperDryDominated of M;
 	if player-fucking < DOMINANT-SHAMEFUL, now player-fucking is DOMINANT-SHAMEFUL;
 	if player-fucking > DOMINANT-SUPER, now player-fucking is DOMINANT-SUPER;
 	DiaperGet.
+
+To say DiaperMessDominated of (M - a monster):
+	let D be a random worn diaper;
+	say "[BigNameDesc of M] whimpers and flails as [he of M] is forced to breathe in the disgusting scent of your soiled [ShortDesc of D].".
+
+To say DiaperSoggyDominated of (M - a monster):
+	say "[BigNameDesc of M] continues to weakly struggle as [he of M] is forced to breathe in and out through your soggy padding.".
+
+To say DiaperDryDominated of (M - a monster):
+	say "You feel [NameDesc of M][']s heavy breathing going in and out through your padding.".
 
 [Use this for scenes that don't rely on the player's penis or fuckholes. This generally shouldn't show up, since a monster with a unique domination scene will have their own version of this function]
 To unique dominate (M - a monster):
@@ -988,7 +986,7 @@ To unique dominate (M - a monster):
 
 [After the player dominates a monster, they usually have something to say about it! Include this in any xxx dominate functions.]
 To say AfterDominationComment (N - a number) of (M - a monster):
-	say "[line break][speech style of M]'I[']ll pay you back for that...'[roman type][line break]".
+	say "[line break][speech style of M]'I'll pay you back for that...'[roman type][line break]".
 
 [!<SayDominanceFailureOfMonster>+
 
@@ -1076,7 +1074,7 @@ To compute default enslaved domination of (M - a monster):
 		DelicateDown 1.
 
 To say EnslavedDominationFlav of (M - a monster):
-	say "You spank [NameDesc of M] on the buttcheeks, eliciting a pained yelp. ".
+	say "You spank [NameDesc of M] on the buttcheeks, [one of]eliciting a pained[or]being rewarded by a cry of pain[or]pleased by [his of M] poorly suppressed gasp of pain[at random] yelp. ".
 
 To decide which number is the EnslavedDominationThreshold of (M - a monster):
 	decide on 10.

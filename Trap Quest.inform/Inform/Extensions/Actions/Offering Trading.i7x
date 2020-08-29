@@ -6,11 +6,6 @@ To decide what number is the charisma-influence of (C - a thing):
 To decide what number is the charisma-influence of (C - a temptation clothing):
 	decide on 1.
 
-[!<DecideWhichNumberIsTheCharismaOfThePlayer>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is the charisma of the player:
 	let X be 0;
 	increase X by the make-up of face;
@@ -23,18 +18,8 @@ To decide which number is the charisma of the player:
 	if bitch tattoo is worn, decrease X by 1;
 	decide on X.
 
-[!<offerItTo:Action>*
-
-REQUIRES COMMENTING
-
-*!]
 Offering it to is an action applying to two things.
 
-[!<CheckOfferingItTo>+
-
-REQUIRES COMMENTING
-
-+!]
 Check offering it to:
 	if the second noun is bag of holding, try BagFeeding the noun to the second noun instead;
 	if the second noun is not monster, say "You can only offer things to other people." instead;
@@ -50,11 +35,6 @@ Check offering it to:
 		compute the second noun WenchReceiving the noun instead;
 		do nothing instead. [Weird bug where the above command doesn't do the "instead" bit.]
 
-[!<CarryOutOfferingItTo>+
-
-REQUIRES COMMENTING
-
-+!]
 Carry out offering it to:
 	allocate 6 seconds;
 	now convincing power is 0;
@@ -67,11 +47,6 @@ Carry out offering it to:
 
 Understand "offer [something] to [something]", "trade [something] with [something]" as offering it to.
 
-[!<SayOfferFlavOfThing>+
-
-REQUIRES COMMENTING
-
-+!]
 To say OfferFlav of (T - a thing):
 	if the player is able to speak:
 		say "[variable custom style]'[if the second noun is unfriendly]Please, take this instead!'[otherwise]Would you be interested in this?'[end if][roman type][line break]";
@@ -88,22 +63,23 @@ To decide which number is the bartering value of (T - a thing) for (M - a monste
 
 convincing power is a number that varies.
 
-To compute (M - a monster) considering (T - a thing):
+To decide which number is the convincability of (M - a monster):
 	let I be 0;
 	if a random number between 5 and 25 <= the intelligence of the player, increase I by 1;
 	if a random number between 10 and 25 <= the intelligence of the player, increase I by 1;
 	if the health of M < the maxhealth of M, decrease I by 1;
 	if the health of M < the maxhealth of M / 2, decrease I by 1;
+	decide on I.
+
+To compute (M - a monster) considering (T - a thing):
 	if M is not interested:
 		say "[BigNameDesc of M] isn't even looking at you.";
-	if (M is shopkeeper or M is royal guard) and there is held stolen clothing:
+	if (M is shopkeeper or M is royal guard) and there is held stolen thing:
 		say MonsterCriminalOfferRejectFlav of M to T;
-	otherwise if convincing power > 0 and (M is friendly or (convincing power + I) >= the square root of (a random number between 1 and 15)):
+	otherwise if convincing power > 0 and (M is friendly or (convincing power + the convincability of M) >= the square root of (a random number between 1 and 15)):
 		say MonsterOfferAcceptFlav of M to T;
-		now T is in Holding Pen;
-		now M is retaining T;
-		now M is withholding T;
 		compute resolution of M taking T;
+		compute final resolution of M taking T;
 	otherwise:
 		if M is not rejecting T, make M expectant; [The player can keep offering things they haven't offered yet without the NPC immediately moving to punishment.]
 		now M is rejecting T;
@@ -119,7 +95,7 @@ To say MonsterCriminalOfferRejectFlav of (M - a monster) to (T - a thing):
 To say MonsterOfferAcceptFlav of (M - a monster) to (T - a thing):
 	if M is intelligent:
 		if M is unfriendly:
-			say "[BigNameDesc of M] smiles. [line break][speech style of M]'[if the bartering value of T for M + the favour of M > the aggro limit of M + 4]Wow, really? Thanks a lot! Maybe I've made a mistake judging you. You're alright.'[otherwise if the bartering value of T for M + the favour of M > the aggro limit of M]Heh, I can't turn down an offer like that. Thanks a bunch. We're cool now.'[otherwise]Fair enough, have it your way. I'll leave you alone... this time.'[end if][roman type][line break]";
+			say "[BigNameDesc of M] smiles.[line break][speech style of M]'[if the bartering value of T for M + the favour of M > the aggro limit of M + 4]Wow, really? Thanks a lot! Maybe I've made a mistake judging you. You're alright.'[otherwise if the bartering value of T for M + the favour of M > the aggro limit of M]Heh, I can't turn down an offer like that. Thanks a bunch. We're cool now.'[otherwise]Fair enough, have it your way. I'll leave you alone... this time.'[end if][roman type][line break]";
 		otherwise:
 			say "[BigNameDesc of M] seems elated.[line break][speech style of M]'Wow, thank you so much! How generous of you.'[roman type][line break]";
 	otherwise:
@@ -132,7 +108,8 @@ To compute resolution of (M - a monster) taking (T - a thing):
 	if M is intelligent and M is unfriendly:
 		say MonsterTakeFlav of M to T;
 		satisfy M;
-		FavourUp M by (1 + the bartering value of T for M) / 2;
+		let BV be the bartering value of T for M;
+		FavourUp M by ((1 + BV) / 2);
 		progress quest of christmas-quest;
 	otherwise if M is intelligent:
 		say OfferThanksFlav of M for T;
@@ -144,11 +121,38 @@ To compute resolution of (M - a monster) taking (T - a thing):
 		if M is unfriendly, progress quest of christmas-quest;
 		bore M.
 
+To compute final resolution of (M - a monster) taking (T - a thing):
+	only destroy T.
+
 To say OfferThanksFlav of (M - a monster) for (T - a thing):
-	say "[speech style of M]'Thanks a lot for this!'[roman type][line break]".
+	if the bartering value of T for M > 2, say "[speech style of M]'Thanks a lot for this!'[roman type][line break]".
 
 To compute offer reward of (M - a monster) for (T - a thing): [The NPC doesn't give anything in return by default.]
-	if M is intelligent, FavourUp M by (1 + the bartering value of T for M) / 2.
+	if M is intelligent:
+		let BV be the bartering value of T for M;
+		FavourUp M by ((1 + BV) / 2);
+	let X be nothing;
+	if M is buddy:
+		sort the tradableItems of M in random order;
+		sort the tradableItems of M in reverse tradability order;
+		repeat with C running through the tradableItems of M:
+			if C is off-stage or C is carried by M, now X is C;
+	if X is a thing:
+		if the favour of M >= the tradability of X, compute M rewarding X.
+
+To compute (M - a monster) rewarding (T - a thing):
+	now T is in the location of the player;
+	if T is clothing:
+		blandify and reveal T;
+	if T is alchemy product:
+		now T is bland;
+		now T is sure;
+	say RewardFlav of M for T;
+	compute autotaking T.
+
+To say RewardFlav of (M - a monster) for (T - a thing):
+	if M is intelligent, say "[speech style of M]'[one of]Hopefully this will help you in your travels[or]Maybe you'll find this helpful[in random order].'[roman type][line break]";
+	say "[BigNameDesc of M] puts a [T] on the ground in front of you.".
 
 To say OfferFriendshipFlav of (M - a monster):
 	if M is intelligent, say "[speech style of M]'[if M is guardian]I'm thankful to have you as my ally[otherwise if M is ally]We should stick together, you and me[otherwise if M is buddy]I hope to see you again soon[otherwise if M is acquaintance]You're all right[otherwise]Maybe you're not as much of a [bitch] as I thought[end if].'[roman type][line break]".

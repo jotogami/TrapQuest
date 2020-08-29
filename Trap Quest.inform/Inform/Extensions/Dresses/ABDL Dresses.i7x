@@ -1,4 +1,35 @@
-Diaper Dresses by Dresses begins here.
+ABDL Dresses by Dresses begins here.
+
+Part - Baby Reins
+
+A baby-reins is a kind of overdress. A baby-reins is unique. A baby-reins is usually low cut. A baby-reins is usually leather. A baby-reins is usually crotch-exposing. A baby-reins is usually belly exposing. A baby-reins is usually unskirted. A baby-reins is usually top-exclusive. Understand "baby reins", "reins" as baby-reins.
+
+Definition: a baby-reins is fetish appropriate:
+	if diaper lover > 0, decide yes;
+	decide no.
+Definition: a baby-reins is transformation-protected: decide yes.
+[Definition: a baby-party-reins is end of transformation chain: decide yes.]
+Definition: a baby-reins is baby themed: decide yes.
+To say ShortDesc of (C - a baby-reins):
+	say "baby reins".
+Definition: a baby-reins is subduing: decide yes.
+
+purple-baby-reins is a baby-reins. The printed name of purple-baby-reins is "[clothing-title-before]purple baby reins[clothing-title-after]". Understand "purple" as purple-baby-reins. The text-shortcut of purple-baby-reins is "pbrn".
+
+Figure of purple-baby-reins is the file "Items/Clothes/Upper/Dresses/Baby/babyreins1.png".
+
+To decide which figure-name is clothing-image of (C - purple-baby-reins):
+	decide on figure of purple-baby-reins.
+
+To say ClothingDesc of (C - purple-baby-reins):
+	say "A set of purple leather straps that forms a full body harness and leash, intended to keep a diaper in place and an adult baby under control.".
+
+To say MediumDesc of (C - purple-baby-reins):
+	say "purple baby reins".
+
+Definition: purple-baby-reins is purple themed: decide yes.
+
+Part - Baby Dresses
 
 A baby-dress is a kind of overdress. A baby-dress is usually transformation-rare. A baby-dress is usually high cut. A baby-dress is usually no-crotch. A baby-dress is usually short. A baby-dress is usually top-exclusive.
 
@@ -13,9 +44,15 @@ To decide which number is the initial cringe of (C - a baby-dress):
 	if C is super-short, decide on 11;
 	decide on 5.
 
-Definition: a baby-dress is fetish appropriate if diaper lover > 0.
-Definition: a baby-dress is sissifying if it is fetish appropriate.
-Definition: a baby-dress is disintegration-protected if the player is an adult baby.
+Definition: a baby-dress is fetish appropriate:
+	if diaper lover > 0, decide yes;
+	decide no.
+Definition: a baby-dress is sissifying:
+	if it is fetish appropriate, decide yes;
+	decide no.
+Definition: a baby-dress is disintegration-protected:
+	if the player is an adult baby, decide yes;
+	decide no.
 Definition: a baby-party-dress is end of transformation chain: decide yes.
 Definition: a baby-dress is baby themed: decide yes.
 
@@ -27,6 +64,9 @@ To decide which object is the potential-upgrade-target of (C - a baby-dress):
 
 To decide which object is the potential-upgrade-target of (C - a baby-party-dress):
 	decide on nothing.
+
+To say ShortDesc of (C - a baby-dress):
+	say "baby dress".
 
 Part 1 - Floral Purple Sissy Dress
 
@@ -40,7 +80,7 @@ To decide which figure-name is clothing-image of (C - a floral purple sissy dres
 To say ClothingDesc of (C - a floral purple sissy dress):
 	say "A tiny purple baby dress with flowers all over.".
 
-To say ShortDesc of (C - a floral purple sissy dress):
+To say MediumDesc of (C - a floral purple sissy dress):
 	say "short purple sissy dress".
 
 Definition: a floral purple sissy dress is flower themed: decide yes.
@@ -59,6 +99,8 @@ To say ClothingDesc of (C - a teddybear playsuit):
 	say "A baby's outfit in your size, this is like a leotard but with a more defined polka dot skirt and the image of a teddy bear on the front. It's clearly designed to keep diapers nice and snug in the right place.".
 
 To say ShortDesc of (C - a teddybear playsuit):
+	say "pink playsuit".
+To say MediumDesc of (C - a teddybear playsuit):
 	say "adorable pink playsuit".
 
 To decide which number is the initial cringe of (C - a teddybear playsuit):
@@ -87,6 +129,8 @@ To say ClothingDesc of (C - a waddle outfit):
 	say "A latex fetish adult baby outfit in your size. The crotch area is shaped like a giant nappy, meaning that it [if there is a worn diaper]would look[otherwise]looks[end if] like you're wearing a huge diaper even when you're not.".
 
 To say ShortDesc of (C - a waddle outfit):
+	say "waddle outfit".
+To say MediumDesc of (C - a waddle outfit):
 	say "latex baby waddle outfit".
 
 To decide which number is the initial cringe of (C - a waddle outfit):
@@ -110,7 +154,7 @@ To decide which figure-name is clothing-image of (C - a white sissy dress):
 To say ClothingDesc of (C - a white sissy dress):
 	say "A flimsy white dress with puffy shoulders and a high collar. Layers of sheer lace make up the skirt.".
 
-To say ShortDesc of (C - a white sissy dress):
+To say MediumDesc of (C - a white sissy dress):
 	say "flimsy white sissy dress".
 
 Definition: a white sissy dress is white themed: decide yes.
@@ -127,8 +171,6 @@ To decide which figure-name is clothing-image of (C - an elephant baby dress):
 To say ClothingDesc of (C - an elephant baby dress):
 	say "A blue and pink dress with a cute elephant inside a heart on the chest and a skirt that starts above the belly button and is no more than a few inches long, to fully expose [if C is worn]your[otherwise]the wearer's[end if] belly and underwear.".
 
-To say ShortDesc of (C - an elephant baby dress):
-	say "blue and pink baby dress".
 To say MediumDesc of (C - an elephant baby dress):
 	say "super short blue and pink baby dress".
 
@@ -151,8 +193,6 @@ To decide which figure-name is clothing-image of (C - a yellow sissy baby dress)
 To say ClothingDesc of (C - a yellow sissy baby dress):
 	say "A yellow dress with huge quantities of lace and ruffles all over, including on a skirt that starts at the belly button and ends at the hips, to fully expose [if C is worn]your[otherwise]the wearer's[end if] underwear.".
 
-To say ShortDesc of (C - a yellow sissy baby dress):
-	say "yellow baby dress".
 To say MediumDesc of (C - a yellow sissy baby dress):
 	say "super short yellow sissy baby dress".
 
@@ -168,8 +208,6 @@ To decide which figure-name is clothing-image of (C - a patterned baby dress):
 To say ClothingDesc of (C - a patterned baby dress):
 	say "A pink and white dress with a baby motif made up of bunnies, teddies, ducks, suns, bibs, socks and bottles. The dress ends halfway down the hips, to fully expose [if C is worn]your[otherwise]the wearer's[end if] underwear.".
 
-To say ShortDesc of (C - a patterned baby dress):
-	say "kitty baby dress".
 To say MediumDesc of (C - a patterned baby dress):
 	say "super short patterned baby dress".
 
@@ -190,8 +228,6 @@ To decide which figure-name is clothing-image of (C - a floofy sissy baby dress)
 To say ClothingDesc of (C - a floofy sissy baby dress):
 	say "A floofy dress with huge quantities of lace and ruffles all over, including on a skirt that starts above the belly button and ends before the hips, to fully expose [if C is worn]your[otherwise]the wearer's[end if] underwear.".
 
-To say ShortDesc of (C - a floofy sissy baby dress):
-	say "floofy baby dress".
 To say MediumDesc of (C - a floofy sissy baby dress):
 	say "super short floofy sissy baby dress".
 
@@ -212,8 +248,6 @@ To decide which figure-name is clothing-image of (C - a dinosaur baby dress):
 To say ClothingDesc of (C - a dinosaur baby dress):
 	say "A pink and white dress with a dinosaur on the chest, a Peter Pan collar and a skirt that starts above the belly button and is no more than a few inches long, to fully expose [if C is worn]your[otherwise]the wearer's[end if] underwear.".
 
-To say ShortDesc of (C - a dinosaur baby dress):
-	say "dinosaur dress".
 To say MediumDesc of (C - a dinosaur baby dress):
 	say "super short dinosaur baby dress".
 
@@ -233,8 +267,6 @@ To decide which figure-name is clothing-image of (C - a yellow babydoll dress):
 To say ClothingDesc of (C - a yellow babydoll dress):
 	say "A yellow dress with a grey sash belt with a large pale pink ribbon bow. The skirt begins at [if C is worn]your[otherwise]the wearer's[end if] nipples and ends way before the crotch, exposing everything!".
 
-To say ShortDesc of (C - a yellow babydoll dress):
-	say "babydoll dress".
 To say MediumDesc of (C - a yellow babydoll dress):
 	say "super short yellow babydoll dress".
 
@@ -253,8 +285,6 @@ To decide which figure-name is clothing-image of (C - lollipop-dress):
 To say ClothingDesc of (C - lollipop-dress):
 	say "A pink dress with white sleeves. A yellow floral pattern on the main pink section complements a yellow band at the bottom decorated with multicoloured lollipops. Vertical pink ribbons at the chest are fastened at the bottom with adorable bows. The skirt begins at [if C is worn]your[otherwise]the wearer's[end if] nipples and ends way before the crotch, exposing everything!".
 
-To say ShortDesc of (C - lollipop-dress):
-	say "babydoll dress".
 To say MediumDesc of (C - lollipop-dress):
 	say "super short lollipop dress".
 
@@ -275,8 +305,6 @@ To decide which figure-name is clothing-image of (C - pinafore-dress):
 To say ClothingDesc of (C - pinafore-dress):
 	say "A pink and purple dress with white frills. The pink skirt has two lovehearts sewn into it, which each read 'Baby Girl'. A large ping bow sits in the middle of the peter pan collar. The waist is fashioned to look like baby reins.".
 
-To say ShortDesc of (C - pinafore-dress):
-	say "pinafore dress".
 To say MediumDesc of (C - pinafore-dress):
 	say "baby girl pinafore dress".
 
@@ -300,8 +328,6 @@ To decide which figure-name is clothing-image of (C - sailor-fleece-dress):
 To say ClothingDesc of (C - sailor-fleece-dress):
 	say "A blue dress with a white sailor collar. Blue ribbons tied into bows sit at each sleeve and one in the middle of the high bust line.".
 
-To say ShortDesc of (C - sailor-fleece-dress):
-	say "sailor dress".
 To say MediumDesc of (C - sailor-fleece-dress):
 	say "super short sailor fleece dress".
 
@@ -309,4 +335,4 @@ Definition: sailor-fleece-dress is blue themed: decide yes.
 Definition: sailor-fleece-dress is swimming themed: decide yes.
 Definition: sailor-fleece-dress is bow themed: decide yes.
 
-Diaper Dresses ends here.
+ABDL Dresses ends here.

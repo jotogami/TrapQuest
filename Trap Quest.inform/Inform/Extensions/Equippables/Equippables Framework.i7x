@@ -1,6 +1,8 @@
 Equippables Framework by Equippables begins here.
 
-An equippable is a kind of clothing. An equippable can be slap ready, knee ready, kick ready or zap ready (this is the equippable-type property). An equippable is usually manly. The soak-limit of an equippable is usually 5. An equippable can be melee or projectile. An equippable is usually melee. An equippable is usually unique.
+An equippable is a kind of clothing. An equippable can be slap ready, knee ready, kick ready or zap ready (this is the equippable-type property). An equippable is usually manly. An equippable can be melee or projectile. An equippable is usually melee. An equippable is usually unique.
+
+To decide which number is the default-soak-limit of (C - an equippable): decide on 5.
 
 The printed name of an equippable is "[clothing-title-before][MediumDesc of item described][clothing-title-after]".
 
@@ -9,12 +11,19 @@ To say ShortDesc of (E - an equippable):
 
 Definition: an equippable is alwaysSure: decide yes.
 
-Definition: an equippable is stealable if diaper quest is 1.
+Definition: an equippable is stealable:
+	if diaper quest is 1, decide yes;
+	decide no.
 
 Definition: a thing is zappable: decide no. [Can it be used to cast a magic combat spell?]
 
-Definition: an equippable is zappable if it is zap ready and it is worn.
-Definition: an equippable is hand ready if it is slap ready or it is zap ready.
+Definition: an equippable is zappable:
+	if it is zap ready and it is worn, decide yes;
+	decide no.
+Definition: a clothing is hand ready: decide no.
+Definition: an equippable is hand ready:
+	if it is slap ready or it is zap ready, decide yes;
+	decide no.
 
 To decide which object is the at least partial concealer of (C - an equippable):
 	decide on nothing.
@@ -72,8 +81,12 @@ To say ShortDesc of (C - tongue-gloves):
 Definition: tongue-gloves is demonic: decide yes.
 Definition: tongue-gloves is tongued: decide yes.
 Definition: tongue-gloves is transformation-protected: decide yes.
-Definition: tongue-gloves is white themed if tonguesBlack is false.
-Definition: tongue-gloves is black themed if tonguesBlack is true.
+Definition: tongue-gloves is white themed:
+	if tonguesBlack is false, decide yes;
+	decide no.
+Definition: tongue-gloves is black themed:
+	if tonguesBlack is true, decide yes;
+	decide no.
 
 To decide which number is the initial outrage of (C - tongue-gloves):
 	if C is tonguing, decide on 14;
@@ -83,9 +96,6 @@ Part 2 - Wands
 
 A vibe-wand is a kind of equippable. A vibe-wand is usually zap ready. Understand "vibe", "vibrator", "wand", "vibrating" as vibe-wand. A vibe-wand is usually projectile. A vibe-wand is usually plastic.
 wandAttacks is a number that varies.
-
-To compute climax effect of (E - a vibe-wand):
-	do nothing.
 
 To decide which number is the masturbation-bonus of (E - a vibe-wand):
 	let X be 1;
@@ -101,14 +111,6 @@ To decide which number is the damage improvement of (W - a vibe-wand):
 To compute attack of (W - a vibe-wand) at (M - a monster):
 	say "You flick the wand, slashing at [NameDesc of M] with arcs of [if W is pink themed]pink [end if]magic.".
 
-To compute MagicDrain of (Z - a vibe-wand):
-	if the magic-power of the player > 0 and the trophy-mode of magic-trophy is 0:
-		increase wandAttacks by 1;
-		if wandAttacks > 2:
-			now wandAttacks is 0;
-			say "You can feel that all your attacks with wands have spent some of your magic.";
-			MagicPowerDown 1.
-
 To decide which number is the raw-masturbation-bonus of (E - a vibe-wand):
 	decide on 0.
 
@@ -121,10 +123,9 @@ equippable wearability rules is a rulebook. The wearability rules of equippable 
 
 This is the hand ready equippable already worn rule:
 	if wearing-target is hand ready:
-		repeat with O running through worn equippables:
-			if O is hand ready:
-				if summoning is 0 and autowear is false, say "You can't because [if O is wearing-target]you're already wielding it[otherwise]you're already wielding the [ShortDesc of O][end if]!";
-				rule fails.
+		repeat with O running through worn hand ready clothing:
+			if summoning is 0 and autowear is false, say "You can't because [if O is wearing-target]you're already wielding it[otherwise if O is equippable]you're already wielding the [ShortDesc of O][otherwise]it needs to occupy the same hand as your [ShortDesc of O][end if]!";
+			rule fails.
 The hand ready equippable already worn rule is listed in the equippable wearability rules.
 
 [This is the rings gloves clash rule:
@@ -188,7 +189,7 @@ To decide which number is the initial outrage of (C - candy-cane-gloves):
 	decide on 3.
 
 football-gloves is a gloves.
-The printed name of football-gloves is "[clothing-title-before]football goalkeeper gloves[clothing-title-after]". The text-shortcut of football-gloves is "fbg". Figure of football-gloves is the file "Items/Accessories/Equippables/gloves3.jpg". Understand "football goalkeeper", "goalkeeper", "gloves" as football-gloves.
+The printed name of football-gloves is "[clothing-title-before]football goalkeeper gloves[clothing-title-after]". The text-shortcut of football-gloves is "fbg". Figure of football-gloves is the file "Items/Accessories/Equippables/gloves3.png". Understand "football goalkeeper", "goalkeeper", "gloves" as football-gloves.
 Definition: football-gloves is transformation-protected: decide yes.
 Definition: football-gloves is removable: decide no.
 Definition: football-gloves is discovered varied: decide no.

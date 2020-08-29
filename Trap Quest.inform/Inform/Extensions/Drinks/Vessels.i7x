@@ -12,13 +12,13 @@ A vessel is a kind of bottle.
 To decide which number is the outrage of (V - a vessel):
 	let O be the initial outrage of V;
 	if V is open topped and the doses of V > 0:
-		if the fill-colour of V is golden or the fill-colour of V is creamy, increase O by 8;
-		if the fill-colour of V is murky, increase O by 12;
+		if the fill-colour of V is golden or the fill-colour of V is creamy, increase O by 15;
+		if the fill-colour of V is murky, increase O by 20;
 	decide on O.
 
 To decide which number is the cringe of (V - a vessel):
-	let O be the initial outrage of V;
-	if V is open topped and the doses of V > 0 and diaper quest is 1 and the fill-colour of V is white, increase O by 8;
+	let O be the initial cringe of V;
+	if V is open topped and the doses of V > 0 and diaper quest is 1 and the fill-colour of V is white, increase O by 10;
 	decide on O.
 
 To decide which number is the initial outrage of (V - a vessel):
@@ -40,68 +40,39 @@ Definition: a bottle (called T) is serve-ready:
 	if T is probably-serve-ready and there is a friendly human intelligent monster in the location of the player, decide yes;
 	decide no.
 
-Definition: a bottle is probably-serve-ready if it is non-empty and it is player-serve-ready.
+Definition: a bottle is probably-serve-ready:
+	if it is non-empty and it is player-serve-ready, decide yes;
+	decide no.
 
 Definition: a bottle (called T) is player-serve-ready:
 	if (the class of the player is bunny and bunny waitress ears is worn) or there is worn serving-bondage or the class of the player is "cafe maid", decide yes;
 	if the class of the player is royal slave and the fill-colour of T is white, decide yes;
 	decide no.
 
-[!<Vessel>@<openTopped:Boolean>*
-
-REQUIRES COMMENTING
-
-*@!]
 A vessel can be open topped.
 The doses of a vessel is usually 0.
 
-[!<Vessel>@<Restock>+
-
-REQUIRES COMMENTING
-
-+!]
 To restock (C - a vessel):
 	let B be a random basic loot fetish appropriate vessel;
 	if B is bottle, now B is in Standard Item Pen.
 
-[!<TheSetupStartingVesselsRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the setup starting vessels rule:
 	let C be a random vessel;
 	repeat with N running from 1 to 3:
 		restock C.
 The setup starting vessels rule is listed in the setup starting items rules.
 
-[!<TheRemoveInappropriateVesselsRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the remove inappropriate vessels rule:
-	repeat with B running through squirt dildo:
-		now B is in Holding Pen;
+	now squirt dildo is in Holding Pen;
 	if diaper messing < 3, now novelty mug is in Holding Pen.
 The remove inappropriate vessels rule is listed in the diaper quest fix rules.
 
-[!<DecideWhichNumberIsVesselCount>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is vessel-count:
 	let X be 0;
 	repeat with V running through vessels held by the player:
 		increase X by 1;
 	decide on X.
 
-[!<DecideWhichNumberIsOpenToppedVesselCount>+
-
-REQUIRES COMMENTING
-
-+!]
 To decide which number is open-topped-vessel-count:
 	let X be 0;
 	repeat with V running through open topped vessels held by the player:
@@ -116,32 +87,34 @@ To say ShortDesc of (B - a vessel):
 To say ShortVesselDesc of (V - a vessel):
 	say "drinking vessel".
 
-A squirt dildo is a kind of vessel. The max-doses of a squirt dildo is usually 1. There is 1 squirt dildo. The printed name of squirt dildo is "[TQlink of item described][unless curse-ID of the item described is unsure][magic curse of item described] [end if]squirt dildo[if the doses of item described > 0 and the fill-type of item described is remembered] ([FillName the fill-type of item described])[otherwise if the doses of item described > 0] ([fill-colour of item described] liquid)[end if][shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of squirt dildo is "sqd". Figure of squirt dildo is the file "Items/Accessories/Vessels/squirtdildo1.png".
-Definition: a squirt dildo (called T) is disembodied rather than embodied: [When penetrating an orifice, can it fit underneath other clothing like a sex toy? Or will clothing get in the way, e.g. a dildo pole?]
+squirt dildo is a vessel. The max-doses of squirt dildo is usually 1. The printed name of squirt dildo is "[TQlink of item described][unless curse-ID of the item described is unsure][magic curse of item described] [end if]squirt dildo[if the doses of item described > 0 and the fill-type of item described is remembered] ([FillName the fill-type of item described])[otherwise if the doses of item described > 0] ([fill-colour of item described] liquid)[end if][shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of squirt dildo is "sqd". Figure of squirt dildo is the file "Items/Accessories/Vessels/squirtdildo1.png".
+Definition: squirt dildo (called T) is disembodied rather than embodied: [When penetrating an orifice, can it fit underneath other clothing like a sex toy? Or will clothing get in the way, e.g. a dildo pole?]
 	decide yes.
-To decide which figure-name is the examine-image of (V - a squirt dildo):
+To decide which figure-name is the examine-image of (V - squirt dildo):
 	decide on the figure of squirt dildo.
-Report plugging something with a squirt dildo:
+Report plugging something with squirt dildo:
 	now the second noun is sure.
-Definition: a squirt dildo is basic loot: decide no.
-To compute cursed drinking (X - a squirt dildo):
-	say "An extremely bitter taste and slimy consistency immediately lets you know it's not what you put in. The squirt dildo changed everything inside it into [semen]! [line break][variable custom style][if the curse-ID of X is sure and X is cursed]This vessel is cursed... it's going to turn anything that's inside it into [semen][otherwise if the curse-ID of X is sure]This potion colour must be cursed... and that's causing it to turn into [semen] when I try to drink it from here[otherwise]One of these is cursed, but I don't know which[end if]...[roman type][line break]";
+Definition: squirt dildo is basic loot: decide no.
+To compute cursed drinking (X - squirt dildo):
+	say "An extremely bitter taste and slimy consistency immediately lets you know it's not what you put in. The squirt dildo changed everything inside it into [semen]![line break][variable custom style][if the curse-ID of X is sure and X is cursed]This vessel is cursed... it's going to turn anything that's inside it into [semen][otherwise if the curse-ID of X is sure]This potion colour must be cursed... and that's causing it to turn into [semen] when I try to drink it from here[otherwise]One of these is cursed, but I don't know which[end if]...[roman type][line break]";
 	StomachSemenUp 1.
-To say VesselDesc of (V - a squirt dildo):
+To say VesselDesc of (V - squirt dildo):
 	say "This dildo has a hollow inside, hollow balls at the base and a hole at the top. By squeezing the base you can squirt the contents out of the dildo, and by releasing you can capture a bit of whatever liquid the dildo is in.".
-To say ShortVesselDesc of (V - a squirt dildo):
+To say ShortVesselDesc of (V - squirt dildo):
 	say "squirt dildo".
-Definition: a squirt dildo is inflation themed: decide yes.
-Definition: a squirt dildo is oral sex themed: decide yes.
-Definition: a squirt dildo is penis themed: decide yes.
-To decide which number is the initial outrage of (V - a squirt dildo):
+Definition: squirt dildo is inflation themed: decide yes.
+Definition: squirt dildo is oral sex themed: decide yes.
+Definition: squirt dildo is penis themed: decide yes.
+To decide which number is the initial outrage of (V - squirt dildo):
 	decide on 14.
 
 baby's bottle is a vessel. The max-doses of baby's bottle is 3. The printed name of baby's bottle is "[TQlink of item described][unless curse-ID of the item described is unsure][magic curse of item described] [end if]baby's bottle[if the doses of item described > 0 and the fill-type of item described is remembered] ([FillName the fill-type of item described])[otherwise if the doses of item described > 0] ([fill-colour of item described] liquid)[end if][shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of baby's bottle is "bab". Figure of baby's bottle is the file "Items/Accessories/Vessels/babybottle1.png".
 To decide which figure-name is the examine-image of (V - baby's bottle):
 	decide on the figure of baby's bottle.
-Definition: baby's bottle is pregnancy related: decide yes.
-Definition: baby's bottle is fetish appropriate if diaper lover > 0.
+Definition: baby's bottle is pregnancy themed: decide yes.
+Definition: baby's bottle is fetish appropriate:
+	if diaper lover > 0, decide yes;
+	decide no.
 To compute cursed drinking (X - baby's bottle):
 	say "It tastes like milk, but really sour. Something tells you it's not the same as what you put in, and before you can finish the thought, [run paragraph on]";
 	let D be a random eligible diaper;
@@ -164,8 +137,6 @@ To decide which number is the initial outrage of (V - baby's bottle):
 	if diaper quest is 0, decide on 10;
 	decide on 0.
 To decide which number is the initial cringe of (V - baby's bottle):
-	if the doses of V is 0, decide on 8;
-	if the fill-colour of V is white, decide on 14;
 	decide on 10.
 
 alcohol is a number that varies.
@@ -352,20 +323,30 @@ Figure of boob mug is the file "Items/Accessories/Vessels/mug1.png".
 Figure of cow mug is the file "Items/Accessories/Vessels/mug2.png".
 Figure of coffee mug is the file "Items/Accessories/Vessels/mug3.png".
 To decide which figure-name is the examine-image of (V - novelty mug):
-	if diaper quest is 1, decide on the figure of coffee mug;
-	if lactation fetish is 1, decide on the figure of cow mug;
+	if diaper quest is 1 and diaper messing >= 3, decide on the figure of coffee mug;
+	if lactation fetish is 1 or diaper quest is 1, decide on the figure of cow mug;
 	decide on the figure of boob mug.
-Definition: novelty mug is boob themed if lactation fetish is 0 and diaper quest is 0.
-Definition: novelty mug is toilet themed if diaper quest is 1.
-Definition: novelty mug is cow themed if diaper quest is 0 and lactation fetish is 1.
+Definition: novelty mug is boob themed:
+	if lactation fetish is 0 and diaper quest is 0, decide yes;
+	decide no.
+Definition: novelty mug is toilet themed:
+	if diaper quest is 1 and diaper messing >= 3, decide yes;
+	decide no.
+Definition: novelty mug is cow themed:
+	if lactation fetish is 1 or (diaper quest is 1 and diaper messing < 3), decide yes;
+	decide no.
 To say VesselDesc of (V - novelty mug):
-	say "[if diaper quest is 1]This brown mug is shaped like a comical brown poop. It has the words 'Coffee makes me poop' in white on the side.[otherwise if lactation fetish is 1]This mug has a cow print. The base is shaped like a cow's udder, so when the drinker is imbibing from it, it looks like they have an udder for a mouth.[otherwise]This mug is flesh coloured and has a set of large naked breasts protruding out the front.[end if]".
+	say "[if diaper quest is 1 and diaper messing >= 3]This brown mug is shaped like a comical brown poop. It has the words 'Coffee makes me poop' in white on the side.[otherwise if lactation fetish is 1 or diaper quest is 1]This mug has a cow print. The base is shaped like a cow's udder, so when the drinker is imbibing from it, it looks like they have an udder for a mouth.[otherwise]This mug is flesh coloured and has a set of large naked breasts protruding out the front.[end if]".
 To say ShortVesselDesc of (V - novelty mug):
 	say "novelty mug".
 To compute cursed drinking (X - novelty mug):
 	if diaper quest is 1:
-		say "Yuck, it tastes like cold coffee! Your stomach growls horribly. ";
-		increase rectum by 3;
+		if diaper messing >= 3:
+			say "Yuck, it tastes like cold coffee! Your stomach growls horribly. ";
+			increase suppository by 1;
+		otherwise:
+			say "It tastes like [one of]milk, but somehow you know something isn't right. It's too tangy and... sweet? This must be human[or]tangy[stopping] breast milk...";
+			MilkTasteAddictUp 1;
 	otherwise:
 		say "It tastes like milk, but somehow you know something isn't right. ";
 		if lactation fetish is 1:
@@ -384,9 +365,9 @@ To compute cursed drinking (X - novelty mug):
 			say "You feel your [BreastDesc] slightly swell.".
 To decide which number is the initial outrage of (V - a novelty mug):
 	if diaper quest is 1, decide on 0;
-	decide on 10.
+	decide on 6.
 To decide which number is the initial cringe of (V - a novelty mug):
-	decide on 10.
+	decide on 6.
 
 teapot is a vessel. The max-doses of teapot is 2. The printed name of teapot is "[TQlink of item described][unless curse-ID of the item described is unsure][magic curse of item described] [end if]teapot[if the doses of item described > 0 and the fill-type of item described is remembered] ([FillName the fill-type of item described])[otherwise if the doses of item described > 0] ([fill-colour of item described] liquid)[end if][shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of teapot is "tp".
 Figure of penis teapot is the file "Items/Accessories/Vessels/teapot1.png".
@@ -398,8 +379,12 @@ To say VesselDesc of (V - teapot):
 	say "[if diaper quest is 0]A weird small teapot with a long stem shaped like a limp penis.[otherwise]A small teapot shaped like a cute kitty cat's head.[end if]".
 To say ShortVesselDesc of (V - teapot):
 	say "teapot".
-Definition: teapot is cat themed if diaper quest is 1.
-Definition: teapot is penis themed if diaper quest is 0.
+Definition: teapot is cat themed:
+	if diaper quest is 1, decide yes;
+	decide no.
+Definition: teapot is penis themed:
+	if diaper quest is 0, decide yes;
+	decide no.
 To compute cursed drinking (X - teapot):
 	if diaper quest is 1:
 		if there is a worn tattoo and teapot tattoo is not worn and a random number between 1 and 3 is 1:
@@ -411,11 +396,11 @@ To compute cursed drinking (X - teapot):
 			SilentlyDiaperAddictUp 1;
 		say "That was a cursed drink for sure...";
 	otherwise:
-		say "An extremely bitter taste and slimy consistency immediately lets you know it's not what you put in. The teapot changed everything inside it into [semen]! [if the Known corresponding to an Magic of the fill-type of X in the Table of Drinks is 0][one of][line break][variable custom style]'Either the teapot or the drink colour is cursed, but I don[']t know which...'[roman type][line break][or][stopping][end if][line break]";
+		say "An extremely bitter taste and slimy consistency immediately lets you know it's not what you put in. The teapot changed everything inside it into [semen]! [if the Known corresponding to an Magic of the fill-type of X in the Table of Drinks is 0][one of][line break][variable custom style]'Either the teapot or the drink colour is cursed, but I don't know which...'[roman type][line break][or][stopping][end if][line break]";
 		StomachSemenUp 1.
 To decide which number is the initial outrage of (V - teapot):
 	if diaper quest is 1, decide on 0;
-	decide on 10.
+	decide on 8.
 To decide which number is the initial cringe of (V - teapot):
 	decide on 6.
 

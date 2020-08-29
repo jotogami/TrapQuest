@@ -10,7 +10,7 @@ To compute SelfExamineDesc of (C - a vest top):
 
 This is the remove inappropriate vest tops rule:
 	repeat with B running through vest tops:
-		now B is in Holding Pen.
+		unless B is rubber vest top, now B is in Holding Pen.
 The remove inappropriate vest tops rule is listed in the diaper quest fix rules.
 
 Part 1 - I Love Cock in my Ass Vest Top
@@ -50,7 +50,9 @@ There is 1 my tits would like a drink vest top.
 Definition: a my tits would like a drink vest top is drink themed: decide yes.
 Definition: a my tits would like a drink vest top is boob themed: decide yes.
 Definition: a my tits would like a drink vest top is white themed: decide yes.
-Definition: a my tits would like a drink vest top is fetish appropriate if the player is not a flatchested trap.
+Definition: a my tits would like a drink vest top is fetish appropriate:
+	if the player is not a flatchested trap, decide yes;
+	decide no.
 
 To decide which figure-name is clothing-image of (C - an my tits would like a drink vest top):
 	decide on figure of my tits would like a drink vest top.
@@ -88,14 +90,16 @@ To say MediumDesc of (C - a real cowgirls ride their bulls bareback vest top):
 To decide which number is the initial outrage of (C - a real cowgirls ride their bulls bareback vest top):
 	decide on 5.
 
-Definition: A real cowgirls ride their bulls bareback vest top is pregnancy related: decide yes.
+Definition: A real cowgirls ride their bulls bareback vest top is pregnancy themed: decide yes.
 Definition: A real cowgirls ride their bulls bareback vest top is interracial themed: decide yes.
 Definition: A real cowgirls ride their bulls bareback vest top is white themed: decide yes.
-Definition: A real cowgirls ride their bulls bareback vest top is fetish appropriate if pregnancy fetish is 1.
+Definition: A real cowgirls ride their bulls bareback vest top is fetish appropriate:
+	if pregnancy fetish is 1, decide yes;
+	decide no.
 
 Part 4 - Rubber Vest Top
 
-A rubber vest top is a kind of vest top. The printed name of rubber vest top is usually "[clothing-title-before]latex vest top[clothing-title-after]". The text-shortcut of rubber vest top is "lvt".
+A rubber vest top is a kind of vest top. The printed name of rubber vest top is usually "[clothing-title-before][clothing-material of item described] vest top[clothing-title-after]". The text-shortcut of rubber vest top is "lvt".
 
 Figure of rubber vest top is the file "Items/Clothes/Upper/Vests/vest4.png".
 
@@ -105,17 +109,17 @@ To decide which figure-name is clothing-image of (C - a rubber vest top):
 	decide on figure of rubber vest top.
 
 To say ClothingDesc of (C - a rubber vest top):
-	say "This black latex top is ever so slightly transparent. It still provides some level of modesty, but not much. A very low cleavage cut exposes [if C is worn and the largeness of breasts > 2]your[otherwise]the wearer's[end if] breast flesh.".
+	say "This purple top is rather shiny. It still provides some level of modesty, but not much. A very low cleavage cut exposes [if C is worn and the largeness of breasts > 2]your[otherwise]the wearer's[end if] breast flesh.".
 
 To say ShortDesc of (C - a rubber vest top):
-	say "latex vest".
+	say "vest".
 
 To say MediumDesc of (C - a rubber vest top):
-	say "low cut latex vest top".
+	say "low cut [clothing-material of C] vest top".
 
 To decide which number is the initial outrage of (C - a rubber vest top):
 	decide on 3.
 
-Definition: a rubber vest top is black themed: decide yes.
+Definition: a rubber vest top is purple themed: decide yes.
 
 Vest Top ends here.

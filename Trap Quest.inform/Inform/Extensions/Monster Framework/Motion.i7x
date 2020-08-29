@@ -5,8 +5,7 @@ To check motion of (M - a monster):
 		dislodge M;
 	if M is undefeated and M is willing to punish untidiness and the player is not in the location of M: [While the NPC idly wanders, it can pick up leftover soiled diapers]
 		repeat with D running through soiled-diaper in the location of M:
-			now D is in Holding Pen;
-			now D is retained by M;
+			now D is carried by M;
 	compute monstermotion of M;
 	now M is moved.
 
@@ -16,6 +15,7 @@ To compute monstermotion of (M - a monster): [This is default wandering if funct
 To compute mandatory room leaving of (M - a monster):
 	let L be the location of M;
 	let N be 30;
+	now the travel-opposite of the player is down;
 	while N > 0 and M is in L:
 		compute room leaving of M;
 		decrease N by 1;
@@ -31,13 +31,14 @@ To compute room leaving of (M - a monster): [This CANNOT be replaced with a func
 	otherwise:
 		now neighbour finder is the location of M;
 		let A be a random N-viable direction;
-		let P be the room A from the location of M;
-		if A is a random N-viable direction and P is unbossed and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
-			try M going A;
-			compute monstermotion reactions of M;
-		otherwise if A is a random N-viable direction and P is unbossed and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
-			try M going A;
-			compute monstermotion reactions of M.
+		if A is not the travel-opposite of the player: [This is allowed because when we compute mandatory room leaving we set the travel-opposite to down]
+			let P be the room A from the location of M;
+			if A is a random N-viable direction and P is unbossed and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
+				try M going A;
+				compute monstermotion reactions of M;
+			otherwise if A is a random N-viable direction and P is unbossed and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
+				try M going A;
+				compute monstermotion reactions of M.
 
 [N is a nearby monster, in case we want to say something specific about hearing that type of monster nearby.]
 To say AttractionWorry of (N - a monster):
@@ -53,7 +54,7 @@ To say AttractionWorry of (N - a monster):
 			if the player is glue stuck:
 				let G be a random glue in the location of the player;
 				if the smell-duration of G > 0:
-					say "[one of]The smell of the glue has filled the room and spread beyond. [line break][variable custom style]Would any monsters have learned to hunt for stuck prey?[roman type][line break][or]As you strain at the glue, you try to keep your panicked panting to a minimum.[or][line break][variable custom style]I hope the smell and my struggles don't attract 'attention'![roman type][line break][or]With the smell of the glue spreading, you try to contain your groans as you struggle against the glue's grip.[or]It'd be just awful if a monster found you while you were helpless![or]You can't help moaning as the pungent glue holds you in its relentless grip.[at random]";
+					say "[one of]The smell of the glue has filled the room and spread beyond.[line break][variable custom style]Would any monsters have learned to hunt for stuck prey?[roman type][line break][or]As you strain at the glue, you try to keep your panicked panting to a minimum.[or][line break][variable custom style]I hope the smell and my struggles don't attract 'attention'![roman type][line break][or]With the smell of the glue spreading, you try to contain your groans as you struggle against the glue's grip.[or]It'd be just awful if a monster found you while you were helpless![or]You can't help moaning as the pungent glue holds you in its relentless grip.[at random]";
 				otherwise:
 					say "Thankfully, the smell of the glue has faded".
 
@@ -157,6 +158,15 @@ To compute sleep reduction of (M - a monster):
 			if M is in the location of the player, say "[BigNameDesc of M] wakes up! [if M is unfriendly]Uh-oh...[end if]".
 
 To compute periodic healing of (M - a monster):
+	if the blind-status of M > 0:
+		decrease the blind-status of M by 1;
+		if the blind-status of M is 0 and M is in the location of the player and M is awake, say "[BigNameDesc of M] is no longer blind!";
+	if the paralyse-status of M > 0:
+		decrease the paralyse-status of M by 1;
+		if the paralyse-status of M is 0 and M is in the location of the player and M is awake, say "[BigNameDesc of M] is no longer paralysed!";
+	if the poison-status of M > 0:
+		decrease the poison-status of M by 1;
+		if the poison-status of M is 0 and M is in the location of the player and M is awake, say "[BigNameDesc of M] is no longer poisoned!";
 	if the M is awake:
 		if M is uninterested, MonsterHeal M by 2;[Uninterested monsters heal every turn.]
 	otherwise:

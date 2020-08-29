@@ -36,13 +36,20 @@ To commence doom:
 				set up M;
 		say "[bold type]You feel a sudden sense of impending doom...[roman type][line break]";
 		if newbie tips is 1, say "[one of][newbie style]Newbie tip: You've triggered a side quest! Unless you stop the ritual, spooky things will start happening and some enemies will get more powerful and aggressive. To slow the cultists down, kill the mindless ones near the hidden altar, and also don't dirty up the sacred pool. To find out how to re-close the weakening seal on the Elder One, talk to the witch in the woods.[roman type][line break][or][stopping]";
+		repeat with M running through robobellboys:
+			add reception bell to the banishItems of M;
+		if the number of alive undefeated robobellboys is 0, now the next-summon of teleportation-pad is a random off-stage robobellboy;
+		if catbell is off-stage:
+			now catbell is in Dungeon41;
+			now catbell is store;
+		add black candle to the taxableItems of dominatrix;
+		add black candle to the tradableItems of dominatrix;
+		repeat with M running through dungeon dwelling gladiators:
+			add black candle to the taxableItems of M;
+			add black candle to the tradableItems of M;
+		if the number of alive undefeated dungeon dwelling gladiators is 0, now the next-summon of summoning-circle is a random off-stage dungeon dwelling gladiator;
 		now doom counter is 1.
 
-[!<ComputeDoom>+
-
-REQUIRES COMMENTING
-
-+!]
 A later time based rule (this is the compute doom rule):
 	if tough-shit is 1 and doom counter is 0:
 		let R be the room south from Stairwell03;
@@ -134,20 +141,25 @@ A later time based rule (this is the compute doom rule):
 			if the location of the player is not Mansion23:
 				say "[bold type]A horrible noise like a thousand screams of pure bliss echoes through the world itself, and the world itself takes on a soft pink cast for a moment. Something is drawing close to this world![roman type][line break]";
 			otherwise:
-				say "[bold type]The world begins to shake and pink lightning crackles over every surface! You can feel it, the Great One has come! You revel as the energy flows into you, through you. Even after it settles down, a pink glow remains in the air.[roman type][line break]";
-			SexAddictUp 2;
-			SemenAddictUp 2;
-			DelicateUp 2;
-		otherwise:
-			if the player-class is not cultist:
-				say "[bold type]The world begins to shake and pink lightning begins to arc off the floating pink bubble and into the world! The bubble twists and resolves into an increasingly humanoid shape, finally becoming an extremely feminine figure composed of shocking pink light. In spite of being faceless, you can somehow tell it is looking at you.[line break][second custom style]'Like, cower in fear and junk because Valleyhotep, herald of [Azathot], is totally here.'[roman type][line break]This is probably bad.";
+				say "[bold type]A horrible noise like a thousand screams of bliss echoes through the world and a soft pink light fills the area. Above the altar a translucent pink bubble swirls and throbs, the ritual is clearly almost complete![roman type][line break]";
+			now doomed is 4;
+			now the Pink Sphere is in Mansion23; [spawn the pink bubble scenery in mansion23]
+		otherwise if doom counter > 750 and doomed is 4:
+			if the location of the player is not Mansion23:
+				if the player-class is not cultist:
+					say "[bold type]The world begins to shake and pink lightning crackles over every surface! You desperately try to avoid them, but you feel the energy wash over you before the effect settles down. Even still, there is a strange pink energy hanging in the air. One thing is certain: You have failed.[roman type][line break]";
+				otherwise:
+					say "[bold type]The world begins to shake and pink lightning crackles over every surface! You can feel it, the Great One has come! You revel as the energy flows into you, through you. Even after it settles down, a pink glow remains in the air.[roman type][line break]";
 			otherwise:
-				say "[bold type]The world begins to shake and pink lightning begins to arc off the floating pink bubble and into the world! The bubble twists and resolves into an increasingly humanoid shape, finally becoming an extremely feminine figure composed of shocking pink light. In spite of being faceless, you can somehow tell it is looking at you.[line break][second custom style]'You have totally done well, minions! Now go and, like, spread the word of Valleyhotep, herald of [Azathot]!'[roman type][line break]";
+				if the player-class is not cultist:
+					say "[bold type]The world begins to shake and pink lightning begins to arc off the floating pink bubble and into the world! The bubble twists and resolves into an increasingly humanoid shape, finally becoming an extremely feminine figure composed of shocking pink light. In spite of being faceless, you can somehow tell it is looking at you.[line break][second custom style]'Like, cower in fear and junk because Valleyhotep, herald of [Azathot], is totally here.'[roman type][line break]This is probably bad.";
+				otherwise:
+					say "[bold type]The world begins to shake and pink lightning begins to arc off the floating pink bubble and into the world! The bubble twists and resolves into an increasingly humanoid shape, finally becoming an extremely feminine figure composed of shocking pink light. In spite of being faceless, you can somehow tell it is looking at you.[line break][second custom style]'You have totally done well, minions! Now go and, like, spread the word of Valleyhotep, herald of [Azathot]!'[roman type][line break]";
 			SexAddictUp 2;
 			SemenAddictUp 2;
 			DelicateUp 2;
-		Resolve Doom;[spawn valleyhotep and remove the pink bubble]
-	otherwise if doom counter > 0:
+			Resolve Doom;[spawn valleyhotep and remove the pink bubble]
+	otherwise:
 		if the gifted of herald > 0, decrease the gifted of herald by 1.
 
 Definition: a room (called R) is raining:
@@ -185,11 +197,6 @@ A time based rule (this is the doom weather rule):
 			say "[bold type]You have just stepped inside, out of the rain.[roman type][line break]";
 			now latestAnnouncedRaining is 0.
 
-[!<ResolveDoom>+
-
-REQUIRES COMMENTING
-
-+!]
 To Resolve Doom:
 	now doomed is 5;
 	now the Pink Sphere is in Holding Pen;
@@ -198,11 +205,6 @@ To Resolve Doom:
 	now herald is in Mansion23;
 	progress quest of ritual-quest.
 
-[!<ComputeChosenBirth>+
-
-REQUIRES COMMENTING
-
-+!]
 To compute chosen birth:[now that the mindless acolytes are no longer needed to pool their strength, it's time to have some babies!]
 	repeat with A running through alive mindless acolytes:
 		now A is unleashed;
@@ -223,27 +225,23 @@ To compute chosen birth:[now that the mindless acolytes are no longer needed to 
 A time based rule (this is the creepiness rule):
 	compute creepiness.
 
-[!<creepiness:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 creepiness is a number that varies. creepiness is usually 0.
-[!<ComputeCreepiness>+
-
-REQUIRES COMMENTING
-
-+!]
 To compute creepiness: [first implementation of "creeping" of ghosts in non-garlic rooms.]
+	let G be the number of alive ghosts + 1;
 	if the location of the player is garlic or playerRegion is not mansion:
-		if creepiness > 0, decrease creepiness by 10;[The player will have to hide for a couple turns to completely shake off the ghosts, but it shouldn't take too long]
-	otherwise if (creepiness > a random number between 10 and 20) and the number of alive ghosts * 30 < creepiness and there is an off-stage ghost:[player has to be in the mansion for a while before multiple ghosts start messing with them]
-		let M be a random off-stage ghost;[Sometimes this summons the jismbodied ghost, but you have to "kill" it first.]
-		set up M;
-		now M is in the location of the player;
-		say "Something in the air changes, and you look over your shoulder to see a pinprick of light in the doorway, slowly growing into [NameDesc of M].";
-		decrease creepiness by ((6 - game difficulty) * the number of on-stage ghosts) + 30;[it's almost certain you'll see one if something catches you, but it's very unlikely to get more than 2 at a time.]
-	otherwise if the player is not soulless:[The ghosts are attracted to your soul]
+		if creepiness > 0, decrease creepiness by 20; [The player will have to hide for a couple turns to completely shake off the ghosts, but it shouldn't take too long]
+		if creepiness < 0, now creepiness is 0;
+	otherwise if (creepiness > a random number between (G * 30) and (G * 60)) and there is an off-stage ghost: [player has to be in the mansion for a while before multiple ghosts start messing with them]
+		let LM be the list of off-stage ghosts;
+		if ghostly tentacle is listed in LM, remove ghostly tentacle from LM;
+		if the number of entries in LM > 0:
+			sort LM in random order;
+			let M be entry 1 in LM; [Sometimes this summons the jismbodied ghost, but you have to "kill" it first.]
+			set up M;
+			now M is in the location of the player;
+			say "Something in the air changes, and you look over your shoulder to see a pinprick of light in the doorway, slowly growing into [NameDesc of M].";
+			decrease creepiness by ((6 - game difficulty) * the number of on-stage ghosts) + 30; [it's almost certain you'll see one if something catches you, but it's very unlikely to get more than 2 at a time.]
+	otherwise if the player is not soulless: [The ghosts are attracted to your soul]
 		say "[one of][if creepiness > 9]Tension seems to linger in the air around you, and you can't help but feel something will burst out at you at any moment.[end if][or][or][or][if creepiness > 6]You can't shake the feeling that you are being watched.[end if][or][or][cycling]";
 		increase creepiness by 1.
 

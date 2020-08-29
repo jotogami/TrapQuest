@@ -2,64 +2,16 @@ Face by Body Parts begins here.
 
 Part 1 - Definitions
 
-[!<Face>@
-
-REQUIRES COMMENTING
-
-@inherits <Orifice>
-
-@!]
 face is an orifice. Face is everywhere. The printed name of face is "[if item described is occupied]mouth[otherwise]face[end if]". Understand "mouth", "blowjob", "oral", "oral sex", "fellatio", "cunnilingus", "blow job" as face. [This way 'offer/suggest blowjob/etc. is understood by the game] The text-shortcut of face is "face".
 To say FullExamineDesc of (B - face):
 	say "[ImageDesc of face][TotalDesc of face]".
 
-[!<Face>@<previousMakeUp:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called previous make-up.
-
-[!<Face>@<previousHairLength:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called previous hair length.
-
-[!<Face>@<previousHairRedness:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called previous hair redness.
-
-[!<Face>@<previousHairBrightness:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called previous hair brightness.
-
-[!<Face>@<previousHairBlondeness:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called previous hair blondeness.
-
-[!<Player>@<makeUp:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called make-up. [Min 0 Max 3 - A high number means slutty makeup.]
-
-[!<Player>@<lips:Integer>*
-
-REQUIRES COMMENTING
-
-*@!]
 Face has a number called lips.
 
 Face has a number called semen volume.
@@ -72,13 +24,10 @@ To decide which number is face-limit:
 	decide on 4.
 
 [Can it be accessed right now with nothing blocking it?]
-Definition: face is undefended if face is not actually occupied.
+Definition: face is undefended:
+	if face is not actually occupied, decide yes;
+	decide no.
 
-[!<facePresentableRules:Rulebook>*
-
-REQUIRES COMMENTING
-
-*!]
 the face presentable rules is a rulebook.
 the presentable rules of face is usually the face presentable rules.
 
@@ -91,45 +40,12 @@ To decide which object is the at least partial concealer of (F - face):
 	if cultist veil is worn, decide on cultist veil;
 	decide on nothing.
 
-[!<TheUnableToSpeakToPresentRule>+
-
-REQUIRES COMMENTING
-
-+!]
-[This is the not able to speak to present rule:
-	if the player is not able to speak:
-		if auto is 0, say "You can't do that whilst not able to speak!";
-		rule fails.
-The not able to speak to present rule is listed in the face presentable rules.]
-
-[!<TheFaceOccupiedRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the face occupied rule:
 	if face is actually occupied:
 		if auto is 0, say "Your mouth is a bit full already, don't you think?";
 		rule fails.
 The face occupied rule is listed in the face presentable rules.
 
-[!<TheTooMuchDignityToPresentFaceRule>+
-
-REQUIRES COMMENTING
-
-+!]
-[This is the too much dignity to present face rule:
-	if the humiliation of the player < HUMILIATION-PROUD + 2000 and debugmode < 1:
-		if (the vaginalvirgin of the player is 0 and the player is possessing a vagina) or (the analvirgin of the player is 0 and the player is not possessing a vagina): [virgins can always attempt to preserve their virginity]
-			if auto is 0, say "You have too much self respect to do that!";
-			rule fails.
-The too much dignity to present face rule is listed in the face presentable rules.]
-
-[!<TheTooHornyToPresentFaceRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the too horny to present face rule:
 	if the orifice soreness of the player < 7 and the analvirgin of the player is 0 and the player is horny and (the vaginalvirgin of the player is 0 or the player is not possessing a vagina): [This way females can always present mouth to avoid virginity loss, and all players can present mouth to avoid anal virginity loss]
 		if auto is 0 or there is an actually presentable fuckhole: [The automatic action rule does not care if you are horny, unless a fuckhole is actually presentable as well.]
@@ -138,41 +54,27 @@ This is the too horny to present face rule:
 				rule fails.
 The too horny to present face rule is listed in the face presentable rules.
 
-[!<TheMonsterDoesNotDoOralRule>+
-
-REQUIRES COMMENTING
-
-+!]
 This is the monster doesn't do oral rule:
-	if auto is 1 and the number of willing to do oral monsters in the location of the player is 0, rule fails.
+	if auto > 0 and ((presenting-receiver is monster and presenting-receiver is not willing to do oral) or the number of willing to do oral monsters in the location of the player is 0), rule fails.
 The monster doesn't do oral rule is listed in the face presentable rules.
 
-[!<FaceIsUsableWithoutPenetration>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: face is usable without penetration:
 	if current-monster is requiring facial penetration, decide no;
 	decide yes.
 
-[!<MonsterIsRequiringFacialPenetration>+
-
-REQUIRES COMMENTING
-
-+!]
 Definition: a monster is requiring facial penetration: decide yes.
 
-[!<FaceIsExposed>+
+[necessary for determining outrage when cumsoaked]
+Definition: face is lewdly exposed:
+	if it is exposed, decide yes;
+	decide no.
 
-REQUIRES COMMENTING
+To decide which object is the concealer of (T - face):
+	decide on a random worn actually dense hood.
 
-+!]
-Definition: face is exposed:
-	if there is a worn hood, decide no;
-	decide yes.
-
-Definition: face is lewdly exposed if it is exposed.
+To decide which object is the at least partial concealer of (T - face):
+	if thighs is listed in the armUses of arms, decide on arms;
+	decide on a random worn not-see-through hood.
 
 To decide which number is the lewdly exposed outrage of (F - face):
 	if diaper quest is 1 and the make-up of face >= 3, decide on 2;
@@ -201,11 +103,6 @@ The plushlip blowjob slut rule is listed in the blowjob slut eligibility rules.
 
 Part 2 - Description
 
-[!<SayShortDescOfFace>+
-
-REQUIRES COMMENTING
-
-+!]
 To say ShortDesc of (F - face):
 	if the make-up of face is 0, say "plain";
 	if the make-up of face is 1, say "lightly made up";
@@ -223,11 +120,6 @@ To say ShortDesc of (F - face):
 		say " whore-lipped";
 	say " face".
 
-[!<SayMediumDescOfFace>+
-
-REQUIRES COMMENTING
-
-+!]
 To say MediumDesc of (F - face):
 	let A be alcohol-level;
 	if A > 2:
@@ -238,11 +130,6 @@ To say MediumDesc of (F - face):
 		say "tipsy ";
 	say ShortDesc of face.
 
-[!<SayTotalDescOfFace>+
-
-REQUIRES COMMENTING
-
-+!]
 To say TotalDesc of face:
 	say "You have [LipDesc], and ";
 	if the semen coating of face > 7:
@@ -292,11 +179,6 @@ To say MakeUpDesc:
 		otherwise:
 			say "is smothered in overdone make-up, which [one of]gives you an almost doll-like face[or]encourages men to treat you like a slut[or]most men would take as a signal that you're an easy lay[or]is begging for all the [if the bimbo of the player < 12]wrong[otherwise][line break][second custom style]right[roman type][line break][end if] sorts of attention[or]makes you look like a total [whore][purely at random]".
 
-[!<SayLipDesc>+
-
-REQUIRES COMMENTING
-
-+!]
 To say LipDesc:
 	if diaper quest is 1:
 		say "lips";
@@ -306,20 +188,15 @@ To say LipDesc:
 		if the lips of face is 1:
 			say "[one of]flared[or]full[or][if artificial enhancements fetish is 1]pouting[otherwise]big[end if][or]well-developed[at random]";
 		if the lips of face is 2:[maximum for vanilla players]
-			say "[if artificial enhancements fetish is 1][one of]beestung[or]plush[or]plump[or]fleshy[at random][otherwise][one of]plush[or]dick sucking[or]pouting[at random][end if]";
+			say "[if artificial enhancements fetish is 1][one of]beestung[or]plush[or]plump[or]fleshy[at random][otherwise][one of]plush[or]dick sucking[or]pouting[or]pouty[or]puffy[at random][end if]";
 		if the latex-transformation of the player > 6:
-			say "[one of]plastic[or]upholstered[or]pillowy[or]padded[at random]";[lips are fixed at 3.]
+			say "[one of]plastic[or]upholstered[or]pillowy[or]padded[or]squeaky[or]inflated[or]puffy[at random]";[lips are fixed at 3.]
 		otherwise if the lips of face > 2:
 			say "[one of]swollen[or]oversized[or]huge[or]corpulent[or]augmented[at random] dick sucking";
 		say " lips".
 
 Part 3 - Modify Face Stats
 
-[!<FaceUpX>+
-
-REQUIRES COMMENTING
-
-+!]
 To FaceUp (X - a number):
 	now the previous make-up of face is the make-up of face;
 	while X > 0:
@@ -328,11 +205,6 @@ To FaceUp (X - a number):
 	if the make-up of face > the previous make-up of face, progress quest of make-up-quest;
 	update appearance level.
 
-[!<FaceDownX>+
-
-REQUIRES COMMENTING
-
-+!]
 To FaceDown (X - a number):
 	now the previous make-up of face is the make-up of face;
 	while X > 0:
@@ -341,21 +213,15 @@ To FaceDown (X - a number):
 			decrease the make-up of face by 1;
 	update appearance level.
 
-Definition: face is permanently made up if the class of the player is silicone queen or Permanent MakeUp is 1 or the latex-transformation of the player >= 7.
-Definition: face is temporarily made up if the make-up of face > 0 and face is not permanently made up.
+Definition: face is permanently made up:
+	if the class of the player is silicone queen or Permanent MakeUp is 1 or the latex-transformation of the player >= 7, decide yes;
+	decide no.
+Definition: face is temporarily made up:
+	if the make-up of face > 0 and face is not permanently made up, decide yes;
+	decide no.
 
-[!<permanentMakeUp:Integer>*
-
-REQUIRES COMMENTING
-
-*!]
 Permanent MakeUp is a number that varies. Permanent MakeUp is 0.
 
-[!<LipsUpX>+
-
-REQUIRES COMMENTING
-
-+!]
 To LipsUp (X - a number):
 	while X > 0:
 		decrease X by 1;

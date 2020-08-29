@@ -1,14 +1,99 @@
 Things Framework by Objects begins here.
 
-[!<Thing>@<textShortcut:IndexedText>*
-
-REQUIRES COMMENTING
-
-*@!]
 A thing has an indexed text called a text-shortcut. Understand the text-shortcut property as describing a thing.
 
-Definition: a thing (called T) is disembodied rather than embodied: [When penetrating an orifice, can it fit underneath other clothing like a sex toy? Or will clothing get in the way, e.g. a dildo pole?]
-	decide no.
+Part - Price and Ownership
+
+A thing can be unowned, store, museum-store, stolen (this is the ownership property). A thing is usually unowned.
+
+To say ownership-desc of (T - a thing):
+	if the item described is stolen, say "[roman type] (stolen)";
+	if the item described is store and the location of the player is not Mansion28, say "[roman type] ([if T is in Dungeon41 or the player is in Dungeon41]for sale - [price of item described][otherwise]cleverly stolen - please report bug[end if])".
+
+To decide what number is the original price of (C - a thing):
+	decide on 0.
+
+To decide what number is the price of (C - a thing):
+	let X be the original price of C;
+	if discount > 0, decrease X by 5;
+	if the blue-balls of shopkeeper < 0, decrease X by 1;
+	if X < 1, now X is 1;
+	decide on X.
+
+To decide what number is the original price of (C - a clothing):
+	let X be 3 - ((the initial outrage of C) / 4);
+	if C is layer-concealing and (C is dense or C is sheer-when-wet):
+		if C is potentially-top-layer-concealing:
+			if C is normally-nipple-covering or C is erect-nipple-exposing:
+				increase X by 1;
+				if C is dense, increase X by 1;
+				if C is normally-nipple-covering, increase X by 1;
+				if C is average cut or higher, increase X by 1;
+				if C is fully covering, increase X by 1;
+		if C is potentially-bottom-layer-concealing:
+			increase X by 2;
+			if C is knee-length or C is slitted, increase X by 1;
+		otherwise if C is potentially-partially-bottom-layer-concealing:
+			increase X by 1;
+	otherwise:
+		if C is total protection:
+			increase X by 2;
+		otherwise if C is pussy protection:
+			increase X by 1;
+	if C is rare, increase X by 2;
+	decide on X.
+
+To decide what number is the price of (C - a clothing):
+	let X be the original price of C;
+	if C is trousers:
+		now X is 9;
+	if C is skirt:
+		now X is 4;
+	if C is accessory:
+		if C is not plentiful, decide on 0;
+		if C is ring, now X is 1;
+		if C is bracelet, now X is 2;
+		if C is necklace, now X is 4;
+		if C is sapphire, now X is X * 1;
+		if C is emerald, now X is X * 2;
+		if C is ruby, now X is X * 3;
+		if C is pink diamond, now X is X * 4;
+		if C is pure diamond, now X is X * 5;
+		if C is solid gold, now X is X * 6;
+	otherwise:
+		increase X by the magic-modifier of C;
+		if C is not blandness, increase X by 1;
+		if discount > 0, decrease X by 5;
+		if the blue-balls of shopkeeper < 0, decrease X by 1;
+		if X < 1, now X is 1;
+	decide on X.
+
+A thing has a number called tradability.
+
+A game universe initialisation rule:
+	repeat with T running through things:
+		if the tradability of T is 0, now the tradability of T is the price of T.
+
+[!<discount:Integer>*
+
+The shopkeeper can give the player a discount. This number tracks how many seconds are left on the discount. If the number is -1, this means that the discount will not be offered again. This happens when the discount offer is refused.
+
+*!]
+discount is a number that varies. discount is 0.
+
+To decide which number is the total wealth of the player:
+	let X be 0;
+	repeat with A running through plentiful accessories held by the player:
+		increase X by the price of A;
+	decide on X.
+
+To decide which number is the wealth of the player:
+	let X be 0;
+	repeat with A running through worn accessories:
+		increase X by the price of A;
+	decide on X.
+
+Part - Titles and Images
 
 [This overrides whatever other image we were going to display for the thing, once only.]
 A thing has a figure-name called the temporary-image. The temporary-image of a thing is usually figure of no-image-yet.
@@ -49,7 +134,7 @@ To maybe-map-display (C - a thing):
 			if the map-window is g-present:
 				now temporary-map-figure is F;
 				if seconds is 0, display entire map; [This isn't going to happen automatically because time hasn't moved forward. So we prompt it ourselves.]
-				otherwise now map-turn-stall is 1; [If we didn't do this, the temporary-map-figure would be reset before it has a chance to be shown properly, when the time progression is calculated (towards the buttom of "to run the engine once" in Compute Turn.i7x.]
+				otherwise now map-turn-stall is 1; [If we didn't do this, the temporary-map-figure would be reset before it has a chance to be shown properly, when the time progression is calculated (towards the bottom of "to run the engine once" in Compute Turn.i7x.]
 			otherwise:
 				cutshow F for C;
 		otherwise:
@@ -133,5 +218,9 @@ To alwayscutshow (F - a figure-name) for (M - a thing):
 [If the focus window isn't present, don't show it at all. It's only worth showing if the focus window is around.]
 To onlycutshow (F - a figure-name) for (M - a thing):
 	if the focus-window is g-present and image cutscenes > 1, alwayscutshow F for M.
+
+Part - Other
+
+Definition: a thing is disembodied rather than embodied: decide no. [When penetrating an orifice, can it fit underneath other clothing like a sex toy? Or will clothing get in the way, e.g. a dildo pole?]
 
 Things Framework ends here.

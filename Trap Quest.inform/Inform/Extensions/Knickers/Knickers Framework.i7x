@@ -1,9 +1,15 @@
 Knickers Framework by Knickers begins here.
 
-Knickers is a kind of clothing. Knickers is usually crotch-intact. The soak-limit of knickers is usually 12.
+A knickers is a kind of clothing. A knickers is usually crotch-intact.
+To decide which number is the default-soak-limit of (C - a knickers):
+	decide on 3 + the penis-capacity of C.
 
-Definition: a knickers is ingredient if it is not product.
-Definition: a knickers is same-type if theme-share-target is knickers and theme-share-target is not undies. [In general, undies don't become non-undies.]
+Definition: a knickers is ingredient:
+	if it is not product, decide yes;
+	decide no.
+Definition: a knickers is same-type:
+	if theme-share-target is knickers and theme-share-target is not undies, decide yes;
+	decide no. [In general, undies don't become non-undies]
 
 To decide which number is the crafting key of (B - a knickers):
 	decide on 32.
@@ -33,18 +39,13 @@ To say AssModestyDesc of (K - a clothing):
 		say "completely covers your [AssDesc][run paragraph on]".
 
 To say ModestyDesc of (K - a clothing):
-	say "[AssModestyDesc of K]";
+	say "[AssModestyDesc of K]. ";
 	if K is no protection:
 		say "It [if K is crotch-displaced]currently [end if]does nothing to protect your crotch[if K is crotch-ripped], because there is a massive rip in the [clothing-material of K][end if]. ";
 	otherwise if penis is exposed:
 		say "It is failing to conceal your [ShortDesc of penis]. ";
 	otherwise:
 		say ". ".
-
-To decide which number is the original price of (C - a knickers):
-	let X be the armour of C;
-	if C is plug panties, now X is 3;
-	decide on X.
 
 To compute SelfExamineDesc of (K - a knickers):
 	say "A [selfexamineuniquetitle of K] [ModestyDesc of K]".
@@ -63,7 +64,7 @@ Report examining knickers:
 		otherwise say "You can sense that it is [if the magic-modifier of the noun < -1]significantly [end if]reducing your ability to hold onto your bladder[if diaper lover >= 3] and bowels[end if].";
 	if newbie tips is 1:
 		if the noun is diaper, say "[one of][item style]Diapers [if the number of worn diapers is 0]would [end if]help prevent against clothing stain and humiliation penalties from the act of urination. [if the player is urine averse]Also when any worn item of clothing becomes fully soaked, your dexterity will be severely limited, and diapers hold a lot more urine before anything else before they become fully saturated.[otherwise if the player is incontinent]Also you are incontinent, and so wearing diapers is the only way to reliably prevent against losing turns every now and then as you involuntarily wet yourself.[otherwise]You can use diapers as a mobile toilet; not that you really care about the smell of urine any more.[end if][roman type][line break][or][stopping]";
-		say "[one of][item style]Underwear [if the noun is diaper]in general [end if][if the noun is no protection or (the player is male and the noun is pussy protection)](but not this one!) [end if][if the number of worn knickers is 0]would provide[otherwise]provides[end if] a line of defence against things accessing your [fuckholes].[roman type][line break][or][stopping]".
+		say "[one of][item style]Underwear [if the noun is diaper]in general [end if][if the noun is no protection or (the player is not possessing a vagina and the noun is pussy protection)](but not this one!) [end if][if the number of worn knickers is 0]would provide[otherwise]provides[end if] a line of defence against things accessing your [fuckholes].[roman type][line break][or][stopping]".
 
 To decide which number is the core outrage of (C - a knickers): [This is plugged into both outrage and cringe]
 	if C is crotch-exposing, decide on 11;
@@ -85,7 +86,7 @@ To decide which number is the unique cringe of (C - a knickers): [Some underwear
 
 To uniquely set up (K - a knickers):
 	repair K;
-	if K is diaper and diaper quest is 1, now the soak-limit of K is 18 + the DQBulk of K * 3;
+	if K is diaper and diaper quest is 1, now the raw-soak-limit of K is 18 + the DQBulk of K * 3;
 	if diaper lover >= 1 and a random number between 1 and 8 is 1, now K is bed wetting;
 	if K is actually sheer and a random number between 1 and 4 is 1, now K is protection.
 
@@ -170,16 +171,10 @@ Report wearing knickers:
 				say "Your [ShortDesc of penis] can't even fit inside this tiny piece of fabric!".
 
 Check taking off worn knickers:
-	if the noun is cursed:
-		say "Try as you might you cannot find a way to slip your fingers under the fabric of your [printed name of the noun], it's as if it is fused to your skin!";
-		now the noun is sure instead;
 	if the player is ankle bound and the noun is not disposable diaper, say "You won't be able to successfully get these off whilst your ankles are bound..." instead;
-	if the noun is vibrating plug panties and the effect of the noun is 2:
-		if there is a shopkeeper in the location of the player, say "You don't dare do that whilst the shopkeeper is watching you." instead; [These are the panties the shopkeeper gave you.]
-		now the effect of the noun is 1; [If you manage to take them off we get rid of the above flag that says the shopkeeper cares]
-	if the noun is glued:
-		try tearing off the noun;
-		if the noun is glued:
-			do nothing instead.
+	if the noun is vibrating plug panties and the effect of the noun is 2 and shopkeeper is in the location of the player, say "You don't dare do that whilst the shopkeeper is watching you." instead. [These are the panties the shopkeeper gave you.]
+
+Carry out taking off vibrating plug panties:
+	if the effect of the noun is 2, now the effect of the noun is 1. [If you manage to take them off we get rid of the above flag that says the shopkeeper cares]
 
 Knickers Framework ends here.

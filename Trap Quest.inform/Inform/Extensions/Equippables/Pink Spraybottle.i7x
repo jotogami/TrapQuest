@@ -2,9 +2,11 @@ Pink Spraybottle by Equippables begins here.
 
 pink-spraybottle is an equippable. pink-spraybottle is in Dungeon30. The printed name of pink-spraybottle is "[clothing-title-before][if the item described is cloth]pink washcloth[otherwise]pink washcloth and spraybottle[end if][clothing-title-after]". The text-shortcut of pink-spraybottle is "psp". Understand "pink", "rag", "washcloth", "bottle", "spritzer", "wash", "cloth", "spray", "spraybottle" as pink-spraybottle.
 
-pink-spraybottle is zap ready. pink-spraybottle has a number called charge. pink-spraybottle has a number called magic-charge. pink-spraybottle has a number called work ethic. pink-spraybottle is unique. pink-spraybottle can be spray or cloth. pink-spraybottle is spray. pink-spraybottle is projectile. pink-spraybottle is cotton.
+pink-spraybottle is zap ready. pink-spraybottle has a number called charge. pink-spraybottle has a number called work ethic. pink-spraybottle is unique. pink-spraybottle can be spray or cloth. pink-spraybottle is spray. pink-spraybottle is projectile. pink-spraybottle is cotton.
 
-Definition: pink-spraybottle is stealable if the class of the player is not maid.
+Definition: pink-spraybottle is stealable:
+	if the class of the player is not maid, decide yes;
+	decide no.
 
 Figure of spraybottle is the file "Items/Accessories/Equippables/spraybottle1.png".
 Figure of washcloth is the file "Items/Accessories/Equippables/spraybottle2.png".
@@ -106,7 +108,7 @@ To compute spraybottle punishment:
 		let P be a random worn sex toy;
 		if P is nothing, let P be a random off-stage basic plug;
 		say "[bold type]Your [ShortDesc of a random worn maid headdress] causes you to feel deep shame at your awful work ethic![roman type][line break]";
-		if V is vaginally summonable and the player is female:
+		if V is vaginally summonable and the player is possessing a vagina:
 			say "You feel a stiff, hard object burrowing into your [vagina]. It starts vibrating. ";
 			summon V cursed vaginally with quest;
 		otherwise if V is actually summonable and the player is sexed male:
@@ -172,9 +174,7 @@ To compute spraybottle punishment:
 To compute (M - a mechanic) considering (T - pink-spraybottle):
 	if T is cloth:
 		say "[speech style of M]'Ugh. Here I was thinking you might [if diaper quest is 1]be able to hold some adult responsibilities[otherwise]be useful as more than a pair of walking tits[end if], but you actually managed to break your only tool. Fucking incredible.'[roman type][line break][big he of M] takes the destroyed pieces of your [ShortDesc of T] and puts them into a small pocket on [his of M] utility belt.[line break][speech style of M]'Honestly, I should fire you, but I'm willing to hold onto it for you until you a figure out a way to make this up to me. Understand? [if diaper quest is 0]There's two things I like - blowjobs and[otherwise]Here's a hint - I like[end if] *ahem* amulets...'[roman type][line break]";
-		now T is in Holding Pen;
-		now M is retaining T;
-		now M is withholding T;
+		now M is carrying T;
 	otherwise:
 		say "[speech style of M]'I can see that it's not broken. Congratulations, you aren't the most useless maid ever. Incredible...'[roman type][line break][big he of M] doesn't seem very interested in the [ShortDesc of the noun].".
 
@@ -189,13 +189,5 @@ To compute attack of (S - pink-spraybottle) at (M - a monster):
 		say "You pull the trigger of your [ShortDesc of S], sending offensive magic through your arm into the water. It hits [NameDesc of M] stinging [him of M] with acidic liquid!";
 	otherwise:
 		say "You pull the trigger of your [ShortDesc of S], but you have no magic to empower the water that comes out. It's not very effective!".
-
-To compute MagicDrain of (Z - pink-spraybottle): [counts as a wand for the purposes of tracking spending magic power]
-	if the magic-power of the player > 0 and the trophy-mode of magic-trophy is 0:
-		increase wandAttacks by 1;
-		if wandAttacks > 2:
-			now wandAttacks is 0;
-			say "You can feel that all your attacks with wands have spent some of your magic.";
-			MagicPowerDown 1.
 
 Pink Spraybottle ends here.
