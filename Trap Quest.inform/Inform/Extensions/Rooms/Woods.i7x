@@ -27,7 +27,7 @@ Woods08 is a dodgy jungle room. The printed name of Woods08 is "Muddy Clearing".
 
 Woods09 is a dodgy jungle room. The printed name of Woods09 is "Stone Clearing". "This clearing seems to be man-made, as it is paved in stone.". The shape of Woods09 is L2/0-0-1-1-1-1.
 
-Woods10 is a dodgy jungle room. The printed name of Woods10 is "Statue Clearing". "Right in the middle of this clearing is a [if diaper quest is 1]fountain of a peeing woman[otherwise]statue of a man and woman having sex[end if]. [if vine boss is off-stage]The grass and trees here seems especially lush and vibrant.[otherwise]Thick green vines are draped over the man's shoulders, giving him the appearance of having a cape.[end if]". The shape of Woods10 is L2/0-0-1-1-1-1.
+Woods10 is a dodgy jungle room. The printed name of Woods10 is "Statue Clearing". "Right in the middle of this clearing is a [if diaper quest is 1]fountain of a peeing woman[otherwise]statue of a man and woman having sex[end if][if diaper quest is 0 and vine boss is off-stage]. The grass and trees here seems especially lush and vibrant.[otherwise]Thick green vines are draped over the man's shoulders, giving him the appearance of having a cape[end if].". The shape of Woods10 is L2/0-0-1-1-1-1.
 
 Woods11 is a dodgy jungle room. The printed name of Woods11 is "Creepy Pathway". "The trees either side of this pathway look like they have faces and arms. It's almost as if they're alive...". The shape of Woods11 is L2/0-0-0-1-1-0.
 
@@ -92,7 +92,7 @@ Definition: Sky01 is nonstandard: decide yes.
 
 WoodsScenery01 is a water-body-scenery. WoodsScenery01 is in Woods05. The printed name of WoodsScenery01 is "River". Understand "waterfall", "pool", "fall", "stream", "river" as WoodsScenery01. Instead of entering WoodsScenery01, try showering WoodsScenery01. The text-shortcut of WoodsScenery01 is "wtfl".
 To say ExamineDesc of (C - WoodsScenery01):
-	say "A fast-moving river connected to a clear waterfall. You could probably [bold type]swim[roman type] in it.".
+	say "A fast-moving river connected to a clear waterfall.  You could swim in it, but [bold type]each thing you're wearing that retains water and isn't specifically designed for swimming will increase how quickly you gain fatigue.[roman type][line break]".
 To decide which figure-name is the examine-image of (C - WoodsScenery01):
 	decide on figure of DungeonScenery03.
 

@@ -85,9 +85,9 @@ To decide which figure-name is Figure of Fairy Cutscene 19:
 To decide which figure-name is Figure of Fairy Cutscene 20:
 	decide on figure of small image.
 
-To decide which figure-name is Figure of ghost 1 ectoplasm cutscene 1:
+To decide which figure-name is Figure of ghost 1 ectoplasm cutscene:
 	decide on figure of small image.
-To decide which figure-name is Figure of ghost 2 ectoplasm cutscene 1:
+To decide which figure-name is Figure of ghost 2 ectoplasm cutscene:
 	decide on figure of small image.
 
 To decide which figure-name is Figure of Guard Cutscene 2:
@@ -382,8 +382,6 @@ To decide which figure-name is Figure of Throne Cutscene 5:
 To decide which figure-name is Figure of Throne Cutscene 6:
 	decide on figure of small image.
 
-To decide which figure-name is Figure of human toilet:
-	decide on figure of small image.
 To decide which figure-name is Figure of male toilet:
 	decide on figure of small image.
 To decide which figure-name is Figure of female toilet:

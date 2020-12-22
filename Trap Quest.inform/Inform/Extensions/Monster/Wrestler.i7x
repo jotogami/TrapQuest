@@ -93,6 +93,15 @@ To set up (M - a wrestler):
 	reset M;
 	now the monstersetup of M is 1;
 	now the raw difficulty of M is the starting difficulty of M;
+	let T be a random rubber trousers;
+	add T to the tradableItems of M, if absent;
+	let P be a random vibrating plug panties;
+	add P to the tradableItems of M, if absent;
+	add plugsuit to the tradableItems of M, if absent;
+	add piece-of-rubber to the tradableItems of M, if absent;
+	add piece-of-rubber to the taxableItems of M, if absent;
+	let W be a random ben wa balls;
+	add W to the taxableItems of M, if absent;
 	now the health of M is the maxhealth of M.
 
 To decide which number is the starting difficulty of (M - a wrestler):
@@ -106,13 +115,6 @@ To decide which number is the girth of (M - a wrestler):
 		otherwise:
 			decide on the openness of F + 1;
 	decide on 0.
-
-[This is the spawn initial wrestler rule:
-	if the number of alive wrestlers is 0:
-		if debugmode > 0, say "Summoning wrestler in hotel.";
-		let M be a random wrestler;
-		summon M in the hotel.
-The spawn initial wrestler rule is listed in the setting up hotel monsters rules.]
 
 Definition: a wrestler is human: decide yes.
 
@@ -166,7 +168,7 @@ To compute perception of (M - a wrestler):
 		say "[speech style of M]'Heh, you're trying to look scary but you don't have me fooled for a minute!'[roman type][line break]";
 		alwayscutshow figure of wrestler interact 10 for M;
 		anger M;
-	otherwise if M is unfriendly or the class of the player is royal slave or the class of the player is the latex fetish model or the class of the player is maid or the player is a sissy:
+	otherwise if M is unfriendly or the class of the player is royal slave or the class of the player is latex fetish model or the class of the player is maid or the player is a sissy:
 		if the player is flying:
 			say "[speech style of M]'What are you doing up there, you crazy bitch?!'[roman type][line break]";
 			alwayscutshow figure of wrestler interact 8 for M;
@@ -337,7 +339,7 @@ This is the wrestler feeds you to master rule:
 	let M be current-monster;
 	let N be a random alive dominatrix;
 	if N is not monster and the times-met of M <= 1, now N is a random alive matron; [We don't want to do this if the wrestler has already dragged the player to the dominatrix earlier in the game] [The test is <= 1 because times-met gets set to 1 as soon as the wrestler first perceives the player. This action will come directly after that, hence a times-met of 1 means this is their first interaction, and anything higher than that means it's a future interaction.]
-	if N is monster and the times-met of N is 0 and the times-met of M < 2:
+	if N is monster and the times-met of N is 0 and the times-met of M < 2 and the number of barriers in the location of the player is 0:
 		let Q be Hotel22;
 		if N is dominatrix, now Q is Hotel37;
 		if Q is not the location of M:
@@ -617,7 +619,7 @@ To say OralSubmissionResponse of (M - a wrestler):[This is only called if the pl
 		say "[one of][BigNameDesc of M] relentlessly teases your [ShortDesc of penis] with [his of M] tongue[or][BigNameDesc of M] skilfully runs [his of M] tongue over your genitals, coating the entire area in spit.[or][BigNameDesc of M] teases your [ShortDesc of penis] with the very tip of [his of M] tongue, as if stimulating a clitoris[or][BigNameDesc of M] pleasures you mercilessly with [his of M] tongue.[or][BigNameDesc of M][']s tongue dances over your [sissy-penis] and taint, driving you insane with expert stimulation.[at random]";
 	otherwise:
 		say "[one of][BigNameDesc of M] teases your clit with the tip of [his of M] tongue, driving you insane with expert stimulation[or][BigNameDesc of M] pushes [his of M] tongue in and out of your [vagina], hugging your clit with [his of M] lower lip.[or][BigNameDesc of M] stimulates your labia and clit with [his of M] tongue, pistoning [his of M] fingers in and out of your pussy[or][BigNameDesc of M] slurps away at your pussy, practically torturing you with [his of M] expert tongue.[at random]";
-	if the player is male:
+	if the player is possessing a penis:
 		stimulate penis from M;
 	otherwise:
 		stimulate vagina from M;
@@ -795,7 +797,7 @@ Definition: wrestler-facesit (called P) is appropriate:
 To compute punishment of (P - wrestler-facesit):
 	let M be current-monster;
 	let D be a random worn diaper;
-	say "[BigNameDesc of M] flips you onto your back and lies on top of you so that [his of M] latex-covered diaper bulge is right above your face. From this vantage point [he of M] gives you a diaper check, pushing [his of M] hand into your [MediumDesc of D] and moving [his of M] nose very close to get a good sniff.[line break][speech style of M]'That's what I thought. Well, to make this a proper 69 I need to make sure mine matches yours, right?'[roman type][line break]That's the last thing you hear [him of M] say before your head is engulfed by cold stretchy rubber and all you can do is wriggle with [joy the diaper addiction of the player]. You can feel the softness of [his of M] thick padding cushioning you against the heavy weight of the butt and body above it. [if D is wet]A very subtle hiss accompanies the sound of rain hitting an umbrella and you know that [NameDesc of M] is peeing [himself of M] right on top of your face. The padding begins to sag which makes the latex cling to your face even tighter. [end if][if D is messed]There's a rubber whine, like a little bit of air being released from a balloon. Then a rasping sound heralds the arrival of something new above your face. It feels like there's an avalanche of snow or something right on the other side of [his of M] latex bodysuit. Your head becomes even more enveloped in its rubbery prison, if that were even possible. [end if]You can't breathe and you can hardly hear a thing. [NameDesc of M] is saying something but you can't make out the words at all, as if you were underwater. And then [he of M] starts thrusting [his of M] hips forward and back, grinding over your face. Through the latex you can feel the [if D is wet]soggy [end if][if D is messed]lumpy [end if]padding as it is moved up and down, forward and back, squished inwards then outwards, squelched around your entire head. [BigNameDesc of M] is moaning but it sounds like [he of M][']s a hundred of metres away. [big he of M] rubs your own [MediumDesc of D] as [he of M] continues to grind, [one of]and you at first assume [he of M] is using [his of M] hands but you realise that it's actually [his of M] own face you can feel against[or]once again using [his of M] face to nuzzle[stopping] your crotch.";
+	say "[BigNameDesc of M] flips you onto your back and lies on top of you so that [his of M] latex-covered diaper bulge is right above your face. From this vantage point [he of M] gives you a diaper check, pushing [his of M] hand into your [MediumDesc of D] and moving [his of M] nose very close to get a good sniff.[line break][speech style of M]'That's what I thought. Well, to make this a proper 69 I need to make sure mine matches yours, right?'[roman type][line break]That's the last thing you hear [him of M] say before your head is engulfed by cold stretchy rubber and all you can do is wriggle with [joy the diaper addiction of the player]. You can feel the softness of [his of M] thick padding cushioning you against the heavy weight of the butt and body above it. [if D is wet]A very subtle hiss accompanies the sound of rain hitting an umbrella and you know that [NameDesc of M] is peeing [himself of M] right on top of your face. The padding begins to sag which makes the latex cling to your face even tighter. [end if][if D is messed]There's a rubber whine, like a little bit of air being released from a balloon. Then a rasping sound heralds the arrival of something new above your face. It feels like there's an avalanche of snow or something right on the other side of [his of M] latex bodysuit. Your head becomes even more enveloped in its rubbery prison, if that were even possible. [end if]You can't breathe and you can hardly hear a thing. [BigNameDesc of M] is saying something but you can't make out the words at all, as if you were underwater. And then [he of M] starts thrusting [his of M] hips forward and back, grinding over your face. Through the latex you can feel the [if D is wet]soggy [end if][if D is messed]lumpy [end if]padding as it is moved up and down, forward and back, squished inwards then outwards, squelched around your entire head. [BigNameDesc of M] is moaning but it sounds like [he of M][']s a hundred of metres away. [big he of M] rubs your own [MediumDesc of D] as [he of M] continues to grind, [one of]and you at first assume [he of M] is using [his of M] hands but you realise that it's actually [his of M] own face you can feel against[or]once again using [his of M] face to nuzzle[stopping] your crotch.";
 	let DAU be 0;
 	if D is wet, increase DAU by 1;
 	if D is messed, increase DAU by 1;
@@ -928,7 +930,7 @@ To watersports dominate (M - a wrestler):
 	otherwise:
 		say "[line break][speech style of M]'[one of]Oh wow! I didn't even know dicks could get that small! [big please], I have to know what your piss tastes like!'[or]I never get tired of your tiny cock! Let me have another taste of that yummy piss!'[stopping][roman type][line break] [big he of M] opens [his of M] mouth wide, gesturing to [his of M] outstretched tongue with a latex-clad finger. This is too good to be true! You immediately release your hold on your bladder, allowing a shudder of relief to pass through your body as you douse [NameDesc of M] in a stream of golden [urine]. [big he of M] pushes [his of M] breasts together enticingly as [he of M] captures it in [his of M] mouth, making a show of swallowing it in one huge gulp. After [he of M]'s done, [he of M] suddenly gets up and kisses you square on the lips. Wow!";
 		slightDignify;
-		UrineTasteAddictUp 1;
+		SlowUrineTasteAddictUp 1;
 	now the bladder of the player is 0;
 	cutshow figure of wrestler cutscene 2 for M;
 	say AfterDominationComment 1 of M;
@@ -986,20 +988,21 @@ To compute failed dominance punishment of (M - a wrestler):
 			passively stimulate penis times 3;
 			Satisfy M;
 		otherwise:
-			if M is presenting as male, say "[big he of M] unzips [his of M] catsuit, revealing bright purple chastity cage.[line break][speech style of M]'Normally, this is where I'd fuck you... But I'm locked up for life!'[roman type][line break][big he of M] straddles your [if P is clothing][ShortDesc of P][otherwise][vagina][end if]and begins to grind against you. It feels good, but [if P is clothing]you can barely feel it through the [clothing-material of P][otherwise][big he of M] moves too slowly for you to get very much of anything out of it[end if] [big he of M] puts you through several minutes of slow torture, somehow bringing [himself of M] to orgasm after orgasm. You have no choice but to lie there and endure it until [he of M] finally gets up, leaving you achingly aroused and completely soaked in [his of M] slippery precum.";
+			if M is presenting as male, say "[big he of M] unzips [his of M] catsuit, revealing bright purple chastity cage.[line break][speech style of M]'Normally, this is where I'd fuck you... But I'm locked up for life!'[roman type][line break][big he of M] straddles your [if P is clothing][ShortDesc of P][otherwise][vagina][end if]and begins to grind against you. It feels good, but [if P is clothing]you can barely feel it through the [clothing-material of P][otherwise][big he of M] moves too slowly for you to get very much of anything out of it[end if] [big he of M] puts you through several minutes of slow torture, somehow bringing [himself of M] to orgasm after orgasm. You have no choice but to lie there and endure it until [he of M] finally gets up, leaving you achingly aroused and completely soaked in [his of M] juices.";
 			otherwise say "[big he of M] unzips [his of M] catsuit, revealing [his of M] wet, rosy vagina.[line break][speech style of M]'I was really hoping you'd win... Looks like I'm going to have to punish you.'[roman type][line break][big he of M] straddles your [if P is clothing][ShortDesc of P][otherwise][vagina][end if] with [his of M] bare sex and begins to grind against you. It feels good, but [if P is clothing]you can barely feel it through the [clothing-material of P][otherwise][big he of M] moves too slowly for you to get very much of anything out of it[end if] [big he of M] puts you through several minutes of slow torture, somehow bringing [himself of M] to orgasm after orgasm. You have no choice but to lie there and endure it until [he of M] finally gets up, leaving you achingly aroused and completely soaked in [his of M] feminine juices.";
 			passively stimulate vagina from M times 3;
 			Satisfy M;
 		now the excitement of M is 0;
+		say GotUnluckyFlav;
 	otherwise if the player is getting unlucky:
 		let B be a random off-stage actually summonable bondage;
 		if B is clothing:
-			say "[line break][speech style of M]'You're into bondage, right? I bet you'll like this, then!'[roman type][line break][big he of M] pulls out a [ShortDesc of B] and locks it into place.";
+			say "[line break][speech style of M]'You're into bondage, right? I bet you'll like this, then!'[roman type][line break][big he of M] pulls out a [ShortDesc of B] and locks it into place. [GotUnluckyFlav]";
 			summon B cursed;
 			now B is locked;
 			Satisfy M;
 		otherwise:[she just fucks you]
-			say "[speech style of M]'Hehe, this will be fun!'[roman type][line break]";
+			say "[speech style of M]'Hehe, this will be fun!'[roman type][line break][GotUnluckyFlav]";
 			now another-turn-flavour is the substituted form of "[BigFuckerDesc of M] holds you in place.";
 			now another-turn is 1;
 	otherwise:
@@ -1040,6 +1043,9 @@ To say FriendlySexReleaseRefusalSpeech of (M - a wrestler):
 	say "[speech style of M]'[one of]No way! Playing with you is way too fun!'[or]Don't wimp out, I know you can take it!'[or]I know you can take it, sexy!'[or]No way, I know you can take it!'[in random order][roman type][line break]".
 
 Part 5 - Conversation
+
+To compute loot dropping of (P - a ben wa balls) by (M - a wrestler):
+	say "[speech style of M]'FINE! I'll give you my favourite toy.'[roman type][line break][BigNameDesc of M] unzips [his of M] bodysuit and pulls a [P] out of [his of P] asshole.[line break][speech style of M]'Happy now?'[roman type][line break]".
 
 Section 1 - Greeting
 

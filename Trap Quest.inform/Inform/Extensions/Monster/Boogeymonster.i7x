@@ -14,7 +14,12 @@ To decide which figure-name is the monster-image of (M - boogeymonster):
 	decide on figure of boogeymonster.
 
 To say MonsterDesc of (M - boogeymonster):
-	say "This giant tentacle monster looks like something straight out of a nightmare[if M is caged]. Luckily it is currently stuck inside a giant cage above head height, so none of its tentacles can quite reach you[end if].";
+	say "This giant tentacle monster looks like something straight out of a nightmare.";
+	if M is caged, say DungeonBossCageDesc of M.
+
+To say DungeonBossCageDesc of (M - boogeymonster):
+	if M is caged, say "[big he of M] is currently trapped within a giant steel birdcage, which is suspended off the ground by a tough-looking chain. [big he of M] can see and look around with ease, capable of swinging [himself of M] a few inches in any direction if [he of M] feels provoked, but unable to inflict any real harm. Looking up at the chain that keeps the cage suspended, you notice that it doesn't appear to coordinate to any device or [bold type]lever[roman type] in the room. To lower [him of M] and open the cage, you'd need to find something elsewhere. [if mystical amulet is in the location of M][line break]Underneath [his of M] feet, you can see a valuable-looking amulet.[end if]";
+	otherwise say "The cage is open and empty[if mystical amulet is in Dungeon36][line break], save for a valuable-looking amulet.[end if]".
 
 To set up (M - boogeymonster):
 	if M is alive: [We don't want to reset the boogeymonster if he's dead]
@@ -62,17 +67,8 @@ To say BecomesBoredFlav of (M - boogeymonster):
 Part 2 - Motion, Seeking and Sleeping
 
 To compute monstermotion of (M - boogeymonster):
-	if M is unleashed:
-		now neighbour finder is the location of M;
-		let A be a random N-viable direction;
-		if A is a random N-viable direction and the room A from the location of M is not Dungeon12 and the room A from the location of M is not Dungeon41:
-			try M going A;
-		otherwise if A is a random N-viable direction and the room A from the location of M is not Dungeon12 and the room A from the location of M is not Dungeon41:
-			try M going A;
-		MonsterStomp M.
-
-To compute (M - boogeymonster) seeking (D - a direction):
-	if M is unleashed, try M going D.
+	compute room leaving of M;
+	MonsterStomp M.
 
 To compute sleep reduction of (M - boogeymonster):
 	if M is asleep:
@@ -130,7 +126,7 @@ To say StrikingFailureFlav of (M - boogeymonster) on (B - a body part):
 
 To decide which body part is the painful-part of (M - boogeymonster):
 	let B be a random body part;
-	if B is a fuckhole, now B is hips;
+	if B is a fuckhole or B is scrotum, now B is hips;
 	if B is hair, now B is breasts;
 	if B is not hips and B is not breasts, now B is belly;
 	decide on B.
@@ -227,12 +223,11 @@ To compute punishment of (N - boogeymonster-nightmare-aeroplane):
 	repeat with K running through worn knickers:
 		destroy K;
 	summon D;
-	let P be a random yellow pacifier;
-	unless P is worn:
-		destroy P;
+	if yellow-pacifier is not worn:
+		destroy yellow-pacifier;
 		repeat with B running through worn clothing penetrating face:
 			destroy B;
-		summon P cursed with silent quest;
+		summon yellow-pacifier cursed with silent quest;
 	if rectum > 1, now rectum is 1;
 	now the bladder of the player is 0;
 	fully clean D;
@@ -243,7 +238,7 @@ To compute punishment of (N - boogeymonster-nightmare-aeroplane):
 	if a random number between 8 and 25 < the delicateness of the player:[dice roll to continue]
 		say "[paragraph break]...[paragraph break]You open your eyes. You expect to find yourself back in the [location of the player]... but instead you're still in your baby seat in the aeroplane.[line break][second custom style]Maybe this is real life and the dungeon was a dream? [roman type][line break]Your thoughts are interrupted by an announcement from the hostess.[line break][second custom style]'Attention potty trained passengers, I'm happy to announce we have repaired our toilet in just ten minutes. Feel free to use it at any time. Of course, the one baby who couldn't hold in their [if diaper messing >= 3]poopies for 10 minutes cannot be trusted with it, we wouldn't want it to break again[otherwise]pee-pee for 10 minutes cannot be trusted to make it on time, so we'll be keeping them in diapers for the rest of the journey[end if]!' [roman type]A fresh wave of embarrassment washes over you after hearing this.[line break][variable custom style]I only needed to hold it for 10 minutes, but I went for the diapers right away. Maybe I do need these...[roman type][line break]Speaking of your diaper, you could really use a change, but you need to get the hostess to help you. Looking at the side of your seat, you see a big pink flight attendant call button, and push it without a second thought. You suddenly spit out your pacifier by accident, and this is the last straw - some uncontrollable emotional turbulence inside you makes you begin crying, to the annoyance of the majority of passengers in front of you, and the bemusement of the rest. Of course, you are too caught up in your emotions to notice or care about their reactions. By the time the hostess arrives, less than a minute after you started crying, your face and clothes are covered in tears and snot. It may have been less than a minute, but it felt like an eternity to you.";
 		say "The hostess replaces your pacifier, and you can't believe how quickly it helps you focus and calm down.[line break][second custom style]'Is there anything else you need baby?'[roman type][line break]You shake your head. She already gave you your pacifier,[line break][second custom style]which was the whole reason I was crying, right? [roman type][line break]What else could you need?[line break]You are jolted by a hand groping your crotch - the hostess is giving you a diaper check! Once again, the hostess makes sure everyone in the plane hears her announcement.[line break][second custom style]'Looks like our baby here had a big accident!'[roman type][line break][if diaper messing >= 3]Of course, anyone that didn't hear or see your 'accident' could easily smell it[otherwise]It's doubtful anyone has failed to notice your 'accident'[end if], but hearing her declare it so openly still manages to make you shudder with shame.";
-		say "The hostess lowers the changing table, unlocks the seatbelt and helps you out, carrying you over to the changing table with little effort. You put up no resistance and focus instead on sucking on your pacifier, drowning out the cries of disgust and laughter as your diaper is untaped. The hostess takes an agonizingly long time wiping you down, preparing not just one but [italic type]two[roman type] diapers for you to wear, and first powdering you before finally taping on the impossibly thick combination of diapers. However, she isn't done yet - before you can even try to get up, she begins undressing you, taking off your sweatpants and T-shirt, leaving you lying in front of the plane in nothing but your double diapers. You actually feel relief when she replaces your clothes with a white and yellow dress with pink frills and a bib, not realising that your new dress doesn't even reach the waistband of your diapers.";
+		say "The hostess lowers the changing table, unlocks the seatbelt and helps you out, carrying you over to the changing table with little effort. You put up no resistance and focus instead on sucking on your pacifier, drowning out the cries of disgust and laughter as your diaper is untaped. The hostess takes an agonisingly long time wiping you down, preparing not just one but [italic type]two[roman type] diapers for you to wear, and first powdering you before finally taping on the impossibly thick combination of diapers. However, she isn't done yet - before you can even try to get up, she begins undressing you, taking off your sweatpants and T-shirt, leaving you lying in front of the plane in nothing but your double diapers. You actually feel relief when she replaces your clothes with a white and yellow dress with pink frills and a bib, not realising that your new dress doesn't even reach the waistband of your diapers.";
 		say "After all this you are finally let down from the changing table. As the hostess goes to retract the changing table you get a sudden inspiration as to how you can get back at the nasty woman, and crawl over to her (as your diapers prohibit you from walking) and lift her skirt, planning to expose an inevitably used diaper to the onlookers. But instead you (and all the other passengers) see that she is wearing slim, sexy, black, lacy panties.[line break][second custom style]'No! Bad baby!' [roman type][line break]She yells as she slaps your hand away with ease and places you back on the changing table, only now facing down, with your legs dangling off the side.[line break][variable custom style]'I t-thought you weuh weah-wing diapies!'[roman type][line break]Your words sound all wrong as you yell through your pacifier, meaning your attention is on your own mouth and not on the hand that is raised for the first strike of many in a spanking session."; [Picture here?]
 		say "Of course, your ignorance does not last long. A seemingly impossibly strong strike lands on your rear, your gigantic diapers somehow doing little to save you from the pain. You can already feel tears welling up in your eyes.[line break][second custom style]'Did you really think I needed those?'[roman type][line break]Another strike[line break][second custom style]'Not everyone is a pathetic baby like you!'[roman type][line break]Another strike[line break][second custom style]'In fact, I can't think of anyone more pathetic than you!'[roman type][line break]Another strike[line break][second custom style]'Do you know why I was wearing those?'[roman type][line break]Another strike[line break][second custom style]'We wanted to demonstrate how humiliating they were to everyone!'[roman type][line break]Another strike[line break][second custom style]'It was a warning, not the invitation you took it as!'[roman type][line break]Another strike[line break][second custom style]'I don't know what would be worse;'[roman type][line break]Another strike[line break][second custom style]'If you went up right away because you wanted this'[roman type][line break]Another strike[line break][second custom style]'Or if you really can't hold your [if diaper messing >= 3]poopies[otherwise]pee pee[end if] for even 5 minutes.'[roman type][line break]Another strike[line break][second custom style]'Who am I kidding, it's probably both!'[roman type][line break]Her tirade, and her spankings, continue for what seem like forever. By the time she finally finishes your eyes are almost certainly out of tears to drop, your face and bib completely covered in tears and snot, and your voice completely shot from your non-stop bawling.[line break][second custom style]'Are you going to be a good baby now?'[roman type][line break]You nod immediately - you never want to disobey her ever again.";
 		say "Once again you are lowered from the changing table, which is at last retracted. However, instead of putting you back in your seat, the hostess presses yet another button and a high chair appears to the right hand side of it. She places you in the high chair, securing and locking straps matching those of the car-seat, and then locking the high chair's tray in place, completely trapping you inside. Even with the protection of two massive diapers and the extremely soft pink padding of the high chair, just sitting down causes pain to shoot through your poor, sore bottom, soothed only by a round of intense sucking on your pacifier. That is short-lived however, as the hostess removes your paci and plonks a large baby bottle filled with milk and a giant bowl of brown mush on your tray. As the other passengers are served steaks and alcohol, you are instructed to dig into your baby food with your bare hands and not to use the spoon left on the tray which is for 'bigger girls only'. As you finish drinking your milk a [if diaper messing >= 3]rumble in your tummy[otherwise]pang in your bladder[end if] tells you that you already need to go potty again. You almost call for your new Mommy but you stop yourself, thinking that this is the perfect opportunity to impress her by proving you don't need her help for everything! This is made all the easier, you realise, by the fact that you are [italic type]wearing[roman type] your potty![line break]";
@@ -260,7 +255,7 @@ To compute punishment of (N - boogeymonster-nightmare-aeroplane):
 		DiaperAddictUp 2;
 		if diaper messing >= 3, now rectum is 10;
 		now the bladder of the player is 10;
-	say "You open your eyes. You are lying on your back in the [location of the player], but now wearing a [D][if F is worn], [F][end if][if B is worn], [printed name of B][end if] and [P]. The [ShortDesc of D] feels extremely heavy[if the player is bursting], you feel desperate for the toilet[end if], and you feel extremely fatigued. [BigNameDesc of M] is nowhere to be seen.";
+	say "You open your eyes. You are lying on your back in the [location of the player], but now wearing a [D][if F is worn], [F][end if][if B is worn], [printed name of B][end if] and [yellow-pacifier]. The [ShortDesc of D] feels extremely heavy[if the player is bursting], you feel desperate for the toilet[end if], and you feel extremely fatigued. [BigNameDesc of M] is nowhere to be seen.";
 	now the fatigue of the player is the buckle threshold of the player;
 	regionally place M;
 	distract M;
@@ -382,18 +377,16 @@ To compute punishment of (N - boogeymonster-nightmare-courtroom):
 		repeat with K running through worn knickers:
 			destroy K;
 		summon D cursed with silent quest;
-	let O be a random velcro onesie;
-	unless O is worn:
-		destroy O;
-		repeat with K running through worn overdress:
+	if the number of worn onesie is 0:
+		repeat with K running through worn dress:
 			destroy K;
 		repeat with K running through worn trousers:
 			destroy K;
-		summon O cursed with silent quest;
+		summon velcro onesie cursed with silent quest;
 	let A be a random off-stage pair of anklecuffs;
 	if A is actually summonable, summon A locked;
 	MessSet D to 20;
-	say "When you open your eyes, you find yourself lying on your back in the [location of the player], wearing an impossibly full [ShortDesc of D], covered by a [ShortDesc of O][if A is worn clothing]. A pair of anklecuffs keeps your feet locked close together[end if]. [BigNameDesc of M] is nowhere to be seen.";[Plain white diaper and pink onesie, maybe bondage?]
+	say "When you open your eyes, you find yourself lying on your back in the [location of the player], wearing an impossibly full [ShortDesc of D], covered by a [ShortDesc of a random worn onesie][if A is worn clothing]. A pair of anklecuffs keeps your feet locked close together[end if]. [BigNameDesc of M] is nowhere to be seen.";[Plain white diaper and pink onesie, maybe bondage?]
 	now the fatigue of the player is the buckle threshold of the player;
 	regionally place M;
 	distract M;
@@ -456,7 +449,7 @@ boogeymonster-nightmare-mahjong is boogeymonster-nightmare.
 
 Definition: boogeymonster-nightmare-mahjong (called P) is appropriate:
 	if current-monster is not boogeymonster, decide no;
-	if diaper messing < 4 or armband is not worn or the player is not an october 2019 diaper donator or the class of the player is not adventurer or the player is shameless or the diaper addiction of the player > 10, decide no;
+	if diaper messing < 4 or armband is not worn or the player is not a top donator or the class of the player is not adventurer or the player is shameless or the diaper addiction of the player > 10, decide no;
 	decide yes.
 
 The priority of boogeymonster-nightmare-mahjong is 4.
@@ -484,11 +477,9 @@ To compute punishment of (N - boogeymonster-nightmare-mahjong):[todo: replace Sa
 	let D be pink-huge-diaper;
 	summon D uncursed;
 	if the class of the player is adventurer:
-		let O be a random frilly onesie;
-		unless O is worn:
-			destroy O;
-			summon O uncursed;
-			now O is locked;
+		if the number of worn onesie is 0:
+			summon frilly onesie uncursed;
+			now frilly onesie is locked;
 	MessSet D to 10;
 	now rectum is 6;
 	now suppository is 1;

@@ -237,10 +237,9 @@ To add treasure to (X - a minibar):
 	if there is an off-stage can:
 		let flav-said be 0;
 		repeat with Z running from 1 to a random number between 1 and 3:
-			let I be a random can in Standard Item Pen;
+			let I be a random off-stage can;
 			if I is can:
 				now I is in X;
-				restock I;
 				if flav-said is 0:
 					say "You find a [printed name of I] ";
 					now flav-said is 1;
@@ -248,10 +247,10 @@ To add treasure to (X - a minibar):
 					say "and a [printed name of I] ";
 		say "inside!";
 		repeat with Z running through cans in X:
-			compute autotaking Z;
+			if Z is not known-cursed-potion, compute autotaking Z;
 	otherwise:
 		compute generic treasure to X;
-		say "[variable custom style]'That's weird. Maybe it's out of drinks or something?'[roman type]".
+		say "[variable custom style]That's weird. Maybe it's out of drinks or something?[roman type][line break]".
 
 [!<Safe>@
 
@@ -280,7 +279,7 @@ REQUIRES COMMENTING
 
 @!]
 A treasure chest is a kind of container. A treasure chest is openable. A treasure chest is closed. A treasure chest is not portable. The printed name of a treasure chest is "[TQlink of item described]treasure chest[shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of treasure chest is "ch".
-Figure of treasure chest is the file "Env/Multifloor/treasurechest1.jpg".
+Figure of treasure chest is the file "Env/MultiFloor/treasurechest1.jpg".
 
 To decide which figure-name is the examine-image of (C - a treasure chest):
 	decide on figure of treasure chest.
@@ -321,7 +320,6 @@ To add treasure to (X - a treasure chest):
 		now C is a random pinkWardrobeAppropriate trousers;
 		if C is clothing, add C to L;
 		repeat with Z running through L:
-			if Z is in Standard Item Pen, restock Z;
 			now Z is in X;
 			now Z is unsure;
 			now Z is unidentified;
@@ -332,10 +330,8 @@ To add treasure to (X - a treasure chest):
 			if Z is cursed, assign quest to Z;
 			otherwise now Z is blandness;
 			now Z is unowned;
-		let I be a random can in Standard Item Pen;
-		if I is can:
-			now I is in X;
-			restock I;
+		let I be a random off-stage can;
+		if I is can, now I is in X;
 		say "You find a lot of stuff in here. But something tells you that you can't be sure if any of it has any magical effects until you put them on...";
 		if newbie tips is 1, say "[newbie style]Newbie tip: Consider this your bonus starting kit. These items start UNIDENTIFIED and may have random magic properties - they might be cursed. Wearing heels is an interesting but challenging choice because this will make you more vulnerable in the early game but is a great source of damage later on.[roman type][line break]";
 	otherwise:
@@ -362,17 +358,19 @@ To say NewbieMagicSpells:
 Section - Pedestals
 
 Carry out taking museum-store clothing:
-	now the noun is unowned;
+	now the noun is museum-stolen;
 	if the location of the player is mansion28 and there is a worn lipstick collar:
-		let L be a random lipstick collar;
-		now L is tethering;
-		say "The barrier shatters as your hands pull back, and you hear a chilling rattling noise as a brilliant pink chain shoots out of your collar and secures itself to a tiny hook in the floor. [if vampiress is in the location of the player][BigNameDesc of vampiress] grins as the chain pulls taut[otherwise]You hear a sultry voice giggling down the hall as the chain pulls taut[end if].[line break][speech style of vampiress]'It would be a shame if you left without paying, now wouldn't it?'[roman type][line break][line break][line break]";
-		unless vampiress is alive:
-			summon vampiress in the mansion;
-			say "[SummoningFlav of vampiress]";
-			set up vampiress;
-			now vampiress is interested;
-			anger vampiress.
+		let V be vampiress;
+		now V is chain-tethered;
+		now the collar-ready of V is -15;[she'll chase a long time]
+		say "The barrier shatters as your hands pull back, and you hear a chilling rattling noise as a brilliant pink chain shoots out of your collar and [if V is in the location of the player]flies into [NameDesc of V]'s hand. [Big he of V] grins as [he of V] pulls the chain[otherwise]curves down the hall. You hear a sultry voice coming from that direction as the chain pulls[end if] taut.[line break][speech style of V]'It would be a shame if you left without paying, now wouldn't it?'[roman type][line break][line break][line break]";
+		unless V is alive:
+			summon V in the mansion;
+			say "[SummoningFlav of V]";
+			set up V;
+			now V is interested;
+			now the boredom of V is 0;
+			anger V.
 
 A pedestal is a kind of container. A pedestal is usually not openable. A pedestal is closed. A pedestal is not portable. The printed name of a pedestal is "[TQlink of item described][if the item described is erect and diaper lover > 0]nurturing[otherwise][pedestal-lock of the item described][end if] [pedestal-variant of the item described] pedestal[if the paid of the item described > 0] ([paid of the item described])[end if][shortcut-desc][TQxlink of item described][verb-desc of item described]". The text-shortcut of pedestal is "ped". A pedestal has a number called paid. The paid of a pedestal is usually 0. Understand "glass", "dome", "case", "barrier" as pedestal.
 
@@ -449,10 +447,13 @@ To add treasure to (X - a pedestal):[This function should happen when the mansio
 		now the paid of X is 10;
 	otherwise:
 		let P be a random off-stage rare fetish appropriate clothing;
-		now P is in X;
-		now P is museum-store;
-		now the paid of X is the price of P / 3;
-		if the paid of X <= 0, now the paid of X is 1.
+		if P is a thing:
+			now P is in X;
+			now P is museum-store;
+			now the paid of X is the price of P / 3;
+			if the paid of X <= 0, now the paid of X is 1;
+		otherwise:
+			say "BUG - not enough rare items to fill pedestals.".
 
 To BackgroundRender (T - a pedestal) at (X1 - a number) by (Y1 - a number) with dimensions (DX - a number) by (DY - a number):
 	let C be a random thing in T;

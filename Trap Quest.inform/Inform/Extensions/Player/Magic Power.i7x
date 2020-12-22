@@ -85,7 +85,7 @@ To decide which number is the magic-cost of (Z - a thing):
 	decide on M.
 
 Definition: a tentacle monster is a tripper:
-	if the class of the player is "magical schoolgirl" or there is a worn hand ready equippable, decide yes;
+	if the class of the player is "magical schoolgirl" or there is a worn zap ready equippable, decide yes;
 	decide no.
 
 To say TripChanceFlav of (M - a tentacle monster):
@@ -98,15 +98,16 @@ To decide which number is the tripping roll of (M - a tentacle monster):
 To say MonsterTrippedFlav of (M - a tentacle monster):
 	say "Roaring with unrestrained arousal, [NameDesc of M] picks you up off the ground with several strong tentacles!";
 	repeat with H running through worn equippables:
-		now H is in the location of the player;
-		say "Your [H] is wrestled out of your hand and thrown to the corner of the room!".
+		if H is not gloves:
+			now H is in the location of the player;
+			say "Your [H] is wrestled out of your hand and thrown to the corner of the room!".
 
 Check taking equippable when the player is immobile:
 	if the noun is not held, say "You try to reach it but it's too far away!" instead.
 
 This is the magical girl cums then wins her fight orgasm resolution rule:
-	let H be a random equippable in the location of the player;
-	if there is a tentacle monster penetrating a body part and the class of the player is magical girl and H is actually summonable hand ready clothing and the body soreness of the player < 10:
+	let H be a random hand ready equippable in the location of the player;
+	if there is a tentacle monster penetrating a body part and the class of the player is magical girl and H is actually summonable clothing and H is not gloves and the body soreness of the player < 10:
 		now the fatigue of the player is 0;
 		say "Your orgasm fills you with renewed energy! You feel like you could escape and keep fighting if you want. Do you want to? ";
 		if the player is consenting:
@@ -138,14 +139,17 @@ To say NewbieSpellFlav:
 	if newbie tips is 1, say "[one of][newbie style]Newbie tip: You've found a magic spell! Spells consume magic power, which is not particularly plentiful but you should hopefully acquire a bit of it over your adventure. Most spells require you to say the rude words while someone can hear (and understand) you.[roman type][line break][or][stopping]".
 
 To compute learning of (S - a magic-spell):
-	now S is everywhere;
-	sort the Table of Possible Incantations in random order;
-	choose row 1 from the Table of Possible Incantations;
-	now the outrageousness of S is the naughtiness entry;
-	now the incantation of S is the phrase entry;
-	now the text-shortcut of S is the phrase entry;
-	say "You have learned how to [MagicSpellEffect of S]! The magic incantation is 'I [incantation of S]'. It requires [magic-cost of S] magic power.[SpelloutrageousnessInfo of S]";
-	blank out the whole row.
+	if the number of filled rows in the Table of Possible Incantations > 0:
+		now S is everywhere;
+		sort the Table of Possible Incantations in random order;
+		choose row 1 from the Table of Possible Incantations;
+		now the outrageousness of S is the naughtiness entry;
+		now the incantation of S is the phrase entry;
+		now the text-shortcut of S is the phrase entry;
+		say "You have learned how to [MagicSpellEffect of S]! The magic incantation is 'I [incantation of S]'. It requires [magic-cost of S] magic power.[SpelloutrageousnessInfo of S]";
+		blank out the whole row;
+	otherwise:
+		say "BUG - no fetish appropriate incantations were left to assign to the spell.".
 
 To say ExamineDesc of (S - a magic-spell):
 	say "You know how to [MagicSpellEffect of S]! The magic incantation is 'I [incantation of S]'. It requires [magic-cost of S] magic power.[SpelloutrageousnessInfo of S]".
@@ -204,6 +208,9 @@ To compute spell outrageousness reaction of (M - a monster) to (S - a magic-spel
 
 A game universe initialisation rule:
 	if diaper quest is 0:
+		choose a blank row in the Table of Possible Incantations;
+		now the phrase entry is "love to cum";
+		now the naughtiness entry is 4;
 		choose a blank row in the Table of Possible Incantations;
 		now the phrase entry is "love having anal orgasms";
 		now the naughtiness entry is 6;
@@ -271,6 +278,9 @@ A game universe initialisation rule:
 		now the naughtiness entry is 9;
 	if diaper lover > 0:
 		choose a blank row in the Table of Possible Incantations;
+		now the phrase entry is "love thick diapers";
+		now the naughtiness entry is 6;
+		choose a blank row in the Table of Possible Incantations;
 		now the phrase entry is "love my wet nappies";
 		now the naughtiness entry is 9;
 		choose a blank row in the Table of Possible Incantations;
@@ -291,6 +301,9 @@ A game universe initialisation rule:
 		choose a blank row in the Table of Possible Incantations;
 		now the phrase entry is "want my mommy";
 		now the naughtiness entry is 5;
+		choose a blank row in the Table of Possible Incantations;
+		now the phrase entry is "have my squirt-squirt cummies inside my Pampies";
+		now the naughtiness entry is 13;
 		if diaper messing >= 3:
 			choose a blank row in the Table of Possible Incantations;
 			now the phrase entry is "love doing stinkies in my panties";
@@ -468,5 +481,23 @@ To say MagicSpellEffect of (S - magic-luck):
 Report Spellcasting magic-luck when there is a reactive monster:
 	increase luck-timer of luck-tincture by 30;
 	say "A golden aura begins to shimmer around you.[line break][variable custom style][one of]I feel amazing! Maybe I should look for things that would usually require me to get lucky...[or]I feel lucky![stopping][roman type][line break]".
+
+magic-clothe is a magic-spell.
+To decide which number is the raw-magic-cost of (S - magic-clothe):
+	decide on 2.
+To say MagicSpellEffect of (S - magic-clothe):
+	say "summon a random cursed +2 sexy item of clothing".
+Report Spellcasting magic-clothe when there is a reactive monster:
+	let C be a random off-stage transformation-rare fetish appropriate class summonable clothing;
+	if C is clothing:
+		PinkWardrobeUnclash C;
+		summon C uncursed;
+		now C is cursed;
+		now the raw-magic-modifier of C is 2;
+		say ClassSummonFlav of C;
+		compute persistent quest of C;
+		unless the quest of C is no-clothing-quest, say QuestFlav of C;
+	otherwise:
+		say "Nothing happens! The universe couldn't find an item of clothing to make you wear.".
 
 Magic Power ends here.

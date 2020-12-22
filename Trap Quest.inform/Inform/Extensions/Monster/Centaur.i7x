@@ -44,7 +44,7 @@ Definition: centaur is presenting as male:
 	decide no.
 
 Definition: a centaur is woods dwelling:
-	if the player is the donator and diaper quest is 0, decide yes;
+	if diaper quest is 0 and mythical creature fetish is 1, decide yes;
 	decide no.
 
 Definition: centaur is controlling: decide no.[She can't exactly reach]
@@ -65,7 +65,7 @@ To say cockhead of (M - centaur):
 	say "flat, [if full-lady fetish is 1]plastic[otherwise]bestial[end if] [one of]cockhead[or]tip[or]bellend[or]dicktip[in random order]".
 
 To set up (M - centaur):
-	if mythical creature fetish is 0 or diaper quest is 1 or the player is not the donator, destroy M;
+	if mythical creature fetish is 0 or diaper quest is 1, destroy M;
 	reset M;
 	now the monstersetup of M is 1;
 	now the raw difficulty of M is the starting difficulty of M;
@@ -130,10 +130,10 @@ To compute appearance assessment of (M - centaur):
 	if the class of the player is worshipper:
 		FavourDown M by 4;
 		if M is unfriendly:
-			if M is mating, say "[BigNameDesc of M] snarls.[line break][speech style of M]'[if the pregnancy of the player is 1 and the father is infernal]Damn it! They've already desecrated you! I have no choice but to heal you with the power of love!'[otherwise][one of]Those filthy devils can't desecrate your womb if I fill it with something first!'[or]The mother of my children, fraternizing with devils...I can't stand it anymore! I'll change your ways with the power of love!'[in random order][end if][roman type][line break]";
+			if M is mating, say "[BigNameDesc of M] snarls.[line break][speech style of M]'[if the pregnancy of the player is 1 and the father is infernal]Damn it! They've already desecrated you! I have no choice but to heal you with the power of love!'[otherwise][one of]Those filthy devils can't desecrate your womb if I fill it with something first!'[or]The mother of my children, fraternising with devils...I can't stand it anymore! I'll change your ways with the power of love!'[in random order][end if][roman type][line break]";
 			otherwise say "[BigNameDesc of M] snarls.[line break][speech style of M]'[one of]You dirty imp fucker! I'll make you change your disgusting ways!'[or]Devil lover! I'll force you to repent!'[or]I'll fuck that evil religion right out of you!'[in random order][roman type][line break]";
 		otherwise:
-			if M is mating, say "[BigNameDesc of M] curls [his of M] lip.[line break][speech style of M]'[one of]Even if you're the mother of my children, worshipping devils is...'[or]It's hard to tolerate, you know...[if the pregnancy of the player is 1 and the father is infernal]knowing the mother of my children has been desecrated in such a manner.'[otherwise]knowing those devils might defile the mother of my children.'[end if][or]A fine woman like you should have no business with devils. Please, you must change your ways.'[in random order][roman type][line break]";
+			if M is mating, say "[BigNameDesc of M] curls [his of M] lip.[line break][speech style of M]'[one of]Even if you're the mother of my children, worshipping devils is...'[or]It's hard to tolerate, you know...[if the pregnancy of the player is 1 and the father is infernal]knowing the mother of my children has been desecrated in such a manner.'[otherwise]knowing those devils might defile the mother of my children.'[end if][or]A fine [man of the player] like you should have no business with devils. Please, you must change your ways.'[in random order][roman type][line break]";
 			otherwise say "[BigNameDesc of M] curls [his of M] lip.[line break][speech style of M]'[one of]A devil worshipper...You know, there's still time for you to change your ways.'[or]I have ways to make you repent, devil worshipper. There's still time, you know.'[or]Ugh. You'll have to repent sooner or later, devil worshipper.'[in random order][roman type][line break]";
 	otherwise if the appearance of the player > the outrage tolerance of M:
 		FavourDown M by 2;
@@ -194,6 +194,7 @@ This is the centaur lowers shield rule:
 	let M be centaur;
 	if M is shieldblocked and a random number between 1 and 2 is not 1:
 		say "[BigNameDesc of M] lowers [his of M] shield and pulls out [his of M] sword.";
+		now M is not shieldblocked;
 		rule succeeds.
 The centaur lowers shield rule is listed first in the centaur priority attack rules.
 
@@ -294,9 +295,9 @@ To compute failed facial dodging of (M - centaur):
 	get failed facial dodge image for M;
 	say FailedFacialDodge of M;
 	let S be the semen load of M / 3;
-	CumFaceUp S;
-	CumTitsUp S;
-	CumBellyUp S;
+	UnannouncedSquirt semen on face by S;
+	UnannouncedSquirt semen on breasts by S;
+	UnannouncedSquirt semen on belly by S;
 	check forgiveness of M.
 
 To say FacialBrokenFree of (M - centaur):
@@ -338,17 +339,16 @@ To say TitfuckForceFlav of (M - centaur):
 	say "[one of][BigFuckerDesc of M][']s weight keeps your [ShortDesc of breasts] pushed together around [his of M] [DickDesc of M] as [he of M] thrusts between them.[or][BigFuckerDesc of M] continues to powerfully thrust between your [ShortDesc of breasts]![or]Your [ShortDesc of breasts] [if the largeness of breasts > 15] squish obscenely[otherwise][BreastBounceDesc][end if] as [FuckerDesc of M] continues thrusting between them![or][BigFuckerDesc of M][']s [LongDickDesc of M] repeatedly smacks your chin as [he of M] roughly thrusts between your [ShortDesc of breasts]![or][BigFuckerDesc of M] continues to roughly grind [his of M] [DickDesc of M] between your [ShortDesc of breasts]![in random order]".
 
 To compute cleavage climax of (M - centaur):
-	TitfuckAddictUp 1;
 	TimesSubmittedUp M by 1;
 	say CleavageClimaxFlav of M;
-	CumHairUp 1;
-	CumFaceUp the semen load of M;
-	CumTitsUp 1;
+	AnnouncedSquirt semen on face by semen load of M;
+	UnannouncedSquirt semen on breasts by 1;
+	BreastsSensitivityUp 1;
 	if M is interested, orgasm satisfy M;
 	otherwise orgasm dislodge M.
 
 To say CleavageClimaxFlav of (M - centaur):
-	say "[one of][BigFuckerDesc of M]'s [DickDesc of M] throbs powerfully as [he of M] cums, covering your face, hair and chest (mostly your face) with thick shotgun blasts of fresh [semen].[or][BigFuckerDesc of M] groans as [his of M] [DickDesc of M] spasms, blasting your face, hair, face, [BreastDesc], face, face and especially your face with thick, sticky [semen].[or]The [LongDickDesc of M] between your [BreastDesc] stiffens before [semen] explodes out of [his of M] opening. [big his of M] load mostly hits your face, splattering your hair and [BreastDesc] with tiny white droplets[in random order]".
+	say "[if M is wrapped][BigNameDesc of M] rips the condom off of [his of M] [manly-penis]! [end if][one of][BigFuckerDesc of M]'s [DickDesc of M] throbs powerfully as [he of M] cums, covering your face, hair and chest (mostly your face) with thick shotgun blasts of fresh [semen].[or][BigFuckerDesc of M] groans as [his of M] [DickDesc of M] spasms, blasting your face, hair, face, [BreastDesc], face, face and especially your face with thick, sticky [semen].[or]The [LongDickDesc of M] between your [BreastDesc] stiffens before [semen] explodes out of [his of M] opening. [big his of M] load mostly hits your face, splattering your hair and [BreastDesc] with tiny white droplets[in random order]".
 
 To say SpitroastPrep of (M - centaur) with (O - a monster) in (F - asshole):
 	say "[BigFuckerDesc of M] uses a hoof to force you onto all fours, [his of M] [LongDickDesc of M] prodding your [AssDesc] as [he of M] clumsily lines it up with your hole.".
@@ -529,6 +529,19 @@ To say CreampieFlav of (M - centaur) in (F - a fuckhole):
 
 To say CondomPieFlav of (M - centaur) in (F - a fuckhole):
 	say "[BigFuckerDesc of M] begins to groan, forcing [his of M] long [DickDesc of M] in deeper and deeper with every thrust. You are left with a final moment of anticipation as [he of M] bottoms out, [his of M] [LongDickDesc of M] penetrating you all the way to your core as the first salvo of [semen] explodes into the condom. [big he of M] continues to lightly thrust as the latex sheath captures [his of M] load, taking a solid minute to thoroughly empty out [his of M] balls before finally pulling out.";
+	if the player is pheromonal, say GotLuckyFlav;
+
+To decide if (M - centaur) is losing wrapper in (F - a fuckhole):
+	if the player is pheromonal:
+		if the player is getting lucky, decide no;
+		decide yes;
+	otherwise:
+		if the player is getting unlucky, decide yes;
+	decide no.
+
+To say CondomFailFlav of (M - centaur) in (F - a fuckhole):
+	say "[BigFuckerDesc of M] begins to groan, forcing [his of M] long [DickDesc of M] in deeper and deeper with every thrust. You are left with a final moment of anticipation as [he of M] bottoms out, [his of M] [LongDickDesc of M] penetrating you all the way to your core as the first salvo of [semen] explodes into the condom. It struggles to contain the next salvo, and when the third salvo hits, you can practically feel the latex tearing open as hot [semen] breaks through and rushes into your unprotected [variable F]. With [his of M] [DickDesc of M] so deep inside you, there's nothing you can do as every last drop of [his of M] load is pumped into your belly.";
+	unless the player is pheromonal, say GotUnluckyFlav;
 
 To say MercyReaction of (M - centaur):
 	if the rounds of sex left of M is 0 and M is unwrapped:
@@ -552,6 +565,12 @@ To say MessyPullOutFlav of (M - centaur) in (F - a fuckhole):
 	say "[BigNameDesc of M] begins to groan, forcing [his of M] long [DickDesc of M] in deeper and deeper with every thrust. However, your [if the relevant sex addiction of M < 12]continued struggling seems to pay off, and you[otherwise]playful struggling is a little too effective, and you inadvertently[end if] cause [him of M] to pop out just as [he of M] begins to cum. You [if the relevant sex addiction of the player < 7]shudder[otherwise if the relevant sex addiction of the player < 12]wince[otherwise]squirm in delight[end if] as [his of M] huge load douses your crotch, [AssDesc], back, and thighs.";
 
 Part 4 - Conversation
+
+To say RewardFlav of (M - centaur) for (T - a thing):
+	say "[speech style of M]'Take this with you.'[roman type][line break][BigNameDesc of M] puts a [T] on the ground in front of you.".
+
+To say OfferFriendshipFlav of (M - centaur):
+	say "[speech style of M][if M is ally]'Today we ride together[otherwise if M is acquaintance]'Your companionship is... appreciated[otherwise]'My judgement of you may need reconsideration[end if].'[roman type][line break]".
 
 Section 1 - Greeting
 
@@ -619,7 +638,5 @@ To say EscapeAnswer of (M - centaur):
 
 To say AdviceAnswer of (M - centaur):
 	say "[speech style of M]'[one of]Lube doesn't just make things slippery. It can also soothe a hole that's recently taken a lot of punishment, and in a pinch, you can even drink it.'[or]There's a slimegirl in this forest who knows of a technique once known only to gladiators. If you can earn [his of slimegirl] trust, [he of slimegirl] might be willing to teach you.'[or]Creampies are great, but if you don't want them, try begging. Of course, I can't pull out even if I want to, but in cases like mine you're better off struggling.'[or]Struggling will make deepthroating that much more difficult. Keep calm, relax, and you might find you have cock swallowing skills you never knew you had.'[at random][roman type][line break]".
-
-Section 3 - Drink Requesting
 
 Centaur ends here.

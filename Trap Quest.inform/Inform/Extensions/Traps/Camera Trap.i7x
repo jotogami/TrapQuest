@@ -49,7 +49,7 @@ A poster can be unspotted or spotted. A poster is usually unspotted. [Has the pl
 A poster can be identifiable or unidentifiable. A poster is usually identifiable. [Can the player be identified from the poster?]
 Understand "banner" as poster. Understand "new" as a poster when the item described is unspotted and the item described is on-stage. [For debugging purposes]
 
-Figure of poster is the file "Env/Multifloor/poster1.png".
+Figure of poster is the file "Env/MultiFloor/poster1.png".
 Figure of banner is the file "Env/Hotel/banner1.png".
 
 To decide which figure-name is the examine-image of (C - a poster):
@@ -711,7 +711,7 @@ To compute title of (P - an expulsion poster):
 		otherwise if the old-overdress of P is priestess outfit:
 			if P is in the hotel, now the title of P is "HOLY COW!";
 			otherwise now the title of P is "That's what she gets for leaving her post at the dungeon altar.";
-		otherwise if the old-overdress of P is gang bang girl T-shirt:
+		otherwise if the old-overdress of P is gang-bang-girl T-shirt:
 			if P is in the hotel, now the title of P is "GANG BANG BITCH";
 			otherwise now the title of P is "A very appropriate T-shirt.";
 		otherwise if the old-overdress of P is fertility outfit:

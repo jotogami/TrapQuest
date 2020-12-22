@@ -15,20 +15,23 @@ Definition: yourself is friendly fucked:
 
 To check consensual submissive sex of (M - a monster):
 	now current-monster is M;
-	follow the monster friendly convinced rule of M;
-	if the rule succeeded:
-		now the chosen-orifice of M is presented-orifice;
-		now M is friendly-fucking;
-		FavourUp M by the sex desire of M;
-		follow the insertion rules of M;
+	if presented-orifice is vagina and M is bride-consort and the consumation of betrothal-quest is false:
+		say "[speech style of M]'This isn't the right place or time.'[roman type][line break]";
 	otherwise:
-		if presented-orifice is nothing, say "[BigNameDesc of M] can't seem to understand what you want from [him of M].".
+		follow the monster friendly convinced rule of M;
+		if the rule succeeded:
+			now the chosen-orifice of M is presented-orifice;
+			now M is friendly-fucking;
+			FavourUp M by the sex desire of M;
+			follow the insertion rules of M;
+		otherwise:
+			if presented-orifice is nothing, say "[BigNameDesc of M] can't seem to understand what you want from [him of M].".
 
 To decide which number is the sex desire of (M - a monster):
 	decide on 1.[How much favour does the player gain from fucking them?]
 
 This is the default monster friendly convinced rule:
-	if presented-orifice is a reasonable target and the refractory-period of current-monster <= 0:
+	if the refractory-period of current-monster <= 0 and presented-orifice is a reasonable target:
 		now the chosen-orifice of current-monster is presented-orifice;[This is on top so flavour can refer to chosen orifice.]
 		say PresentFriendlyAcceptanceFlav of current-monster;
 		rule succeeds;

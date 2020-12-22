@@ -113,7 +113,7 @@ To compute perception of (M - receptionist):
 			display entire map; [needs to update because the portal is now closed]
 	otherwise if playerRegion is School:
 		if armband is worn:
-			if (the player is an october 2019 top donator or the player is an october 2019 diaper donator) and there is an appropriate eligible predicament and predicamentJustDone is false and the player is predicament-ready, say "[line break][speech style of M]'Hello again [NameBimbo], I hope you're enjoying your studies! [one of]Have you considered trying the extra credit zone? [or]You should consider the extra credit zone again. [stopping][if the number of worn cursed removable clothing > the number of worn cursed removable headgear]Not only would you get a trophy and potentially some useful tokens, but you could escape from that annoying cursed clothing[otherwise]You can earn some tokens and a cool trophy[end if]!'[roman type][line break]";
+			if (the player is an october 2019 top donator or the player is an october 2019 diaper donator) and there is an appropriate eligible predicament and predicamentJustDone is false and the player is predicament-ready, say "[line break][speech style of M]'Hello again [NameBimbo], I hope you're enjoying your studies! [one of]Have you considered trying the extra credit zone? [or]You should consider the extra credit zone again. [stopping][if the number of worn cursed removable clothing > the number of worn cursed removable headgear]Not only would you get a bracelet, a trophy and potentially some useful tokens, but you could escape from that annoying cursed clothing[otherwise]You can earn some tokens, a new bracelet and a cool trophy[end if]!'[roman type][line break]";
 			otherwise say "[line break][speech style of M]'Hello again [NameBimbo], I hope you're enjoying your studies!'[roman type][line break]";
 		otherwise:
 			say "[line break][speech style of M]'Hey, I recognise you! Where is your armband?!'[roman type][line break][big he of M] takes an aggressive stance.";
@@ -125,7 +125,7 @@ To compute perception of (M - receptionist):
 
 To say EnslavedDominationFlav of (M - receptionist):
 	say "You force [NameDesc of M] to bend over [his of M] desk. With [his of M] ankle chained down, there's not much [he of M] can do to stop you. ";
-	if the player is possessing a penis and the number of worn cursed undisplacable clothing is 0:
+	if the player is possessing a penis and the number of worn pussy covering actually unavoidable clothing is 0:
 		if penis is penis-erect or penis is erect-at-will:
 			say "Holding your [if penis is penis-erect]erect[otherwise]rapidly hardening[end if] [ShortDesc of penis] in one hand, you guide it into [his of M] well-lubricated snatch, and thrust away until you bring yourself to a well-earned climax.";
 			orgasm quietly;

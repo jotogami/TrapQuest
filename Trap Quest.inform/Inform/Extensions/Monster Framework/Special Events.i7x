@@ -59,14 +59,13 @@ To FacePiss from (M - an object):
 	if the urine taste addiction of the player > 14:
 		say "The experience [one of]of being used as a toilet now [or][stopping][if the player is a bit horny]arouses you further[otherwise]turns you on[end if].";
 		arouse (the urine taste addiction of the player - 14) * 150;
-	let C be a random worn WC thigh high boots;
-	if C is clothing:
-		say "[bold type]Your [ShortDesc of C] pulse and glow! ";
-		if the class of the player is human toilet, increase the powerup of C by a random number between 10 and 15;
-		otherwise increase the powerup of C by a random number between 7 and 10;
-		if the powerup of C > 15 and C is stumbling:
+	if WC thigh high boots is worn:
+		say "[bold type]Your [ShortDesc of WC thigh high boots] pulse and glow! ";
+		if the class of the player is human toilet, increase the powerup of WC thigh high boots by a random number between 10 and 15;
+		otherwise increase the powerup of WC thigh high boots by a random number between 7 and 10;
+		if the powerup of WC thigh high boots > 15 and WC thigh high boots is stumbling:
 			say "You feel the stumbling enchantment being suppressed, and replaced by one that strengthens your kicks! Wow!";
-			now C is kicking;
+			now WC thigh high boots is kicking;
 		say "[roman type][line break]".
 
 [!<SayPissDrinkThreatOfObject>+
@@ -124,7 +123,7 @@ Determines whether the player is mentally able to refuse to drink semen
 Definition: a person is desperate to drink semen:
 	if the thirst of the player is 5, decide yes;
 	if the player is desperate to drink and the semen taste addiction of the player > 10, decide yes;
-	if the player is craving semen and the player is not overly full, decide yes;
+	if semen is craved and the player is not overly full, decide yes;
 	decide no.
 
 [!<APersonIsDesperateToDrinkUrine>+
@@ -159,11 +158,10 @@ Handles the player receiving a golden shower and choosing not to drink any
 +!]
 To compute urine hitting face:
 	say "[one of]It's even hotter than you were expecting and the unmistakable smell clings to your nostrils. [or]The heat and feeling of the stream is familiar to you now, and you [if the humiliation of the player > 27500]obediently [end if]sit there silently holding your breath until the flow begins to die. [stopping]";
-	if there is a worn wc catsuit and a random number between the raw intelligence of the player and 35 < 30:
+	if WC catsuit is worn and the player is deserving of more intelligence:
 		say "You feel weirdly enlightened.";
 		IntUp 1;
-	squirt urine on face by 40;
-	reset soak flavour;
+	AnnouncedSquirt urine on face by 40;
 	if the make-up of face > 0 and permanent makeup is 0 and a random number between 1 and 2 is 1:
 		say "[if the make-up of face > 1]Some of your[otherwise]Your[end if] make up is washed away.";
 		FaceDown 1.
@@ -183,18 +181,17 @@ To DrinkPiss from (M - an object):
 	say "[one of]You have never experienced anything close to the humiliation of voluntarily drinking another person's [urine]. A small voice inside you is warning you that you can never go back to a time before you were literally used as a human toilet.[or]You once again [if there is a worn ringagged clothing]have no choice but to[otherwise]voluntarily[end if] gulp down the [urine], taking your place as a human toilet.[stopping][if the urine taste addiction of the player > 15][line break][second custom style][one of]Mmm, this tastes amazing![or]Delicious![or]Yummy![or]Scrumptious.[or]Tasty![then at random][roman type][line break][otherwise if the urine taste addiction of the player > 12][one of]You are really starting to enjoy the taste![or][stopping][otherwise if the urine taste addiction of the player > 6][one of]You are starting to get used to the taste, and don't find it as awful as you used to.[or][stopping][end if]";
 	StomachUrineUp 3;
 	compute unique piss drink effect of M;
-	if WC hood is worn:
-		progress quest of human-toilet-quest;
-	otherwise if WC hood is off-stage and the urine taste addiction of the player > 4 and WC hood is actually summonable:
-		summon WC hood cursed;
-		say "[bold type]Suddenly your mouth is forced wide open as a [ShortDesc of WC hood] [bold type]appears around your head. You can't close it![roman type][line break]";
-	let P be a random worn WC plug panties;
-	if P is clothing:
-		say "[bold type]Your [if the player is possessing a vagina][fuckholes] feel[otherwise][asshole] feels[end if] amazing![roman type] Suddenly [if the player is possessing a vagina]you feel rushes of energy from your [P], and now they are[otherwise]you feel a rush of energy from your [P], and now it is[end if] completely healed! Wow!";
+	if WC-plug-panties is worn:
+		say "[bold type]Your [if the player is possessing a vagina][fuckholes] feel[otherwise][asshole] feels[end if] amazing![roman type] Suddenly [if the player is possessing a vagina]you feel rushes of energy from your [WC-plug-panties], and now they are[otherwise]you feel a rush of energy from your [WC-plug-panties], and now it is[end if] completely healed! Wow!";
 		now the soreness of asshole is 0;
 		now the tolerated of asshole is 0;
 		now the soreness of vagina is 0;
 		now the tolerated of vagina is 0;
+	if WC hood is worn:
+		progress quest of human-toilet-quest;
+	otherwise if WC hood is off-stage and the raw urine taste addiction of the player > 2 and WC hood is actually summonable:
+		summon WC hood cursed;
+		say "[bold type]Suddenly your mouth is forced wide open as a [ShortDesc of WC hood] [bold type]appears around your head. You can't close it![roman type][line break]";
 	progress quest of piss-drinking-quest.
 
 [!<ComputeUniquePissDrinkEffectOfObject>+
@@ -239,7 +236,7 @@ To compute condom failure of (M - a monster) in (F - face):
 	say OralCondomFailFlav of M;
 	now M is unwrapped;
 	CumFaceUp the semen load of M;
-	compute happy oral reward of M.
+	compute happy oral sex reward of M.
 
 To get condom failure image of (M - a monster) in (F - face):
 	get failed facial dodge image for M.
@@ -248,7 +245,7 @@ To compute condom success of (M - a monster) in (F - face):
 	get condom success image of M in F;
 	say OralCondomPieFlav of M;
 	StomachSemenUp the semen load of M;
-	compute happy oral reward of M.
+	compute happy oral sex reward of M.
 
 To get condom success image of (M - a monster) in (F - face):
 	do nothing.
@@ -350,7 +347,7 @@ To compute facial accepting of (M - a monster):
 	say UnavoidedFacial of M;
 	CumFaceUp the semen load of M;
 	humiliate 200;
-	compute happy oral reward of M.
+	compute happy oral sex reward of M.
 
 [!<GetFacialAcceptingImageOfMonster>+
 
@@ -430,7 +427,7 @@ To compute deepthroat creampie of (M - a monster):
 	say DeepthroatCreampie of M;
 	increase the throating of M by 1;
 	StomachSemenUp the semen load of M;
-	compute happy oral reward of M.
+	compute happy oral sex reward of M.
 
 [!<GetDeepthroatCreampieImageOfMonster>+
 
@@ -520,7 +517,7 @@ This function is called whenever a monster ejaculates in the player's mouth and 
 To compute auto swallow of (M - a monster):
 	say AutomaticSwallow of M;
 	compute silent swallowing;
-	compute happy oral reward of M.
+	compute happy oral sex reward of M.
 
 [!<ComputeVoluntarySwallowOfMonster>+
 
@@ -532,7 +529,7 @@ This function is called whenever a monster ejaculates in the player's mouth and 
 To compute voluntary swallow of (M - a monster):
 	say VoluntarySwallow of M;
 	compute silent swallowing;
-	compute happy oral reward of M.
+	compute happy oral sex reward of M.
 
 [!<ComputeVoluntarySpittingOfMonster>+
 
@@ -554,7 +551,9 @@ This function should be called whenever a monster "M" has reason to be angry wit
 
 +!]
 To check forgiveness of (M - a monster):
-	if a random number between the favour of M and the charisma of the player > 8:
+	let R be a random number between the 1 and favour of M + the charisma of the player;
+	if debuginfo > 0, say "[input-style][MediumDesc of M] forgiveness check: favour ([favour of M]) + charisma ([charisma of the player]) = d[favour of M + charisma of the player] ([R]) | 5.5 (forgiveness threshold)[roman type][line break]";
+	if R > 5:
 		compute angry forgiveness of M;
 	otherwise:
 		compute angry punishment of M.
@@ -828,7 +827,9 @@ To compute default angry punishment of (M - a monster):
 	if C is nothing:
 		now stealableFound is 0;
 		now C is a random worn nudism-disabling currently at least partially visible tearable clothing;
-	if C is not clothing, rule fails;
+	if C is not clothing:
+		DifficultyUp M by 1;
+		say angry punishment difficulty gain of M;
 	let D be a random top level protection nudism-disabling currently at least partially visible tearable clothing;
 	if stealableFound is 1:
 		let D be a random top level protection nudism-disabling currently at least partially visible stealable clothing;
@@ -869,14 +870,56 @@ This function is called when the player pleases a monster in some way, like swal
 
 +!]
 To compute happy reward of (M - a monster):
-	if M is friendly-fucking:
-		say "[speech style of M]'Keep that up and I might give you something for your trouble.'[roman type][line break]";
-		FavourUp M by 1;
-	FavourUp M by 1.
+	compute default happy reward of M.
 
-To compute happy oral reward of (M - a monster):
-	do nothing.
-	[FavourUp M by 1.] [For oral sex this was duplicating the gained favour from 'orgasm satisfy M' in the default facial climax function]
+To compute default happy reward of (M - a monster):
+	if M is friendly-fucking:
+		FavourUp M by 1;
+		compute gifting reward of M;
+		if the loot dropped of M is 0 and M is gift giving:
+			say RewardEncouragementFlav of M;
+		now the loot dropped of M is 0.
+
+To say RewardEncouragementFlav of (M - a monster):
+	say "[speech style of M]'Keep that up and I might give you something for your trouble.'[roman type][line break]".
+
+To compute happy oral sex reward of (M - a monster):
+	compute happy reward of M.
+To compute happy titfuck reward of (M - a monster):
+	compute happy reward of M.
+To compute happy anal sex reward of (M - a monster):
+	compute happy reward of M.
+To compute happy vaginal sex reward of (M - a monster):
+	compute happy reward of M.
+
+To compute gifting reward of (M - a monster):
+	if M is friendly-fucking and M is gift giving:
+		let X be nothing;
+		sort the tradableItems of M in random order;
+		sort the tradableItems of M in reverse tradability order;
+		repeat with T running through the tradableItems of M:
+			if T is off-stage or T is carried by M, now X is T;
+		if debugmode > 0, say "[input-style]Considering gifting the player [MediumDesc of X]: Gift value ([tradability of X * 2].5) | ([the charisma of the player + the situational charisma modifier of M + the favour of M - the aggro limit of M]) = ([the charisma of the player]) charisma + ([the situational charisma modifier of M]) sex type bonus + ([the favour of M - the aggro limit of M]) favour[roman type][line break]";
+		if X is a thing and the tradability of X * 2 < the charisma of the player + the situational charisma modifier of M + the favour of M - the aggro limit of M:
+			if X is clothing, blandify and reveal X;
+			if X is alchemy product:
+				now X is bland;
+				now X is sure;
+			now X is in the location of the player;
+			compute loot dropping of X by M;
+			increase the loot dropped of M by 1;
+			if M is intelligent, say GiftRewardFlav of X from M;
+			compute autotaking X;
+			remove X from the tradableItems of M.
+
+To decide which number is the situational charisma modifier of (M - a monster):
+	if M is penetrating asshole or M is penetrating penis, decide on 2;
+	if M is penetrating vagina, decide on 4;
+	decide on 0.
+
+To say GiftRewardFlav of (X - a thing) from (M - a monster):
+	say "[speech style of M]'[if M is buddy][one of]I think you deserve this[or]This is for you[or]My way of saying thank you[in random order][otherwise][one of]Keep the change, you filthy animal[or]I guess you've earned this[or]This is for you[in random order][end if].'[roman type][line break]".
+
 
 [!<SayAngryPunishmentInsultOfMonster>+
 
@@ -924,6 +967,9 @@ This should display some text when a monster punishes the player by confiscating
 +!]
 To say angry punishment clothing confiscation of (M - a monster) on (C - a clothing):
 	say angry punishment clothing destruction of M on C.
+
+To say angry punishment difficulty gain of (M - a monster):
+	say "You have a feeling [he of M]'ll be harder on you in the future.".
 
 [!<SayMouthPenetrationFlavOfMonster>+
 
@@ -1041,7 +1087,7 @@ Displays some text describing a monster ejaculating whilst using the player's br
 @param <Monster>:<M> The monster fucking the player's breasts
 +!]
 To say CleavageClimaxFlav of (M - a monster):
-	say "[BigFuckerDesc of M] ejaculates, covering your [ShortDesc of breasts] in [his of M] [semen]!".
+	say "[BigFuckerDesc of M] [if M is wrapped]rips the condom off of [his of M] [manly-penis] as [he of M] [end if]ejaculates, covering your [ShortDesc of breasts] in [his of M] [semen]!".
 
 [!<SayErectionDemandOfMonster>+
 
@@ -1167,11 +1213,11 @@ To compute racial submission to (M - a monster):
 	if M is dark skinned and M is male and a random number between 8 and 11 < the bbc addiction of the player + (the square root of the delicateness of the player):
 		now auto is 1;
 		let B be a random actually presentable body part;
-		if B is not face and face is actually presentable and M is male and the player is craving semen and M is willing to do oral, now B is face;
+		if B is not face and face is actually presentable and M is male and semen is craved and M is willing to do oral, now B is face;
 		if the player is a butt slut and asshole is actually presentable and M is willing to do anal, now B is asshole;
 		if the player is a pussy slut and vagina is actually presentable and M is willing to do vaginal, now B is vagina;
 		if the player is a tit slut and M is male and M is willing to do titfucks and breasts are actually presentable, now B is breasts;
-		if the sensitivity of breasts > 7 and there is a worn nipple chain and M is male and M is willing to do titfucks, now B is breasts;
+		if the titfuck addiction of the player > 5 and there is a worn nipple chain and M is male and M is willing to do titfucks, now B is breasts;
 		now auto is 0;
 		if B is body part:
 			say "[one of]For some reason you[or]You once again[stopping] can't help but want to [if the player is upright]drop to your knees and [end if][if B is body part]present yourself[otherwise]beg for [his of M] [BlackCock][end if].";

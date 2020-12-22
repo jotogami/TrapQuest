@@ -3,6 +3,9 @@ Combat by Monster Framework begins here.
 current-monster is a monster that varies.
 
 To check attack of (M - a monster):
+	check default attack of M.
+
+To check default attack of (M - a monster):
 	if M is threatening or M is penetrating a body part or M is grabbing the player:
 		now the alert of the player is 1;
 		if M is delayed:
@@ -131,13 +134,17 @@ This function runs any code that needs to be executed whenever the player finish
 
 +!]
 To orgasm (M - a monster):
+	if M is penetrating face and M is male, progress quest of naughty-quest;
 	if M is dark skinned and M is penetrating a fuckhole, BBCAddictUp 1;
 	if ritual-beads is worn or runic headband is worn:
 		if runic headband is purity or M is penetrating vagina, compute priestessBlessing of M;
-	if the class of the player is worshipper:
-		if M is infernal, compute demonBoon of M;
+	if the class of the player is worshipper and M is infernal, compute demonBoon of M;
+	if the class of the player is succubus, FavourUp M by 1;
 	if ghost-strapon is worn, compute ghostGrowth of M;
-	if the class of the player is princess and M is male and M is intelligent and M is in-play and M is not dying, compute betrothal of M;
+	if M is male and M is intelligent and M is in the location of the player and M is not dying, compute betrothal of M;
+	if M is royal guard and the class of the player is princess:
+		increase the duties-performed of royal-quest by 1; [making guards cum completes the quest twice as fast]
+		progress quest of royal-quest;
 	compute refractoryReset of M;
 	if M is infernal, progress quest of demon-slut-quest;
 	let vm be a random video-monitor in the location of the player;
@@ -155,7 +162,7 @@ To compute refractoryReset of (M - a monster):
 	if the blue-balls of M > 0, now the blue-balls of M is 0;
 	if M is intelligent:
 		now the refractory-period of M is the refractory-time of M;
-		if royal scepter is worn and the charge of royal scepter > 2, increase the refractory-period of M by (the refractory-time of M + 4);
+		if there is a worn bouquet and the charge of floral bouquet > 2, increase the refractory-period of M by (the refractory-time of M + 4);
 		if there is a worn enhancing book of anal and M is penetrating asshole:
 			FavourUp M;
 			increase the refractory-period of M by the intelligence of the player.
@@ -173,12 +180,15 @@ To compute demonBoon of (M - a monster):
 To compute priestessBlessing of (M - a monster):
 	if the class of the player is priestess:
 		if M is infernal:[if M is a demon]
-			say "Your stomach flips over and a voice appears in your head: 'You have shamed yourself laying with [him of M], Sister! Do not insult your goddess!'";
+			say "Your stomach flips over and a voice appears in your head: [line break][second custom style]'You have shamed yourself laying with [him of M], Sister! Do not insult your goddess!'[roman type][line break]";
 			increase the charge of the dungeon altar by 30;
 		otherwise:
-			say "You can feel a surge in your holy aura and a voice appears in your head: '[if the vaginalvirgin of the player is 1 and the player is female]Noble[otherwise]Dutiful[end if] Sister, there is still more work to be done!'";
+			if ritual-beads is worn:
+				say "You can feel a surge in your holy aura, and a voice appears in your head: [line break][second custom style]'[if the vaginalvirgin of the player is 1 and the player is female]Noble[otherwise]Dutiful[end if] Sister, your sacred rite [if the notches of ritual-beads < 6]has only just begun! Remember, [otherwise if the notches of ritual-beads < 10]is nearly complete! Remember, [otherwise]is complete, but [end if]there is always more work to be done!'[roman type][line break]";
+				heal asshole times (the soreness of asshole / 5);
+			otherwise:
+				say "You can feel a surge in your holy aura and a voice appears in your head: '[if the vaginalvirgin of the player is 1 and the player is female]Noble[otherwise]Dutiful[end if] Sister, there is still more work to be done!'";
 			decrease the charge of the dungeon altar by 150;
-			if ritual-beads is worn, heal asshole times (the soreness of asshole / 5);
 			if M is penetrating vagina and runic headband is not purity, heal vagina times (the soreness of vagina / 5);
 	if M is infernal, RitualUp 2;[demons are bad for altar charge, but good for rituals]
 	otherwise RitualUp 1.
@@ -261,7 +271,7 @@ To TimesSubmittedUp (M - a monster):
 	increase the times-submitted of M by 1;
 	increase the submission-count of the player by 1;
 	increase the sex-count of the player by 1;
-	if there is a worn tethering lipstick collar, end tethering.
+	if vampiress is chain-tethered, end tethering.
 
 [!<ComputeFacialClimaxOfMonster>+
 
@@ -293,6 +303,7 @@ To compute default facial climax for (M - a monster):
 				compute merciful oral creampie of M;
 			otherwise:[submitted, deepthroat]
 				compute deepthroat creampie of M;
+		compute post climax effect of M in face;
 	if the rounds of sex left of M <= 0:[if rounds of sex left > 0, it means the monster wants an extra round]
 		if M is interested, orgasm satisfy M;[dislodges him automatically]
 		otherwise orgasm dislodge M.
@@ -316,6 +327,8 @@ To compute climax of (M - a monster) in (F - a fuckhole):
 	compute unique climax of M in F;
 	compute post climax effect of M in F;
 	if the rounds of sex left of M <= 0:
+		if F is vagina, compute happy vaginal sex reward of M;
+		otherwise compute happy anal sex reward of M;
 		if M is interested, orgasm satisfy M;
 		otherwise orgasm dislodge M.
 
@@ -381,14 +394,18 @@ This is the default cleavage climax rule:
 The default cleavage climax rule is listed in the default end-of-sex rules.
 
 To compute cleavage climax of (M - a monster):
-	TitfuckAddictUp 1;
 	TimesSubmittedUp M by 1;
 	if M is male:
 		say CleavageClimaxFlav of M;
 		get cleavage climax image of M;
-		CumTitsUp the semen load of M;
+		AnnouncedSquirt semen on breasts by the semen load of M;
+	compute post climax effect of M in breasts;
+	compute happy titfuck reward of M;
 	if M is interested, orgasm satisfy M;
 	otherwise orgasm dislodge M.
+
+To compute post climax effect of (M - a monster) in (B - breasts):
+	BreastsSensitivityUp 1.
 
 To get cleavage climax image of (M - a monster):
 	do nothing.
@@ -400,12 +417,12 @@ The default erection climax rule is listed in the default end-of-sex rules.
 
 [This is M's orgasm, not necessarily the player's]
 To compute erection climax of (M - a monster):
-	PenisObedienceUp 1;
 	TimesSubmittedUp M by 1;
 	say ErectionClimaxFlav of M;
 	compute post climax effect of M in penis;
-	if M is interested and the rounds of sex left of M <= 0:
-		satisfy M.
+	if the rounds of sex left of M <= 0:
+		if M is interested, orgasm satisfy M;
+		otherwise orgasm dislodge M.
 
 [Similarly, these are BLAND EXAMPLES of what progress sex might look like for your monster.]
 
@@ -526,7 +543,7 @@ To compute erection sex of (M - a monster):
 		compute post climax effect of M in penis;
 	otherwise:
 		decrease the sex-length of M by 1;
-		stimulate penis from M;
+		stimulate penis from M;[special flavour for orgasms will trigger after normal flavor is shown.]
 		say "[one of][M sex reaction][or][cycling]".
 
 To compute post climax effect of (M - a monster) in (B - penis):[Note that this is not necessarily a "climax", just the end of the sex]
@@ -626,10 +643,10 @@ This is the no latex punishment rule:
 This is the default latex punishment rule:
 	if the latex-transformation of the player > 5:
 		if current-monster is an intelligent human monster and the player is not top heavy:
-			say "[LatexPunishmentFlav of current-monster]";
+			say LatexPunishmentFlav of current-monster;
 			BustInflate 2;
 		otherwise:
-			say SelectionFrustrated of current-monster;
+			compute SelectionFrustrated of current-monster;
 		bore current-monster for 600 seconds;
 		rule succeeds.
 
@@ -697,6 +714,20 @@ The selecting an orifice rule is listed last in the sex attempt rules.
 
 The selecting an orifice rules is a rulebook.
 
+This is the bride consort waits for his wedding night rule:
+	if current-monster is bride-consort and the consumation of betrothal-quest is false:
+		if playerRegion is hotel and the ceremony of betrothal-quest is true:
+			now auto is 1;
+			if vagina is actually presentable:
+				if the player is not in Hotel06, drag to Hotel06 by current-monster;
+				compute wedding night;
+			otherwise:
+				now auto is 0;
+		otherwise:
+			compute angry punishment of current-monster;
+		rule succeeds.
+The bride consort waits for his wedding night rule is listed first in the selecting an orifice rules.
+
 This is the monster convinced by player rule:
 	follow the monster convinced rule of current-monster;
 	if the rule succeeded, rule succeeds.
@@ -735,6 +766,22 @@ Definition: a body part (called B) is a reasonable target:
 	[If you want the monster to ignore buttslut and/or be able to take out plugs, you'll need to define the correct functions for your monster.]
 	if B is not a potential target, decide no; [First we check, is it a potential target? (see above)]
 	if debugmode > 1, say "[ShortDesc of B] is a potential target...[line break]";
+	if B is fuckhole:
+		let C be a random worn top level ass protection clothing;
+		if B is vagina, let C be a random worn top level protection clothing;
+		if C is clothing and C is not rippable and C is not displacable and C is not tearable and (C is not crotch-zipped or current-monster is not intelligent):
+			if debugmode > 1, say "[C] cannot be removed!";
+			decide no;
+	otherwise if B is breasts:
+		let C be a random worn top level titfuck protection clothing;
+		if C is clothing and C is not actually top-displacable and C is not tearable:
+			if debugmode > 1, say "[C] cannot be removed!";
+			decide no;
+	otherwise if B is face:
+		let C be a random worn clothing penetrating face;
+		if C is clothing and C is not tearable:
+			if debugmode > 1, say "[C] cannot be removed!";
+			decide no;
 	if B is occupied and B is not usable without penetration: [If it's usable without penetration e.g. the mannequin applying makeup, then we will always decide yes even if the player is gagged!]
 		if B is fake occupied and current-monster is not concealment immune, decide no; [The NPC has been tricked by magic, it cannot perceive this orifice!]
 		if B is actually occupied:
@@ -816,32 +863,31 @@ This is the monster choosing an orifice rule:
 The monster choosing an orifice rule is listed last in the selecting an orifice rules.
 
 To compute the orifice choosing of (M - a monster):
-	increase the selection-frustration of M by 1;
-	if the chosen-orifice of M is presented-orifice, now the chosen-orifice of M is nothing;
-	if the chosen-orifice of M is nothing or the chosen-orifice of M is not an actual target or a random number between 4 and 7 < the selection-frustration of M:
+	if the chosen-orifice of M is presented-orifice, now the chosen-orifice of M is nothing; [the NPC should try to reconsider if they're about to go for the body part the player presented which they've decided to reject]
+	if the chosen-orifice of M is nothing or the chosen-orifice of M is not an actual target:
 		if debugmode > 0, say "Rerolling sex selection.";
 		choose a sex method;
-		now the chosen-orifice of M is targeted-body-part;
-		now the selection-frustration of M is 0.
+		now the chosen-orifice of M is targeted-body-part.
 
 To compute SelectionFailure of (M - a monster):
-	if the number of monsters penetrating a body part + the number of monsters grabbing the player is 0:
-		say SelectionFrustrated of M;
-	otherwise:
-		compute SelectionWaiting of M.
+	if the number of live things penetrating a body part + the number of things grabbing the player is 0, compute SelectionFrustrated of M;
+	otherwise compute SelectionWaiting of M.
 
 [If you want monsters to wait around forever for their turn, then they should have their own one of these with no random chance.]
 To compute SelectionWaiting of (M - a monster):
-	if a random number between 1 and 10 is 1, say SelectionFrustrated of M;
-	otherwise do nothing. [The monster waits its turn.]
+	if the selection-frustration of M > a random number between 4 and 10, compute SelectionFrustrated of M;
+	otherwise increase the selection-frustration of M by 1. [The monster waits its turn.]
 
 To say SelectionFrustrated of (M - a monster):
-	say "[BigNameDesc of M] seems to look very frustrated, and then gives up.";
+	say "[BigNameDesc of M] seems to look very frustrated, and then gives up.".
+
+To compute SelectionFrustrated of (M - a monster):
+	say SelectionFrustrated of M;
 	bore M.
 
 This is the selection frustrated rule:
 	if the player is at least partially immobile, compute SelectionWaiting of current-monster;
-	otherwise say SelectionFrustrated of current-monster;
+	otherwise compute SelectionFrustrated of current-monster;
 	rule fails.
 The selection frustrated rule is listed last in the default diaper quest rules.
 
@@ -860,15 +906,15 @@ To compute (M - a monster) attacking (C - a clothing): [This should change for a
 		ZipDown C;
 	otherwise:
 		say PullAttempt of M at C;
-		let R be a random number between the difficulty of M and 6 + a random number between the difficulty of M and 6;
+		let R be (a random number between the difficulty of M and 6) + (a random number between the difficulty of M and 6);
 		if debuginfo > 0, say ClothingAttackDebug of M on C with R;
 		if the chosen-orifice of M is breasts and C is actually top-displacable:
 			compute M topdisplacing C;
-		otherwise if R > the defence of the player:
+		otherwise if R > the defence of C and (C is tearable or the damage of C >= 5):
 			compute M destroying C;
-		otherwise if R > the defence of the player - 2 and C is rippable:
+		otherwise if R > the defence of C - 2 and C is rippable:
 			compute M ripping C;
-		otherwise if R > the defence of the player - 6 and C is displacable and a random number between -1 and unlucky <= 0: [NPCs rarely displace clothing when unlucky is enabled]
+		otherwise if R > the defence of C - 4 and C is displacable and a random number between -1 and unlucky <= 0: [NPCs rarely displace clothing when unlucky is enabled]
 			compute M displacing C;
 		otherwise:
 			say WeakenFlav of M on C;
@@ -1308,6 +1354,12 @@ To decide which number is the strength roll of (M - a monster):
 	if debugmode is 1, say "Player [S] | [D].5 [ShortDesc of M][line break]";
 	decide on D.
 
+To decide which number is the intelligence roll of (M - a monster):
+	let D be the difficulty of M + (a random number between 1 and 6) + (a random number between 1 and 6);
+	let S be the intelligence of the player;
+	if debugmode is 1, say "Player [S] | [D].5 [ShortDesc of M][line break]";
+	decide on D.
+
 A monster has a number called last-tripped.
 
 Definition: a monster is a tripper:
@@ -1353,13 +1405,14 @@ To compute attack choice of (M - a monster):
 	let TC be the trip frequency of M;
 	if M is a tripper and the last-tripped of M >= the trip threshold of M:
 		now the last-tripped of M is 0;
-		if a random number between 1 and TC is 1 or (tutorial is 1 and the last-tripped of M is 2), now TC is 0;
+		if a random number between 1 and TC is 1 or tutorial is 1, now TC is 0;
 	if TC <= 0:
 		compute tripping attack of M;
 	otherwise:
 		compute damaging attack of M;
 		if M is a tripper and the player is upright:
-			increase the last-tripped of M by a random number between 1 and the trip threshold of M;
+			if tutorial is 1, increase the last-tripped of M by (the trip threshold of M - 1); [so he trips every third attack]
+			otherwise increase the last-tripped of M by a random number between 1 and the trip threshold of M;
 			let R be a random number between -3 and the intelligence of the player;
 			if debuginfo > 1, say "[input-style]Tripping warning check: Intellgience roll RNG(-3~[the intelligence of the player]) = [if the last-tripped of M < the trip threshold of M or R < 0]???[otherwise][R][end if] | (0.5) difficulty[roman type][line break]";
 			if R > 0 and the last-tripped of M >= the trip threshold of M, say TripChanceFlav of M.
@@ -1431,7 +1484,7 @@ Chooses which part of the body this monster will attack. Certain body parts can'
 +!]
 To decide which body part is the painful-part of (M - a monster):
 	let B be a random body part;
-	if B is a fuckhole or B is penis, now B is hips;
+	if B is a fuckhole or B is penis or B is scrotum, now B is hips;
 	if B is hair, now B is face;
 	decide on B.
 

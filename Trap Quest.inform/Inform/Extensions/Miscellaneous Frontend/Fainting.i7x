@@ -405,6 +405,7 @@ To Recover the Player:
 	[now the fake largeness of hair is 0;]
 	now the size of penis is the real size of penis;
 	if the size of penis < min penis size and the player is male, now the size of penis is min penis size;
+	now the size of scrotum is the real size of scrotum;
 	now the arousal of the player is 0;
 	if the latex-transformation of the player > 0:
 		if witch is alive and witch is friendly:
@@ -608,6 +609,9 @@ To say FaintingFlav (N - 22):
 
 To say FaintingFlav (N - 23):
 	say "'Next time, you should get out of the water before you get so tired.'".
+
+To say FaintingFlav (N - 24):
+	say "'Next time, you should leave the room as soon as [he of minotaur] starts swinging the cage around. Honestly, MOST players slutty enough to act like yout are already too voluptuous to get dragged in.'".
 
 To say FaintingFlav (N - 50):
 	say "'It was all getting a bit much for you, was it? No need to feel ashamed, it happens to the best of us. Have as much time as you need to rest up and recover.'".

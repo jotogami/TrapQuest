@@ -220,7 +220,7 @@ To compute clothes forcing of (M - a robobellboy):
 		compute bra forcing of M.
 
 Definition: a clothing (called C) is super-slutty-bra:
-	if C is unique, decide no;
+	if C is unique or C is rare, decide no;
 	if C is ridiculously low cut or lower and diaper quest is 0, decide yes;
 	if C is breast covering and C is actually sheer, decide yes;
 	decide no.
@@ -241,7 +241,7 @@ To compute bra forcing of (M - a robobellboy):
 		compute failed forcing of M.
 
 Definition: a clothing (called C) is super-slutty-knickers:
-	if C is unique, decide no;
+	if C is unique or C is rare, decide no;
 	if C is diaper:
 		if diaper lover >= 1, decide yes;
 		decide no;
@@ -388,7 +388,7 @@ To compute headgear forcing of (M - senior robobellboy):
 		say "[BigNameDesc of M] opens up [his of M] chest compartment and pulls out a [ShortDesc of trainee hood]. You [if the body soreness of the player > 7]are powerless to resist[otherwise]are too slow to react[end if] as [he of M] forces it over your head, where a metal latch snaps closed and emits a short and somehow ominous tone.[line break][first custom style]'APPEARANCE REGIMEN INITIATED. [caps please] WAIT PATIENTLY FOR FURTHER OPTIMISATION.[roman type][line break]";
 		FavourUp M;
 	otherwise:
-		say "[BigNameDesc of M] pauses and [his of M] eyes shift from red to green.[line break][first custom style]'CANNOT EXCEED MAXIMUM NUMBER OF ONGOING [']CLASS['] PROGRAMS. GOOD JOB TRAINEE. KEEP UP THE GOOD WORK.'[roman type][line break]";
+		say "[BigNameDesc of M] pauses and [his of M] eyes shift from red to green.[line break][first custom style]'CANNOT EXCEED MAXIMUM NUMBER OF ONGOING [']CLASS['] PROGRAMS. [caps please] REPORT BACK ONCE YOU HAVE REMOVED YOUR HEADWEAR.'[roman type][line break]";
 	bore M.
 
 To compute bra forcing of (M - senior robobellboy):

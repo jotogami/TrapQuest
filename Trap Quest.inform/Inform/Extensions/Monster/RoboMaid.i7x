@@ -168,8 +168,17 @@ This is the robomaid punishment rule:
 	otherwise if the number of worn dirty clothing > 0:[The maid drags you to the laundry room.]
 		unless the player is in Hotel20:
 			drag to Hotel20 by M;
-		bore M for 500 seconds;
+		bore M;
 		compute LaundryRobots;
+		rule succeeds;
+	otherwise if the number of barriers in the location of the player is 0:
+		say "[BigNameDesc of M]'s [LongDickDesc of M] pushes out from underneath [his of M] apron and [one of]spurts warm, pink liquid across your [ShortDesc of breasts][or]shoots several [']ropes['] of warm, pink fluid onto your [BellyDesc][or]splatters your [ShortDesc of face] with warm, pink liquid[at random].[line break][speech style of M]'OOH. SO HOT. SO HOT.'[roman type][line break]The fluid rapidly absorbs into your skin and causes a wave of arousal!";
+		let C be a random video-monitor in the location of M;
+		if C is video-monitor, now C is recording-disgrace;
+		Arouse 1000;
+		moderateHumiliate;
+		say "[line break][FuckerDesc of M] seems to lose interest.";
+		bore M;
 		rule succeeds;
 	otherwise if the number of worn clothing is 0 and there is an alive robobellboy:[the maid drags you to the nearest robobellboy for clothing.]
 		say "[BigNameDesc of M][']s eyes turn purple as [he of M] sweeps you off the ground.[line break][speech style of M]'SEARCHING... SEARCHING... PATRON FOUND. EXECUTING TRANSPORT PROTOCOL.'[roman type][line break]";
@@ -186,7 +195,7 @@ This is the robomaid punishment rule:
 		unless N is dangerous, anger N;
 		now N is interested;
 		now the boredom of N is 0;
-		bore M for 500 seconds;
+		bore M;
 		rule succeeds;
 	otherwise:
 		say "[BigNameDesc of M][']s eyes turn purple as [he of M] sweeps you off the ground.[line break][speech style of M]'SEARCHING... SEARCHING... AUDIENCE FOUND. EXECUTING TRANSPORT PROTOCOL.'[roman type][line break]";
@@ -264,9 +273,9 @@ This is the milkmaid punishment rule:
 		otherwise if the largeness of breasts < 2:
 			say "[BigNameDesc of current-monster] splashes your chest with a vial of pink liquid, which causes your [ShortDesc of breasts] to suddenly grow!";
 			BustUp a random number between 2 and 3;
-			bore M for 500 seconds;
+			bore M;
 			rule succeeds;
-	otherwise:
+	otherwise if the number of barriers in the location of the player is 0:
 		say "[BigNameDesc of M][']s eyes turn purple as [he of M] sweeps you off the ground.[line break][speech style of M]'SEARCHING... SEARCHING... PATRON FOUND. EXECUTING TRANSPORT PROTOCOL.'[roman type][line break]";
 		let R be a random placed unbossed modern room;
 		while R is Hotel20:
@@ -278,7 +287,15 @@ This is the milkmaid punishment rule:
 			decrease X by 1;
 		drag to R by M;
 		compute publicity stunt of M;
-		bore M for 500 seconds;
+		bore M;
+		rule succeeds;
+	otherwise:
+		say "[BigNameDesc of M] pins you against a wall, grinding [his of M] surprisingly supple body against you as [he of M] [if face is not actually occupied]passionately kisses your lips[otherwise]peppers your face with kisses[end if].";
+		let C be a random video-monitor in the location of M;
+		if C is video-monitor, now C is recording-disgrace;
+		moderateHumiliate;
+		say "[line break][FuckerDesc of M] seems to lose interest.";
+		bore M;
 		rule succeeds.
 
 To compute publicity stunt of (M - a milkmaid):
@@ -288,11 +305,11 @@ To compute publicity stunt of (M - a milkmaid):
 	if face is not actually occupied and lactation fetish is 1 and R is 1:[breast feeding]
 		say "as [NameDesc of M] forces a rubber teat into your mouth.[line break][speech style of current-monster]'OOH. OOH. MY NIPPLES ARE. SO TENDER.'[roman type][line break]Suction kicks in, and you have no choice but to swallow several gulps of ice cold milk before [he of M] releases you.";
 		increase the fat-burning of the player by 250;
-		StomachUp 3;
-		MilkTasteAddictUp 1;
+		StomachMilkUp 3;
 		humiliate R * MODERATE-HUMILIATION;
 	otherwise if face is not actually occupied:
 		say "as [NameDesc of M] lifts up [his of M] apron, pushing [his of M] [LongDickDesc of M] in your face as [his of M] eyes rapidly flash red and pink.[line break][speech style of current-monster]'OOH. OOH. [caps please] SUCK ME.'[roman type][line break] [big he of M] shoves [his of M] [DickDesc of M] into your open mouth and ejaculates with incredible force. Do you try to swallow it?";
+		now M is penetrating face;[TODO: possibly update]
 		if the player is bimbo consenting:
 			say "You desperately gulp, just barely able to keep up as [NameDesc of M] thoroughly empties [his of M] stored [semen] straight down your throat. Eventually, the flow dies down, and [he of M] pulls out, rolling off of you as [his of M] apron falls back into place.";
 			StomachSemenUp 4;

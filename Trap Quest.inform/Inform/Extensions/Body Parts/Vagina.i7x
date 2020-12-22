@@ -78,10 +78,9 @@ the vagina presentable rules is a rulebook.
 the presentable rules of vagina is usually the vagina presentable rules.
 
 This is the vagina protected rule:
-	repeat with O running through pussy covering clothing:
-		unless (O is displacable and O is not glued) or O is zippable or O is usually autoremovable:
-			if auto is 0, say "Your [O] is preventing you from getting your [vagina] on display.";
-			rule fails.
+	repeat with O running through pussy covering actually unavoidable clothing:
+		if auto is 0, say "Your [O] is preventing you from getting your [vagina] on display.";
+		rule fails.
 The vagina protected rule is listed in the vagina presentable rules.
 
 This is the vagina occupied rule:
@@ -336,8 +335,7 @@ To PussyFill (X - a number):
 		otherwise:
 			increase the semen volume of vagina by 1;
 	now M is a random thing penetrating vagina;
-	if M is a thing, progress quest of vaginal-creampie-quest from M;
-	if there is a worn tethering lipstick collar, end tethering.
+	if M is a thing, progress quest of vaginal-creampie-quest from M.
 
 Definition: vagina is accepting womb semen:
 	if the womb volume of vagina < 5 and the pregnancy of the player is 0, decide yes;
@@ -346,7 +344,7 @@ Definition: vagina is accepting womb eggs:
 	if the pregnancy of the player is 0 or the pregnancy of the player is 3, decide yes;
 	decide no.
 Definition: yourself is able to get pregnant:
-	if pregnancy fetish is 1 and the pregnancy of the player is 0 and the player is not in a predicament room, decide yes;
+	if pregnancy fetish is 1 and the player is possessing a vagina and the pregnancy of the player is 0 and the player is not in a predicament room and the latex-transformation of the player <= 3, decide yes;
 	decide no.
 
 [!<WombFillX>+
@@ -390,22 +388,23 @@ To check sudden pregnancy:
 forcedFertility is initially false.
 
 To compute sudden pregnancy:
-	if the pregnancy of the player is 0:
-		let M be a random family thing penetrating vagina;[Whatever just jizzed in the player should already by inseminating vagina thanks to the fact that we just computed the father material of vagina above]
-		let R be a random number between 1 and (5 - the pregnancy rate of the player);
-		if forcedFertility is true:
-			now R is 0;
-			now forcedFertility is false;
-		otherwise if debuginfo > 0 and M is a thing:
-			say "[input-style]Instant pregnancy avoidance check for [ShortDesc of M]: [if womb volume of vagina >= 5]max womb volume of 5 = automatic failure[otherwise]10 - pregnancy rate ([pregnancy rate of the player]) ==> d[10 - pregnancy rate of the player] ([R]) | (1.5) conception avoidance difficulty level[end if][roman type][line break]";
-		if (R < 2 or the womb volume of vagina >= 5) and M is a thing: [Max womb volume = instant guaranteed preggers]
-			now the father is M;
-			now the pregnancy of the player is 1;
-	if the pregnancy of the player is 1:
-		now the womb volume of vagina is 30;
-		check for extreme pregnancies;
-		say SuddenPregFlav of the father;
-		check goddess eligibility.
+	if the latex-transformation of the player <= 3:
+		if the pregnancy of the player is 0:
+			let M be a random family thing penetrating vagina;[Whatever just jizzed in the player should already by inseminating vagina thanks to the fact that we just computed the father material of vagina above]
+			let R be a random number between 1 and (5 - the pregnancy rate of the player);
+			if forcedFertility is true:
+				now R is 0;
+				now forcedFertility is false;
+			otherwise if debuginfo > 0 and M is a thing:
+				say "[input-style]Instant pregnancy avoidance check for [ShortDesc of M]: [if womb volume of vagina >= 5]max womb volume of 5 = automatic failure[otherwise]10 - pregnancy rate ([pregnancy rate of the player]) ==> d[10 - pregnancy rate of the player] ([R]) | (1.5) conception avoidance difficulty level[end if][roman type][line break]";
+			if (R < 2 or the womb volume of vagina >= 5) and M is a thing: [Max womb volume = instant guaranteed preggers]
+				now the father is M;
+				now the pregnancy of the player is 1;
+		if the pregnancy of the player is 1:
+			now the womb volume of vagina is 30;
+			check for extreme pregnancies;
+			say SuddenPregFlav of the father;
+			check goddess eligibility.
 
 To say SuddenPregTitle of (M - a thing):
 	say "[ShortDesc of M]".
@@ -440,7 +439,7 @@ To leak vagina semen (X - a number):
 	otherwise if the player is prone:
 		SemenPuddleUp X;
 	otherwise:
-		CumThighsUp X.
+		UnannouncedExpel semen on thighs by X.
 
 To compute father material of (T - a thing):
 	do nothing.

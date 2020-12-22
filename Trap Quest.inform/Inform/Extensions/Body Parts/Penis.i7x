@@ -22,7 +22,7 @@ Describes how close to orgasm the player's penis is.
 *@!]
 To decide which number is the max-rawness of (P - penis):
 	let X be the size of penis;
-	if there is a worn focus band, increase X by 2;
+	if focus band is worn, increase X by 2;
 	let P be a random worn insertable thing penetrating asshole;
 	if P is clothing and P is suppression, increase X by 1;
 	if the player is horny, decrease X by 1;
@@ -201,6 +201,7 @@ To decide which object is the at least partial concealer of (P - penis):
 
 Section 2 - Erections
 
+[Range from 1 to 10]
 penis has a number called penis-obedience. The penis-obedience of penis is 1.
 
 To PenisObedienceUp (X - a number):
@@ -376,11 +377,11 @@ This is the penis doesn't exist rule:
 The penis doesn't exist rule is listed in the penis presentable rules.
 
 [When the donator lock comes off, this rule must be removed]
-This is the penis in beta rule:
+[This is the penis in beta rule:
 	if the player is not the donator:
 		if auto is 0, say "This feature is currently in beta. Wait until it comes out!s";
 		rule fails.
-The penis in beta rule is listed in the penis presentable rules.
+The penis in beta rule is listed in the penis presentable rules.]
 
 This is the monster doesn't do penetration rule:
 	if auto > 0 and ((presenting-receiver is monster and presenting-receiver is not willing to charm snakes) or the number of willing to charm snakes monsters in the location of the player is 0), rule fails.

@@ -27,6 +27,27 @@ Figure of demoness cutscene 13 is the file "Special/Cutscene/cutscene-demoness-v
 Figure of Djinn Cutscene 1 is the file "Special/Cutscene/cutscene-djinn-fuck1.png".
 Figure of Djinn Cutscene 2 is the file "Special/Cutscene/cutscene-djinn-conception1.png".
 
+Figure of dominatrix 1 is the file "NPCs/Hotel/Dominatrix/dominatrix1.png".
+Figure of dominatrix 2 is the file "NPCs/Hotel/Dominatrix/dominatrix2.png".
+Figure of dominatrix 3 is the file "NPCs/Hotel/Dominatrix/dominatrix3.png".
+
+Figure of Dominatrix Cutscene 4 is the file "NPCs/Hotel/Dominatrix/cutscene-dominatrix-peg1.png".
+Figure of Dominatrix Cutscene 5 is the file "NPCs/Hotel/Dominatrix/cutscene-dominatrix-peg2.png".
+
+To decide which figure-name is the monster-image of (M - dominatrix):
+	if the girth of M < 4:
+		decide on figure of dominatrix 1;
+	otherwise if the girth of M < 6:
+		decide on figure of dominatrix 2;
+	otherwise:
+		decide on figure of dominatrix 3.
+
+To decide which figure-name is the anal-sex-monster-image of (M - dominatrix):
+	if the player is male:
+		if the reaction of the player is 0, decide on figure of dominatrix cutscene 5;
+		otherwise decide on figure of dominatrix cutscene 4;
+	decide on figure of Missing NPC.
+
 Figure of Fairy Cutscene 1 is the file "Special/Cutscene/cutscene-fairy-birth1.png".
 Figure of Fairy Cutscene 2 is the file "Special/Cutscene/cutscene-fairy-birth2.png".
 Figure of Fairy Cutscene 3 is the file "Special/Cutscene/cutscene-fairy-belly1.png".
@@ -142,9 +163,48 @@ Figure of quiz predicament is the file "Special/Cutscene/cutscene-quiz3.jpg".
 
 Figure of hellhound is the file "NPCs/Mansion/Hound/hound1.png".
 
-Figure of rank 2 candy is the file "NPCs/School/Student/student5b.png".
-Figure of rank 3 candy is the file "NPCs/School/Student/student5d.png".
-[Figure of rank 4 candy is the file "NPCs/School/Student/student5f.png".]
+Figure of rank 2 candy normal is the file "NPCs/School/Student/student5b.png".
+Figure of rank 2 candy pierced is the file "NPCs/School/Student/student5bP.png".
+To decide which figure-name is Figure of rank 2 candy:
+	if student-candy is clitLeaded, decide on figure of rank 2 candy pierced;
+	otherwise decide on figure of rank 2 candy normal.
+Figure of rank 3 candy normal is the file "NPCs/School/Student/student5d.png".
+Figure of rank 3 candy pierced is the file "NPCs/School/Student/student5dP.png".
+To decide which figure-name is Figure of rank 3 candy:
+	if student-candy is clitLeaded, decide on figure of rank 3 candy pierced;
+	otherwise decide on figure of rank 3 candy normal.
+Figure of rank 4 candy normal is the file "NPCs/School/Student/student5f.png".
+Figure of rank 4 candy pierced is the file "NPCs/School/Student/student5fP.png".
+Figure of rank 4 candy cum covered is the file "NPCs/School/Student/student5fC.png".
+Figure of rank 4 candy pierced cum covered is the file "NPCs/School/Student/student5fPC.png".
+To decide which figure-name is Figure of rank 4 candy:
+	if student-candy is cumCovered:
+		if student-candy is clitLeaded, decide on figure of rank 4 candy pierced cum covered;
+		otherwise decide on figure of rank 4 candy cum covered;
+	otherwise:
+		if student-candy is clitLeaded, decide on figure of rank 4 candy pierced;
+		otherwise decide on figure of rank 4 candy normal.
+
+Figure of rank 2 laci normal is the file "NPCs/School/Student/student3b.png".
+Figure of rank 2 laci pierced is the file "NPCs/School/Student/student3bp.png".
+To decide which figure-name is Figure of rank 2 laci:
+	if student-laci is clitLeaded, decide on figure of rank 2 laci pierced;
+	otherwise decide on figure of rank 2 laci normal.
+Figure of rank 3 laci normal is the file "NPCs/School/Student/student3c.png".
+Figure of rank 3 laci pierced is the file "NPCs/School/Student/student3cp.png".
+To decide which figure-name is Figure of rank 3 laci:
+	if student-laci is clitLeaded, decide on figure of rank 3 laci pierced;
+	otherwise decide on figure of rank 3 laci normal.
+Figure of rank 4 laci normal is the file "NPCs/School/Student/student3d.png".
+Figure of rank 4 laci pierced is the file "NPCs/School/Student/student3dp.png".
+To decide which figure-name is Figure of rank 4 laci:
+	if student-laci is clitLeaded, decide on figure of rank 4 laci pierced;
+	otherwise decide on figure of rank 4 laci normal.
+Figure of rank 5 laci normal is the file "NPCs/School/Student/student3e.png".
+Figure of rank 5 laci pierced is the file "NPCs/School/Student/student3ep.png".
+To decide which figure-name is Figure of rank 5 laci:
+	if student-laci is clitLeaded, decide on figure of rank 5 laci pierced;
+	otherwise decide on figure of rank 5 laci normal.
 
 Figure of rank 1 small lips rosie is the file "NPCs/School/Student/student1a.png".
 Figure of rank 1 big lips rosie is the file "NPCs/School/Student/student1aL.png".
@@ -458,16 +518,6 @@ Figure of asshole-cupid tattoo is the file "Items/Tats/tattoo13.jpg".
 To decide which figure-name is the examine-image of (T - asshole-cupid tattoo):
 	decide on figure of asshole-cupid tattoo.
 
-Figure of asshole-tally tattoo 1 is the file "Items/Tats/tattoo147a.jpg".
-Figure of asshole-tally tattoo 2 is the file "Items/Tats/tattoo147b.jpg".
-Figure of asshole-tally tattoo 3 is the file "Items/Tats/tattoo147c.jpg".
-Figure of asshole-tally tattoo 4 is the file "Items/Tats/tattoo147d.jpg".
-To decide which figure-name is the examine-image of (T - asshole-tally tattoo):
-	if the tallies of T >= 10, decide on Figure of asshole-tally tattoo 4;
-	if the tallies of T >= 5, decide on Figure of asshole-tally tattoo 3;
-	if the tallies of T >= 2, decide on Figure of asshole-tally tattoo 2;
-	decide on figure of asshole-tally tattoo 1.
-
 Figure of Atlas tattoo is the file "Items/Tats/tattoo30.jpg".
 To decide which figure-name is the examine-image of (T - Atlas tattoo):
 	decide on figure of Atlas tattoo.
@@ -493,6 +543,10 @@ To decide which figure-name is the examine-image of (T - black hole tattoo):
 Figure of black owned tattoo is the file "Items/Tats/tattoo53.jpg".
 To decide which figure-name is the examine-image of (T - black owned tattoo):
 	decide on figure of black owned tattoo.
+
+Figure of brainless bimbo tattoo is the file "Items/Tats/tattoo157.jpg".
+To decide which figure-name is the examine-image of (T - brainless bimbo tattoo):
+	decide on figure of brainless bimbo tattoo.
 
 Figure of bred by a bull tattoo is the file "Items/Tats/tattoo107.jpg".
 To decide which figure-name is the examine-image of (T - bred by a bull tattoo):
@@ -547,6 +601,10 @@ To decide which figure-name is the examine-image of (T - cumlust tattoo):
 Figure of Daddy's cock only tattoo is the file "Items/Tats/tattoo6.jpg".
 To decide which figure-name is the examine-image of (T - daddy's cock only tattoo):
 	decide on figure of daddy's cock only tattoo.
+
+Figure of demon slut tattoo is the file "Items/Tats/tattoo161.jpg".
+To decide which figure-name is the examine-image of (T - demon slut tattoo):
+	decide on figure of demon slut tattoo.
 
 Figure of double penetration tattoo is the file "Items/Tats/tattoo80.jpg".
 To decide which figure-name is the examine-image of (T - a double penetration tattoo):
@@ -660,6 +718,10 @@ Figure of sissy black cock whore tattoo is the file "Items/Tats/tattoo23.jpg".
 To decide which figure-name is the examine-image of (T - sissy black cock whore tattoo):
 	decide on figure of sissy black cock whore tattoo.
 
+Figure of sissy cumslut tattoo is the file "Items/Tats/tattoo165.jpg".
+To decide which figure-name is the examine-image of (T - sissy cumslut tattoo):
+	decide on figure of sissy cumslut tattoo.
+
 Figure of slimecock tattoo is the file "Items/Tats/tattoo134.jpg".
 To decide which figure-name is the examine-image of (T - slimecock tattoo):
 	decide on figure of slimecock tattoo.
@@ -672,6 +734,10 @@ Figure of slut-tattoo is the file "Items/Tats/tattoo17.jpg".
 To decide which figure-name is the examine-image of (T - slut-tattoo):
 	decide on figure of slut-tattoo.
 
+Figure of spade owned tattoo is the file "Items/Tats/tattoo160.jpg".
+To decide which figure-name is the examine-image of (T - spade owned tattoo):
+	decide on figure of spade owned tattoo.
+
 Figure of spit first tattoo is the file "Items/Tats/tattoo9.jpg".
 To decide which figure-name is the examine-image of (T - spit first tattoo):
 	decide on figure of spit first tattoo.
@@ -679,6 +745,36 @@ To decide which figure-name is the examine-image of (T - spit first tattoo):
 Figure of stupid whore tattoo is the file "Items/Tats/tattoo32.jpg".
 To decide which figure-name is the examine-image of (T - stupid whore tattoo):
 	decide on figure of stupid whore tattoo.
+
+Figure of asshole-tally tattoo 1 is the file "Items/Tats/tattoo147a.jpg".
+Figure of asshole-tally tattoo 2 is the file "Items/Tats/tattoo147b.jpg".
+Figure of asshole-tally tattoo 3 is the file "Items/Tats/tattoo147c.jpg".
+Figure of asshole-tally tattoo 4 is the file "Items/Tats/tattoo147d.jpg".
+To decide which figure-name is the examine-image of (T - asshole-tally tattoo):
+	if the tallies of T >= 10, decide on Figure of asshole-tally tattoo 4;
+	if the tallies of T >= 5, decide on Figure of asshole-tally tattoo 3;
+	if the tallies of T >= 2, decide on Figure of asshole-tally tattoo 2;
+	decide on figure of asshole-tally tattoo 1.
+
+Figure of vagina-tally tattoo 1 is the file "Items/Tats/tattoo158a.jpg".
+Figure of vagina-tally tattoo 2 is the file "Items/Tats/tattoo158b.jpg".
+Figure of vagina-tally tattoo 3 is the file "Items/Tats/tattoo158c.jpg".
+Figure of vagina-tally tattoo 4 is the file "Items/Tats/tattoo158d.jpg".
+To decide which figure-name is the examine-image of (T - vagina-tally tattoo):
+	if the tallies of T >= 10, decide on Figure of vagina-tally tattoo 4;
+	if the tallies of T >= 5, decide on Figure of vagina-tally tattoo 3;
+	if the tallies of T >= 2, decide on Figure of vagina-tally tattoo 2;
+	decide on figure of vagina-tally tattoo 1.
+
+Figure of mouth-tally tattoo 1 is the file "Items/Tats/tattoo159a.jpg".
+Figure of mouth-tally tattoo 2 is the file "Items/Tats/tattoo159b.jpg".
+Figure of mouth-tally tattoo 3 is the file "Items/Tats/tattoo159c.jpg".
+Figure of mouth-tally tattoo 4 is the file "Items/Tats/tattoo159d.jpg".
+To decide which figure-name is the examine-image of (T - mouth-tally tattoo):
+	if the tallies of T >= 10, decide on Figure of mouth-tally tattoo 4;
+	if the tallies of T >= 5, decide on Figure of mouth-tally tattoo 3;
+	if the tallies of T >= 2, decide on Figure of mouth-tally tattoo 2;
+	decide on figure of mouth-tally tattoo 1.
 
 Figure of target tattoo is the file "Items/Tats/tattoo118a.jpg".
 Figure of trap target tattoo is the file "Items/Tats/tattoo118b.jpg".
@@ -735,6 +831,10 @@ To decide which figure-name is the examine-image of (T - white-trash tattoo):
 Figure of whore-is-my-mind tattoo is the file "Items/Tats/tattoo45.jpg".
 To decide which figure-name is the examine-image of (T - whore-is-my-mind tattoo):
 	decide on figure of whore-is-my-mind tattoo.
+
+Figure of whore-mouth tattoo is the file "Items/Tats/tattoo163.jpg".
+To decide which figure-name is the examine-image of (T - whore-mouth tattoo):
+	decide on figure of whore-mouth tattoo.
 
 Figure of womb diagram tattoo is the file "Items/Tats/tattoo18.jpg".
 To decide which figure-name is the examine-image of (T - womb diagram tattoo):
@@ -1635,7 +1735,7 @@ Figure of PussyExpelAnimation024 is the file "Special/Animations/PussyExpel/fram
 When play begins:
 	fill PussyExpelAnimation from Figure of PussyExpelAnimation016 to 8.
 
-IntroAAnimation is a loading animation track. The pause-frame of IntroAAnimation is 15.
+IntroAAnimation is a loading animation track. The pause-frame of IntroAAnimation is 39.
 
 [Figure of PregIntroBanner is the file "Special/Animations/IntroA/IntroBanner.png".
 To decide which figure-name is the bannerImage of (T - IntroAAnimation):

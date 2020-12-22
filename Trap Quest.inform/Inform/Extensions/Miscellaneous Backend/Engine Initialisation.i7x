@@ -237,11 +237,11 @@ To correct table entries:
 		blank out the whole row;
 		choose the row with a toggle of custom name rule in the Table of Female Name Diaper Quest Options;
 		blank out the whole row;
-	if the player is not a top donator:
+	[if the player is not a top donator:
 		choose the row with a subtable of Table of Festive Options in the Table of Kink Options;
 		blank out the whole row;
 		choose the row with a subtable of Table of Festive Options in the Table of Diaper Fetish Options;
-		blank out the whole row;
+		blank out the whole row;]
 	if diaper quest is 0:
 		choose the row with a toggle of easter content toggle rule in the Table of Festive Options;
 		blank out the whole row;
@@ -303,11 +303,13 @@ To retrieve name:
 			clear the screen.
 
 To configure gender:
-	if the player is male:
+	if the player is sexed male:
 		now the soreness of vagina is 0;
 		now the openness of vagina is -1;
 		now the size of penis is 7;
 		now the real size of penis is 7;
+		now the size of scrotum is 7;
+		now the real size of scrotum is 7;
 	otherwise:
 		if diaper quest is 1, configure dq female proportions;
 		now choice in row 29 of the Table of Player Options is 0; [We set min penis size points to 0, since you shouldn't be able to put points in here if you are female.]

@@ -23,13 +23,18 @@ To compute common boredom of (M - a monster) for (N - a number) seconds:
 	now the babification of M is 0;
 	now the friendly boredom of M is 0;
 	now the last-tripped of M is 0;
-	if debugmode > 1, say "Deinteresting [ShortDesc of M]. Latest appearance seen is [latest-appearance of M]. Refreshing...";
-	now the latest-appearance of M is the appearance of the player;
+	if debugmode > 1, say "Deinteresting [ShortDesc of M]. Latest appearance seen is [latest-appearance of M].";
+	now the latest-appearance of M is 0;
+	if diaper quest is 1, now the latest-cringe of M is 0;
+	[now the latest-appearance of M is the appearance of the player;
 	if debugmode > 1, say "Latest appearance seen is now [latest-appearance of M].";
-	if diaper quest is 1, now the latest-cringe of M is the cringe appearance of the player;
+	if diaper quest is 1, now the latest-cringe of M is the cringe appearance of the player;]
 	now M is not diaper-committed;
 	now M is not double-diaper-committed;
 	now the dismissRefused of M is 0;
+	reset orifice selection of M; [Otherwise they would be biased towards doing the same thing again, which is lame.]
+	repeat with K running through things rejected by M:
+		now M is not rejecting K;
 	if N >= 50 and playerRegion is not School and the player is not in Dungeon12:[Dungeon12 is the Throne Room. We don't want to let the player farm by going in and out of the Royal Chambers.]
 		decrease the charge of the dungeon altar by a random number between 1 and 50;
 		if the charge of hotel altar > 0, decrease the charge of hotel altar by a random number between 1 and 50;
@@ -41,8 +46,8 @@ To satisfy (M - a monster) for (N - a number) seconds:
 	if M is interested:
 		bore M for N seconds;
 		FavourUp M;
-		if M is in the location of the player and M is awake:
-			say SatisfiedFlav of M;
+		if M is in the location of the player:
+			if M is awake, say SatisfiedFlav of M;
 			progress quest of nice-quest;
 	otherwise:
 		bore M for N seconds. [We still want to dislodge etc. even if they weren't interested for some reason.]
@@ -56,22 +61,25 @@ To say SatisfiedFlav of (M - a monster):
 Part - Destroying
 
 To destroy (M - a monster):
-	if the player is in the location of M, decrease the charge of the dungeon altar by the difficulty of M * 10;
-	if the player is in the location of M and the charge of hotel altar > 0, decrease the charge of hotel altar by the difficulty of M * 10;
 	now M is dying.
 
 To finally destroy (M - a monster):
 	uniquely destroy M;
+	if the player is in the location of M, decrease the charge of the dungeon altar by the difficulty of M * 10;
+	if the player is in the location of M and the charge of hotel altar > 0, decrease the charge of hotel altar by the difficulty of M * 10;
 	now the times-met of M is 0;
 	now the blue-balls of M is 0;
 	now the times-submitted of M is 0;
 	now the times-dominated of M is 0;
 	now the sex-length of M is 0;
 	now the collar-pulled of M is 0;
+	now M is not soul-stolen;
+	if M is bride-consort, progress quest of betrothal-quest;
 	remove M from play;
 	reset M.
 
 To reset (M - a monster): [We do this when the player faints to all monsters, even if they are remaining in play.]
+	unique reset M;
 	now M is not dying;
 	deinterest M; [this includes dislodging]
 	now the sleep of M is 0;
@@ -81,9 +89,6 @@ To reset (M - a monster): [We do this when the player faints to all monsters, ev
 	now the loot dropped of M is 0;
 	now the refractory-period of M is 0;
 	FavourReset M;
-	repeat with K running through things rejected by M:
-		now K is in the location of the player;
-		now M is not rejecting K;
 	if M is unleashed and M is alive and M is not in a placed room and M is not in WoodsBoss01:
 		if M is in the Dungeon:
 			now M is in a random placed labyrinth room;
@@ -103,13 +108,20 @@ To reset (M - a monster): [We do this when the player faints to all monsters, ev
 			otherwise:
 				finally destroy M.
 
+To unique reset (M - a monster):
+	do nothing.
+
 To loot (M - a monster):
 	let X be nothing;
 	sort the taxableItems of M in random order;
-	sort the taxableItems of M in reverse desirability order;
+	sort the taxableItems of M in reverse tradability order;
 	repeat with T running through the taxableItems of M:
-		if T is off-stage, now X is T;
+		if T is off-stage or T is carried by M, now X is T;
 	if X is a thing:
+		if X is clothing, blandify and reveal X;
+		if X is alchemy product:
+			now X is bland;
+			now X is sure;
 		now X is in the location of the player;
 		compute loot dropping of X by M;
 		increase the loot dropped of M by 1;
@@ -121,8 +133,12 @@ To standard loot (M - a monster):
 	let X be a random off-stage plentiful accessory;
 	if the class of the player is santa's little helper, now X is a random off-stage christmas gift;
 	unless X is nothing:
-		now X is in the location of the player;
 		if X is plentiful accessory, compute appraisal of X from M;
+		if X is clothing, blandify and reveal X;
+		if X is alchemy product:
+			now X is bland;
+			now X is sure;
+		now X is in the location of the player;
 		compute loot dropping of X by M;
 		increase the loot dropped of M by 1;
 		compute autotaking X.

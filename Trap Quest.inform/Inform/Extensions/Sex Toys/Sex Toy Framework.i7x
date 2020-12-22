@@ -160,7 +160,10 @@ To compute periodic effect of (C - a rejuvenation clothing):
 
 To restock (C - a sex toy):
 	let B be a random basic loot sex toy;
-	if B is sex toy, now B is in Standard Item Pen.
+	if B is sex toy:
+		repeat with L running through Standard Item Pen:
+			if L is sex toy, remove L from Standard Item Pen;
+		add B to Standard Item Pen.
 
 To decide which number is the grip of (I - a thing):
 	decide on 999. [This should never happen]
@@ -549,6 +552,15 @@ This is the skirt tail plug clash rule:
 			if summoning is 0 and autowear is false, say "You can't wear that because your [printed name of O] is in the way!";
 			rule fails.
 The skirt tail plug clash rule is listed in the skirt wearability rules.
+
+To UniquePinkWardrobeUnclash (C - a tail plug):
+	repeat with O running through worn total protection clothing:
+		WardrobeVanish O.
+
+Definition: a tail plug is uniquely class summonable:
+	repeat with O running through worn total protection clothing:
+		if O is unremovable or O is class-relevant, decide no;
+	decide yes.
 
 Check replacing:
 	if there is a worn tail plug:

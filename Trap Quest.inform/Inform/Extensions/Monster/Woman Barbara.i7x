@@ -206,7 +206,7 @@ The woman spawning as a stool rule is listed last in the womanspawning rules.
 Chapter - Hotel Chair Scene
 
 Report going when the player is in Hotel21 and Hotel21 is not discovered:
-	if the number of monsters in Hotel21 is 0 and diaper focus is 0 and woman-player is redeploy appropriate:
+	if the number of monsters in Hotel21 is 0 and diaper focus is 0 and woman-player is relaxed redeploy appropriate:
 		deploy woman-player with woman-status 5;
 		say "You walk into the staff room just in time to see [NameDesc of woman-player] sitting down on one of the dildo chairs in this room, easing the large golden dong into [his of woman-player] asshole. Suddenly [he of woman-player] yelps. ";
 		let R be a random number between 1 and 4;
@@ -231,7 +231,7 @@ Chapter - Vines Scene
 
 Report going when there is an aggressive vine in the location and the woman-bimbo of woman-player < 4 and the vine-scene of woman-player is 0:
 	if debugmode is 1, say "Checking if barbara can appear.";
-	if the number of monsters in the location of the player is 0 and woman-player is redeploy appropriate:
+	if the number of monsters in the location of the player is 0 and woman-player is relaxed redeploy appropriate:
 		deploy woman-player with woman-status 90;
 		now woman-player is in the location of the player;
 		now woman-player is interested;
@@ -430,9 +430,9 @@ Chapter - Anal Dildo Contraption Scene
 
 Understand "fucking", "machine", "box", "pink dildo", "rope", "ropes", "pulley", "pulleys", "spring", "springs", "glue", "glove", "gloves" as woman-player when the woman-status of woman-player is 93.
 
-Report going when the player is in Hotel37 and the anal-contraption-scene of woman-player is 0:
+Report going when the player is in Hotel37 and the dominatrix-contraption-scene of woman-player is 0:
 	if debugmode is 1, say "Checking if barbara can appear.";
-	if the number of monsters in the location of the player is 0 and dominatrix is alive and woman-player is redeploy appropriate:
+	if dominatrix is alive and dominatrix is not in the location of the player and woman-player is relaxed redeploy appropriate:
 		deploy woman-player with woman-status 93;
 		now woman-player is in the location of the player;
 		now woman-player is interested;
@@ -441,23 +441,23 @@ Report going when the player is in Hotel37 and the anal-contraption-scene of wom
 		say "The predicament is clear: if [NameDesc of woman-player] relaxes [his of woman-player] legs for even a moment, and allows [his of woman-player] thighs to be pulled into a more comfortable position by the springs, then the fucking machine will activate, and [his of woman-player] poor pucker will be plowed by that thick Pink Pounder until [he of woman-player] can muster the energy to raise [his of woman-player] legs again.".
 
 A time based rule (this is the anal contraption predicament rule):
-	if the woman-status of woman-player is 93 and the anal-contraption-scene of woman-player <= 5 and woman-player is in the location of the player:
-		unless dominatrix is in the location of the player and dominatrix is interested unfriendly monster:
+	if the woman-status of woman-player is 93 and the dominatrix-contraption-scene of woman-player <= 5 and woman-player is in the location of the player:
+		unless dominatrix is in the location of the player and dominatrix is dangerous:
 			let W be woman-player;
-			increase the anal-contraption-scene of W by 1;
-			if the anal-contraption-scene of W is 1:
-				say "[BigNameDesc of W] sees you enter, and [his of W] expression changes from one of panic to one of relief.[line break][speech style of W]'[NameBimbo], thank the stars! That [if the woman-bimbo of W <= 2]insane[otherwise]cheeky[end if] dominatrix didn't like the tone of my voice and decided I needed to [']Learn the merits of inner balance.['] But I don't [if the woman-bimbo of W <= 3]think I can take it[otherwise]wanna[end if]! [big please], find a way to disarm this thing before it... well, you know...'[roman type][line break][big he of mechanic] wiggles [his of W] hands, making [his of W] asshole open and close slightly, to indicate what [he of W] means.";
+			increase the dominatrix-contraption-scene of W by 1;
+			if the dominatrix-contraption-scene of W is 1:
+				say "[BigNameDesc of W] sees you enter, and [his of W] expression changes from one of panic to one of relief.[line break][speech style of W]'[NameBimbo], thank the stars! That [if the woman-bimbo of W <= 2]insane[otherwise]cheeky[end if] dominatrix didn't like the tone of my voice and decided I needed to [']Learn the merits of inner balance.['] But I don't [if the woman-bimbo of W <= 3]think I can take it[otherwise]wanna[end if]! [big please], find a way to disarm this thing before it... well, you know...'[roman type][line break][big he of W] wiggles [his of W] hands, making [his of W] asshole open and close slightly, to indicate what [he of W] means.";
 				say "You could [bold type]search[roman type] the box for a way to disarm it, or you could [bold type]pull[roman type] on [NameDesc of W][']s legs to force [him of W] to fail, [unless the player is feeling submissive or 1 is 1]or you could [bold type]fuck[roman type] [him of W] while [he of W] is in such a compromising position, [end if]or you could [bold type]wait[roman type] (or just leave), to not mess with the dominatrix's plans.";
-			otherwise if the anal-contraption-scene of W is 2:
+			otherwise if the dominatrix-contraption-scene of W is 2:
 				say "[BigNameDesc of W] groans in discomfort.[line break][speech style of W]'I can't hold my legs any longer... [big please] hurry!'[roman type][line break][big he of W][']s right - [his of W] legs are now visibly shaking, and the force of the springs has made [him of W] pull open [his of W] asshole even wider than before. It really does look like [he of W][']s desperate to be reamed by that big fat fake [manly-penis]!";
-			otherwise if the anal-contraption-scene of W is 3:
+			otherwise if the dominatrix-contraption-scene of W is 3:
 				say "[BigNameDesc of W] grunts with exhaustion and [his of W] legs give out. The ropes to pull the switch through the pulley and the mechanism clicks into action. [AnalContraptionStart]";
-			otherwise if the anal-contraption-scene of W is 4:
+			otherwise if the dominatrix-contraption-scene of W is 4:
 				say "[speech style of W]'It's so big! No more, no more! Or my butthole will never be tight again!'[roman type][line break]Surprisingly enough, the metal box doesn't listen. [BigNameDesc of W][']s backdoor is once again brutally broken in by its new best buddy. All the way in, all the way out. All the way in, all the way out. Wait, was that a bit faster than the first time? Yes. It's getting faster.";
 				increase the delayed sluttification of W by 1;
-			otherwise if the anal-contraption-scene of W is 5:
+			otherwise if the dominatrix-contraption-scene of W is 5:
 				say "[speech style of W]'Gaaaah...'[roman type][line break][BigNameDesc of W] no longer seems capable of coherent speech. [big he of W] spends the last of [his of W] energy to raise [his of W] ankles back up. The machine clicks off. But [NameDesc of W] can hold it for less than two seconds before [he of W] exhausts, [his of W] ankles fall back down and the box clicks into life once again. All the way in, all the way out. All the way in, all the way out. This time it manages two full thrusts within four seconds. Each one must be causing severe amounts of sensory overload inside [his of W] delicate derriere.";
-			otherwise if the anal-contraption-scene of W is 6:
+			otherwise if the dominatrix-contraption-scene of W is 6:
 				say "[speech style of W]'Fbbbbrt... Fgaaahh... Cumming! CUMMING!'[roman type][line break][BigNameDesc of W] manages a real word, announcing [his of W] ultimate defeat under the unrelenting use of the fucking machine. [if dominatrix is in the location of the player][BigNameDesc of dominatrix] snaps [his of dominatrix] fingers and the[otherwise]It gives two more quick thrusts for good measure before something inside its[end if] mechanism clicks itself off. However it's not truly over, because the machine has powered down while that pink monstercock is still fully embedded in [NameDesc of W]['] butthole, right up to the base. You look at [NameDesc of W][']s face to see how [he of W][']s handling the sensation... Oh. [big he of W] has already passed out.";
 				now the sleep of W is 200;
 				increase the delayed sluttification of W by 1;
@@ -469,18 +469,18 @@ To say AnalContraptionStart:
 	let W be woman-player;
 	say "[big his of W] ankles probably only move about four inches downwards in total before the rope is pulled taut with the switch now in the full 'ON' position. The overly thick pink dong advances steadily, the head easily slipping inside thanks to [NameDesc of W][']s helpful self-gape. However the dildo is slightly conic, getting thicker towards the base, so as it continues to enter [his of W] sensitive hole, it begins to force [his of W] sphincter to stretch ever wider and wider.[line break][speech style of W]'Jeez... Fuck... FUCK!'[roman type][line break]The butt exploring beast doesn't stop until its full length has pushed all the way inside, right up to the fake balls. Only then does it begin to withdraw, just as painfully slowly, until eventually it exits with an audible slurping sound, returning to its original position. [BigNameDesc of W][']s fuckhole remains horribly gaped thanks to the mechanical penetration. The entire motion probably took between five and six seconds. And it's already on the move forward again, ready for round two!".
 
-Check pulling woman-player when the woman-status of woman-player is 93 and the anal-contraption-scene of woman-player < 6:
+Check pulling woman-player when the woman-status of woman-player is 93 and the dominatrix-contraption-scene of woman-player < 6:
 	if the player is at least partially immobile or the player is in danger, say "You're a bit busy right now!" instead;
-	if the anal-contraption-scene of woman-player > 2, say "It's a bit late for that, [he of woman-player][']s already lost control and started the fucking machine." instead;
+	if the dominatrix-contraption-scene of woman-player > 2, say "It's a bit late for that, [he of woman-player][']s already lost control and started the fucking machine." instead;
 	allocate 6 seconds;
 	say "You approach [NameDesc of woman-player][']s legs with an evil grin on your face.[line break][speech style of woman-player]'No way... you can't be serious?![roman type][line break][BigNameDesc of woman-player] clearly can't believe what [he of woman-player] is seeing! You vindictively pull down on [his of woman-player][']s legs. [big he of woman-player] can't do anything but wail with despair as [his of woman-player] ankles are lowered a few inches, which pulls the rope and clicks the machine into life. [AnalContraptionStart]You feel more dominant!";
-	DelicateDown 3 - the anal-contraption-scene of woman-player;
-	now the anal-contraption-scene of woman-player is 3;
+	DelicateDown 3 - the dominatrix-contraption-scene of woman-player;
+	now the dominatrix-contraption-scene of woman-player is 3;
 	compute DominatrixInterruption.
 
-Check searching woman-player when the woman-status of woman-player is 93 and the anal-contraption-scene of woman-player < 6:
+Check searching woman-player when the woman-status of woman-player is 93 and the dominatrix-contraption-scene of woman-player < 6:
 	if the player is at least partially immobile or the player is in danger, say "You're a bit busy right now!" instead;
-	if the traitor-hypno of hypno-lesson > 0 and the anal-contraption-scene of woman-player <= 2:
+	if the traitor-hypno of hypno-lesson > 0 and the dominatrix-contraption-scene of woman-player <= 2:
 		decrease the traitor-hypno of hypno-lesson by 1;
 		say "Something inside you urges you to [second custom style]help your friend[roman type] instead.";
 		try pulling woman-player instead;
@@ -489,17 +489,17 @@ Check searching woman-player when the woman-status of woman-player is 93 and the
 		now the stance of the player is 1;
 		say "You are now on your knees.";
 	allocate 6 seconds;
-	increase the anal-contraption-search of woman-player by 1;
-	if a random number between 1 and the intelligence of the player > 10, increase the anal-contraption-search of woman-player by 1;
-	if the anal-contraption-scene of woman-player <= 1:
+	increase the dominatrix-contraption-search of woman-player by 1;
+	if a random number between 1 and the intelligence of the player > 10, increase the dominatrix-contraption-search of woman-player by 1;
+	if the dominatrix-contraption-scene of woman-player <= 1:
 		say "You check to see if the box can be moved so the dildo is no longer pointing at [NameDesc of woman-player][']s spread asshole. Unfortunately, it's completely stuck in place.";
-	otherwise if the anal-contraption-scene of woman-player is 2:
+	otherwise if the dominatrix-contraption-scene of woman-player is 2:
 		say "You look for a second failsafe switch, or some way to disconnect the rope where it connects to the box's lever. But unfortunately it looks like it's completely futile to try to alter anything at this end.";
 	otherwise:
 		say "[one of]You decide the only way to get [him of woman-player] out is to untie the ropes around [his of woman-player] ankles. [or][stopping]";
-		if the anal-contraption-search of woman-player < 4:
+		if the dominatrix-contraption-search of woman-player < 4:
 			say "You fumble with one of the knots but it's really tight! You haven't made much progress yet.";
-		otherwise if the anal-contraption-search of woman-player is 4:
+		otherwise if the dominatrix-contraption-search of woman-player is 4:
 			say "You manage to loosen a knot and get one of [NameDesc of woman-player][']s ankles free! One more and [he of woman-player][']ll be able to escape!";
 		otherwise:
 			say "You've done it! You've freed both of [NameDesc of woman-player][']s ankles! When the pink dildo next exits [his of woman-player] asshole, [he of woman-player] rolls to the side and out of the thrusting path.[line break][speech style of woman-player]'I'm free! I'm free! Thank you so much [NameBimbo], I owe you my sanity! I wish I had something to give you, but...'[roman type][line break][NameDesc of woman-player] shrugs as best as [he of woman-player] can what with [his of woman-player] hands still glued to [his of woman-player] buttcheeks, to emphasise the point that [he of woman-player] doesn't have anything of value right now.[line break][speech style of woman-player]'I've got to go sort out this glue, I think. Wish me luck.'[roman type][line break][NameDesc of woman-player] waddles from the room, looking very ridiculous with [his of woman-player] hands stuck to [his of woman-player] backside, still keeping [his of woman-player] asshole slightly open and in open view.";
@@ -510,7 +510,7 @@ Check searching woman-player when the woman-status of woman-player is 93 and the
 				say "[bold type]You spot [NameDesc of woman-player][']s pistol left in the corner of the room!";
 				now magic pistol is in the location of the player;
 				compute autotaking magic pistol;
-			now the anal-contraption-scene of woman-player is 7;
+			now the dominatrix-contraption-scene of woman-player is 7;
 			vanish woman-player;
 	if woman-player is in the location of the player, compute DominatrixInterruption;
 	do nothing instead.
@@ -541,9 +541,9 @@ Check resisting when dominatrix is penetrating asshole and woman-player is in th
 	try submitting instead.
 
 To compute contraption sex of (M - a monster):
-	if the anal-contraption-scene of woman-player < 7:
-		increase the anal-contraption-scene of woman-player by 1;
-		let aRuin be the anal-contraption-scene of woman-player / 2;
+	if the dominatrix-contraption-scene of woman-player < 7:
+		increase the dominatrix-contraption-scene of woman-player by 1;
+		let aRuin be the dominatrix-contraption-scene of woman-player / 2;
 		say "The big pink dildo [one of]powerfully punches[or]unrelentingly assaults[or]continues to destroy[then at random] your [asshole], all the way in, all the way out, [one of][if aRuin is 1]brutally slowly[otherwise][aRuin] times[end if][or]another [if aRuin is 1]time[otherwise][aRuin] times[end if][stopping].";
 		ruin asshole times aRuin;
 		say "It's [one of][or]still [stopping]picking up speed!";
@@ -564,7 +564,7 @@ Chapter - Human Toilet Scene
 
 To check woman toilet:
 	if the player is in Hotel38 and watersports fetish is 1 and a2m fetish >= 2:
-		if the human-toilet-scene of woman-player is 0 and the woman-bimbo of woman-player >= (a random number between 2 and 5) and the woman-status of woman-player < 10 and woman-player is redeploy appropriate:
+		if the human-toilet-scene of woman-player is 0 and the woman-bimbo of woman-player >= (a random number between 2 and 5) and woman-player is relaxed redeploy appropriate:
 			say "A groaning, gurgling noise from below you makes you notice that the [man of woman-player] below you looks different from usual.";
 			cutshow figure of barbara cutscene 4 for toilet;
 			say "Looking [if the player is not possessing a penis]between your legs [end if]into the toilet bowl you realise you recognise the ring-gagged face at the bottom - it's [NameDesc of woman-player]! [big he of woman-player] looks up at you with imploring puppy-dog eyes.[line break][speech style of woman-player]'Wease eh ee ow! Weeeease! Ha hay-hron hah heh hee!'[roman type][line break]You think you understand what [he of woman-player][']s saying? There's a key that can be used to release [him of woman-player], but it's currently in the possession of a hotel patron. Perhaps if you spend enough time in the hotel, you'll be able to encounter [him of a random patron] and agree to pay some kind of... [']ransom[']. Until then there's nothing you can do about the fact that [NameDesc of woman-player] is the new hotel toilet. It's up to you how many more times you use [his of woman-player] mouth as your waste disposal unit. You doubt it'll be very good for [his of woman-player] sanity, but it might help you feel more dominant.";
@@ -574,12 +574,10 @@ To check woman toilet:
 		otherwise if the human-toilet-scene of woman-player is not 1:
 			cutshow figure of barbara cutscene 4 for toilet;
 			if the human-toilet-scene of woman-player > 1:
-				say "You feel more dominant!";
 				SportsGet;
 				DelicateDown 1;
+				FavourDown woman-player by 1;
 				womanSluttify.
-
-forbidden-key is an object that varies.
 
 To compute woman toilet release:
 	let K be skeleton key;
@@ -634,6 +632,7 @@ To compute patron scene of (W - woman-player):
 			now M is in the location of the player;
 			set up M;
 			decrease C by 1;
+			make M expectant;
 	now neighbour finder is the location of the player;
 	now the woman-status of W is 96;
 	now the patron-scene-done of W is 1;
@@ -673,7 +672,7 @@ To compute patron interaction of (W - woman-player):
 						now M is P;
 			let CP be a random unconcerned patron in the location of the player;
 			let RN be 5;
-			if the player is male, decrease RN by 1;
+			if the player is not possessing a vagina, decrease RN by 1;
 			if the largeness of breasts <= 7, decrease RN by 1;
 			if M is nothing: [All patrons have climaxed]
 				compute patron scene climax of W;
@@ -753,12 +752,12 @@ To compute patron scene climax of (W - woman-player):
 			if (bukkake fetish is 1 or the fill-colour of fishbowl is murky) and a random number between 1 and 5 > 2:
 				say "your head!";
 				if the fill-colour of fishbowl is murky:
-					Squirt urine on face by ((the doses of fishbowl + 1) / 2);
-					Squirt semen on face by ((the doses of fishbowl + 1) / 2);
+					AnnouncedSquirt urine on hair by ((the doses of fishbowl + 1) / 2);
+					AnnouncedSquirt semen on hair by ((the doses of fishbowl + 1) / 2);
 				otherwise if the fill-colour of fishbowl is golden:
-					Squirt urine on face by the doses of fishbowl;
+					AnnouncedSquirt urine on hair by the doses of fishbowl;
 				otherwise:
-					Squirt semen on face by the doses of fishbowl;
+					AnnouncedSquirt semen on hair by the doses of fishbowl;
 				say "[speech style of M]'Fucking slut. If you won't drink it, you'll wear it with pride.'[roman type][line break]";
 			otherwise:
 				say "[NameDesc of W][']s head! It soaks in [his of W] hair and glazes [his of W] upper body.[line break][speech style of M]'You thought that was going over yourself for a moment, didn't you? Coating you in your own shame wouldn't do. I want you to live with the deep shame that you let your best friend down in [his of W] greatest time of need. You'll have to live with that for the rest of your life.'[roman type][line break]";
@@ -875,9 +874,9 @@ Check pulling woman-player when the woman-status of woman-player is 80 and the s
 
 Chapter - Throne Scene
 
-Report going when the player is in Dungeon11 and the player is the donator and the woman-bimbo of woman-player is 4 and the throne-scene of woman-player is 0 and woman-player is redeploy appropriate:
+Report going when the player is in Dungeon11 and the player is the donator and the woman-bimbo of woman-player is 4 and the throne-scene of woman-player is 0:
 	if debugmode is 1, say "Checking if [WomanName] can appear.";
-	if the number of monsters in the location of the player is 0 and woman-player is redeploy appropriate:
+	if woman-player is relaxed redeploy appropriate:
 		deploy woman-player with woman-status 97;
 		now woman-player is in the location of the player;
 		now woman-player is interested;
@@ -930,39 +929,11 @@ An all time based rule (this is the barbara throne rule):
 			SemenPuddleUp 20 in (the location of W);
 			vanish W.
 
-Chapter - Crafting Scene
-
-Report going when the player is in Dungeon37 and the player is the donator and the woman-bimbo of woman-player is 4 and the crafting-scene of woman-player is 0 and woman-player is redeploy appropriate:
-	let W be woman-player;
-	deploy W with woman-status 6;
-	now W is in the location of the player;
-	now W is interested;
-	say "You see [NameDesc of W] is here, in the middle of crafting a potion. [big he of W] is bent over at the waist, deep in thought, [his of W] [if lady fetish < 2]pussy and [end if]asshole on total display.";
-	alwayscutshow Figure of Barbara Cutscene 6 for W;
-	say "Before you can say anything, [he of woman-player] stands up triumphantly, holding a small vial full of a brightly glowing pink liquid.[line break][speech style of W]'Oh hey [NameBimbo], I almost didn't notice you there! I think this one is gonna be good! Do you want to try it? If you don't, I'll be the guinea pig myself!'[roman type][line break][big he of W] hands you the pink vial.";
-	appropriate-cutscene-display Figure of Barbara Cutscene 7;
-	say "Do you drink it? ";
-	if the player is consenting:
-		say "You bravely swig the vial in a single gulp. ";
-		if a random number between 1 and 3 is 1:
-			let L be the list of worn upgradable clothing;
-			say "Almost immediately you can tell something is wrong. You feel uneasy[if the number of entries in L > 0]. And then the magic bursts out of your body and into your clothes![otherwise]... but nothing happens? Weird. Oh well, no harm done apparently.[end if]";
-			repeat with C running through L:
-				potentially transform C;
-		otherwise:
-			say "Almost immediately, you feel great! Your mind feels sharper and some of your new desires feel less important.";
-			SexAddictDown 1;
-			FuckholeAddictDown 1;
-			IntUp 1;
-	otherwise:
-		say "[BigNameDesc of W] takes the vial back and bravely swigs it in a single gulp. ";
-		if a random number between 1 and 2 is 1:
-			say "Almost immediately you can tell something is wrong.[line break][speech style of W]'I don't feel so good...'[roman type][line break]You see [his of W] mind going blanker as the magic potion transforms [his of W] clothes!";
-			ImmediatewomanSluttify;
-		otherwise:
-			say "[line break][speech style of W]'Yeah, I feel amazing!'[roman type][line break]You see [his of W] mind becoming sharper as the magic potion transforms [his of W] clothes!";
-			ImmediatewomanUnsluttify;
-		say MonsterDesc of W.
+To say WomanCraftSceneFlav:
+	say "You see [NameDesc of woman-player] is here, in the middle of crafting a potion. [big he of woman-player] is bent over at the waist, deep in thought, [his of woman-player] [if lady fetish < 2]pussy and [end if]asshole on total display.";
+	alwayscutshow Figure of Barbara Cutscene 6 for woman-player;
+	say "Before you can say anything, [he of woman-player] stands up triumphantly, holding a small vial full of a brightly glowing pink liquid.[line break][speech style of woman-player]'Oh hey [NameBimbo], I almost didn't notice you there! I think this one is gonna be good! Do you want to try it? If you don't, I'll be the guinea pig myself!'[roman type][line break][big he of woman-player] hands you the pink vial.";
+	appropriate-cutscene-display Figure of Barbara Cutscene 7.
 
 Part 4 - Wandering
 

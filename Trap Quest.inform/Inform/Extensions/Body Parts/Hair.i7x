@@ -237,13 +237,14 @@ To HairUp (X - a number):
 		let P be a random off-stage pink scrunchie;
 		if P is actually summonable and 0 is the number of worn headgear and there are 2 off-stage pink scrunchie and (hair-fail > 0 or the raw largeness of hair >= 8):
 			say "[bold type]You jump in shock as you feel your [ShortDesc of hair] twisted tightly together behind you, and a scrunchie added! Your hair is now in a ponytail![roman type][line break]";
-			summon P;
+			summon P cursed;
 		otherwise if a random number between 1 and 250 is 1 and P is actually summonable and there is a worn pink scrunchie and (hair-fail > 0 or the raw largeness of hair >= 10):
 			say "[bold type]You jump in shock as you feel your ponytail split in two behind you, and another scrunchie added! Your hair is now in pigtails![roman type][line break]";
-			summon P;
+			summon P cursed;
 		otherwise if hair-fail is 2:
 			say "You feel your hair try to grow, but it's already so long it can't grow any further!".
 
+[Actual hair]
 To HairDown (X - a number):
 	if frozen hair is 1:
 		say "Your hair would change size but the divine power of Aika prevents it.";
@@ -255,6 +256,26 @@ To HairDown (X - a number):
 				if the raw largeness of hair > 5, decrease the raw largeness of hair by 1;
 			otherwise:
 				if the raw largeness of hair > 1, decrease the raw largeness of hair by 1.
+
+[Hair extensions first, then actual hair]
+To HairCut (X - a number):
+	if frozen hair is 1:
+		say "Your hair would change size but the divine power of Aika prevents it.";
+	otherwise:
+		now the previous hair length of face is the largeness of hair;
+		while X > 0:
+			decrease X by 1;
+			if the fake largeness of hair > 0:
+				decrease the fake largeness of hair by 1;
+			otherwise if the raw largeness of hair > 1:
+				decrease the raw largeness of hair by 1;
+		if head-module is worn:
+			if the int-transfer of head-module > the lips of face + the fake largeness of hair: [This is to check if migrated INT can 'fit' inside the players lips and leftover hair extensions.]
+				say "You feel your ability to think straight [if the int-transfer of head-module > the lips of face + the fake largeness of hair + 1]rapidly [end if]decreasing, as your [head-module] finds itself with reduced capacity to store all that extra brain processing power.";
+				now the int-transfer of head-module is the lips of face + the fake largeness of hair.
+
+To HairCut to (X - a number):
+	HairCut the largeness of hair - X.
 
 To FakeHairUp (X - a number):
 	if frozen hair is 1:
@@ -282,12 +303,11 @@ To HairRedUp (X - a number):
 		say "Your hair would change colour but the divine power of Aika prevents it.";
 	otherwise:
 		now the previous hair redness of face is the redness of hair;
-		if a random number from 0 to the redness of hair is 0 or a random number between 1 and 2 is 1:
-			if the redness of hair < 3:
-				if the class of the player is not silicone queen and the class of the player is not cheerleader, increase the redness of hair by 1;
-			otherwise:
-				HairUp 1;
-				hair permanent check.
+		if the redness of hair < 3:
+			if the class of the player is not silicone queen and the class of the player is not cheerleader, increase the redness of hair by 1;
+		otherwise:
+			HairUp 1;
+			hair permanent check.
 
 To HairRedDown (X - a number):
 	if frozen hair is 1:
@@ -303,12 +323,11 @@ To HairBrightUp (X - a number):
 		say "Your hair would change colour but the divine power of Aika prevents it.";
 	otherwise:
 		now the previous hair brightness of face is the brightness of hair;
-		if a random number from 0 to the brightness of hair is 0 or a random number between 1 and 2 is 1:
-			if the brightness of hair < 3:
-				increase the brightness of hair by 1;
-			otherwise:
-				HairUp 1;
-				hair permanent check.
+		if the brightness of hair < 3:
+			increase the brightness of hair by 1;
+		otherwise:
+			HairUp 1;
+			hair permanent check.
 
 To HairBrightDown (X - a number):
 	if frozen hair is 1:
@@ -324,12 +343,11 @@ To HairBlondeUp (X - a number):
 		say "Your hair would change colour but the divine power of Aika prevents it.";
 	otherwise:
 		now the previous hair blondeness of face is the blondeness of hair;
-		if a random number from 0 to the blondeness of hair is 0 or a random number between 1 and 2 is 1:
-			if the blondeness of hair < 3:
-				increase the blondeness of hair by 1;
-			otherwise:
-				HairUp 1;
-				hair permanent check.
+		if the blondeness of hair < 3:
+			increase the blondeness of hair by 1;
+		otherwise:
+			HairUp 1;
+			hair permanent check.
 
 To HairBlondeDown (X - a number):
 	if frozen hair is 1:

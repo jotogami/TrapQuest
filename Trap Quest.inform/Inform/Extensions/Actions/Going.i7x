@@ -234,7 +234,7 @@ To decide which number is the crawling hindrance of the player:
 
 To decide which number is the movement bonus of the player:
 	let X be 0;
-	if the class of the player is catgirl or the class of the player is puppygirl:
+	if the class of the player is catgirl or puppy mittens is worn:
 		increase X by the crawling hindrance of the player - the number of worn nudism-disabling clothing; [The more worn clothing, the worse this is]
 	if there are worn mittens and the player is prone:
 		increase X by the crawling hindrance of the player * 2;
@@ -368,10 +368,14 @@ Check going:
 		if the player is prone and a random number between -3 and 3 > the weight of the player:
 			say "You try to crawl forward but by pushing on the ground with your extremely light body, you inadvertently stand up.";
 			silently try standing;
-		if there is a worn tethering lipstick collar:
-			if a random number between (the strength of the player / 2) and the strength of the player < a random number between 8 and 13:
-				say "[TetherMove]";
-				now another-turn is 1 instead;
+		if vampiress is chain-tethered:
+			check tethering;
+			if vampiress is chain-tethered:
+				if the strength roll of vampiress > the strength of the player:
+					say TetherMove;
+					now another-turn is 1 instead;
+				otherwise:
+					compute TetherBust;
 		[Firstly, monsters each get a chance to block the player, this is only likely to happen if the player has low dexterity or lots of movement reductions.]
 		repeat with M running through dangerous monsters in the location of the player:
 			if M is successfully blocking:
@@ -552,24 +556,24 @@ Definition: yourself is moving slowly:
 	if R <= MT, decide yes;
 	decide no.
 
-Carry out going while the player is in Dungeon41 and Dungeon41 is guarded:
-	let X be the number of held stolen thing;
+Carry out going while the player is in Dungeon41:
 	let flav-said be 0;
-	repeat with C running through store things held by the player:
+	repeat with C running through held store things:
 		compute stealing of C;
-		if shopkeeper is not mating:
-			increase the stolen-aware of shopkeeper by 1;
-			if flav-said is 0, say "[BigNameDesc of shopkeeper] sees you trying to leave.[line break][first custom style]'[one of]Stop, thief!'[or]Guards! Guards! Arrest this thieving whore!'[or]Where do you think you're going with that, bitch?'[or]Oi, you haven't paid for that!'[purely at random][roman type][line break]An alarm bell rings throughout the whole dungeon. Looks like you're in trouble with the law!";
-			repeat with M running through alive royal guards:
-				deinterest M;
-				if M is asleep and M is in the location of the player, say "[BigNameDesc of M] hears the alarm and wakes up!";
-				now the sleep of M is 0;
-			now shopkeeper is interested;
-			anger shopkeeper;
-		otherwise:
-			if flav-said is 0, say "[first custom style]'The mother of my daughter can take what [he of the player] wants. I hope you find it useful!'[roman type][line break]";
-			now C is unowned;
-		now flav-said is 1.
+		if Dungeon41 is guarded:
+			if shopkeeper is not mating:
+				increase the stolen-aware of shopkeeper by 1;
+				if flav-said is 0, say "[BigNameDesc of shopkeeper] sees you trying to leave.[line break][first custom style]'[one of]Stop, thief!'[or]Guards! Guards! Arrest this thieving whore!'[or]Where do you think you're going with that, bitch?'[or]Oi, you haven't paid for that!'[purely at random][roman type][line break]An alarm bell rings throughout the whole dungeon. Looks like you're in trouble with the law!";
+				repeat with M running through alive royal guards:
+					deinterest M;
+					if M is asleep and M is in the location of the player, say "[BigNameDesc of M] hears the alarm and wakes up!";
+					now the sleep of M is 0;
+				now shopkeeper is interested;
+				anger shopkeeper;
+			otherwise:
+				if flav-said is 0, say "[first custom style]'The mother of my daughter can take what [he of the player] wants. I hope you find it useful!'[roman type][line break]";
+				now C is unowned;
+			now flav-said is 1.
 
 Part 4 - Trap Triggers
 
@@ -767,5 +771,41 @@ To Place Permanent Triggered Wire:
 		now W is wire;
 		now W is not untriggered; [This is so in the future we prefer to trigger wire traps that aren't just tripwires.]
 		now W is revealed.
+
+Report going when playerRegion is Woods:
+	let C be a random worn skirted clothing;
+	if C is clothing and another-turn is 0 and the number of stuck worn clothing is 0 and the player is prone and there is worn skirted tearable clothing and the player is getting very unlucky:
+		say "[bold type]Your [ShortDesc of C] gets snagged on a piece of foliage![roman type][line break]Moving risks damaging it beyond repair. [GotUnluckyFlav]";
+		now C is stuck;
+		follow the handle snagged clothing rule.
+
+This is the handle snagged clothing rule:
+	let C be a random worn stuck skirted clothing;
+	if C is clothing:
+		let M be a random reactive interested unpacified buddy monster;
+		if M is monster:
+			say "[speech style of M]'Here, let me help you with that.'[roman type][line break][BigNameDesc of M] frees your [ShortDesc of C] from the foliage![line break][speech style of M]'You should be more careful.'[roman type][line break]";
+			now C is not stuck;
+		otherwise:
+			say "What do you want to do about your [MediumDesc of C]?";
+			reset multiple choice questions; [ALWAYS REMEMBER THIS WHEN MAKING A MULTIPLE CHOICE QUESTION]
+			set numerical response 1 to "move forward, destroying it";
+			if the player is able to use manual dexterity, set numerical response 2 to "try to free it with your hands";
+			set numerical response 0 to "wait and hope someone else helps you";
+			compute multiple choice question;
+			if player-numerical-response is 2:
+				let R be a random number between 1 and 3;
+				if debuginfo > 0, say "[input-style]Snag release roll: d3 ([R]) | (2.5) difficulty[roman type][line break]";
+				if R is 3:
+					say "You manage to wiggle it free. Phew!";
+					now C is not stuck;
+				otherwise:
+					say "You don't manage it this time. You'll have to try again!";
+					now another-turn-action is the handle snagged clothing rule;
+				now another-turn is 1;
+			otherwise:
+				say "You sacrifice your [C], pulling forward, damaging it beyond repair but immediately freeing yourself.";
+				destroy C.
+
 
 Going ends here.

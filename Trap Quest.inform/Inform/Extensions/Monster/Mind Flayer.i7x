@@ -111,7 +111,7 @@ To compute perception of (M - mind flayer):
 	say "[BigNameDesc of M] notices you[if the player is sluttily dressed].[otherwise]![end if]";
 	if the class of the player is living sex doll:
 		say "It doesn't look like [he of M]'s interested in you.";
-		bore M for 500 seconds;
+		bore M;
 	otherwise:
 		alwayscutshow figure of mindflayer cutscene 1 for M;
 		anger M.
@@ -148,11 +148,8 @@ To compute facial sex of (M - mind flayer):
 		IntDown 2;
 		cutshow figure of mindflayer cutscene 4 for M;
 		if the player is able to get horny:
-			if the player is female:
-				vaginally orgasm shamefully;
-			otherwise:
-				orgasm;
-				punish shameful male orgasm;
+			if the player is male, penis orgasm shamefully;
+			otherwise vaginally orgasm shamefully;
 		now the sex-length of M is 0;
 	otherwise:
 		say "The creature's gaze fills what little mind you have, and you feel yourself go blank!";

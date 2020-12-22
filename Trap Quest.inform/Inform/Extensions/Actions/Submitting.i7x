@@ -2,8 +2,8 @@ Submitting by Actions begins here.
 
 Definition: yourself is having marital sex:
 	unless the class of the player is princess, decide no;
-	unless princess-consort is monster, decide no;
-	if princess-consort is grabbing the player or princess-consort is penetrating a body part, decide yes;
+	unless bride-consort is monster, decide no;
+	if bride-consort is grabbing the player or bride-consort is penetrating a body part, decide yes;
 	decide no.
 
 Submitting is an action applying to nothing.
@@ -18,9 +18,7 @@ Carry out submitting:
 	if diaper quest is 1 and there is a live thing grabbing the player:
 		moderateHumiliate;
 	otherwise if the player is live fucked:
-		if the player-class is succubus:
-			humiliate 125; [Implemented increased humiliation for any demoness submitting]
-		otherwise if (the player is shameless or the player is feeling submissive) and the player is not having marital sex:
+		if (the player is shameless or the player is feeling submissive) and the player is not having marital sex:
 			do nothing; [shameless players don't find submissive sex to be embarrassing]
 		otherwise if the relevant sex addiction of the player < 7:
 			if the player is having marital sex, dignify 5;[princesses are humiliated less by sex with consorts.]

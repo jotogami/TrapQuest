@@ -69,8 +69,7 @@ To StomachDown (X - a number):
 		decrease X by 1;
 	if S > 0, StomachSemenDown S;
 	if U > 0, StomachUrineDown U;
-	if M > 0, StomachMilkDown M;
-	if cold milky > cold milky limit and the player is not craving milk, MilkTasteAddictDown 1.
+	if M > 0, StomachMilkDown M.
 
 To StomachFoodUp (X - a number):
 	if the latex-transformation of the player > 4, now X is 0;
@@ -106,16 +105,15 @@ To StomachSemenUp (X - a number):
 		if the semen taste addiction of the player > 14, passively stimulate face from semen;
 		if X > 0:
 			say SemenEncounterFlav;
-			now cold turkey is 0;
+			now cold turkey of semen is 0;
 			if the stomach-food of the player < 2, now the stomach-food of the player is 2; [Improves hunger]
 		while X > 0:
 			increase the stomach-semen of the player by 1;
 			decrease X by 1;
-			if X is SU and the trophy-mode of ejaculate-trophy is 0, SemenTasteAddictUp 1; [so half the time, 2 units of semen are required for semen taste addiction to increase]
+			if X is SU and the trophy-mode of ejaculate-trophy is 0, SlowSemenTasteAddictUp 1; [so half the time, 2 units of semen are required for semen taste addiction to increase]
 	if there is a facefucker thing penetrating face:
 		OralSexAddictUp 1;
-		progress quest of cum-swallowing-quest;
-	if there is a worn tethering lipstick collar, end tethering.
+		progress quest of cum-swallowing-quest.
 
 To StomachSemenDown (X - a number):
 	if the stomach-semen of the player > 0:
@@ -123,18 +121,16 @@ To StomachSemenDown (X - a number):
 			if the stomach-semen of the player > 0:
 				decrease the stomach-semen of the player by 1;
 				if watersports mechanics is 1, increase the delayed bladder of the player by 1;
-			decrease X by 1;
-		if the player is craving semen:
-			if the player is desperately craving semen, say "[bold type]Your stomach is completely empty of [semen]! You can't stand it, you are desperate for your next fix! Your reflexes are significantly dulled until the next time you satisfy your addiction.[roman type][line break]";
-			otherwise say "[bold type]You find yourself eager to try tasting some more [semen]. Your reflexes are slightly dulled until the next time you get a fix.[roman type][line break]".
+			decrease X by 1.
 
 To StomachUrineUp (X - a number):
 	while X > 0:
 		decrease X by 1;
 		increase the stomach-urine of the player by 1;
 		if X is 0:
-			UrineTasteAddictUp 1;
-			progress quest of piss-drinking-quest.
+			SlowUrineTasteAddictUp 1;
+			progress quest of piss-drinking-quest;
+			now cold turkey of urine is 0.
 
 To StomachUrineDown (X - a number):
 	while X > 0:
@@ -149,8 +145,8 @@ To StomachMilkUp (X - a number):
 		increase the stomach-milk of the player by 1;
 		if X is 0:
 			StomachFoodUp 1;
-			MilkTasteAddictUp 1;
-			now cold milky is 0; [this tracks how long since the player last drank milk]
+			SlowMilkTasteAddictUp 1;
+			now cold turkey of milk is 0;
 			progress quest of milk-drinking-quest.
 
 To StomachMilkDown (X - a number):
@@ -161,36 +157,5 @@ To StomachMilkDown (X - a number):
 			decrease the stomach-milk of the player by 1;
 			if the fat-weight of the player < milk-drunk * 2, FatUp 1;
 			increase milk-exercise-bonus by 1.
-
-[!<PukeUp>+
-
-Let's see whether the player pukes up anything from their gag reflex being triggered.
-
-+!]
-[To PukeUp:
-	let M be a random thing penetrating face;
-	if the player is a deepthroater or the player is not gag-prone:
-		if debugmode > 1, say "[if the player is gag-prone]The player is a deepthroater[otherwise]The player is not gag prone[end if].";
-		say "[BigFuckerDesc of M] almost makes you gag but you are able to [if the throatskill of the player is 1]use your [one of]new [or][or]experienced [or]expert [or]perfected [or]world renowned [stopping]deepthroating skills[otherwise]put mind over matter and control your gag reflex[end if] to accommodate [his of M] length without throwing up.";
-		let T be a random tongue piercing;
-		let P be a random pink pacifier;
-		let C be a random worn cursed clothing;
-		let R be a random worn royalty themed overdress;
-		let D be a random off-stage deepthroat princess crop top;
-		if R is overdress and D is overdress:
-			transform R into D;
-		otherwise if T is actually summonable and a random number between 5 and the oral sex addiction of the player > 7:
-			say "[bold type]A cold metal piercing suddenly appears in your mouth, embedded into your tongue! You've never had something like that in your mouth before, so it's difficult to stop thinking about the [if the bimbo of the player < 10]unwelcome [end if]intrusion. Even worse, you can feel its cursed magic somehow preventing you from speaking properly![roman type][line break]";
-			summon T cursed with quest;
-		otherwise if there is a worn baby bonnet and P is actually summonable:
-			say "[bold type]Your baby's bonnet flutters wildly and a large pink pacifier appears in your mouth! You can't remove it! [roman type]But it does make you feel stronger...";
-			summon P cursed with quest;
-		if nun blowjob tattoo is worn and C is clothing:
-			say "You feel your [nun blowjob tattoo] sending holy magic to your [ShortDesc of C], uncursing it!";
-			bless C;
-	otherwise:
-		say "[BigFuckerDesc of M] being down your throat makes you gag, and as it pulls out you puke up the [if the stomach-semen of the player > 0][semen][otherwise]liquid[end if] from your belly.";
-		PukeUp a random number between 1 and (the semen volume of face + the stomach-semen of the player + the semen volume of belly);
-	progress quest of cum-swallowing-quest.]
 
 Stomach ends here.

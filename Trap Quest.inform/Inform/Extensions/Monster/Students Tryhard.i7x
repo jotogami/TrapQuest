@@ -23,17 +23,26 @@ Part - Laci
 
 student-laci is a tryhard student.
 
+Definition: student-laci is dark skinned: decide yes.
+
 The text-shortcut of student-laci is "stla".
 
-Figure of laci is the file "NPCs/School/Student/student3.png".
+Figure of rank 1 laci is the file "NPCs/School/Student/student3a.png".
 
 To decide which figure-name is the monster-image of (M - student-laci):
-	decide on figure of laci.
+	if the current-rank of M >= 5, decide on figure of rank 5 laci;
+	if the current-rank of M is 4, decide on figure of rank 4 laci;
+	if the current-rank of M is 3, decide on figure of rank 3 laci;
+	if the current-rank of M is 2, decide on figure of rank 2 laci;
+	decide on figure of rank 1 laci.
 
 To say MonsterDesc of (M - student-laci):
-	say "This tall, dirty blonde [man of M] is wearing a skimpy sexy schoolgirl outfit with matching tartan [if the current-rank of M is 1]miniskirt and tie[otherwise]skirt and tie. What was once a miniskirt is now so short it's really nothing more than a belt[end if]. [big his of M] chunky black heels are polished to the nth degree. [big he of M] is constantly 'accidentally' dropping things and then bending over with completely unbent knees to expose as much of [his of M] bottom as possible to whoever might be looking [his of M] way[if the current-rank of M is 3]. Whenever [he of M] bends over [he of M] makes sure to first cross [his of M] feet, perhaps to make sure people know [he of M] is bending at the waist on purpose[end if].".
+	say "This tall dark skinned redheaded [man of M] is wearing a skimpy sexy schoolgirl outfit with matching tartan miniskirt and tie. [big his of M] chunky black heels are polished to the nth degree. [big he of M] is constantly 'accidentally' dropping things and then bending over with completely unbent knees to expose as much of [his of M] bottom as possible to whoever might be looking [his of M] way[if the current-rank of M >= 3]. Whenever [he of M] bends over [he of M] makes sure to first cross [his of M] feet, perhaps to make sure people know [he of M] is bending at the waist on purpose[end if]. ";
+	if diaper quest is 0, say "[if the current-rank of M is 1][big he of M] is wearing plain white briefs[otherwise if the current-rank of M is 2][big he of M] is no longer wearing any underwear. You can almost see everything, if it wasn't for [his of M] thick thighs and buttocks squshed together[otherwise if the current-rank of M is 3][big he of M] is no longer wearing any underwear, and is pulling one of [his of M] thick thighs and buttocks a bit to enable you to see [his of M] pussy[otherwise if the current-rank of M is 4][big he of M] is no longer wearing any underwear, and is pulling both of [his of M] thick thighs and buttocks apart to enable you to see [his of M] pussy and asshole[otherwise][big he of M] is no longer wearing any underwear, and is pulling both of [his of M] thick thighs and buttocks apart to enable you to see the jewelled buttplug and vibrator currently occupying [his of M] pussy and asshole[end if].";
+	otherwise say "[if the current-rank of M is 1][big he of M] is wearing plain white briefs[otherwise if the current-rank of M is 2][big his of M] white briefs have been replaced by a small purple patterned diaper[otherwise if the current-rank of M is 3][big he of M] is now wearing a thick white diaper[otherwise if the current-rank of M is 4][big he of M] is now wearing a thick white diaper, and spanks [himself of M] each time [he of M] bends over[otherwise][big he of M] is now wearing a thick white diaper, and gleefully rubs [his of M] pussy and asshole through [his of M] padding each time [he of M] bends over[end if].".
 
-The max-rank of student-laci is 3.
+To say ClitLeadDesc of (M - student-laci):
+	say "A long golden chain with a leash handle at the end trails on the ground, clearly permanently connected to [his of M] pierced clitoris. ".
 
 To update name of (M - student-laci):
 	if the current-rank of M is 1:
@@ -66,7 +75,7 @@ The text-shortcut of student-candy is "stca".
 Figure of rank 1 candy is the file "NPCs/School/Student/student5a.png".
 
 To decide which figure-name is the monster-image of (M - student-candy):
-	[if the current-rank of M >= 4, decide on figure of rank 4 candy;]
+	if the current-rank of M >= 4, decide on figure of rank 4 candy;
 	if the current-rank of M is 3, decide on figure of rank 3 candy;
 	if the current-rank of M is 2, decide on figure of rank 2 candy;
 	decide on figure of rank 1 candy.
@@ -74,9 +83,11 @@ To decide which figure-name is the monster-image of (M - student-candy):
 To say MonsterDesc of (M - student-candy):
 	say "This tall blonde [man of M] is wearing a [if the current-rank of M is 1]purple cheerleader-style outfit with yellow trims, made out of a shirt that ends at [his of M] belly button, a thigh-length skirt[otherwise if the current-rank of M is 2]super skimpy purple outfit with yellow trims, made out of a tiny tube top and microskirt[otherwise]super skimpy purple microskirt and a matching chest-exposing cupless tube top[end if], thigh-high purple stockings and purple sneakers with yellow laces and soles. [big he of M] has a pair of fake pink cat ears in [his of M] rose coloured hair. [if the current-rank of M is 1][big his of M] expression exudes playfulness and confidence[otherwise][big he of M] looks a bit less certain about how awesome [he of M] looks than [he of M] used to[end if].";
 	if diaper quest is 0, say "[if the current-rank of M is 2][big he of M] now has long fake purple nails on each finger, and is holding them out to the sides delicately, as if afraid of breaking one.[otherwise if the current-rank of M >= 3][big he of M] now has fingerless pink kitty mittens locked onto [his of M] hands, rendering [him of M] almost completely without manual dexterity. A collar connected to a pink leash is locked on [his of M] neck, and a long fake pink tail sways from [his of M] rear, almost certainly connected to a butt plug.[end if]";
-	otherwise say "[if the current-rank of M is 2]The new shorter length of [his of M] skirt exposes the fact that [he of M][']s wearing a small pink diaper.[otherwise if the current-rank of M >= 3][big he of M] now has fingerless pink kitty mittens locked onto [his of M] hands, rendering [him of M] almost completely without manual dexterity. A collar connected to a pink leash is locked on [his of M] neck, and a long fake pink tail sways from [his of M] rear, almost certainly connected to a butt plug.[end if]".
+	otherwise say "[if the current-rank of M >= 4][big he of M] is kept in a thick and completely uncovered double-diaper. [end if][if the current-rank of M is 2]The new shorter length of [his of M] skirt exposes the fact that [he of M][']s wearing a small pink diaper.[otherwise if the current-rank of M >= 3][big he of M] now has fingerless pink kitty mittens locked onto [his of M] hands, rendering [him of M] almost completely without manual dexterity. A collar connected to a pink leash is locked on [his of M] neck, and a long fake pink tail sways from [his of M] rear, almost certainly connected to a butt plug.[end if]";
+	if the current-rank of M >= 4, say "A pink cat's paw-print is permanently inked onto [his of M] left arm, branding [him of M] as a cat-slave[if diaper quest is 1]. Even worse, the words 'Kitty Litter' have been tattooed in pink letters on [his of M] lower back, just above the waistband of [his of M] diaper[end if].".
 
-The max-rank of student-candy is 3.
+To say ClitLeadDesc of (M - student-candy):
+	say "[big his of M] pierced nipples are permanently connected to [his of M] pierced clitoris by two long dangling gold chains. ".
 
 To update name of (M - student-candy):
 	if the current-rank of M is 1:
@@ -109,14 +120,14 @@ To say StoryAnswer of (M - student-candy):
 
 To say DamageReaction (N - a number) of (M - student-candy):
 	if N > (the maxhealth of M / 4) * 3:
-		say "The [noun] easily takes the hit!";
+		say DamageReactHealthy of M;
 	otherwise if N > (the maxhealth of M / 4) * 2:
-		say "The [noun] flinches, taking the hit!";
+		say DamageReactDamaged of M;
 	otherwise if N > (the maxhealth of M / 4):
-		say "The [noun] takes the hit, staggering!";
+		say DamageReactTired of M;
 	otherwise:
-		say "The [noun] takes the hit, fighting to maintain [his of M] balance!";
-	say "[speech style of M]'[one of]HISS!'[or]NROOWL!'[or]OW, F- I mean, NYOUCH![at random][roman type]".
+		say DamageReactWeak of M;
+	say "[speech style of M]'[one of]OW, F- I mean, NYOUCH[or]HISS[or]NROOWL[then at random]!'[roman type][line break]".
 
 Part - Default Conversation
 

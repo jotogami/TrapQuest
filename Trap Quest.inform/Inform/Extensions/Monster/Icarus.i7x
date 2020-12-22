@@ -20,7 +20,7 @@ To say BigFuckerDesc of (M - Icarus):
 	say "Icarus".
 
 Definition: Icarus is dungeon dwelling:
-	if diaper quest is 0, decide yes;
+	if diaper quest is 0 and christmas content is 0, decide yes;
 	decide no.
 
 Figure of Icarus 1 is the file "NPCs/MultiFloor/Icarus1.png".
@@ -61,12 +61,6 @@ To set up (M - Icarus):
 
 To decide which number is the girth of (M - Icarus):
 	decide on 3.
-
-[This is the spawn initial Icarus rule:
-	if christmas content is 0 and a random number between 1 and 5 > 2:
-		if debugmode > 1, say "Now summoning Icarus.";
-		if Icarus is off-stage, summon Icarus in the dungeon.
-The spawn initial Icarus rule is listed in the setting up dungeon monsters rules.]
 
 Definition: Icarus is human: decide yes.
 
@@ -181,7 +175,7 @@ To decide which figure-name is icarus-clothing-image of (C - a wearthing):
 	decide on the examine-image of C.
 
 To say IcarusSummonFlav of (C - a wearthing):
-	say "[ExamineDesc of C]";
+	say ExamineDesc of C;
 	cutshow the icarus-clothing-image of C for C.
 
 To say IcarusSummonFlav of (C - a clothing):
@@ -351,12 +345,12 @@ To compute IcarusSummon of (C - icarus-hair):
 
 icarus-belly is a wearthing.
 Definition: icarus-belly is IcarusScienceAppropriate:
-	if the pregnancy of the player is 0 and (inflation fetish is 1 or (pregnancy fetish is 1 and the player is female)), decide yes;
+	if the pregnancy of the player is 0 and (inflation fetish is 1 or (pregnancy fetish is 1 and the player is possessing a vagina)), decide yes;
 	decide no.
 Figure of icarus-belly is the file "Special/Cutscene/cutscene-icarus-belly1.jpg".
 To compute IcarusSummon of (C - icarus-belly):
 	say "[BigNameDesc of Icarus] forms [his of Icarus] hands into a ball and slowly pulls them apart. Your belly expands at the same time as [his of Icarus] hands!";
-	if pregnancy fetish > 0 and the player is female:
+	if the player is able to get pregnant:
 		now the pregnancy of the player is 1;
 		cancel father material of vagina;
 		now forcedFertility is true;
@@ -509,6 +503,12 @@ To say BanishForceFlav of (M - Icarus):
 		bless C.
 
 Part 6 - Conversation
+
+To say RewardFlav of (M - Icarus) for (T - a thing):
+	say "[speech style of M]'A gift from the heavens.'[roman type][line break]A ray of light shines from above, and then a [T] is on the ground in front of you.".
+
+To say OfferFriendshipFlav of (M - Icarus):
+	say "[speech style of M][if M is guardian]'You have the power of the gods on your side[otherwise if M is ally]'Angels watch over you as you go. You are blessed[otherwise if M is buddy]'Blessings be with you[otherwise if M is acquaintance]'Perhaps you intend to devote yourself to me? I wonder[otherwise]'I can't complain about this[end if].'[roman type][line break]".
 
 Section 1 - Greeting
 

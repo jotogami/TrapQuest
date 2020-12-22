@@ -4,10 +4,10 @@ A thing has an indexed text called a text-shortcut. Understand the text-shortcut
 
 Part - Price and Ownership
 
-A thing can be unowned, store, museum-store, stolen (this is the ownership property). A thing is usually unowned.
+A thing can be unowned, store, museum-store, stolen, museum-stolen (this is the ownership property). A thing is usually unowned.
 
 To say ownership-desc of (T - a thing):
-	if the item described is stolen, say "[roman type] (stolen)";
+	if the item described is stolen or the item described is museum-stolen, say "[roman type] (stolen)";
 	if the item described is store and the location of the player is not Mansion28, say "[roman type] ([if T is in Dungeon41 or the player is in Dungeon41]for sale - [price of item described][otherwise]cleverly stolen - please report bug[end if])".
 
 To decide what number is the original price of (C - a thing):
@@ -99,6 +99,10 @@ Part - Titles and Images
 A thing has a figure-name called the temporary-image. The temporary-image of a thing is usually figure of no-image-yet.
 A thing has a figure-name called the previous-temporary-image. The previous-temporary-image of a thing is usually figure of no-image-yet. [We want to know what we just pushed to the focus window in case the player asks us to blow it up onto the map window.]
 
+A thing has a number called backgroundColour. The backgroundColour of a thing is usually -1. [If this is a positive number, it is used to render a full body of colour behind the image.]
+To update background colour of (T - a thing):
+	do nothing.
+
 To decide which figure-name is the next-examine-image of (C - a thing):
 	if the temporary-image of C is not figure of no-image-yet, decide on the temporary-image of C;
 	decide on the examine-image of C.
@@ -132,7 +136,8 @@ To maybe-map-display (C - a thing):
 		if previous-temporary-image of C is not figure of no-image-yet, now F is previous-temporary-image of C;
 		if the focus-window is g-present: [We're not going to display in the main window. So instead let's display a zoomed in version in the map window.]
 			if the map-window is g-present:
-				now temporary-map-figure is F;
+				update background colour of C;
+				MapShow F with background (backgroundColour of C);
 				if seconds is 0, display entire map; [This isn't going to happen automatically because time hasn't moved forward. So we prompt it ourselves.]
 				otherwise now map-turn-stall is 1; [If we didn't do this, the temporary-map-figure would be reset before it has a chance to be shown properly, when the time progression is calculated (towards the bottom of "to run the engine once" in Compute Turn.i7x.]
 			otherwise:

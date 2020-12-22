@@ -147,6 +147,7 @@ To trigger (Y - a glue trap):
 		if C is clothing and C is not glued clothing:
 			say "Your [C] is now stuck to you with glue!";
 			now C is glued;
+			force clothing-focus redraw;
 		if tough-shit is 1:
 			now G is in the location of the player;
 			now the times-stuck of G is 0;
@@ -557,7 +558,7 @@ To compute the mutation effects of (G - a glue):
 				if watersports fetish is 1 and a random number between 0 and diaper focus is 0:
 					say "You feel... unsettled... thirsty. You picture yourself drinking from an arching stream, and lick your lips.";
 					if the stomach-water of the player > 0, decrease the stomach-water of the player by 1;
-					UrineTasteAddictUp 1;
+					SlowUrineTasteAddictUp 1;
 				otherwise if diaper lover > 0:
 					if incontinence < the max-incontinence of the player and a random number between 1 and 2 is 1:
 						say "You shiver, feeling... smaller...? scareder, less sure of yourself. You feel your ability to hold onto your bladder [if diaper messing >= 3]and bowels [end if]weakening.";
@@ -588,10 +589,10 @@ To compute the mutation effects of (G - a glue):
 						now C is a random off-stage black rubber skirt;
 					otherwise if X is 4:
 						now C is a random off-stage ballet heels;
-					otherwise if X is 5:
-						now C is a random off-stage black catsuit;
-					otherwise if X is 6:
-						now C is a random off-stage black fetish hobble dress;
+					otherwise if X is 5 and black-catsuit is off-stage:
+						now C is black-catsuit;
+					otherwise if X is 6 and black fetish hobble dress is off-stage:
+						now C is black fetish hobble dress;
 					otherwise if X is 7:
 						now C is a random off-stage fetish business dress;
 					otherwise if X is 8 and black hood is off-stage:
@@ -621,13 +622,12 @@ To compute the mutation effects of (G - a glue):
 				if pregnancy fetish is 1 and C is actually summonable:
 					compute GlueMorphingInto of G to C;
 				otherwise if watersports fetish is 1:
-					let C be a random off-stage WC catsuit;
-					if C is actually summonable:
-						compute GlueMorphingInto of G to C;
+					if WC catsuit is actually summonable:
+						compute GlueMorphingInto of G to WC catsuit;
 					otherwise:
 						say "You feel... unsettled... thirsty. You picture yourself drinking from an arching stream, and lick your lips.";
 						if the stomach-water of the player > 0, decrease the stomach-water of the player by 1;
-						UrineTasteAddictUp 1;
+						SlowUrineTasteAddictUp 1;
 				otherwise if lactation fetish is 1 or extreme proportions fetish is 1:
 					increase the lactation rate of the player by 2;
 					say "You feel the fumes penetrate your [BreastDesc], which flush with an inner warmth.";

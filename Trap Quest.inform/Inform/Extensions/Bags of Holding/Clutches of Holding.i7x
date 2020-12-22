@@ -4,11 +4,18 @@ A sexy-clutch is a kind of bag of holding.
 
 Definition: a sexy-clutch is hand ready: decide yes.
 
+To check clutch replacement:
+	let G be a random worn hand ready bag of holding;
+	if G is clothing:
+		say "You feel something attempt to appear in your hand, but it can't because you are holding [NameDesc of G]. You sense that you could will your [ShortDesc of G] to transform into something that doesn't need to be held in your hand, but it would probably be [bold type]more outrageous[roman type]. Do you let it transform? ";
+		if the player is consenting:
+			let C be a random ultra slutty bag of holding;
+			if G is not slutty-clutch, now C is a random pink sack of holding;
+			transform G into C.
+
 To decide which object is the potential-upgrade-target of (C - a sack of holding):
 	if the transform-attempts of C < a random number between 0 and unlucky, decide on nothing;
-	if a random number between 1 and 2 is 1:
-		if the number of worn hand ready clothing is 0, decide on a random sexy-clutch;
-		decide on lips clutch of holding;
+	if a random number between 1 and 2 is 1 and the number of worn hand ready clothing is 0, decide on a random sexy-clutch;
 	let P be a random patterned sack of holding;
 	if P is dirty little whore sack of holding, decide on spike skull handbag of holding;
 	decide on P.

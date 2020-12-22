@@ -67,10 +67,10 @@ To decide which number is expelColour:
 	[gradually go from pale red to red]
 	if the holding strain of belly > 0:
 		now G-component is 129 - the holding strain of belly;
-		if G-component < 0, now G-component is 0;
 	otherwise:
 		now G-component is (rectum-risky-level - rectum) * 32;
-		if G-component > 128, now G-component is 128;
+	if G-component > 128, now G-component is 128;
+	if G-component < 0, now G-component is 0;
 	now B-component is G-component;
 	decide on (R-component * 65536) + (G-component * 256) + B-component.
 
@@ -168,12 +168,16 @@ To check real messing:
 	let hasMessedNow be 0;
 	if the player is feeling full, now messAware is 1;
 	if rectum > 1 and there is a worn total protection soilable knickers and asshole is not actually occupied and the number of live things penetrating vagina is 0 and (the number of things grabbing the player is 0 or diaper quest is 1), now canMessNow is 1;
-	let hold-strength be (a random number between 11 and 13) + (a random number between -1 and 1);
-	let I be hold-strength - (incontinence + suppository);
-	if debuginfo > 0 and canMessNow is 1 and rectum > 1, say "[input-style]Mess self-control check: RNG[bracket]10~14[close bracket] ([hold-strength]) - incontinence ([incontinence]) - laxative effects ([suppository]) = [I + 0][if I < 4]; minimum 4[end if] | ([rectum].5) rectum volume[roman type][line break]";
-	if I < 4, now I is 4;
-	if rectum >= I and canMessNow is 1, now willMessNow is 1;
-	if rectum >= I - 6, now shouldMessNow is 1;
+	if the player is incontinent and the player is full:
+		now shouldMessNow is 1;
+		if canMessNow is 1, now willMessNow is 1; [no need for a die roll if the player is incontinent]
+	otherwise:
+		let hold-strength be (a random number between 11 and 13) + (a random number between -1 and 1);
+		let I be hold-strength - (incontinence + suppository);
+		if debuginfo > 0 and canMessNow is 1 and rectum > 1, say "[input-style]Mess self-control check: d5+9 ([hold-strength]) - incontinence ([incontinence]) - laxative effects ([suppository]) = [I + 0][if I < 4]; minimum 4[end if] | ([rectum].5) rectum volume[roman type][line break]";
+		if I < 4, now I is 4;
+		if rectum >= I and canMessNow is 1, now willMessNow is 1;
+		if rectum >= I - 6, now shouldMessNow is 1;
 	if messAware is 1:
 		say "[one of][bold type][or][stopping][one of]Your tummy rumbles ominously[or]Your stomach gurgles as it processes more food[or]Your belly churns loudly as it continues to digest its contents[or]Your bowels emit a low growl as the contents are moved towards the exit[then at random].[one of][line break][variable custom style]That can't be a good sign[if the player is not incontinent]. I'm starting to feel like I need to go number two[end if]...[or][stopping][roman type][line break]";
 	if shouldMessNow is 1:
@@ -188,6 +192,7 @@ To check real messing:
 						let F be temporaryYesNoBackground;
 						if the player is reverse bimbo consenting:
 							now shouldMessNow is 0;
+							now willMessNow is 0;
 							say "You grit your teeth and clench your eyes and manage to hold on through the excruciating cramps.";
 							PainUp 1;
 							if the player is getting unlucky:
@@ -430,7 +435,17 @@ Check messing:
 Carry out messing:
 	now voluntarySquatting is 1;
 	allocate 6 seconds;
-	compute messing.
+	let berri-scene be 0;
+	if diaper quest is 1 and there is a worn diaper and the player is in Hotel38 and the human-toilet-scene of woman-player is 2 and the player is not immobile and the player is not in danger:
+		say "Sit on the Punishment Potty?";
+		if the player is bimbo consenting:
+			say "You sit on the Punishment Potty, smushing your [random worn diaper] into [NameDesc of woman-player][']s face.[line break][speech style of woman-player]'Wait please, no, [one of]let's talk about this[or]not again[stopping]- FFFFFFFFBBBBBFFFFFTTTT!'[roman type][line break][BigNameDesc of woman-player][']s pleas are blocked out by your padded butt.";
+			now berri-scene is 1;
+	compute messing;
+	if berri-scene is 1:
+		DelicateDown 2;
+		FavourDown woman-player by 2;
+		say "You finally pull your filthy diaper off of [NameDesc of woman-player][']s face. [big he of woman-player] doesn't say a word - [he of woman-player] is too busy gasping for breath and sobbing with self-pity.".
 
 TargetMessing is an action applying to one thing.
 Understand "poo in [something]", "poop in [something]", "crap in [something]", "shit in [something]", "mess in [something]", "mess [something]", "soil [something]" as TargetMessing.

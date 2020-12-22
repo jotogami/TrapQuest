@@ -1,6 +1,9 @@
 Motion by Monster Framework begins here.
 
 To check motion of (M - a monster):
+	check default motion of M.
+
+To check default motion of (M - a monster):
 	if M is penetrating a body part:
 		dislodge M;
 	if M is undefeated and M is willing to punish untidiness and the player is not in the location of M: [While the NPC idly wanders, it can pick up leftover soiled diapers]
@@ -23,21 +26,28 @@ To compute mandatory room leaving of (M - a monster):
 		decrease N by 1;
 		regionally place M.
 
-To compute room leaving of (M - a monster): [This CANNOT be replaced with a function that potentially doesn't make them leave the room, for any NPC. Some while loops rely on this to eventually succeed or the game will freeze.]
+To blockable move (M - a monster) to (D - a direction):
+	if M is in the location of the player:
+		if debugmode > 1, say "player is moving (currently counts as being in [location of the player]) and [M] is trying to move [D], so [if D is the travel-opposite of the player]MOVEMENT IS BLOCKED[otherwise]movement is still allowed[end if].";
+		if D is not the travel-opposite of the player, try M going D;
+	otherwise:
+		try M going D.
+
+To compute room leaving of (M - a monster): [This CANNOT be replaced with a function that potentially doesn't make them leave the room, for any NPC. Some while loops rely on this to eventually succeed or the game will freeze. 'blockable move' function is acceptable because when we compute mandatory room leaving we set travel-opposite to down]
 	if M is in Dungeon11 or M is in Dungeon10:
-		try M going east;
+		blockable move M to east;
 	otherwise if M is in School33 and M is uninterested:
-		try M going west;
+		blockable move M to west;
 	otherwise:
 		now neighbour finder is the location of M;
 		let A be a random N-viable direction;
-		if A is not the travel-opposite of the player: [This is allowed because when we compute mandatory room leaving we set the travel-opposite to down]
+		if A is a direction:
 			let P be the room A from the location of M;
 			if A is a random N-viable direction and P is unbossed and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
-				try M going A;
+				blockable move M to A;
 				compute monstermotion reactions of M;
 			otherwise if A is a random N-viable direction and P is unbossed and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
-				try M going A;
+				blockable move M to A;
 				compute monstermotion reactions of M.
 
 [N is a nearby monster, in case we want to say something specific about hearing that type of monster nearby.]
@@ -83,7 +93,7 @@ To decide which number is the seek roll of (M - a monster):
 	decide on a random number between 0 and 3. [Most monsters have a 75% chance of successfully moving.]
 
 To compute (M - a monster) seeking (D - a direction): [Default Compute Seeking if not specified for the monster.]
-	try M going D;
+	blockable move M to D;
 	compute monstermotion reactions of M.
 
 Check someone going:
@@ -95,9 +105,9 @@ To compute fleeing of (M - a monster): [Default Compute Fleeing if not specified
 		let A be a random N-viable direction;
 		let P be the room A from the location of M;
 		if A is a random N-viable direction and the room A from the location of M is unbossed and P is not the location of the player and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
-			try M going A;
+			blockable move M to A;
 		otherwise if A is a random N-viable direction and P is not the location of the player and the number of barriers in P is 0 and the number of barriers in the location of M is 0:
-			try M going A.
+			blockable move M to A.
 
 The motion reaction rules is a rulebook.
 
@@ -184,9 +194,9 @@ To compute periodic recovery of (M - a monster):
 	unless the class of the player is princess and M is asleep, decrease the refractory-period of M by 4;
 	if M is messy and the refractory-period of M + 4 > the messRefractoryLimit of M:
 		if M is in the location of the player, say SuddenMessFlav of M;
-	otherwise if the class of the player is princess and princess-consort is M:
+	otherwise if the class of the player is princess and bride-consort is M:
 		if the refractory-period of M <= 0:
-			if the refractory-period of M > -4, say "A strange tingle passes through your body[if the player is very horny], and you suddenly find yourself stricken with need[end if] as thoughts of the [princess-consort] begin to swirl around inside your head. Somehow, you know you won't be able to satisfy yourself at all until you see to [his of M] needs.[line break][variable custom style][if the player is not a pervert]Ugh, it's not my job to get anyone off! Stop messing with my head, game![otherwise if the sex addiction of the player < 12]I guess I should go see [him of M] quick so I can get it over with.[otherwise]Looks like [he of M] needs my help. I don't want to keep [him of M] waiting![end if][roman type][line break]";
+			if the refractory-period of M > -4, say "A strange tingle passes through your body[if the player is very horny], and you suddenly find yourself stricken with need[end if] as thoughts of the [bride-consort] begin to swirl around inside your head. Somehow, you know you won't be able to satisfy yourself at all until you see to [his of M] needs.[line break][variable custom style][if the player is not a pervert]Ugh, it's not my job to get anyone off! Stop messing with my head, game![otherwise if the sex addiction of the player < 12]I guess I should go see [him of M] quick so I can get it over with.[otherwise]Looks like [he of M] needs my help. I don't want to keep [him of M] waiting![end if][roman type][line break]";
 			Arouse 10.[The princess will get a little hornier every turn her consort goes unsatisfied]
 
 To say SuddenMessFlav of (M - a monster):

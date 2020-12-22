@@ -47,8 +47,12 @@ To decide which number is the flat strength of the player:
 	repeat with C running through worn wearthings:
 		increase S by the strength-influence of C;
 	if the class of the player is priestess, decrease S by 2;
+	if the class of the player is puppy:
+		let N be the number of worn nudism-disabling clothing;
+		if N < 4, increase S by 4 - N;
 	if the player is thirsty, decrease S by the thirst of the player - 2;
 	if the player is hungry, decrease S by 2;
+	if the player is craving souls, decrease S by (the soul addiction of the player / 4) + 1;
 	decrease S by the incidents of enema-stat-loss;
 	if the class of the player is cowgirl:
 		if the milk volume of breasts > 10, increase S by 1;
@@ -138,11 +142,15 @@ To decide which number is the flat dexterity of the player:
 	repeat with C running through worn wearthings:
 		increase D by the dexterity-influence of C;
 	if the class of the player is cheerleader, increase D by the blondeness of hair;
+	if the class of the player is latex fetish model:
+		let O be 0;
+		repeat with C running through worn latex clothing:
+			let A be the outrage of C;
+			if A > O, now O is A;
+		increase D by O / 4;
 	if the player is blinded, decrease D by 2;
 	decrease D by the bondage dexterity penalty of the player;
 	if the player is bursting and the bladder of the player > 6, decrease D by (the bladder of the player - 6);
-	if the player is craving semen, decrease D by 1;
-	if the player is desperately craving semen, decrease D by 2;
 	if the strut of the player is 1 and there is a worn heels and the player is upright, increase D by 3;
 	if the player is a bit horny, increase D by 2;
 	if the player is horny, increase D by 1;
@@ -220,15 +228,18 @@ To decide which number is the intelligence of the player:
 To decide which number is the flat intelligence of the player:
 	let I be the raw intelligence of the player;
 	if the player is fighting against no-panties, decrease I by 2;
-	if the class of the player is cowgirl, decrease I by the raw sensitivity of breasts / 2;
+	if the class of the player is cowgirl, decrease I by the sensitivity of breasts / 2;
 	if the class of the player is cumdumpster, increase I by the square root of total pinned condoms;
 	if the class of the player is priestess, increase I by 2;
 	repeat with T running through worn wearthings:
 		increase I by the intelligence-influence of T;
 	decrease I by the incidents of enema-int-loss;
 	decrease I by fullness-penalty;
-	if the player is craving milk, decrease I by 4;
-	if the player is desperately craving milk, decrease I by 2;
+	if there is a desperately craved liquid-object:
+		decrease I by 4;
+	otherwise if there is a craved liquid-object:
+		decrease I by 2;
+	decrease I by (tasteAddictionPenaltyTime + TasteAddictionCooldown - 1) / TasteAddictionCooldown;
 	increase I by the theme bonus of the intelligence theme rules;
 	if the arousal of the player >= 5000, decrease I by (the arousal of the player - 2000) / 3000;
 	increase I by ((strawberry-lace-timer + default-candy-duration - 1) / default-candy-duration) * 6;
@@ -350,7 +361,7 @@ Definition: yourself is getting very unlucky:
 	decide no.
 
 To say GotLuckyFlav:
-	say "[one of]You feel that you just got particularly lucky.[or][variable custom style]Lucky![roman type][line break][or][variable custom style]That was lucky.[roman type][line break][then at random]".
+	say "[one of]You feel that you just got particularly lucky.[or][variable custom style]Lucky me![roman type][line break][or][variable custom style]That was lucky.[roman type][line break][then at random]".
 
 To say GotUnluckyFlav:
 	say "[one of]You feel that you just got particularly unlucky.[or]What rotten luck![or][variable custom style]Oh come on! That was so unlucky...[roman type][line break][then at random]".

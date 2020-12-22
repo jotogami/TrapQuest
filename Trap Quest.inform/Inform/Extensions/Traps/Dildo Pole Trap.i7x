@@ -478,14 +478,14 @@ To trigger (Y - a creampie pole trap):
 		let X be a random worn top level protection clothing;
 		if X is nothing:
 			say "The dildo suddenly starts squirting inhuman amounts of warm [semen] from its tip! Your thighs get coated.";
-			CumThighsUp 6;
+			AnnouncedSquirt semen on thighs by 6;
 		otherwise:
 			say "The dildo suddenly starts squirting inhuman amounts of warm [semen] from its tip! Your [printed name of X] gets coated.";
-			Cumsoak 6 on X.
+			AnnouncedSquirt semen on X by 6.
 
 To compute orgasm resolution of (R - a creampie pole trap):
 	if a random number between 1 and 2 - unlucky < 2:
-		let D be a random off-stage dong;
+		let D be a random off-stage plentiful dong;
 		if D is nothing or D is throbbing-tentacle, let D be a random off-stage plug;
 		say "The pole clicks as your knees buckle, [bold type]detaching from the dildo, which remains inside of you[roman type] as you fall to the floor.";
 		if R is penetrating vagina, summon D cursed vaginally with quest;

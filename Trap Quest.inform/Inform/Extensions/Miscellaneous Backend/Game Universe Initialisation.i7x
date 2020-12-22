@@ -15,6 +15,7 @@ To Start The Machine:
 	Set Up Monsters;
 	if debugmode > 1, say "Finished setting up monsters.";
 	if halloween content is 1:
+		now playerRegion is Mansion;
 		Set Up The Woods;
 		follow the setting up woods monsters rules;
 		Set Up The Mansion;
@@ -23,7 +24,6 @@ To Start The Machine:
 			set up M;
 		wait until animations are over;
 		now the player is in Mansion01;
-		now playerRegion is Mansion;
 	otherwise:
 		wait until animations are over;
 		now the player is in Dungeon12;
@@ -46,12 +46,20 @@ To Start The Machine:
 		say "You notice that you seem to have some medical supplies. Handy![line break]";
 	if christmas content is 1:
 		if diaper lover > 0:
-			summon christmas bonnet cursed;
+			now christmas bonnet is worn by the player; [if we summon it, it'll summon the default outfit too]
+			now christmas bonnet is cursed;
+			now christmas bonnet is sure;
+			now christmas bonnet is identified;
+			uniquely set up christmas bonnet;
 			summon naughty-or-nice outfit;
 			summon plain-small-diaper uncursed;
 			say "You seem to have been given some kind of... festive baby outfit and diaper to wear?! This must be some weird Christmas-themed event...";
 		otherwise:
-			summon conic santa hat cursed;
+			now conic santa hat is worn by the player; [if we summon it, it'll summon the default outfit too]
+			now conic santa hat is cursed;
+			now conic santa hat is sure;
+			now conic santa hat is identified;
+			uniquely set up conic santa hat;
 			summon present outfit;
 			increase the transform-resistance of present outfit by 2;
 			say "You seem to have been given some kind of... sexy festive outfit to wear?! This must be some weird Christmas-themed event...";
@@ -61,16 +69,18 @@ To Start The Machine:
 		now vampiress is interested;
 		calm vampiress;
 		now the pink pill is in pink wardrobe;
-		now candy corn is in a random placed mandatory haunted room;
-		now liquorice is in a random placed mandatory haunted room;
-		while the number of candy in the location of liquorice > 1:
-			now liquorice is in a random placed mandatory haunted room;
-		now strawberry lace is in a random placed mandatory haunted room;
-		while the number of candy in the location of strawberry lace > 1:
-			now strawberry lace is in a random placed mandatory haunted room;
+		now candy corn is in Mansion28;
+		now liquorice is in Mansion36;
+		now strawberry lace is in Mansion16;
 		let H be a random fetish appropriate halloween headgear;
 		compute full outfit summon of H;
-		say "[second custom style]Ding Dong![roman type][line break]The giant manor house's doorbell sounds surprisingly cheerful and welcoming considering how scary the place looks from the outside. And yet, when the door opens, it opens with a creepy creak like you might expect from such an old and grand door. The [man of vampiress] who greets you has red eyes and very, very pale skin.[line break][variable custom style]'Trick or treat[if diaper lover > 0]! And, erm, could I use your bathroom?'[otherwise]!'[end if][roman type][line break]You say automatically, without thinking. [if diaper lover > 0]It's true - you really really do need the loo. [end if]The [man of vampiress] licks [his of vampiress] lips.[line break][speech style of vampiress]'[if diaper lover > 0]Why of course you can sweetie. Come on in...'[otherwise]Why not both?'[end if][roman type][line break][big he of vampiress] offers seductively, before ushering you inside.[line break][speech style of vampiress]'I did have some candy for you but my house is so big that I've lost it all somewhere around here. Why don't you have a little look around and see if you can find it all? There should be [bold type]three pieces of candy[roman type] [speech style of vampiress]for you to find. Feel free to eat it all when you find it.'[roman type][line break]";
+		let C be bat-pattern-corset;
+		if diaper quest is 1, now C is bat-shape-corset;
+		now C is in the location of the player;
+		now C is cursed;
+		now C is provocation;
+		now the raw-magic-modifier of C is a random number between 1 and 3;
+		say "[second custom style]Ding Dong![roman type][line break]The giant manor house's doorbell sounds surprisingly cheerful and welcoming considering how scary the place looks from the outside. And yet, when the door opens, it opens with a creepy creak like you might expect from such an old and grand door. The [man of vampiress] who greets you has red eyes and very, very pale skin. [big he of vampiress] looks at your bare chest.[line break][if the player is female][speech style of vampiress]'Nice tits.'[roman type][line break][end if]You look down and see that half of your outfit is for some reason on the ground in front of you instead of covering your chest![line break][variable custom style]'Trick or treat[if diaper lover > 0]! And, erm, could I use your bathroom?'[otherwise]!'[end if][roman type][line break]You say automatically, without thinking. [if diaper lover > 0]It's true - you really really do need the loo. [end if]The [man of vampiress] licks [his of vampiress] lips.[line break][speech style of vampiress]'[if diaper lover > 0]Why of course you can sweetie. Come on in...'[otherwise]Why not both?'[end if][roman type][line break][big he of vampiress] offers seductively, before ushering you inside.[line break][speech style of vampiress]'I did have some candy for you but my house is so big that I've lost it all somewhere around here. Why don't you have a little look around and see if you can find it all? There should be [bold type]three pieces of candy[roman type] [speech style of vampiress]for you to find. Feel free to eat it all when you find it.'[roman type][line break]You also notice a [C] on the ground nearby. You sense that wearing it should make you feel much more powerful! Intriguing...";
 		if diaper lover > 0, now the bladder of the player is 8;
 		if diaper messing >= 3, now rectum is 11;
 		if diaper quest is 1:
@@ -258,32 +268,32 @@ To initialise latex prisoner:
 	let L be a random latex transformation-eligible bra;
 	if diaper quest is 1, now L is rubber mittens;
 	if L is actually summonable clothing, summon L;
-	if diaper quest is 0:
-		let L be a random off-stage vibrating plug panties;
-		if L is actually summonable clothing, summon L;
+	let L be a random off-stage vibrating plug panties;
+	if diaper quest is 1, now L is a random rubber diaper;
+	if L is actually summonable clothing, summon L;
 	let L be a random black rubber stockings;
 	if diaper quest is 1, now L is rubber-baby-bonnet;
 	if L is actually summonable clothing, summon L;
-	let L be a random off-stage black catsuit;
-	if diaper quest is 1, now L is a random rubber dungarees;
+	let L be black-catsuit;
+	if diaper quest is 1, now L is a random rubber jacket;
 	if L is actually summonable clothing, summon L;
-	repeat with C running through worn cursable latex clothing:
+	repeat with C running through worn latex clothing:
 		if C is discovered varied:
-			if a random number between 1 and 4 is 1, now the raw-magic-modifier of C is -2;
-			otherwise now the raw-magic-modifier of C is -1;
+			if a random number between 1 and 4 is 1, now the raw-magic-modifier of C is -1;
+			otherwise now the raw-magic-modifier of C is 0;
 		now C is identified;
 		now C is sure;
 		now C is unowned;
-		now C is bland;
-		if C is heels:
-			now C is posture training;
-			now the heel-height of C is 2;
-			compute quest of C;
-		otherwise if C is vibrating plug panties:
-			now the damage of C is 7;
-		otherwise if C is rubber mittens:
-			do nothing;
-		otherwise if diaper quest is 1 or black hood is not actually summonable:
+		if C is not headgear:
+			now C is bland;
+			if C is heels:
+				now C is posture training;
+				now the heel-height of C is 2;
+				compute quest of C;
+			otherwise if C is vibrating plug panties:
+				now the damage of C is 7;
+			otherwise if C is rubber mittens:
+				do nothing;
 			now C is glued;
 		if C is overdress:
 			layer C correctly;
@@ -291,8 +301,6 @@ To initialise latex prisoner:
 	if black hood is actually summonable, summon black hood cursed;
 	if rubber-baby-bonnet is worn:
 		now rubber-baby-bonnet is cursed;
-		now baby-summoned is 1;
-		now the outfit-charge of rubber-baby-bonnet is -500;
 	if there is worn vibrating plug panties:
 		ruin asshole;
 		if the player is possessing a vagina, ruin vagina.
@@ -373,7 +381,8 @@ To initialise wardrobe:
 		if easter content is 1, now C is brown-button-diaper;
 		if C is clothing, add C to L;
 	repeat with X running through L:
-		if X is in Standard Item Pen, restock X;
+		if X is listed in Standard Item Pen:
+			restock X;
 		blandify and reveal X;
 		now X is in pink wardrobe;
 	let CG be champagne-glass;
@@ -383,38 +392,36 @@ To initialise wardrobe:
 	now CG is sure;
 	now CG is bland;
 	now CG is in pink wardrobe;
-	let D be a random off-stage ring;
+	let D be a random off-stage plentiful ring;
 	now D is sapphire;
 	set shortcut of D;
 	now D is in pink wardrobe;
-	now D is a random off-stage ring;
+	now D is a random off-stage plentiful ring;
 	now D is emerald;
 	set shortcut of D;
 	if background-rich is 1:
-		let D be a random off-stage ring;
+		let D be a random off-stage plentiful ring;
 		now D is sapphire;
 		set shortcut of D;
 		now D is in pink wardrobe;
-		now D is a random off-stage ring;
+		now D is a random off-stage plentiful ring;
 		now D is sapphire;
 		set shortcut of D;
-		let D be a random off-stage bracelet;
-		now D is sapphire;
-		set shortcut of D;
-		now D is in pink wardrobe;
-		now D is a random off-stage bracelet;
+		let D be a random off-stage plentiful bracelet;
 		now D is sapphire;
 		set shortcut of D;
 		now D is in pink wardrobe;
-		now D is a random off-stage necklace;
+		now D is a random off-stage plentiful bracelet;
+		now D is sapphire;
+		set shortcut of D;
+		now D is in pink wardrobe;
+		now D is a random off-stage plentiful necklace;
 		now D is sapphire;
 		set shortcut of D;
 	now D is in pink wardrobe;
 	if the player is the donator, now combat visor is in pink wardrobe;
 	if combatvisor is 1, now combat visor is worn by the player;
-	if christmas content is 1:
-		initialise christmas gifts;
-		[now a random santa hat is in pink wardrobe.]
+	if christmas content is 1, initialise christmas gifts.
 
 To compute starting headgear:
 	let H be a random roleplay headgear;
@@ -425,6 +432,7 @@ To Scramble Items:
 	Set Up Clothing;
 	Set Up Collectibles;
 	Set Up Bras;
-	follow the setup starting items rules.
+	follow the setup starting items rules;
+	sort Standard Item Pen in random order.
 
 Game Universe Initialisation ends here.

@@ -153,7 +153,7 @@ To compute perception of (M - an adult baby slave):
 	say "[BigNameDesc of M] notices you[if the player is sluttily dressed].[otherwise]![end if]";
 	if the class of the player is living sex doll:
 		say "It doesn't look like [he of M]'s interested in you.";
-		bore M for 500 seconds;
+		bore M;
 	otherwise if M is bratty adult baby slave and the times-met of M is 0:
 		say "[speech style of M]'Hey! I wanna play! Get down on your hands and knees and play with me!'[roman type][line break]It doesn't seem like [he of M]'s willing to take no for an answer.";
 		now M is interested;
@@ -497,7 +497,7 @@ Definition: an adult baby slave (called M) is eager to deliver enemas:
 	if M is able to deliver enemas, decide yes;
 	decide no.
 
- To compute enema of (M - an adult baby slave):
+To compute enema of (M - an adult baby slave):
 	compute suppository of M.
 
 To say DiaperChangeStart of (M - an adult baby slave):
@@ -637,6 +637,12 @@ To UnidentifiablePosterReaction of (M - an adult baby slave):
 	say "You turn slightly red but don't say a word.";
 	humiliate the lewdness of a random poster in the location of the player / 2.
 
+To say RewardFlav of (M - an adult baby slave) for (T - a thing):
+	say "[speech style of M]'Do you want this? I found it.'[roman type][line break][BigNameDesc of M] pulls a [T] out of [his of M] diaper and drops it on the ground in front of you.".
+
+To say OfferFriendshipFlav of (M - an adult baby slave):
+	say "[speech style of M][if M is guardian]'Do you wanna go fight tha bad guys together[otherwise if M is ally]'Do you wanna adventure together for a while[otherwise if M is buddy]'Are we best friends now[otherwise if M is acquaintance]'Are we becoming friends[otherwise]'Maybe you're not as much of a doo-doo-head as I thought[end if]?'[roman type][line break]".
+
 Section 1 - Greeting
 
 To say FirstResponse of (M - an adult baby slave):
@@ -652,7 +658,7 @@ To say UnfriendlyResponse of (M - an adult baby slave):
 	say "[speech style of M]'[one of]No talk! Just play!'[or]Just get down on your hands and knees so we can play!'[or]You're being annoying!'[or]Shut up and play with me!'[at random][roman type][line break]".
 
 To say SubmissiveGreeting of (M - an adult baby slave):
-	if the class of the player is princess and M is princess-consort:
+	if the class of the player is princess and M is bride-consort:
 		say "You compulsively straighten your back as your words come out in a measured tone.[line break][first custom style]'[one of][big royal-subject of M]. Our previous tryst was most satisfying, I will admit.'[or][big royal-subject of M]. I cannot help but congratulate you on your unique skill.'[or]Greetings, [royal-subject of M]. I may require your services again at a later date.'[at random][roman type][line break]";
 		trivialDignify;
 	otherwise:

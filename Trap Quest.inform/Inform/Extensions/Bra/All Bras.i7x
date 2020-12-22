@@ -129,29 +129,55 @@ Definition: a greyish exercise bra is IcarusScienceAppropriate:
 	if it is actually summonable, decide yes;
 	decide no.
 
-A fetish bra is a kind of bra. Figure of fetish bra is the file "Items/Clothes/Upper/Bras/latexbra1.png". A fetish bra is usually normally-nipple-exposing. A fetish bra is usually sheer. A fetish bra is high cut. A fetish bra is usually latex. A fetish bra is usually transformation-rare.
+A fetish bra is a kind of bra. A fetish bra is sheer. A fetish bra is latex. A fetish bra is transformation-rare. Understand "fetish", "bra" as fetish bra.
+The min size of a fetish bra is 5. The max size of a fetish bra is 12. The support of a fetish bra is 2.
 
-There is 1 fetish bra. The text-shortcut of fetish bra is "fbr".
-
-Definition: a fetish bra is yellow themed: decide yes.
 Definition: a fetish bra is uncovered themed: decide yes.
-
-The min size of a fetish bra is usually 5. The max size of a fetish bra is usually 12. The support of a fetish bra is usually 2.
-
-To say ShortDesc of (B - a fetish bra):
-	say "fetish bra".
 
 To say selfexaminetitle of (B - a fetish bra):
 	say "lewd latex fetish bra".
 
-To decide which figure-name is clothing-image of (C - a fetish bra):
-	decide on figure of fetish bra.
-
-To say ClothingDesc of (C - a fetish bra):
-	say "A transparent latex [printed name of C], which clings tightly to the flesh, and has holes for the nipples, leaving them completely exposed.[if lactation fetish is 1][one of][or][or][or][line break]Lactating [milk] could potentially escape the bra, but probably only if you were on your hands and knees.[as decreasingly likely outcomes][end if]".
-
 To decide which number is the initial outrage of (C - a fetish bra):
 	decide on 9.
+
+nipple-hole-bra is a fetish bra. nipple-hole-bra is normally-nipple-exposing. nipple-hole-bra is high cut. Understand "nipple", "hole" as nipple-hole-bra.
+
+To say ShortDesc of (B - nipple-hole-bra):
+	say "nipple hole fetish bra".
+
+The text-shortcut of nipple-hole-bra is "fbr".
+
+Definition: nipple-hole-bra is yellow themed: decide yes.
+
+Figure of nipple-hole-bra is the file "Items/Clothes/Upper/Bras/latexbra1.png".
+
+To decide which figure-name is clothing-image of (C - nipple-hole-bra):
+	decide on figure of nipple-hole-bra.
+
+To say ClothingDesc of (C - nipple-hole-bra):
+	say "A transparent latex fetish bra, which clings tightly to the flesh, and has holes for the nipples, leaving them completely exposed[if C is worn and C is cursed and black-catsuit is worn and black-catsuit is cursed]. The edges of the bra have completely merged with the rest of your catsuit[end if].[if lactation fetish is 1][one of][or][or][or][line break]Lactating [milk] could potentially escape the bra, but probably only if you were on your hands and knees.[as decreasingly likely outcomes][end if]".
+
+window-bra is a fetish bra. Understand "fetish", "window" as window-bra.
+
+To say ShortDesc of (B - window-bra):
+	say "fetish window bra".
+
+The text-shortcut of window-bra is "fwbr".
+
+Definition: window-bra is black themed: decide yes.
+
+Figure of window-bra is the file "Items/Clothes/Upper/Bras/latexbra2.png".
+
+To decide which figure-name is clothing-image of (C - window-bra):
+	decide on figure of window-bra.
+
+To say ClothingDesc of (C - window-bra):
+	say "A black latex fetish window bra, with a patterned sheer window section in the middle, to somewhat expose your cleavage and nipples[if C is worn and C is cursed and black-catsuit is worn and black-catsuit is cursed]. The edges of the bra have completely merged with the rest of your catsuit[end if].".
+
+To decide which object is the unique-upgrade-target of (C - window-bra):
+	if nipple-hole-bra is off-stage, decide on nipple-hole-bra;
+	decide on nothing.
+
 
 A maternity bra is a kind of bra. Figure of maternity bra is the file "Items/Clothes/Upper/Bras/maternitybra1.png".
 
@@ -389,10 +415,16 @@ Definition: a flimsy bra is sissifying: decide yes.
 
 To decide which object is the unique-upgrade-target of (C - a flimsy bra):
 	if diaper quest is 1, decide on nothing;
-	if (a random number between 1 and 2 is 1 and there is an off-stage fetish bra) or the number of off-stage ribbon bra is 0, decide on a random off-stage fetish bra;
+	if (a random number between 1 and 2 is 1 and window-bra is off-stage) or the number of off-stage ribbon bra is 0, decide on window-bra;
 	decide on a random off-stage ribbon bra.
 
-A pasties is a kind of bra. The support of a pasties is usually 0. A pasties is usually latex. A pasties is usually ridiculously low cut. The min size of a pasties is 20. The max size of a pasties is 20. A pasties is usually transformation-rare. Understand "stickers", "caps", "nipple" as pasties. The text-shortcut of a pasties is "psts". A pasties is not-top-displacable.
+A pasties is a kind of bra. The support of a pasties is usually 0. A pasties is usually latex. A pasties is usually fully exposing. The min size of a pasties is 20. The max size of a pasties is 20. A pasties is usually transformation-rare. Understand "stickers", "caps", "nipple" as pasties. The text-shortcut of a pasties is "psts". A pasties is not-top-displacable.
+
+Definition: a pasties (called C) is actually nipple exposing rather than actually nipple covering: [Pasties always cover your nipples.]
+	decide no.
+
+Definition: a pasties (called C) is nipple exposing rather than at least partially nipple covering:[Pasties always cover your nipples.]
+	decide no.
 
 To say ShortDesc of (B - a pasties):
 	say "nipple pasties".
@@ -415,7 +447,17 @@ To decide which number is the bartering value of (T - a pasties) for (M - a robo
 To decide which number is the bartering value of (T - a pasties) for (M - a mechanic):
 	decide on 2.
 
+
 red-pasties is a pasties. Understand "red", "pasties" as red-pasties.
+
+To compute class set up of (C - red-pasties):
+	now C is cursed;
+	now the quest of C is vaginal-creampie-quest;
+	now vaginal-creampie-quest is persistent;
+	now C is vaginal-sex-addiction-influencing.
+
+To say ClassSummonFlav of (C - red-pasties):
+	say "A pair of red pasties appears on your nipples!".
 
 Figure of pasties is the file "Items/Clothes/Upper/Bras/pasties1.png".
 
@@ -423,7 +465,9 @@ To decide which figure-name is clothing-image of (C - a pasties):
 	decide on figure of pasties.
 
 To say ClothingDesc of (C - a pasties):
-	say "These red latex stickers [if item described is worn]expose your [BreastDesc] as much as possible, clinging seamlessly to your nipples[otherwise]would barely do anything to cover the wearer's [BreastDesc], only providing a small amount of 'modesty' to the wearer's nipples[end if][if the lactation rate of the player > 0 and the item described is worn]. It is completely preventing you from lactating at all[end if].".
+	if C is worn and C is cursed and there is a worn cursed catsuit, say "These red latex stickers expose your [BreastDesc] as much as possible, clinging perfectly to your nipples and connecting to the rest of your catsuit with four impossibly thin strands of latex. [run paragraph on]";
+	otherwise say "These red latex stickers [if item described is worn]expose your [BreastDesc] as much as possible, clinging seamlessly to your nipples[otherwise]would barely do anything to cover the wearer's [BreastDesc], only providing a small amount of 'modesty' to the wearer's nipples[end if]. [run paragraph on]";
+	if the lactation rate of the player > 0 and C is worn, say "It is completely preventing you from lactating at all.".
 
 Definition: a pasties is red themed: decide yes.
 
@@ -444,7 +488,9 @@ To decide which figure-name is clothing-image of (C - tassels):
 	decide on figure of tassels.
 
 To say ClothingDesc of (C - tassels):
-	say "A pair of white nipple caps with [if C is worn]nylon tassels hanging from the centre, as if to provide handlebars for your [BreastDesc], which are otherwise completely exposed[otherwise]nylon tassels attached in the centre, as if to provide handles for the wearer's breasts, which would otherwise be completely exposed[end if][if the lactation rate of the player > 0 and C is worn]. It is completely preventing you from lactating at all.[otherwise].[end if]".
+	if C is worn and C is cursed and there is a worn cursed catsuit, say "A pair of white nipple caps with four strands of thin latex connecting them to the rest of your catsuit, and nylon tassels hanging from the ends of the caps. Your [BreastDesc] are otherwise left completely exposed. [run paragraph on]";
+	otherwise say "A pair of white nipple caps with [if C is worn]nylon tassels hanging from the centre, as if to provide handlebars for your [BreastDesc], which are otherwise completely exposed[otherwise]nylon tassels attached in the centre, as if to provide handles for the wearer's breasts, which would otherwise be completely exposed[end if]. [run paragraph on]";
+	if the lactation rate of the player > 0 and C is worn, say "It is completely preventing you from lactating at all.".
 
 Definition: tassels is end of transformation chain: decide yes.
 
@@ -475,8 +521,11 @@ To say ClothingDesc of (C - a chastity bra):
 To decide which number is the initial outrage of (C - a chastity bra):
 	decide on 3.
 
+To decide which number is the leniency of (C - a chastity bra):
+	decide on 1.
+
 To compute bra strain of (B - a chastity bra):
-	while the size of B < the largeness of breasts + the leniency of B and the largeness of breasts > 1:
+	while the size of B + the leniency of B < the largeness of breasts and the largeness of breasts > 1:
 		if the air volume of breasts > 0:
 			decrease the air volume of breasts by 1;
 		otherwise if the milk volume of breasts > the flesh volume of breasts:
@@ -574,13 +623,14 @@ To compute periodic effect of (C - a trainee bra):[remember that training-progre
 				destroy C;
 				ProgressUp senior robobellboy;
 			otherwise:
-				say "Your [printed name of C] [if the training-progress of C < 1]tightens and emits a short tone[otherwise]emits [the training-progress of C + 1] short tones, tightening slightly each time[end if]. The flexible lining of the bra begins to vibrate, secreting a warm fluid that it simultaneously massages into your [BreastDesc]. It feels way better than it has any right to, and when it finally stops, you're sure your chest is a lot more sensitive than it used to be.[line break]";
+				say "Your [printed name of C] [if the training-progress of C < 1]tightens and emits a short tone[otherwise]emits [the training-progress of C + 1] short tones, tightening slightly each time[end if]. The flexible lining of the bra begins to vibrate, secreting a warm fluid that it simultaneously massages into your [BreastDesc]. It feels way better than it has any right to, and when it finally stops, you're sure your chest is a lot more sensitive than it used to be.";
+				increase the raw sensitivity of breasts by 1;
 				TitFuckAddictUp 1;
 				if lactation fetish is 1, increase the lactation rate of the player by 1;
 				arouse 100 + (the sensitivity of breasts * 10);
 				increase the training-progress of C by 1;
 		otherwise:
-			say "Your [printed name of C] [if the training-progress of C < 1]tightens and emits a short tone[otherwise]tightens and emits [the training-progress of C + 1] short tones[end if] as warm fluid begins seeping through the flexible lining of the bra, soaking into your skin. You hear another tone after a while, and look down [if the training-progress of C >= 3]to see the bra dropping off your chest completely![otherwise]to see the silhouette of the bra hasn't changed! Your breasts must be bigger![end if][line break]";
+			say "Your [printed name of C] [if the training-progress of C < 1]tightens and emits a short tone[otherwise]tightens and emits [the training-progress of C + 1] short tones[end if] as warm fluid begins seeping through the flexible lining of the bra, soaking into your skin. You hear another tone after a while, and look down [if the training-progress of C >= 3]to see the bra dropping off your chest completely[otherwise]to see the silhouette of the bra hasn't changed! Your breasts must be bigger[end if]!";
 			increase the training-progress of C by 1;
 			if the training-progress of C < 1, BustUp 1;
 			otherwise BustUp the training-progress of C;
@@ -590,9 +640,15 @@ To compute periodic effect of (C - a trainee bra):[remember that training-progre
 				destroy C;
 				ProgressUp senior robobellboy.
 
-acolyte-chestpiece is a cupless bra. The text-shortcut of acolyte-chestpiece is "actp". acolyte-chestpiece is metal. Understand "gold", "golden", "acolyte", "acolyte's", "chestpiece" as acolyte-chestpiece. acolyte-chestpiece is unique. acolyte-chestpiece is top-exclusive. The printed name of acolyte-chestpiece is "[clothing-title-before]acolyte's chestpiece[clothing-title-after]". acolyte-chestpiece has a number called charge. The charge of acolyte-chestpiece is usually 0.
+acolyte-chestpiece is a cupless bra. The text-shortcut of acolyte-chestpiece is "actp". acolyte-chestpiece is metal. Understand "gold", "golden", "acolyte", "acolyte's", "chestpiece" as acolyte-chestpiece. acolyte-chestpiece is unique. acolyte-chestpiece is top-exclusive. The printed name of acolyte-chestpiece is "[clothing-title-before]acolyte's chestpiece[clothing-title-after]". acolyte-chestpiece has a number called charge.
 
-Definition: acolyte-chestpiece is blessable: decide no.
+Definition: acolyte-chestpiece is class-relevant:
+	if the class of the player is worshipper, decide yes;
+	decide no.
+
+To compute class set up of (C - acolyte-chestpiece):
+	now C is cursed.
+
 Definition: acolyte-chestpiece is demonic: decide yes.
 Definition: acolyte-chestpiece is yellow themed: decide yes.
 
@@ -641,5 +697,78 @@ To decide which number is the strength-influence of (C - acolyte-chestpiece):
 	otherwise:
 		if the magic-modifier of C > 0, decide on the magic-modifier of C + 1;
 		decide on 1.
+
+portal-bra is a bra. portal-bra is unique. portal-bra is metal. The printed name of portal-bra is "[clothing-title-before]portal bra[clothing-title-after]". The text-shortcut of portal-bra is "ptb". Understand "portal", "bra" as portal-bra. The min size of portal-bra is 20. The max size of portal-bra is 20. The support of portal-bra is 0. portal-bra is fully covering. portal-bra is not-top-displacable.
+portal-bra has a number called charge.
+
+Definition: portal-bra is displacable: decide no.
+Definition: portal-bra is cursable: decide no.
+Definition: portal-bra is removable: decide no.
+Definition: portal-bra is stealable: decide no.
+Definition: portal-bra is grey themed: decide yes.
+Definition: portal-bra is transformation-protected: decide yes.
+Definition: portal-bra is fluid immune: decide yes.
+Definition: portal-bra is breast hiding: decide yes.
+
+To say ClothingDesc of (K - portal-bra):
+	say "A gold frame secures a piece of concrete to your chest. You can feel that your breasts are... 'elsewhere'[if K is penetrating breasts]. There is currently someone fucking your breasts![end if].".
+
+To compute SelfExamineDesc of (K - portal-bra):
+	say ClothingDesc of K.
+
+To say ShortDesc of (K - portal-bra):
+	say "portal bra".
+
+Figure of Portal Bra is the file "Items/Clothes/Upper/Bras/portalbra1.png".
+
+To decide which figure-name is clothing-image of (C - portal-bra):
+	decide on figure of Portal Bra.
+
+To uniquely set up (C - portal-bra):
+	do nothing.
+To set up (C - portal-bra):
+	do nothing.
+
+To compute periodic effect of (C - portal-bra):
+	increase the charge of C by 1;
+	if the charge of C < 100 and the charge of C > (a random number between 30 and 50) and the player is not in Hotel44 and Hotel44 is not nearby:
+		now the charge of C is 100;
+		say "[bold type]Suddenly, you feel your breasts being grabbed by two rough hands, and squeezed around a hard [manly-penis]![line break][variable custom style][one of]Oh god, I'm being titfucked right now?![or]That pimp is selling my breasts for sex again![then at random][roman type][line break]";
+		now C is penetrating breasts;
+	compute school periodic effect of C.
+
+To SilentSquirt (L - a liquid-object) On (C - portal-bra) by (N - a number):
+	if N > 0:
+		if inside-out is true:
+			say "[announced L] disappears through the portal.";
+			PuddleUp L by N in Hotel44;
+		otherwise:
+			if belly is unsoaked, say "[announced L] drips down onto your belly.";
+			ContinuedSquirt L on Belly by N;
+
+To compute school periodic effect of (C - portal-bra):
+	if C is penetrating breasts:
+		cutshow figure of pimp portal cutscene;
+		let M be a random ultimate-lesson-actor;
+		now M is penetrating breasts;
+		dislodge C;
+		say "[BigFuckerDesc of M] is [one of]massaging [his of M] [manly-penis] with your breasts[or]sliding [his of M] [manly-penis] in and out of your cleavage[or]roughly groping your breasts and fucking your cleavage[cycling]!";
+		stimulate breasts from M;
+		if playerRegion is school or the player is in Hotel44 or Hotel44 is nearby or the charge of C > a random number between 102 and 103:
+			TimesSubmittedUp M by 1;
+			say CleavageClimaxFlav of M;
+			BreastsSensitivityUp 1;
+			orgasm dislodge M;
+			if the semen coating of breasts is 0, say "You feel someone wiping your breasts clean.";
+			now the charge of C is 0;
+			if pimp is not normally ally, FavourUp pimp;
+		otherwise:
+			now C is penetrating breasts;
+			say StealthPortalSexFlav;
+		dislodge M.
+
+To say StealthPortalSexFlav:
+	let P be a random reactive person;
+	if P is a person, say "[one of][variable custom style]What would [FuckerDesc of P][variable custom style] say if [he of P] knew what was happening to me right now?[roman type][line break][or][or][cycling]".
 
 All Bras ends here.

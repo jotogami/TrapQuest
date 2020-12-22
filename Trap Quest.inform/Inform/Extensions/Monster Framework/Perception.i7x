@@ -52,7 +52,7 @@ To check perception of (M - a monster):
 			otherwise if stealthActive is true and (the player is stealthy or the blind-status of M > 0 or (M is woman-player and the woman-status of woman-player is 80)) and the player is not in a bossed room and a random number between 1 and the stealth of the player > 1:
 				say PerceptionFail of M;
 				if the blind-status of M > 0, decrease the blind-status of M by 1;
-				distract M;
+				deinterest M;
 			otherwise:
 				compute correct perception of M;
 				if latest-top-malfunction is not 0 and M is intelligent and M is friendly, now latest-top-malfunction is earnings; [If an intelligent NPC has noticed the player for whatever reason that probably means they would have seen a nip slip if one existed. So we'll say one didn't exist.]
@@ -78,7 +78,6 @@ To check perception of (M - a monster):
 					if newbie tips is 1 and tutorial is 0:
 						if M is friendly, say "[one of][newbie style]Newbie tip: You have been noticed by an NPC! Looks like this one is friendly, which means you could try using the 'talk' verb to find out more from them. If thirsty, you'll even be able to ask [him of M] for a drink.[roman type][line break][or][stopping]";
 						otherwise say "[one of][newbie style]Newbie tip: You have been noticed by an NPC! Looks like this one is unfriendly, which usually always means [he of M] wants to [if diaper quest is 1]babify[otherwise]fuck[end if] you, or at the very least make your life more miserable in some way. You can either fight back with 'slap', 'knee' or 'kick' (you'll need to be standing), or you can run away! If your delicateness is high enough, there's also a third option, just get on your knees and let it happen... Anyway, if you want to fight back, experiment with the different attacks. At the start of the game, kicking is usually the worst option as you risk falling over and do less damage.[roman type][line break][or][stopping]";
-					reset orifice selection of M; [Otherwise they would be biased towards doing the same thing again, which is lame.]
 					if hypno-curtsey-trigger > 0 and the player is upright and M is intelligent friendly monster and the player is not wrist bound and the player is able to use manual dexterity and there is a worn knee-length or longer crotch-in-place clothing:
 						let R be a random number between 1 and hypno-curtsey-trigger;
 						let HR be 2 + the square root of (the humiliation of the player / 2000);
@@ -101,7 +100,11 @@ To compute defeated perception of (M - a monster):
 
 To compute correct perception of (M - a monster):
 	now the latest-appearance of M is the appearance of the player;
-	if diaper quest is 1:
+	if the player is a december 2020 top donator and M is proposer:
+		compute proposal of M;
+	otherwise if the player is a december 2020 top donator and the class of the player is bride and M is bride-consort and there is a worn bouquet and M is not uniquely unfriendly:
+		compute bride perception of M;
+	otherwise if diaper quest is 1:
 		now the latest-cringe of M is the cringe appearance of the player; [We only want to do that if we're playing DQ otherwise we're wasting CPU cycles]
 		compute DQ perception of M;
 	otherwise:
@@ -226,7 +229,7 @@ To compute sudden objectification of (M - a monster):
 
 Definition: a monster (called M) is objectifying the player:
 	if diaper quest is 1, decide no;
-	if M is not interested or M is not in the location of the player:
+	if M is not interested or M is not in the location of the player or (M is bride-consort and there is a worn bouquet):
 		now the objectification of M is 0;
 		decide no;
 	if the objectification of M is 1, decide yes;
@@ -477,7 +480,11 @@ To FavourDown (M - a monster) with consequences:
 
 To FavourUp (M - a monster) by (N - a number):
 	if the class of the player is cheerleader, increase N by 1;
-	if N > 0, increase the favour of M by N.
+	if N > 0:
+		increase the favour of M by N;
+		if M is royal guard and the refractory-period of M < 0:
+			progress quest of royal-quest;
+			now the refractory-period of M is the refractory-time of M. [This stops the player being able to trigger the duty performed repeatedly within a short time]
 
 To FavourDown (M - a monster) by (N - a number) with consequences:
 	if M is alive:
